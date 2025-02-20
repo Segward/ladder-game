@@ -5,27 +5,56 @@ class App {
 }
 
 class Game {
-
+    -players: List<Player>
+    -board: Board
+    -dice: Dice
+    +Game()
+    +init()
+    +start()
+    +nextTurn()
+    +end()
 }
 
 class Player {
-
+    -name: String
+    -position: int
+    +Player(String name)
+    +move(int steps)
+    +getPosition()
+    +setPosition(int position)
 }
 
 class Board {
-
+    -tiles: List<Tile>
+    +Board()
+    +getTile(int position)
+    +getTileAction(int position)
+    +getTileCount()
 }
 
 class Tile {
-
+    -position: int
+    -action: TileAction
+    +Tile(int position, TileAction action)
+    +getPosition()
+    +getAction()
+    +setPosition(int position)
+    +setAction(TileAction action)
 }
 
 class TileAction {
-    
+    -type: ActionType
+    -value: int
+    +TileAction(ActionType type, int value)
+    +getType()
+    +getValue()
+    +setType(ActionType type)
+    +setValue(int value)
 }
 
 class Dice {
-
+    +roll()
+    +getValue()
 }
 
 @enduml
