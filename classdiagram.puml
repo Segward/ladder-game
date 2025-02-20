@@ -6,9 +6,19 @@ class App {
 }
 
 class Window {
-    -game: Game
-    +Window(Game game)
-    +start()
+
+}
+
+class MainFrame {
+
+}
+
+class FigureSelectionFrame {
+
+}
+
+class GameFrame {
+
 }
 
 class Game {
@@ -27,9 +37,16 @@ class Game {
 class Player {
     -name: String
     -currentTile: Tile
-    +Player(String name, Game game)
+    -figure: Figure
+    -game: Game
+    +Player(String name, Figure figure, Game game)
     +placeOnTile(Tile tile)
     +move(int steps)
+}
+
+class Figure {
+    -color: String
+    +Figure(String color)
 }
 
 class Board {
@@ -61,6 +78,14 @@ class LadderAction {
     +LadderAction(String action)
     +setStartTile(Tile tile)
     +setEndTile(Tile tile)
+    +execute(Player player)
+}
+
+class BackToStartAction {
+    -action: String
+    -startTile: Tile
+    +BackToStartAction(String action)
+    +setStartTile(Tile tile)
     +execute(Player player)
 }
 

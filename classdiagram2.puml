@@ -1,0 +1,60 @@
+@startuml
+
+class App {
+    +start(Stage primaryStage)
+    +main(String[] args)
+}
+
+class Window {
+
+}
+
+class MainFrame {
+
+}
+
+class FigureSelectionFrame {
+
+}
+
+class GameFrame {
+
+}
+
+class Game {
+    
+}
+
+class Player {
+
+}
+
+class Figure {
+
+}
+
+class Board {
+
+}
+
+class Dice {
+
+}
+
+class Tile {
+
+}
+
+class TileAction {
+
+}
+
+class LadderAction {
+
+}
+
+class WaitTurnAction {
+
+}
+
+@enduml
