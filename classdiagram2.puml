@@ -1,60 +1,74 @@
 @startuml
+
 class App {
     +start(Stage primaryStage)
     +main(String[] args)
 }
 
-class Game {
-    -players: List<Player>
-    -board: Board
-    -dice: Dice
-    +Game()
-    +init()
+class Window {
+    -game: Game
+    +Window(Game game)
     +start()
-    +nextTurn()
-    +end()
+}
+
+class Game {
+    -currentPlayer: Player
+    -board: Board
+    -dice: dice
+    -players: List<Player>
+    +addPlayer(Player player)
+    +createBoard()
+    +createDice()
+    +startGame()
+    +endGame()
+    +getWinner()
 }
 
 class Player {
     -name: String
-    -position: int
-    +Player(String name)
+    -currentTile: Tile
+    +Player(String name, Game game)
+    +placeOnTile(Tile tile)
     +move(int steps)
-    +getPosition()
-    +setPosition(int position)
 }
 
 class Board {
-    -tiles: List<Tile>
-    +Board()
-    +getTile(int position)
-    +getTileAction(int position)
-    +getTileCount()
+    -tiles: Map<Integer, Tile>
+    +addTile(Tile tile)
+    +getTile(int index)
 }
 
 class Tile {
-    -position: int
+    -nextTile: Tile
+    -tileId: String
     -action: TileAction
-    +Tile(int position, TileAction action)
-    +getPosition()
-    +getAction()
-    +setPosition(int position)
-    +setAction(TileAction action)
+    +Tile(String tileId)
+    +setPlayer(Player player)
+    +removePlayer(Player player)
+    +setNextTile(Tile tile)
 }
 
 class TileAction {
-    -type: ActionType
-    -value: int
-    +TileAction(ActionType type, int value)
-    +getType()
-    +getValue()
-    +setType(ActionType type)
-    +setValue(int value)
+    -action: String
+    +TileAction(String action)
+    +execute(Player player)
+}
+
+class LadderAction {
+    -action: String
+    -startTile: Tile
+    -endTile: Tile
+    +LadderAction(String action)
+    +setStartTile(Tile tile)
+    +setEndTile(Tile tile)
+    +execute(Player player)
 }
 
 class Dice {
+    -dice: List<Die>
+    +Dice(int numberOfDice)
+    +getDie(int index)
     +roll()
-    +getValue()
 }
 
 @enduml
