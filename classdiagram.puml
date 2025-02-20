@@ -1,13 +1,74 @@
 @startuml
-class Main {
+
+class App {
     +start(Stage primaryStage)
     +main(String[] args)
 }
 
-class Controller {
-    -model: Model
-    -view: View
-    +Controller(Model model, View view)
-    +handleButtonAction(ActionEvent event)
+class Window {
+    -game: Game
+    +Window(Game game)
+    +start()
 }
+
+class Game {
+    -currentPlayer: Player
+    -board: Board
+    -dice: dice
+    -players: List<Player>
+    +addPlayer(Player player)
+    +createBoard()
+    +createDice()
+    +startGame()
+    +endGame()
+    +getWinner()
+}
+
+class Player {
+    -name: String
+    -currentTile: Tile
+    +Player(String name, Game game)
+    +placeOnTile(Tile tile)
+    +move(int steps)
+}
+
+class Board {
+    -tiles: Map<Integer, Tile>
+    +addTile(Tile tile)
+    +getTile(int index)
+}
+
+class Tile {
+    -nextTile: Tile
+    -tileId: String
+    -action: TileAction
+    +Tile(String tileId)
+    +setPlayer(Player player)
+    +removePlayer(Player player)
+    +setNextTile(Tile tile)
+}
+
+class TileAction {
+    -action: String
+    +TileAction(String action)
+    +execute(Player player)
+}
+
+class LadderAction {
+    -action: String
+    -startTile: Tile
+    -endTile: Tile
+    +LadderAction(String action)
+    +setStartTile(Tile tile)
+    +setEndTile(Tile tile)
+    +execute(Player player)
+}
+
+class Dice {
+    -dice: List<Die>
+    +Dice(int numberOfDice)
+    +getDie(int index)
+    +roll()
+}
+
 @enduml
