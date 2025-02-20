@@ -1,0 +1,31 @@
+@startuml
+class App {
+    +start(Stage primaryStage)
+    +main(String[] args)
+}
+
+class Game {
+
+}
+
+class Player {
+
+}
+
+class Board {
+
+}
+
+class Tile {
+
+}
+
+class TileAction {
+    
+}
+
+class Dice {
+
+}
+
+@enduml

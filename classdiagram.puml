@@ -1,0 +1,13 @@
+@startuml
+class Main {
+    +start(Stage primaryStage)
+    +main(String[] args)
+}
+
+class Controller {
+    -model: Model
+    -view: View
+    +Controller(Model model, View view)
+    +handleButtonAction(ActionEvent event)
+}
+@enduml
