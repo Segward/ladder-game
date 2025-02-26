@@ -75,12 +75,12 @@ class LadderAction {
     +execute(Player player)
 }
 
-Game *-left-> Player
-Game *-right-> Dice
-Game *--> Board
-Player *-down-> Figure
-Board *-right-> Tile
-Tile *--> TileAction
-TileAction *--|> LadderAction
+Game *-left- Player: composition
+Game *-- Board: composition
+Game *-right- Dice: composition
+Player *-- Figure: composition
+Board *-right- Tile: composition
+Tile *-- TileAction: composition
+TileAction --|> LadderAction: extends
 
 @enduml
