@@ -1,10 +1,5 @@
 @startuml
 
-class App {
-    +start(Stage primaryStage)
-    +main(String[] args)
-}
-
 class Game {
     -players: Player[]
     -board: Board
@@ -62,7 +57,6 @@ class LadderAction {
     +execute(Player player)
 }
 
-App --> Game
 Game --> Player
 Game --> Board
 Game --> Dice
