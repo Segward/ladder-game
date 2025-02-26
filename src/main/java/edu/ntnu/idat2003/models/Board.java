@@ -1,8 +1,7 @@
 package edu.ntnu.idat2003.models;
 
-import java.util.HashMap;
-
 import edu.ntnu.idat2003.tileactions.TileAction;
+import java.util.HashMap;
 
 public class Board {
   private HashMap<Integer, Tile> tiles;
@@ -16,7 +15,7 @@ public class Board {
   }
 
   public void setTileAction(int number, TileAction action) {
-    tiles.put(number, new Tile(action));
+    tiles.put(number, new Tile(number, action));
   }
 
   public Tile getTile(int number) {
