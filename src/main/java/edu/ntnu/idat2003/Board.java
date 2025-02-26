@@ -13,6 +13,10 @@ public class Board {
     tiles.put(number, tile);
   }
 
+  public void setTileAction(int number, TileAction action) {
+    tiles.put(number, new Tile(action));
+  }
+
   public Tile getTile(int number) {
     return tiles.get(number);
   }

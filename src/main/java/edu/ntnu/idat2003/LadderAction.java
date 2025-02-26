@@ -11,5 +11,6 @@ public class LadderAction extends TileAction {
   @Override
   public void execute(Player player) {
     player.setPosition(destination);
+    System.out.println(player.getName() + " climbed the ladder to tile " + destination);
   }
 }
