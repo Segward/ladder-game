@@ -1,82 +1,86 @@
 @startuml
 
 class Game {
-    -players: Player[]
+    -players: ArrayList<Player>
     -board: Board
     -dice: Dice
     -currentPlayer: Player
-    -currentTurn: int
+    -currentPlayerIndex: int
     +createBoard()
     +createDice()
-    +addPlayer()
+    +addPlayer(Player player)
     +startGame()
     +nextTurn()
+    +getBoard(): Board
+    +getDice(): Dice
+    +getCurrentPlayer(): Player
+    +getCurrentPlayerIndex(): int
+    +getPlayers(): ArrayList<Player>
 }
 
 class Player {
     -name: String
     -figure: Figure
-    -currentTile: Tile
+    -position: int
+    +Player(String name, Figure figure)
     +move(int steps)
-    +setTile(Tile tile)
+    +setPosition(int position)
+    +getName(): String
+    +getFigure(): Figure
+    +getPosition(): int
 }
 
 class Figure {
     -color: String
     +Figure(String color)
-    +getColor()
+    +getColor(): String
 }
 
 class Board {
-    -startTile: Tile
-    -endTile: Tile
-    -tiles: HashMap<int, Tile>
+    -tiles: HashMap<Integer, Tile>
     +Board()
-    +getTile(int index): Tile
-    +addTile(Tile tile)
-    +getStartTile()
-    +getEndTile()
+    +addTile(int number, Tile tile)
+    +setTileAction(int number, TileAction action)
+    +getTile(int number): Tile
+    +getTileCount(): int
 }
 
 class Dice {
-    -die: int
-    +Dice(int die)
-    +roll()
+    -sides: int
+    +Dice(int sides)
+    +roll(): int
+    +getSides(): int
 }
 
 class Tile {
     -action: TileAction
-    -nextTile: Tile
-    +Tile(TileAction action, Tile nextTile)
-    +placePlayer(Player player)
-    +removePlayer(Player player)
-    +getAction()
-    +getNextTile()
+    -position: int
+    +Tile(int position, TileAction action)
+    +Tile(int position)
+    +hasAction(): boolean
+    +getAction(): TileAction
+    +getPosition(): int
 }
 
 class TileAction {
     -action: String
     +TileAction(String action)
+    +getAction(): String
     +execute(Player player)
-    +getAction()
 }
 
 class LadderAction {
-    -action: String
-    -destination: Tile
-    +LadderAction(String action, Tile destination)
+    -destination: int
+    +LadderAction(String action, int destination)
     +execute(Player player)
-    +getAction()
 }
 
-Game --> Player
-Game --> Board
-Game --> Dice
-Player --> Figure
-Board --> Tile
-Tile --> TileAction
-TileAction --|> LadderAction
-LadderAction --> Tile
-Player --> Tile
+Game *-left-> Player
+Game *-right-> Dice
+Game *--> Board
+Player *-down-> Figure
+Board *-right-> Tile
+Tile *--> TileAction
+TileAction *--|> LadderAction
 
 @enduml
