@@ -6,22 +6,25 @@
 
     <groupId>edu.ntnu.idat2003</groupId>
     <artifactId>ladder-game</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>ladder-game-1.0</version>
 
     <properties>
-        <!-- The project requires Java 21 -->
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
+
+        <!-- Junit jupiter for testing -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <version>5.11.4</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- JavaFX controls -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>

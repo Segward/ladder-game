@@ -1,74 +1,82 @@
 @startuml
 
-class App {
-    +start(Stage primaryStage)
-    +main(String[] args)
-}
-
-class Window {
-    -game: Game
-    +Window(Game game)
-    +start()
-}
-
 class Game {
-    -currentPlayer: Player
+    -players: Player[]
     -board: Board
-    -dice: dice
-    -players: List<Player>
-    +addPlayer(Player player)
+    -dice: Dice
+    -currentPlayer: Player
+    -currentTurn: int
     +createBoard()
     +createDice()
+    +addPlayer()
     +startGame()
-    +endGame()
-    +getWinner()
+    +nextTurn()
 }
 
 class Player {
     -name: String
+    -figure: Figure
     -currentTile: Tile
-    +Player(String name, Game game)
-    +placeOnTile(Tile tile)
     +move(int steps)
+    +setTile(Tile tile)
+}
+
+class Figure {
+    -color: String
+    +Figure(String color)
+    +getColor()
 }
 
 class Board {
-    -tiles: Map<Integer, Tile>
+    -startTile: Tile
+    -endTile: Tile
+    -tiles: HashMap<int, Tile>
+    +Board()
+    +getTile(int index): Tile
     +addTile(Tile tile)
-    +getTile(int index)
+    +getStartTile()
+    +getEndTile()
+}
+
+class Dice {
+    -die: int
+    +Dice(int die)
+    +roll()
 }
 
 class Tile {
-    -nextTile: Tile
-    -tileId: String
     -action: TileAction
-    +Tile(String tileId)
-    +setPlayer(Player player)
+    -nextTile: Tile
+    +Tile(TileAction action, Tile nextTile)
+    +placePlayer(Player player)
     +removePlayer(Player player)
-    +setNextTile(Tile tile)
+    +getAction()
+    +getNextTile()
 }
 
 class TileAction {
     -action: String
     +TileAction(String action)
     +execute(Player player)
+    +getAction()
 }
 
 class LadderAction {
     -action: String
-    -startTile: Tile
-    -endTile: Tile
-    +LadderAction(String action)
-    +setStartTile(Tile tile)
-    +setEndTile(Tile tile)
+    -destination: Tile
+    +LadderAction(String action, Tile destination)
     +execute(Player player)
+    +getAction()
 }
 
-class Dice {
-    -dice: List<Die>
-    +Dice(int numberOfDice)
-    +getDie(int index)
-    +roll()
-}
+Game --> Player
+Game --> Board
+Game --> Dice
+Player --> Figure
+Board --> Tile
+Tile --> TileAction
+TileAction --|> LadderAction
+LadderAction --> Tile
+Player --> Tile
 
 @enduml
