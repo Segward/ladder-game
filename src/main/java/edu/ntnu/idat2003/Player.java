@@ -3,26 +3,20 @@ package edu.ntnu.idat2003;
 public class Player {
   private String name;
   private Figure figure;
-  private Tile currentTile;
+  private int position;
 
-  public Player(String name, Figure figure, Tile currentTile) {
+  public Player(String name, Figure figure) {
     this.name = name;
     this.figure = figure;
-    this.currentTile = currentTile;
+    this.position = 0;
   }
 
   public void move(int steps) {
-    Tile nextTile = currentTile;
-    for (int i = 0; i < steps; i++) {
-      nextTile = nextTile.getNextTile();
-    }
-    currentTile.removePlayer(this);
-    nextTile.placePlayer(this);
-    currentTile = nextTile;
+    this.position += steps;
   }
 
-  public void setCurrentTile(Tile currentTile) {
-    this.currentTile = currentTile;
+  public void setPosition(int position) {
+    this.position = position;
   }
 
   public String getName() {
@@ -33,7 +27,7 @@ public class Player {
     return figure;
   }
 
-  public Tile getCurrentTile() {
-    return currentTile;
+  public int getPosition() {
+    return position;
   }
 }

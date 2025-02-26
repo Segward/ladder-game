@@ -1,30 +1,21 @@
 package edu.ntnu.idat2003;
 
-import java.util.ArrayList;
-
 public class Tile {
   private TileAction action;
-  private Tile nextTile;
-  private ArrayList<Player> players;
 
-  public Tile(TileAction action, Tile nextTile) {
+  public Tile(TileAction action) {
     this.action = action;
-    this.nextTile = nextTile;
   }
 
-  public void placePlayer(Player player) {
-    players.add(player);
+  public Tile() {
+    this.action = null;
   }
 
-  public void removePlayer(Player player) {
-    players.remove(player);
+  public boolean hasAction() {
+    return action != null;
   }
 
   public TileAction getAction() {
     return action;
-  }
-
-  public Tile getNextTile() {
-    return nextTile;
   }
 }

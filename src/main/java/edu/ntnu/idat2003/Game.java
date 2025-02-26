@@ -10,20 +10,51 @@ public class Game {
   private Player currentPlayer;
   private int currentPlayerIndex;
 
-  public Game() {
-    this.players = new ArrayList<>();
-    this.board = new Board();
-    this.dice = new Dice(6);
-    this.currentPlayerIndex = 0;
+  public void createBoard() {
+    board = new Board();
+    for (int i = 0; i < 100; i++) {
+      Tile tile = new Tile();
+      board.addTile(i, tile);
+    }
   }
 
-  public void createBoard() {}
+  public void createDice() {
+    dice = new Dice(6);
+  }
 
-  public void createDice() {}
+  public void addPlayer() {
+    players = new ArrayList<>();
+    players.add(new Player("Player 1", new Figure("Red")));
+    players.add(new Player("Player 2", new Figure("Blue")));
+    players.add(new Player("Player 3", new Figure("Green")));
+    players.add(new Player("Player 4", new Figure("Yellow")));
+  }
 
-  public void addPlayer() {}
+  public void startGame() {
+    boolean gameIsRunning = true;
+    currentPlayerIndex = 0;
+    while (gameIsRunning) {
+      currentPlayer = players.get(currentPlayerIndex);
+      int steps = dice.roll();
+      currentPlayer.move(steps);
+      int position = currentPlayer.getPosition();
+      System.out.println(currentPlayer.getName() + " is at position " + position);
+      if (position >= board.getTileCount() - 1) {
+        System.out.println(currentPlayer.getName() + " has won the game!");
+        gameIsRunning = false;
+      }
+      Tile tile = board.getTile(position);
+      if (tile != null && tile.hasAction()) {
+        tile.getAction().execute(currentPlayer);
+      }
+      nextPlayer();
+    }
+  }
 
-  public void startGame() {}
-
-  public void nextPlayer() {}
+  public void nextPlayer() {
+    currentPlayerIndex++;
+    if (currentPlayerIndex >= players.size()) {
+      currentPlayerIndex = 0;
+    }
+  }
 }
