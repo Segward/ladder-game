@@ -23,23 +23,31 @@ class Player {
 
 class Figure {
     -color: String
+    +Figure(String color)
     +getColor()
 }
 
 class Board {
+    -startTile: Tile
+    -endTile: Tile
     -tiles: HashMap<int, Tile>
+    +Board()
     +getTile(int index): Tile
     +addTile(Tile tile)
+    +getStartTile()
+    +getEndTile()
 }
 
 class Dice {
     -die: int
+    +Dice(int die)
     +roll()
 }
 
 class Tile {
     -action: TileAction
     -nextTile: Tile
+    +Tile(TileAction action, Tile nextTile)
     +placePlayer(Player player)
     +removePlayer(Player player)
     +getAction()
@@ -48,13 +56,17 @@ class Tile {
 
 class TileAction {
     -action: String
+    +TileAction(String action)
     +execute(Player player)
+    +getAction()
 }
 
 class LadderAction {
     -action: String
     -destination: Tile
+    +LadderAction(String action, Tile destination)
     +execute(Player player)
+    +getAction()
 }
 
 Game --> Player

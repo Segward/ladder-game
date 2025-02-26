@@ -1,7 +1,6 @@
 package edu.ntnu.idat2003;
 
 public abstract class TileAction {
-
   protected String action;
 
   public TileAction(String action) {

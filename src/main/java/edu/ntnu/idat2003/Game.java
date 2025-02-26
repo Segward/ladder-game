@@ -10,6 +10,13 @@ public class Game {
   private Player currentPlayer;
   private int currentPlayerIndex;
 
+  public Game() {
+    this.players = new ArrayList<>();
+    this.board = new Board();
+    this.dice = new Dice(6);
+    this.currentPlayerIndex = 0;
+  }
+
   public void createBoard() {}
 
   public void createDice() {}
