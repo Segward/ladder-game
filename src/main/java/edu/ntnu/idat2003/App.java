@@ -4,7 +4,7 @@ public class App {
   public static void main(String[] args) {
     Game game = new Game();
     game.createBoard();
-    game.addPlayer();
+    game.createPlayers();
     game.createDice();
     game.startGame();
   }

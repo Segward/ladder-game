@@ -37,7 +37,7 @@ public class Game {
     dice = new Dice(6);
   }
 
-  public void addPlayer() {
+  public void createPlayers() {
     players = new ArrayList<>();
     players.add(new Player("Player 1", new Figure("Red")));
     players.add(new Player("Player 2", new Figure("Blue")));
@@ -71,5 +71,25 @@ public class Game {
     if (currentPlayerIndex >= players.size()) {
       currentPlayerIndex = 0;
     }
+  }
+
+  public Board getBoard() {
+    return board;
+  }
+
+  public Dice getDice() {
+    return dice;
+  }
+
+  public Player getCurrentPlayer() {
+    return currentPlayer;
+  }
+
+  public int getCurrentPlayerIndex() {
+    return currentPlayerIndex;
+  }
+
+  public ArrayList<Player> getPlayers() {
+    return players;
   }
 }
