@@ -46,8 +46,15 @@ class Board {
 }
 
 class Dice {
+    -die: int
+    +Dice(int die)
+    +roll(): int
+    +getDie(): int
+}
+
+class Die {
     -sides: int
-    +Dice(int sides)
+    +Die(int sides)
     +roll(): int
     +getSides(): int
 }
@@ -75,12 +82,13 @@ class LadderAction {
     +execute(Player player)
 }
 
-Game *-left- Player: composition
-Game *-- Board: composition
-Game *-right- Dice: composition
-Player *-- Figure: composition
-Board *-right- Tile: composition
-Tile *-- TileAction: composition
+Game *-left- Player
+Game *-down- Board
+Game *-right- Dice
+Dice *-right-> Die
+Player *-- Figure
+Board *-right- Tile
+Tile *-- TileAction
 TileAction --|> LadderAction: extends
 
 @enduml

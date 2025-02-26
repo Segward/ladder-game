@@ -4,18 +4,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-public class DiceTest {
+public class DieTest {
 
   @Test
   public void testRoll() {
-    Dice dice = new Dice(2);
-    int roll = dice.roll();
-    assertEquals(true, roll >= 1 && roll <= 12);
+    Die die = new Die(6);
+    int roll = die.roll();
+    assertEquals(true, roll >= 1 && roll <= 6);
   }
 
   @Test
   public void testGetSides() {
-    Dice dice = new Dice(6);
-    assertEquals(6, dice.getDie());
+    Die die = new Die(6);
+    assertEquals(6, die.getSides());
   }
 }

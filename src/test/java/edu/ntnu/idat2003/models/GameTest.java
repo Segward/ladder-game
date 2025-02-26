@@ -27,7 +27,7 @@ public class GameTest {
   public void testCreateDice() {
     Game game = new Game();
     game.createDice();
-    assertEquals(6, game.getDice().getSides());
+    assertEquals(6, game.getDice().getDie());
   }
 
   @Test

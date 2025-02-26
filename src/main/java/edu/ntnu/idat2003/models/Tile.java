@@ -16,6 +16,10 @@ public class Tile {
     this.position = position;
   }
 
+  public int getNextTile() {
+    return position + 1;
+  }
+
   public boolean hasAction() {
     return action != null;
   }

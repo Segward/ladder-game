@@ -27,4 +27,11 @@ public class TileTest {
     Tile tile = new Tile(1, ladderAction);
     assertEquals(true, tile.hasAction());
   }
+
+  @Test
+  public void testGetNextTile() {
+    LadderAction ladderAction = new LadderAction("LadderAction", 5);
+    Tile tile = new Tile(1, ladderAction);
+    assertEquals(2, tile.getNextTile());
+  }
 }
