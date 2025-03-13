@@ -1,6 +1,6 @@
-package edu.ntnu.idat2003.models;
+package edu.ntnu.idat2003.old.models;
 
-import edu.ntnu.idat2003.tileactions.TileAction;
+import edu.ntnu.idat2003.old.tileactions.TileAction;
 
 public class Tile {
   private TileAction action;

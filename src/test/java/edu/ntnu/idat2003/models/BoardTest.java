@@ -4,6 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import edu.ntnu.idat2003.old.models.Board;
+import edu.ntnu.idat2003.old.models.Game;
+import edu.ntnu.idat2003.old.models.Tile;
+
 public class BoardTest {
 
   @Test

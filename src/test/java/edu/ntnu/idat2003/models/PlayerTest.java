@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import edu.ntnu.idat2003.old.models.Figure;
+import edu.ntnu.idat2003.old.models.Player;
+
 public class PlayerTest {
 
   @Test

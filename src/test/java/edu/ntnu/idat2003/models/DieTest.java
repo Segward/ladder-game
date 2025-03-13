@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import edu.ntnu.idat2003.old.models.Die;
+
 public class DieTest {
 
   @Test

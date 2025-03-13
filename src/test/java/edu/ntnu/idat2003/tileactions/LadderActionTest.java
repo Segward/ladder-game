@@ -2,10 +2,12 @@ package edu.ntnu.idat2003.tileactions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import edu.ntnu.idat2003.models.Figure;
-import edu.ntnu.idat2003.models.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import edu.ntnu.idat2003.old.models.Figure;
+import edu.ntnu.idat2003.old.models.Player;
+import edu.ntnu.idat2003.old.tileactions.LadderAction;
 
 public class LadderActionTest {
 
