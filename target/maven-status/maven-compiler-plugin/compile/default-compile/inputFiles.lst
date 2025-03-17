@@ -1,4 +1,5 @@
 /Volumes/DiskName/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/App.java
+/Volumes/DiskName/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/graphics/Graphics.java
 /Volumes/DiskName/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/models/Board.java
 /Volumes/DiskName/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/models/Game.java
 /Volumes/DiskName/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/models/Players.java
@@ -12,5 +13,6 @@
 /Volumes/DiskName/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/old/models/Tile.java
 /Volumes/DiskName/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/old/tileactions/LadderAction.java
 /Volumes/DiskName/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/old/tileactions/TileAction.java
-/Volumes/DiskName/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/views/Graphics.java
+/Volumes/DiskName/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/scenes/Scene1.java
+/Volumes/DiskName/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/scenes/Scene2.java
 /Volumes/DiskName/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/views/UserInterface.java

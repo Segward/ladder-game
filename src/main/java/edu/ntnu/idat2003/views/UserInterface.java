@@ -1,59 +1,54 @@
 package edu.ntnu.idat2003.views;
 
-import edu.ntnu.idat2003.models.Vector2;
-import java.util.HashSet;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+import edu.ntnu.idat2003.scenes.Scene1;
+import edu.ntnu.idat2003.scenes.Scene2;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 public class UserInterface {
 
   private Stage primaryStage;
-  private HashSet<Rectangle> rectangles;
+  private Pane root; // Single root Pane
 
   public UserInterface(Stage primaryStage) {
     this.primaryStage = primaryStage;
+    this.root = new Pane(); // Initialize the root Pane
   }
 
   public void init() {
     primaryStage.setTitle("Ladder Game");
     primaryStage.setMinWidth(400);
     primaryStage.setMinHeight(400);
-    rectangles = new HashSet<>();
+
+    // Bind the root Pane to the primaryStage's size
+    root.prefWidthProperty().bind(primaryStage.widthProperty());
+    root.prefHeightProperty().bind(primaryStage.heightProperty());
   }
 
   public void start() {
-    Pane root = new Pane();
-    root.setPrefSize(800, 600);
+    // Create Scene1 and Scene2
+    Scene1 scene1 = new Scene1(() -> showScene2());
+    Scene2 scene2 = new Scene2(() -> showScene1());
 
-    Vector2 position = new Vector2(0, 0);
-    Vector2 size = new Vector2(100, 100);
+    // Set the initial content to Scene1
+    showScene1();
 
-    Rectangle rectangle = new Rectangle();
-    rectangle.setX(position.getX());
-    rectangle.setY(position.getY());
-    rectangle.setWidth(size.getX());
-    rectangle.setHeight(size.getY());
-    root.getChildren().add(rectangle);
-
-    rectangles.add(rectangle);
-
+    // Create a single Scene with the root Pane
     Scene scene = new Scene(root);
     primaryStage.setScene(scene);
     primaryStage.show();
-
-    Timeline timeline = new Timeline(new KeyFrame(Duration.millis(16.67), event -> update()));
-    timeline.setCycleCount(Timeline.INDEFINITE);
-    timeline.play();
   }
 
-  private void update() {
-    for (Rectangle rectangle : rectangles) {
-      rectangle.setX(rectangle.getX() + 1);
-    }
+  private void showScene1() {
+    root.getChildren().clear(); // Clear the root Pane
+    Scene1 scene1 = new Scene1(this::showScene2); // Pass callback to switch to Scene2
+    root.getChildren().add(scene1.getContent());
+  }
+
+  private void showScene2() {
+    root.getChildren().clear(); // Clear the root Pane
+    Scene2 scene2 = new Scene2(this::showScene1); // Pass callback to switch to Scene1
+    root.getChildren().add(scene2.getContent());
   }
 }
