@@ -1,5 +1,5 @@
 package edu.ntnu.idat2003.graphics;
 
-public class Engine {
+public class LadderGameEngine {
     
 }

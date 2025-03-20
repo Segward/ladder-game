@@ -22,6 +22,9 @@ public class UserInterface {
     // Bind the root Pane to the primaryStage's size
     root.prefWidthProperty().bind(primaryStage.widthProperty());
     root.prefHeightProperty().bind(primaryStage.heightProperty());
+
+    // Add the Stylesheet to the root Pane
+    root.getStylesheets().add(getClass().getResource("/Stylesheet.css").toExternalForm());
   }
 
   public void start() {

@@ -16,6 +16,13 @@
 
     <dependencies>
 
+        <!-- Used for Gson to read Json -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20210307</version>
+        </dependency>
+
         <!-- Junit jupiter for testing -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
