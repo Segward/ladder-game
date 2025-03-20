@@ -2,10 +2,9 @@ package edu.ntnu.idat2003.models;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import edu.ntnu.idat2003.old.models.Tile;
-import edu.ntnu.idat2003.old.tileactions.LadderAction;
-
 import org.junit.jupiter.api.Test;
+
+import edu.ntnu.idat2003.tileactions.LadderAction;
 
 public class TileTest {
 

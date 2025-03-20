@@ -1,6 +1,6 @@
-package edu.ntnu.idat2003.old.tileactions;
+package edu.ntnu.idat2003.tileactions;
 
-import edu.ntnu.idat2003.old.models.Player;
+import edu.ntnu.idat2003.models.Player;
 
 public abstract class TileAction {
   protected String action;

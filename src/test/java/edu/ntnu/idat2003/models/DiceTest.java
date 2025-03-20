@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import edu.ntnu.idat2003.old.models.Dice;
-
 public class DiceTest {
 
   @Test
