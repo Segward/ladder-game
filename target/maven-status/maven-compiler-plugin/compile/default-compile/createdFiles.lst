@@ -1,5 +1,6 @@
 edu/ntnu/idat2003/tileactions/LadderAction.class
 edu/ntnu/idat2003/models/Player.class
+edu/ntnu/idat2003/util/LadderGameEngine.class
 edu/ntnu/idat2003/views/UserInterface.class
 edu/ntnu/idat2003/models/Figure.class
 edu/ntnu/idat2003/util/DataStorage.class

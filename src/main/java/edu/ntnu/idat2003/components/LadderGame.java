@@ -7,6 +7,8 @@ import javafx.geometry.Pos;
 import javafx.geometry.Orientation;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import edu.ntnu.idat2003.util.LadderGameEngine;
+import javafx.scene.text.Text;
 
 public class LadderGame {
   public static void init(Pane root) {
@@ -102,9 +104,14 @@ public class LadderGame {
     Button endGameButton = new Button("End game");
     flowPane.getChildren().add(endGameButton);
 
-    // Load the game
+    Text text = new Text("Hello, World!");
+    flowPane.getChildren().add(text);
+
+    Button rollDiceButton = new Button("Roll Dice");
+    flowPane.getChildren().add(rollDiceButton);
 
     // Event handler
+    rollDiceButton.setOnAction(e -> LadderGameEngine.rollDice(text));
     endGameButton.setOnAction(e -> endGame(root));
   }
 
