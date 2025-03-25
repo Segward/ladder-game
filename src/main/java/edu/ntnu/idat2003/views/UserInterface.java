@@ -38,14 +38,6 @@ public class UserInterface {
   }
 
   public void start() {
-    // Create a stack pane to hold the game board
-    StackPane stackPane = new StackPane();
-    root.getChildren().add(stackPane);
-
-    //Dynamically set the size of the stackPane
-    stackPane.prefWidthProperty().bind(primaryStage.widthProperty());
-    stackPane.prefHeightProperty().bind(primaryStage.heightProperty());
-
     //Trym Experiment grid
     GridPane bord = new GridPane();
     bord.setMinSize(500, 500);
@@ -65,7 +57,7 @@ public class UserInterface {
     }
 
     // Initialize the MainFrame
-    MainFrame.init(stackPane);
+    MainFrame.init(root);
     
     // Scene scene = new Scene(bord, 1000, 800);
     primaryStage.setScene(new Scene(root));  
