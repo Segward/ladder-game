@@ -19,6 +19,10 @@ import java.util.concurrent.Flow;
 import edu.ntnu.idat2003.util.LadderGameEngine;
 import javafx.scene.text.Text;
 import javafx.scene.layout.HBox;
+import edu.ntnu.idat2003.util.DataStorage;
+import edu.ntnu.idat2003.models.Player;
+import edu.ntnu.idat2003.models.Figure;
+import java.util.HashSet;
 
 public class LadderGame {
   //private static FlowPane sideMenu;
@@ -35,79 +39,109 @@ public class LadderGame {
     //Create panes for laddergame
     
     //Main pain where bord, player game menu assets are displayed
-    FlowPane menuPain = new FlowPane();
-    menuPain.prefWidthProperty().bind(root.widthProperty());
-    menuPain.prefHeightProperty().bind(root.heightProperty());
-    menuPain.setAlignment(Pos.CENTER);
-    menuPain.setStyle("-fx-background-color: gray;");
-    menuPain.setOrientation(Orientation.VERTICAL);
-    root.getChildren().add(menuPain);
+    FlowPane menuPane = new FlowPane();
+    menuPane.prefWidthProperty().bind(root.widthProperty());
+    menuPane.prefHeightProperty().bind(root.heightProperty());
+    menuPane.setAlignment(Pos.CENTER);
+    menuPane.setStyle("-fx-background-color: gray;");
+    menuPane.setOrientation(Orientation.VERTICAL);
+    root.getChildren().add(menuPane);
 
     // Pick the players
-    pickPlayers(root, menuPain);
+    pickPlayers(root, menuPane);
   }
 
   /**
    *  Pick player or bord menu.
    * 
    * @param root Main pain
-   * @param menuPain flowpane box
+   * @param menuPane flowpane box
    */
-  public static void pickPlayers(Pane root, FlowPane menuPain) {
+  public static void pickPlayers(Pane root, FlowPane menuPane) {
     // Clear the flow pane
-    menuPain.getChildren().clear();
+    menuPane.getChildren().clear();
 
     // Create the content
     Button addPlayerButton = new Button("Add player");
-    menuPain.getChildren().add(addPlayerButton);
+    menuPane.getChildren().add(addPlayerButton);
 
     Button pickBoardButton = new Button("Pick board");
-    menuPain.getChildren().add(pickBoardButton);
+    menuPane.getChildren().add(pickBoardButton);
 
     // Load the players
+    String filePath = "src/main/resources/Data.json";
+    HashSet<Player> players = DataStorage.getPlayers(filePath);
+    
+    for (Player player : players) {
+      FlowPane playerFlowPane = new FlowPane();
+      menuPane.getChildren().add(playerFlowPane);
+      playerFlowPane.setOrientation(Orientation.HORIZONTAL);
+    
+      Text text = new Text(player.getName());
+      playerFlowPane.getChildren().add(text);
+
+      Button deletePlayerButton = new Button("Delete player");
+      playerFlowPane.getChildren().add(deletePlayerButton);
+    
+      // Event handler
+      deletePlayerButton.setOnAction(e -> {
+        deletePlayer(player);
+        pickPlayers(root, menuPane);
+      });
+    }
 
     // Event handler
-    addPlayerButton.setOnAction(e -> addPlayer(root, menuPain));
-    pickBoardButton.setOnAction(e -> pickBoard(root, menuPain));
+    addPlayerButton.setOnAction(e -> addPlayer(root, menuPane));
+    pickBoardButton.setOnAction(e -> pickBoard(root, menuPane));
   }
 
   /**
    *  Add player menu.
    * 
    * @param root Main pane
-   * @param menuPain Flowpane box
+   * @param menuPane Flowpane box
    */
-  public static void addPlayer(Pane root, FlowPane menuPain) {
+  public static void addPlayer(Pane root, FlowPane menuPane) {
     // Clear the flow pane
-    menuPain.getChildren().clear();
+    menuPane.getChildren().clear();
     
     // Create the content
     TextField textField = new TextField();
-    menuPain.getChildren().add(textField);
+    menuPane.getChildren().add(textField);
     textField.setPromptText("Enter player name");
 
     Button pickFigureButton = new Button("Pick figure");
-    menuPain.getChildren().add(pickFigureButton);
-    pickFigureButton.setOnAction(e -> pickFigure(root, menuPain, textField.getText()));
+    menuPane.getChildren().add(pickFigureButton);
+    pickFigureButton.setOnAction(e -> pickFigure(root, menuPane, textField.getText()));
   }
 
-  public static void pickFigure(Pane root, FlowPane menuPain, String playerName) {
+  private static void deletePlayer(Player player) {
+    // Delete the player
+    String filePath = "src/main/resources/Data.json";
+    DataStorage.deletePlayer(player, filePath);
+  }
+
+  public static void pickFigure(Pane root, FlowPane menuPane, String playerName) {
     // Clear the flow pane
-    menuPain.getChildren().clear();
+    menuPane.getChildren().clear();
 
     // Create the content
     Button addPlayerButton = new Button("Finish adding player");
-    menuPain.getChildren().add(addPlayerButton);
+    menuPane.getChildren().add(addPlayerButton);
 
     // Event handler
     addPlayerButton.setOnAction(e -> {
       savePlayer(playerName, "Figure");
-      pickPlayers(root, menuPain);
+      pickPlayers(root, menuPane);
     });
   }
 
   private static void savePlayer(String playerName, String figure) {
     // Save the player
+    String filePath = "src/main/resources/Data.json";
+    Figure figureObject = new Figure(figure);
+    Player player = new Player(playerName, figureObject);
+    DataStorage.savePlayer(player, filePath);
   }
 
 
@@ -115,31 +149,31 @@ public class LadderGame {
    *  Menu for picking bord.
    * 
    * @param root main pane
-   * @param menuPain main menu pane
+   * @param menuPane main menu pane
    */
-  public static void pickBoard(Pane root, FlowPane menuPain) {
+  public static void pickBoard(Pane root, FlowPane menuPane) {
     // Clear the flow pane
-    menuPain.getChildren().clear();
+    menuPane.getChildren().clear();
 
     // Create the content
     Button playGameButton = new Button("Play game");
-    menuPain.getChildren().add(playGameButton);
+    menuPane.getChildren().add(playGameButton);
 
     // Load the boards
 
     // Event handler
-    playGameButton.setOnAction(e -> playGame(root, menuPain));
+    playGameButton.setOnAction(e -> playGame(root, menuPane));
   }
 
   /**
    * Initializes game panes and children.
    * 
    * @param root main pane
-   * @param menuPain main menu pane
+   * @param menuPane main menu pane
    */
-  public static void playGame(Pane root, FlowPane menuPain) {
+  public static void playGame(Pane root, FlowPane menuPane) {
     // Clear the flow pane
-    menuPain.getChildren().clear();
+    menuPane.getChildren().clear();
     
     // Create the content
     HBox hBox = new HBox();

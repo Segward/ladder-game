@@ -2,6 +2,10 @@
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/components/LadderGame.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/components/MainFrame.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/components/Monopoly.java
+/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/exceptions/DataReadException.java
+/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/exceptions/DataWriteException.java
+/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/exceptions/FileCreateException.java
+/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/exceptions/FileMissingException.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/models/Board.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/models/Dice.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/models/Die.java

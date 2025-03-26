@@ -30,4 +30,30 @@ public class Player {
   public int getPosition() {
     return position;
   }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (obj == this) {
+      return true;
+    }
+
+    if (!(obj instanceof Player)) {
+      return false;
+    }
+    
+    Player player = (Player) obj;
+    
+    // Only compare the name of the player
+    if (player.getName().equals(this.name)) {
+      return true;
+    }
+
+    return false;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = 31 * name.hashCode();
+    return result;
+  }
 }
