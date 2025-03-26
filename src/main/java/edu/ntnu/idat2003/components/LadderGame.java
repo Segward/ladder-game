@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import edu.ntnu.idat2003.util.LadderGameEngine;
 import javafx.scene.text.Text;
+import javafx.scene.layout.HBox;
 
 public class LadderGame {
   public static void init(Pane root) {
@@ -93,22 +94,40 @@ public class LadderGame {
     // Load the boards
 
     // Event handler
-    playGameButton.setOnAction(e -> playGame(root, flowPane));
+    playGameButton.setOnAction(e -> playGame(root));
   }
 
-  public static void playGame(Pane root, FlowPane flowPane) {
-    // Clear the flow pane
-    flowPane.getChildren().clear();
+  public static void playGame(Pane root) {
+    // Clear the root pane
+    root.getChildren().clear();
 
     // Create the content
+    HBox hBox = new HBox();
+    root.getChildren().add(hBox);
+
+    // Create the sections
+    FlowPane boardPane = new FlowPane();
+    hBox.getChildren().add(boardPane);
+    boardPane.setStyle("-fx-background-color: red;");
+    boardPane.prefWidthProperty().bind(root.widthProperty().multiply(0.7));    
+    boardPane.prefHeightProperty().bind(root.heightProperty());
+    boardPane.setOrientation(Orientation.VERTICAL);
+
+    FlowPane playerPane = new FlowPane();
+    hBox.getChildren().add(playerPane);
+    playerPane.setStyle("-fx-background-color: yellow;");
+    playerPane.prefWidthProperty().bind(root.widthProperty().multiply(0.3));
+    playerPane.prefHeightProperty().bind(root.heightProperty());
+    playerPane.setOrientation(Orientation.VERTICAL);
+
     Button endGameButton = new Button("End game");
-    flowPane.getChildren().add(endGameButton);
+    playerPane.getChildren().add(endGameButton);
 
     Text text = new Text("Hello, World!");
-    flowPane.getChildren().add(text);
+    playerPane.getChildren().add(text);
 
     Button rollDiceButton = new Button("Roll Dice");
-    flowPane.getChildren().add(rollDiceButton);
+    playerPane.getChildren().add(rollDiceButton);
 
     // Event handler
     rollDiceButton.setOnAction(e -> LadderGameEngine.rollDice(text));
