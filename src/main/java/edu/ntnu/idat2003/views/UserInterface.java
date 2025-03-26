@@ -38,6 +38,7 @@ public class UserInterface {
   }
 
   public void start() {
+    /*
     //Trym Experiment grid
     GridPane bord = new GridPane();
     bord.setMinSize(500, 500);
@@ -55,10 +56,10 @@ public class UserInterface {
             bord.add(box, i,j);
         }
     }
-
+     */
     // Initialize the MainFrame
     MainFrame.init(root);
-    
+
     // Scene scene = new Scene(bord, 1000, 800);
     primaryStage.setScene(new Scene(root));  
     primaryStage.show();

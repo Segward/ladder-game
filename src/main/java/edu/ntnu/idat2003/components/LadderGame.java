@@ -153,14 +153,17 @@ public class LadderGame {
     root.getChildren().add(hBox);
 
     // Create the sections
+
+    //Main panal where bord game is displayed
     FlowPane boardPane = new FlowPane();
     hBox.getChildren().add(boardPane);
-    boardPane.setStyle("-fx-background-color: grey;");
+    boardPane.setStyle("-fx-background-color: WHITE;");
     boardPane.prefWidthProperty().bind(root.widthProperty().multiply(0.7));    
     boardPane.prefHeightProperty().bind(root.heightProperty());
     boardPane.setOrientation(Orientation.VERTICAL);
     boardPane.setAlignment(Pos.CENTER);
 
+    //Side panal/menu
     FlowPane playerPane = new FlowPane();
     hBox.getChildren().add(playerPane);
     playerPane.setStyle("-fx-background-color: beige;");
@@ -170,20 +173,25 @@ public class LadderGame {
      
      //Trym Experiment grid
      GridPane bord = new GridPane();
-     bord.prefWidthProperty().bind(root.widthProperty().multiply(0.5));
-     bord.prefHeightProperty().bind(root.heightProperty().multiply(0.5));
+     
      bord.setPadding(new Insets(5, 5, 5, 5));
      bord.setVgap(5);
      bord.setHgap(5);
-     bord.setAlignment(Pos.CENTER);
- 
+     bord.setStyle("-fx-background-color: gray");
+    
+     int tileNum = 90;
      for(int i = 0;i<9;i++) {
          for(int j = 0; j<10;j++) {
-             Rectangle gameTile = new Rectangle();
-             gameTile.setWidth(50);
-             gameTile.setHeight(50);
-             gameTile.setFill(Color.WHITE);
-             bord.add(gameTile, i,j);
+             FlowPane gameTile = new FlowPane();
+             gameTile.setAlignment(Pos.CENTER);
+             gameTile.prefWidthProperty().bind(root.widthProperty().multiply(0.05));
+             gameTile.prefHeightProperty().bind(root.heightProperty().multiply(0.08));
+             Text text = new Text(String.valueOf(tileNum));
+             tileNum--;
+
+             gameTile.setStyle("-fx-background-color: WHITE;");
+             gameTile.getChildren().add(text);
+             bord.add(gameTile, j,i);
          }
      }
      boardPane.getChildren().addAll(bord);
