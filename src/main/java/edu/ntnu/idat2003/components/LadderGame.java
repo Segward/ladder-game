@@ -22,13 +22,20 @@ import javafx.scene.layout.HBox;
 
 public class LadderGame {
   private static FlowPane bordBox;
-  private static FlowPane sideMenu;
+  //private static FlowPane sideMenu;
 
+  /**
+   *  Initializes game panes and children.
+   * 
+   * @param root Main oane
+   */
   public static void init(Pane root) {
     // Clear the stack pane
     root.getChildren().clear();
     
-    //Create panes for laddergame
+    //Create panes for laddergame'
+    
+    //Main pain where bord, player game menu assets are displayed
     bordBox = new FlowPane();
     bordBox.prefWidthProperty().bind(root.widthProperty());
     bordBox.prefHeightProperty().bind(root.heightProperty());
@@ -131,6 +138,13 @@ public class LadderGame {
     // Save the player
   }
 
+
+  /**
+   *  Menu for picking bord.
+   * 
+   * @param root main pane
+   * @param box main menu pane
+   */
   public static void pickBoard(Pane root, FlowPane box) {
     // Clear the flow pane
     box.getChildren().clear();
@@ -145,6 +159,12 @@ public class LadderGame {
     playGameButton.setOnAction(e -> playGame(root, box));
   }
 
+  /**
+   * Initializes game panes and children.
+   * 
+   * @param root main pane
+   * @param box main menu pane
+   */
   public static void playGame(Pane root, FlowPane box) {
     // Clear the flow pane
     box.getChildren().clear();
@@ -212,6 +232,11 @@ public class LadderGame {
     endGameButton.setOnAction(e -> endGame(root));
   }
 
+  /**
+   *  Takes you to start menu of application.
+   * 
+   * @param root main pain
+   */
   private static void endGame(Pane root) {
     // End the game
     MainFrame.init(root);
