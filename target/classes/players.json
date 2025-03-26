@@ -7,16 +7,9 @@
     "position": 0
   },
   {
-    "name": "iifi",
+    "name": "hello",
     "figure": {
-      "color": "Figure"
-    },
-    "position": 0
-  },
-  {
-    "name": "wdiaoud",
-    "figure": {
-      "color": "Figure"
+      "color": "Figure 1"
     },
     "position": 0
   }
