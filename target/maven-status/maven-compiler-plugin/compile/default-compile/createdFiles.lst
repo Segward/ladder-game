@@ -5,6 +5,7 @@ edu/ntnu/idat2003/views/UserInterface.class
 edu/ntnu/idat2003/models/Figure.class
 edu/ntnu/idat2003/util/DataStorage.class
 edu/ntnu/idat2003/models/Die.class
+edu/ntnu/idat2003/util/DataStorage$1.class
 edu/ntnu/idat2003/tileactions/TileAction.class
 edu/ntnu/idat2003/App.class
 edu/ntnu/idat2003/models/Dice.class

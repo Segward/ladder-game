@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import edu.ntnu.idat2003.util.DataStorage;
 import edu.ntnu.idat2003.models.Player;
 import edu.ntnu.idat2003.models.Figure;
+import java.util.HashSet;
 
 public class LadderGame {
   public static void init(Pane root) {
@@ -47,6 +48,26 @@ public class LadderGame {
     flowPane.getChildren().add(pickBoardButton);
 
     // Load the players
+    String filePath = "src/main/resources/Data.json";
+    HashSet<Player> players = DataStorage.getPlayers(filePath);
+    
+    for (Player player : players) {
+      FlowPane playerFlowPane = new FlowPane();
+      flowPane.getChildren().add(playerFlowPane);
+      playerFlowPane.setOrientation(Orientation.HORIZONTAL);
+    
+      Text text = new Text(player.getName());
+      playerFlowPane.getChildren().add(text);
+
+      Button deletePlayerButton = new Button("Delete player");
+      playerFlowPane.getChildren().add(deletePlayerButton);
+    
+      // Event handler
+      deletePlayerButton.setOnAction(e -> {
+        deletePlayer(player);
+        pickPlayers(root, flowPane);
+      });
+    }
 
     // Event handler
     addPlayerButton.setOnAction(e -> addPlayer(root, flowPane));
@@ -65,6 +86,12 @@ public class LadderGame {
     Button pickFigureButton = new Button("Pick figure");
     flowPane.getChildren().add(pickFigureButton);
     pickFigureButton.setOnAction(e -> pickFigure(root, flowPane, textField.getText()));
+  }
+
+  private static void deletePlayer(Player player) {
+    // Delete the player
+    String filePath = "src/main/resources/Data.json";
+    DataStorage.deletePlayer(player, filePath);
   }
 
   public static void pickFigure(Pane root, FlowPane flowPane, String playerName) {
@@ -87,7 +114,7 @@ public class LadderGame {
     String filePath = "src/main/resources/Data.json";
     Figure figureObject = new Figure(figure);
     Player player = new Player(playerName, figureObject);
-    DataStorage.saveData(player, filePath);
+    DataStorage.savePlayer(player, filePath);
   }
 
   public static void pickBoard(Pane root, FlowPane flowPane) {

@@ -8,7 +8,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.File;
 import java.util.HashSet;
-import java.util.Collections;
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
 
 public class DataStorage {
   private static boolean fileExists(String filePath) {
@@ -20,6 +21,31 @@ public class DataStorage {
     try {
       File file = new File(filePath);
       file.createNewFile();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void deletePlayer(Player object, String filePath) {
+    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    if (!fileExists(filePath)) {
+      return;
+    }
+
+    HashSet<Player> players = getPlayers(filePath);
+    if (players == null) {
+      return;
+    }
+
+    if (!players.contains(object)) {
+      System.out.println("Player not found in file");
+      return;
+    }
+
+    players.remove(object);
+    try (FileWriter writer = new FileWriter(filePath)) {
+      gson.toJson(players, writer);
+      writer.flush();
     } catch (IOException e) {
       e.printStackTrace();
     }
