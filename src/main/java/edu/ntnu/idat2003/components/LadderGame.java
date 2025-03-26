@@ -40,6 +40,7 @@ public class LadderGame {
     menuPain.prefHeightProperty().bind(root.heightProperty());
     menuPain.setAlignment(Pos.CENTER);
     menuPain.setStyle("-fx-background-color: gray;");
+    menuPain.setOrientation(Orientation.VERTICAL);
     root.getChildren().add(menuPain);
 
     // Pick the players
