@@ -40,7 +40,6 @@ public class LadderGame {
     menuPain.prefHeightProperty().bind(root.heightProperty());
     menuPain.setAlignment(Pos.CENTER);
     menuPain.setStyle("-fx-background-color: gray;");
-   
     root.getChildren().add(menuPain);
 
     // Pick the players
@@ -164,32 +163,31 @@ public class LadderGame {
     playerPane.prefHeightProperty().bind(root.heightProperty());
     playerPane.setOrientation(Orientation.VERTICAL);
      
-     //Trym Experiment grid
-     GridPane bord = new GridPane();
-     
-     bord.setPadding(new Insets(5, 5, 5, 5));
-     bord.setVgap(5);
-     bord.setHgap(5);
-     bord.setStyle("-fx-background-color: gray");
-    
-     int tileNum = 90;
-     for(int i = 0;i<9;i++) {
-         for(int j = 0; j<10;j++) {
-             FlowPane gameTile = new FlowPane();
-             gameTile.setAlignment(Pos.CENTER);
-             gameTile.setPrefWidth(50);
-             gameTile.setPrefHeight(50);
-             Text text = new Text(String.valueOf(tileNum));
-             tileNum--;
+    //Trym Experiment grid
+    GridPane bord = new GridPane();
+    bord.setPadding(new Insets(5, 5, 5, 5));
+    bord.setVgap(5);
+    bord.setHgap(5);
+    bord.setStyle("-fx-background-color: gray");
 
-             gameTile.setStyle("-fx-background-color: WHITE;");
-             gameTile.getChildren().add(text);
-             bord.add(gameTile, j,i);
-         }
-     }
-     boardPane.getChildren().addAll(bord);
-    
+    int tileNum = 90;
+    for(int i = 0;i<9;i++) {
+       for(int j = 0; j<10;j++) {
+           FlowPane gameTile = new FlowPane();
+           gameTile.setAlignment(Pos.CENTER);
+           gameTile.setPrefWidth(50);
+           gameTile.setPrefHeight(50);
+           Text text = new Text(String.valueOf(tileNum));
+           tileNum--;
 
+           gameTile.setStyle("-fx-background-color: WHITE;");
+           gameTile.getChildren().add(text);
+           bord.add(gameTile, j,i);
+       }
+    }
+
+    boardPane.getChildren().addAll(bord);
+    
     Button endGameButton = new Button("End game");
     playerPane.getChildren().add(endGameButton);
 
