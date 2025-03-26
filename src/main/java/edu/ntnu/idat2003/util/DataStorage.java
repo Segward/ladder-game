@@ -7,14 +7,16 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.File;
+import java.util.HashSet;
+import java.util.Collections;
 
 public class DataStorage {
   private static boolean fileExists(String filePath) {
-    return new File(filePath).exists();
+    File file = new File(filePath);
+    return file.exists() && !file.isDirectory();
   }
 
   private static void createFile(String filePath) {
-    System.out.println("Creating file: " + filePath);
     try {
       File file = new File(filePath);
       file.createNewFile();
@@ -23,30 +25,41 @@ public class DataStorage {
     }
   }
   
-  public static void saveData(Player object, String filePath) {
+  public static void savePlayer(Player object, String filePath) {
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
     if (!fileExists(filePath)) {
       createFile(filePath);
     }
+
+    HashSet<Player> players = getPlayers(filePath);
+    if (players == null) {
+      players = new HashSet<>();
+    }
+
+    players.add(object);
     try (FileWriter writer = new FileWriter(filePath)) {
-      gson.toJson(object, writer);
+      gson.toJson(players, writer);
       writer.flush();
     } catch (IOException e) {
       e.printStackTrace();
     }
   }
 
-  public static Player loadData(String filePath) {
+  public static HashSet<Player> getPlayers(String filePath) {
     Gson gson = new Gson();
     if (!fileExists(filePath)) {
       return null;
     }
+    
+    HashSet<Player> players = null;
     try (FileReader reader = new FileReader(filePath)) {
-      return gson.fromJson(reader, Player.class);
+      Type playerSetType = new TypeToken<HashSet<Player>>(){}.getType();
+      players = gson.fromJson(reader, playerSetType);
     } catch (IOException e) {
       e.printStackTrace();
     }
-    return null;
+    
+    return players;
   }
 }
 
