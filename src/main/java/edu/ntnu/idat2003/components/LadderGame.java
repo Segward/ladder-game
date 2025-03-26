@@ -30,21 +30,24 @@ public class LadderGame {
     
     //Create panes for laddergame
     bordBox = new FlowPane();
-    bordBox.prefWidthProperty().bind(root.widthProperty().multiply(0.7));
+    bordBox.prefWidthProperty().bind(root.widthProperty());
     bordBox.prefHeightProperty().bind(root.heightProperty());
     bordBox.setAlignment(Pos.CENTER);
     bordBox.setStyle("-fx-background-color: gray;");
     
+    /* 
     sideMenu = new FlowPane();
     sideMenu.prefWidthProperty().bind(root.widthProperty().multiply(0.3));
     sideMenu.prefHeightProperty().bind(root.heightProperty());
     sideMenu.setAlignment(Pos.CENTER);
     sideMenu.setStyle("-fx-background-color: beige;");
+    */
 
     HBox bordAndMenu = new HBox();
-    bordAndMenu.getChildren().addAll(bordBox, sideMenu);
-    StackPane.setAlignment(bordBox, Pos.CENTER_LEFT);
-    StackPane.setAlignment(sideMenu, Pos.CENTER_RIGHT);
+    bordAndMenu.getChildren().addAll(bordBox);
+    StackPane.setAlignment(bordBox, Pos.CENTER);
+    //StackPane.setAlignment(sideMenu, Pos.CENTER_RIGHT);
+    
 
     root.getChildren().add(bordAndMenu);
     /* 
@@ -74,7 +77,6 @@ public class LadderGame {
   public static void pickPlayers(Pane root, FlowPane box) {
     // Clear the flow pane
     box.getChildren().clear();
-    box.prefWidthProperty().bind(root.widthProperty());
 
     // Create the content
     Button addPlayerButton = new Button("Add player");
@@ -146,7 +148,6 @@ public class LadderGame {
   public static void playGame(Pane root, FlowPane box) {
     // Clear the flow pane
     box.getChildren().clear();
-    box.prefWidthProperty().bind(root.widthProperty().multiply(0.7));
     
     // Create the content
     HBox hBox = new HBox();
@@ -184,8 +185,8 @@ public class LadderGame {
          for(int j = 0; j<10;j++) {
              FlowPane gameTile = new FlowPane();
              gameTile.setAlignment(Pos.CENTER);
-             gameTile.prefWidthProperty().bind(root.widthProperty().multiply(0.05));
-             gameTile.prefHeightProperty().bind(root.heightProperty().multiply(0.08));
+             gameTile.setPrefWidth(50);
+             gameTile.setPrefHeight(50);
              Text text = new Text(String.valueOf(tileNum));
              tileNum--;
 
