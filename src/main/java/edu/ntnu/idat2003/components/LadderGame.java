@@ -10,6 +10,9 @@ import javafx.scene.control.TextField;
 import edu.ntnu.idat2003.util.LadderGameEngine;
 import javafx.scene.text.Text;
 import javafx.scene.layout.HBox;
+import edu.ntnu.idat2003.util.DataStorage;
+import edu.ntnu.idat2003.models.Player;
+import edu.ntnu.idat2003.models.Figure;
 
 public class LadderGame {
   public static void init(Pane root) {
@@ -74,13 +77,17 @@ public class LadderGame {
 
     // Event handler
     addPlayerButton.setOnAction(e -> {
-      savePlayer(playerName, "Figure");
+      savePlayer(playerName, "Figure 1");
       pickPlayers(root, flowPane);
     });
   }
 
   private static void savePlayer(String playerName, String figure) {
     // Save the player
+    String filePath = "src/main/resources/Data.json";
+    Figure figureObject = new Figure(figure);
+    Player player = new Player(playerName, figureObject);
+    DataStorage.saveData(player, filePath);
   }
 
   public static void pickBoard(Pane root, FlowPane flowPane) {
