@@ -5,9 +5,11 @@ import java.util.HashMap;
 import edu.ntnu.idat2003.tileactions.TileAction;
 
 public class Board {
+  private String name;
   private HashMap<Integer, Tile> tiles;
 
   public Board() {
+    this.name = "board";
     this.tiles = new HashMap<>();
   }
 
@@ -25,5 +27,9 @@ public class Board {
 
   public int getTileCount() {
     return tiles.size();
+  }
+  
+  public String getName() {
+    return name;
   }
 }

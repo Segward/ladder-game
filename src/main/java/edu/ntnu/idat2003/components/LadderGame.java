@@ -14,6 +14,9 @@ import edu.ntnu.idat2003.util.DataStorage;
 import edu.ntnu.idat2003.models.Player;
 import edu.ntnu.idat2003.models.Figure;
 import java.util.HashSet;
+import edu.ntnu.idat2003.models.Board;
+import edu.ntnu.idat2003.models.Tile;
+
 
 public class LadderGame {
   public static void init(Pane root) {
@@ -48,7 +51,7 @@ public class LadderGame {
     flowPane.getChildren().add(pickBoardButton);
 
     // Load the players
-    String filePath = "src/main/resources/Data.json";
+    String filePath = "src/main/resources/players.json";
     HashSet<Player> players = DataStorage.getPlayers(filePath);
     
     for (Player player : players) {
@@ -111,7 +114,7 @@ public class LadderGame {
 
   private static void savePlayer(String playerName, String figure) {
     // Save the player
-    String filePath = "src/main/resources/Data.json";
+    String filePath = "src/main/resources/players.json";
     Figure figureObject = new Figure(figure);
     Player player = new Player(playerName, figureObject);
     DataStorage.savePlayer(player, filePath);
@@ -126,6 +129,16 @@ public class LadderGame {
     flowPane.getChildren().add(playGameButton);
 
     // Load the boards
+    
+    // Save crappy board to test datastorage
+    Board board = new Board();
+    for (int i = 0; i < 90; i++) {
+      Tile tile = new Tile(i);
+      board.addTile(i, tile);
+    }
+    
+    String filePath = "src/main/resources/boards.json";
+    DataStorage.saveBoard(board, filePath);
 
     // Event handler
     playGameButton.setOnAction(e -> playGame(root));

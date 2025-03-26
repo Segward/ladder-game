@@ -110,12 +110,12 @@ public class DataStorage {
       return;
     }
 
-    if (!boards.containsKey(object.getId())) {
+    if (!boards.containsKey(object.getName())) {
       System.out.println("Board not found in file");
       return;
     }
 
-    boards.remove(object.getId());
+    boards.remove(object.getName());
     try (FileWriter writer = new FileWriter(filePath)) {
       gson.toJson(boards, writer);
       writer.flush();
@@ -135,7 +135,7 @@ public class DataStorage {
       boards = new HashMap<>();
     }
 
-    boards.put(object.getId(), object);
+    boards.put(object.getName(), object);
     try (FileWriter writer = new FileWriter(filePath)) {
       gson.toJson(boards, writer);
       writer.flush();

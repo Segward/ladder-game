@@ -5,5 +5,12 @@
       "color": "Figure 1"
     },
     "position": 0
+  },
+  {
+    "name": "hello",
+    "figure": {
+      "color": "Figure 1"
+    },
+    "position": 0
   }
 ]
