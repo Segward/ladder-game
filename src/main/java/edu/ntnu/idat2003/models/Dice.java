@@ -14,7 +14,7 @@ public class Dice {
   }
 
   /**
-   *  Method for rolling a dice object,
+   *  Method for rolling a dice objects,
    *  constructs a new dice with 6 sides
    *  and throws the amount of times die is defined.
    *  For each throw the side value is added to a total.
