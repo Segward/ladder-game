@@ -12,6 +12,11 @@ public class Game {
   private Player currentPlayer;
   private int currentPlayerIndex;
 
+  /**
+   *  Method that create a bord with a set amount of tiles,
+   *  uses a for loop to construct a new bord
+   *  and a set amount of tiles to be added to the bord.
+   */
   public void createBoard() {
     board = new Board();
     for (int i = 0; i < 100; i++) {
@@ -35,10 +40,20 @@ public class Game {
     board.setTileAction(80, new LadderAction("Climb the ladder to tile 100", 100));
   }
 
+  /**
+   *  Creates a new dice object to be thrown 6 times.
+   */
   public void createDice() {
     dice = new Dice(6);
   }
 
+  /**
+   *  Adds a player to the game,
+   *  checks if the player object is not null
+   *  before adding to the game player array.
+   * 
+   *  @param player player to be added to the game
+   */
   public void addPlayer(Player player) {
     if (players == null) {
       players = new ArrayList<>();
@@ -46,6 +61,13 @@ public class Game {
     players.add(player);
   }
 
+  /**
+   *  Initializes the game,
+   *  uses a loop to keep the game online as long as boolean is true.
+   *  Circles thru player effecting methods for a singel player,
+   *  before doing the same with next player.
+   *  Loop ends when player goal is reached, and boolen is set to false.
+   */
   public void startGame() {
     boolean gameIsRunning = true;
     currentPlayerIndex = 0;
@@ -67,6 +89,11 @@ public class Game {
     }
   }
 
+  /**
+   *  Method for choosing player,
+   *  if player choosen exceeds player amount
+   *  player is set to player 1.
+   */
   public void nextPlayer() {
     currentPlayerIndex++;
     if (currentPlayerIndex >= players.size()) {
@@ -74,22 +101,50 @@ public class Game {
     }
   }
 
+  /**
+   *  Getter for object representing the game bord.
+   * 
+   *  @return bord object
+   */
   public Board getBoard() {
     return board;
   }
 
+  /**
+   *  Getter for object representing dice throws.
+   * 
+   *  @return dice object
+   */
   public Dice getDice() {
     return dice;
   }
 
+  /**
+   *  Getter for current player
+   *  that is interacting with game.
+   * 
+   *  @return player interacting with game
+   */
   public Player getCurrentPlayer() {
     return currentPlayer;
   }
 
+  /**
+   *  Getter for current player number
+   *  that is interacting with game.
+   * 
+   *  @return int representing player numb
+   */
   public int getCurrentPlayerIndex() {
     return currentPlayerIndex;
   }
 
+  /**
+   *  Getter for accessing all the players,
+   *  all player are located in a player array
+   * 
+   *  @return player array
+   */
   public ArrayList<Player> getPlayers() {
     return players;
   }
