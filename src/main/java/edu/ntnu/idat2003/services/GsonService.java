@@ -22,11 +22,11 @@ public class GsonService {
   public static HashSet<Board> getBoards() {
     Type type = new TypeToken<HashSet<Board>>() {}.getType();
     HashSet<Board> boards = GsonUtil.getObjects(BOARDS_FILE_PATH, type);
-
+    
     if (boards == null || boards.isEmpty()) {
-      boards = GsonFactory.makeBoards();
+      boards = GameFactory.makeBoards();
     }
-
+    
     return boards;
   }
 
@@ -36,9 +36,9 @@ public class GsonService {
 
     HashSet<Figure> figures = GsonUtil.getObjects(FIGURES_FILE_PATH, figuresType);
     HashSet<Player> players = GsonUtil.getObjects(PLAYERS_FILE_PATH, playersType);
-
+    
     if (figures == null || figures.isEmpty()) {
-      figures = GsonFactory.makeFigures();
+      figures = GameFactory.makeFigures();
     }
 
     if (players == null || players.isEmpty()) {
@@ -60,13 +60,5 @@ public class GsonService {
   public static void savePlayer(Player player) {
     Type type = new TypeToken<HashSet<Player>>() {}.getType();
     GsonUtil.saveObject(player, PLAYERS_FILE_PATH, type);
-  }
-
-  public static void setFigures(HashSet<Figure> figures) {
-    GsonUtil.setObjects(figures, FIGURES_FILE_PATH);
-  }
-
-  public static void setBoards(HashSet<Board> boards) {
-    GsonUtil.setObjects(boards, BOARDS_FILE_PATH);
   }
 }

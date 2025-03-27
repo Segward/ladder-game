@@ -6,7 +6,7 @@ import edu.ntnu.idat2003.models.Tile;
 import java.util.Collections;
 import java.util.HashSet;
 
-public class GsonFactory {
+public class GameFactory {
 
   public static HashSet<Figure> makeFigures() {
     HashSet<Figure> figures = new HashSet<>();
@@ -18,8 +18,6 @@ public class GsonFactory {
     Figure figure5 = new Figure("purple");
 
     Collections.addAll(figures, figure1, figure2, figure3, figure4, figure5);
-    GsonService.setFigures(figures);
-
     return figures;
   }
 
@@ -45,8 +43,6 @@ public class GsonFactory {
     }
 
     Collections.addAll(boards, board1, board2, board3);
-    GsonService.setBoards(boards);
-
     return boards;
   }
 }
