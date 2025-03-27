@@ -2,7 +2,6 @@ package edu.ntnu.idat2003.util;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -26,13 +25,13 @@ public class GsonUtil {
     }
   }
 
-  public static <T> void deleteObject(T object, String filePath) {
+  public static <T> void deleteObject(T object, String filePath, Type type) {
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
     if (!fileExists(filePath)) {
       return;
     }
 
-    HashSet<T> objects = getObjects(filePath);
+    HashSet<T> objects = getObjects(filePath, type);
     if (objects == null) {
       return;
     }
@@ -50,13 +49,13 @@ public class GsonUtil {
     }
   }
 
-  public static <T> void saveObject(T object, String filePath) {
+  public static <T> void saveObject(T object, String filePath, Type type) {
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
     if (!fileExists(filePath)) {
       createFile(filePath);
     }
 
-    HashSet<T> objects = getObjects(filePath);
+    HashSet<T> objects = getObjects(filePath, type);
     if (objects == null) {
       objects = new HashSet<>();
     }
@@ -70,18 +69,21 @@ public class GsonUtil {
     }
   }
 
-  public static <T> HashSet<T> getObjects(String filePath) {
+  public static <T> HashSet<T> getObjects(String filePath, Type type) {
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    HashSet<T> objects = new HashSet<>();
     if (!fileExists(filePath)) {
-      return null;
+      return objects;
     }
 
-    HashSet<T> objects = null;
     try (FileReader reader = new FileReader(filePath)) {
-      Type type = new TypeToken<HashSet<T>>() {}.getType();
       objects = gson.fromJson(reader, type);
     } catch (Exception e) {
       e.printStackTrace();
+    }
+
+    if (objects == null) {
+      objects = new HashSet<>();
     }
 
     return objects;

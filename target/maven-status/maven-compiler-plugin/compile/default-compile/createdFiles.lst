@@ -1,7 +1,6 @@
 edu/ntnu/idat2003/models/Die.class
 edu/ntnu/idat2003/util/DataStorage$1.class
 edu/ntnu/idat2003/tileactions/TileAction.class
-edu/ntnu/idat2003/util/GsonUtil$1.class
 edu/ntnu/idat2003/components/MainFrame.class
 edu/ntnu/idat2003/components/LadderGame.class
 edu/ntnu/idat2003/models/Tile.class

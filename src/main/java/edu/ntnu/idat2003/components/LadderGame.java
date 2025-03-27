@@ -1,47 +1,38 @@
 package edu.ntnu.idat2003.components;
 
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+import edu.ntnu.idat2003.models.Board;
+import edu.ntnu.idat2003.models.Figure;
+import edu.ntnu.idat2003.models.Player;
+import edu.ntnu.idat2003.models.Tile;
+import edu.ntnu.idat2003.util.DataStorage;
+import edu.ntnu.idat2003.util.LadderGameEngine;
+import java.util.HashSet;
+import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.geometry.Pos;
-import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-
-import java.util.concurrent.Flow;
-
-import edu.ntnu.idat2003.util.LadderGameEngine;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import javafx.scene.layout.HBox;
-import edu.ntnu.idat2003.util.DataStorage;
-import edu.ntnu.idat2003.models.Player;
-import edu.ntnu.idat2003.models.Figure;
-import java.util.HashSet;
-import edu.ntnu.idat2003.models.Board;
-import edu.ntnu.idat2003.models.Tile;
-
 
 public class LadderGame {
-  //private static FlowPane sideMenu;
+  // private static FlowPane sideMenu;
 
   /**
-   *  Initializes game panes and children.
-   * 
+   * Initializes game panes and children.
+   *
    * @param root Main oane
    */
   public static void init(Pane root) {
     // Clear the stack pane
     root.getChildren().clear();
-    
-    //Create panes for laddergame
-    
-    //Main pain where bord, player game menu assets are displayed
+
+    // Create panes for laddergame
+
+    // Main pain where bord, player game menu assets are displayed
     FlowPane menuPane = new FlowPane();
     menuPane.prefWidthProperty().bind(root.widthProperty());
     menuPane.prefHeightProperty().bind(root.heightProperty());
@@ -55,8 +46,8 @@ public class LadderGame {
   }
 
   /**
-   *  Pick player or bord menu.
-   * 
+   * Pick player or bord menu.
+   *
    * @param root Main pain
    * @param menuPane flowpane box
    */
@@ -74,23 +65,24 @@ public class LadderGame {
     // Load the players
     String filePath = "src/main/resources/players.json";
     HashSet<Player> players = DataStorage.getPlayers(filePath);
-    
+
     for (Player player : players) {
       FlowPane playerFlowPane = new FlowPane();
       menuPane.getChildren().add(playerFlowPane);
       playerFlowPane.setOrientation(Orientation.HORIZONTAL);
-    
+
       Text text = new Text(player.getName());
       playerFlowPane.getChildren().add(text);
 
       Button deletePlayerButton = new Button("Delete player");
       playerFlowPane.getChildren().add(deletePlayerButton);
-    
+
       // Event handler
-      deletePlayerButton.setOnAction(e -> {
-        deletePlayer(player);
-        pickPlayers(root, menuPane);
-      });
+      deletePlayerButton.setOnAction(
+          e -> {
+            deletePlayer(player);
+            pickPlayers(root, menuPane);
+          });
     }
 
     // Event handler
@@ -99,15 +91,15 @@ public class LadderGame {
   }
 
   /**
-   *  Add player menu.
-   * 
+   * Add player menu.
+   *
    * @param root Main pane
    * @param menuPane Flowpane box
    */
   public static void addPlayer(Pane root, FlowPane menuPane) {
     // Clear the flow pane
     menuPane.getChildren().clear();
-    
+
     // Create the content
     TextField textField = new TextField();
     menuPane.getChildren().add(textField);
@@ -133,10 +125,11 @@ public class LadderGame {
     menuPane.getChildren().add(addPlayerButton);
 
     // Event handler
-    addPlayerButton.setOnAction(e -> {
-      savePlayer(playerName, "Figure");
-      pickPlayers(root, menuPane);
-    });
+    addPlayerButton.setOnAction(
+        e -> {
+          savePlayer(playerName, "Figure");
+          pickPlayers(root, menuPane);
+        });
   }
 
   private static void savePlayer(String playerName, String figure) {
@@ -147,10 +140,9 @@ public class LadderGame {
     DataStorage.savePlayer(player, filePath);
   }
 
-
   /**
-   *  Menu for picking bord.
-   * 
+   * Menu for picking bord.
+   *
    * @param root main pane
    * @param menuPane main menu pane
    */
@@ -163,14 +155,14 @@ public class LadderGame {
     menuPane.getChildren().add(playGameButton);
 
     // Load the boards
-    
+
     // Save crappy board to test datastorage
     Board board = new Board();
     for (int i = 0; i < 90; i++) {
       Tile tile = new Tile(i);
       board.addTile(i, tile);
     }
-    
+
     String filePath = "src/main/resources/boards.json";
     DataStorage.saveBoard(board, filePath);
 
@@ -180,38 +172,38 @@ public class LadderGame {
 
   /**
    * Initializes game panes and children.
-   * 
+   *
    * @param root main pane
    * @param menuPane main menu pane
    */
   public static void playGame(Pane root, FlowPane menuPane) {
     // Clear the flow pane
     menuPane.getChildren().clear();
-    
+
     // Create the content
     HBox hBox = new HBox();
     root.getChildren().add(hBox);
 
     // Create the sections
 
-    //Main panal where bord game is displayed
+    // Main panal where bord game is displayed
     FlowPane boardPane = new FlowPane();
     hBox.getChildren().add(boardPane);
     boardPane.setStyle("-fx-background-color: WHITE;");
-    boardPane.prefWidthProperty().bind(root.widthProperty().multiply(0.7));    
+    boardPane.prefWidthProperty().bind(root.widthProperty().multiply(0.7));
     boardPane.prefHeightProperty().bind(root.heightProperty());
     boardPane.setOrientation(Orientation.VERTICAL);
     boardPane.setAlignment(Pos.CENTER);
 
-    //Side panal/menu
+    // Side panal/menu
     FlowPane playerPane = new FlowPane();
     hBox.getChildren().add(playerPane);
     playerPane.setStyle("-fx-background-color: beige;");
     playerPane.prefWidthProperty().bind(root.widthProperty().multiply(0.3));
     playerPane.prefHeightProperty().bind(root.heightProperty());
     playerPane.setOrientation(Orientation.VERTICAL);
-     
-    //Trym Experiment grid
+
+    // Trym Experiment grid
     GridPane bord = new GridPane();
     bord.setPadding(new Insets(5, 5, 5, 5));
     bord.setVgap(5);
@@ -219,23 +211,23 @@ public class LadderGame {
     bord.setStyle("-fx-background-color: gray");
 
     int tileNum = 90;
-    for(int i = 0;i<9;i++) {
-       for(int j = 0; j<10;j++) {
-           FlowPane gameTile = new FlowPane();
-           gameTile.setAlignment(Pos.CENTER);
-           gameTile.setPrefWidth(50);
-           gameTile.setPrefHeight(50);
-           Text text = new Text(String.valueOf(tileNum));
-           tileNum--;
+    for (int i = 0; i < 9; i++) {
+      for (int j = 0; j < 10; j++) {
+        FlowPane gameTile = new FlowPane();
+        gameTile.setAlignment(Pos.CENTER);
+        gameTile.setPrefWidth(50);
+        gameTile.setPrefHeight(50);
+        Text text = new Text(String.valueOf(tileNum));
+        tileNum--;
 
-           gameTile.setStyle("-fx-background-color: WHITE;");
-           gameTile.getChildren().add(text);
-           bord.add(gameTile, j,i);
-       }
+        gameTile.setStyle("-fx-background-color: WHITE;");
+        gameTile.getChildren().add(text);
+        bord.add(gameTile, j, i);
+      }
     }
 
     boardPane.getChildren().addAll(bord);
-    
+
     Button endGameButton = new Button("End game");
     playerPane.getChildren().add(endGameButton);
 
@@ -251,8 +243,8 @@ public class LadderGame {
   }
 
   /**
-   *  Takes you to start menu of application.
-   * 
+   * Takes you to start menu of application.
+   *
    * @param root main pain
    */
   private static void endGame(Pane root) {

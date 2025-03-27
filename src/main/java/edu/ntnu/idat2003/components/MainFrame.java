@@ -31,7 +31,7 @@ public class MainFrame {
     flowPane.getChildren().add(exitAppButton);
 
     // Handle button click events
-    startGameButton.setOnAction(e -> LadderGame.init(root));
+    startGameButton.setOnAction(e -> PlayerSelection.init(root));
     exitAppButton.setOnAction(e -> exitApp());
   }
 

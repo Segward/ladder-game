@@ -1,32 +1,50 @@
 package edu.ntnu.idat2003.services;
 
+import com.google.gson.reflect.TypeToken;
 import edu.ntnu.idat2003.models.Board;
 import edu.ntnu.idat2003.models.Figure;
 import edu.ntnu.idat2003.models.Player;
 import edu.ntnu.idat2003.util.GsonUtil;
+import java.lang.reflect.Type;
 import java.util.HashSet;
 
 public class GsonService {
 
-  HashSet<Player> getPlayers() {
-    return GsonUtil.getObjects("players.json");
+  private static final String PLAYERS_FILE_PATH = "src/main/resources/players.json";
+  private static final String BOARDS_FILE_PATH = "src/main/resources/boards.json";
+  private static final String FIGURES_FILE_PATH = "src/main/resources/figures.json";
+
+  public static HashSet<Player> getPlayers() {
+    Type type = new TypeToken<HashSet<Player>>() {}.getType();
+    return GsonUtil.getObjects(PLAYERS_FILE_PATH, type);
   }
 
-  HashSet<Board> getBoards() {
-    return GsonUtil.getObjects("boards.json");
+  public static HashSet<Board> getBoards() {
+    Type type = new TypeToken<HashSet<Player>>() {}.getType();
+    return GsonUtil.getObjects(BOARDS_FILE_PATH, type);
   }
 
-  HashSet<Figure> getAvailableFigures() {
-    HashSet<Figure> figures = GsonUtil.getObjects("figures.json");
-    HashSet<Player> players = GsonUtil.getObjects("players.json");
+  public static void deletePlayer(Player player) {
+    Type type = new TypeToken<HashSet<Player>>() {}.getType();
+    GsonUtil.deleteObject(player, PLAYERS_FILE_PATH, type);
+  }
+
+  public static HashSet<Figure> getAvailableFigures() {
+    Type figuresType = new TypeToken<HashSet<Figure>>() {}.getType();
+    Type playersType = new TypeToken<HashSet<Player>>() {}.getType();
+
+    HashSet<Figure> figures = GsonUtil.getObjects(FIGURES_FILE_PATH, figuresType);
+    HashSet<Player> players = GsonUtil.getObjects(PLAYERS_FILE_PATH, playersType);
+
     for (Player player : players) {
       figures.remove(player.getFigure());
     }
     return figures;
   }
 
-  void savePlayer(Player player) {
-    GsonUtil.deleteObject(player, "players.json");
-    GsonUtil.saveObject(player, "players.json");
+  public static void savePlayer(Player player) {
+    Type type = new TypeToken<HashSet<Player>>() {}.getType();
+    GsonUtil.deleteObject(player, PLAYERS_FILE_PATH, type);
+    GsonUtil.saveObject(player, PLAYERS_FILE_PATH, type);
   }
 }
