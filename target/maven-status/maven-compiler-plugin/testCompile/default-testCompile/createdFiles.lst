@@ -1,0 +1,8 @@
+edu/ntnu/idat2003/models/PlayerTest.class
+edu/ntnu/idat2003/models/BoardTest.class
+edu/ntnu/idat2003/models/GameTest.class
+edu/ntnu/idat2003/models/DiceTest.class
+edu/ntnu/idat2003/models/DieTest.class
+edu/ntnu/idat2003/models/FigureTest.class
+edu/ntnu/idat2003/models/TileTest.class
+edu/ntnu/idat2003/tileactions/LadderActionTest.class

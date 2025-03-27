@@ -1,16 +1,9 @@
 package edu.ntnu.idat2003.views;
 
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
-import javafx.scene.control.Button;
 import edu.ntnu.idat2003.components.MainFrame;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 public class UserInterface {
 
@@ -33,7 +26,7 @@ public class UserInterface {
     root.prefHeightProperty().bind(primaryStage.heightProperty());
 
     // Add the Stylesheet to the root Pane
-    root.getStylesheets().add(getClass().getResource("/Stylesheet.css").toExternalForm());
+    root.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
     root.setId("root");
   }
 
@@ -61,7 +54,7 @@ public class UserInterface {
     MainFrame.init(root);
 
     // Scene scene = new Scene(bord, 1000, 800);
-    primaryStage.setScene(new Scene(root));  
+    primaryStage.setScene(new Scene(root));
     primaryStage.show();
   }
 }
