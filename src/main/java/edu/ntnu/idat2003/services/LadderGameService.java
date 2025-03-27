@@ -13,17 +13,16 @@ public class LadderGameService {
 
   public void getPlayers(FlowPane flowPane) {
     HashSet<Player> players = gsonService.getPlayers();
-    selectionService.createPlayerSelection(flowPane, players);
+    selectionService.selectPlayers(players, flowPane);
   }
 
   public void getBoards(FlowPane flowPane) {
     HashSet<Board> boards = gsonService.getBoards();
-    selectionService.createBoardSelection(flowPane, boards);
+    selectionService.selectBoards(boards, flowPane);
   }
 
-  public void createPlayer(String playerName) {
+  public void getFigures(FlowPane flowPane) {
     HashSet<Figure> figures = gsonService.getFigures();
-    Figure figure = selectionService.createFigureSelection(flowPane, figures);
-    stateService.addPlayer(new Player(playerName, figure));
+    selectionService.selectFigures(figures, flowPane);
   }
 }
