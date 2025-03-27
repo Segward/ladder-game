@@ -8,7 +8,7 @@ public class BoardTest {
 
   @Test
   public void testGetTile() {
-    Board board = new Board();
+    Board board = new Board("Mlem");
     board.addTile(0, new Tile(0));
     board.addTile(1, new Tile(1));
     Tile tile1 = board.getTile(0);
@@ -27,14 +27,14 @@ public class BoardTest {
 
   @Test
   public void testAddTile() {
-    Board board = new Board();
+    Board board = new Board("Mlem");
     board.addTile(0, new Tile(0));
     assertEquals(1, board.getTileCount());
   }
 
   @Test
   public void testGetTilesCount() {
-    Board board = new Board();
+    Board board = new Board("Mlem");
     board.addTile(0, new Tile(0));
     board.addTile(1, new Tile(1));
     assertEquals(2, board.getTileCount());

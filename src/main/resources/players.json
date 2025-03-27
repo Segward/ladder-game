@@ -1,0 +1,30 @@
+[
+  {
+    "name": "ifif",
+    "figure": {
+      "color": "red"
+    },
+    "position": 0
+  },
+  {
+    "name": "trym",
+    "figure": {
+      "color": "blue"
+    },
+    "position": 0
+  },
+  {
+    "name": "kuu",
+    "figure": {
+      "color": "yellow"
+    },
+    "position": 0
+  },
+  {
+    "name": "deded",
+    "figure": {
+      "color": "green"
+    },
+    "position": 0
+  }
+]

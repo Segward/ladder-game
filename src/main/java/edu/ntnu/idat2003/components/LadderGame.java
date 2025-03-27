@@ -157,7 +157,7 @@ public class LadderGame {
     // Load the boards
 
     // Save crappy board to test datastorage
-    Board board = new Board();
+    Board board = new Board("Mlem");
     for (int i = 0; i < 90; i++) {
       Tile tile = new Tile(i);
       board.addTile(i, tile);

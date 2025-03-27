@@ -20,13 +20,14 @@ public class GsonService {
   }
 
   public static HashSet<Board> getBoards() {
-    Type type = new TypeToken<HashSet<Player>>() {}.getType();
-    return GsonUtil.getObjects(BOARDS_FILE_PATH, type);
-  }
+    Type type = new TypeToken<HashSet<Board>>() {}.getType();
+    HashSet<Board> boards = GsonUtil.getObjects(BOARDS_FILE_PATH, type);
 
-  public static void deletePlayer(Player player) {
-    Type type = new TypeToken<HashSet<Player>>() {}.getType();
-    GsonUtil.deleteObject(player, PLAYERS_FILE_PATH, type);
+    if (boards == null || boards.isEmpty()) {
+      boards = GsonFactory.makeBoards();
+    }
+
+    return boards;
   }
 
   public static HashSet<Figure> getAvailableFigures() {
@@ -36,15 +37,36 @@ public class GsonService {
     HashSet<Figure> figures = GsonUtil.getObjects(FIGURES_FILE_PATH, figuresType);
     HashSet<Player> players = GsonUtil.getObjects(PLAYERS_FILE_PATH, playersType);
 
+    if (figures == null || figures.isEmpty()) {
+      figures = GsonFactory.makeFigures();
+    }
+
+    if (players == null || players.isEmpty()) {
+      return figures;
+    }
+
     for (Player player : players) {
       figures.remove(player.getFigure());
     }
+
     return figures;
+  }
+
+  public static void deletePlayer(Player player) {
+    Type type = new TypeToken<HashSet<Player>>() {}.getType();
+    GsonUtil.deleteObject(player, PLAYERS_FILE_PATH, type);
   }
 
   public static void savePlayer(Player player) {
     Type type = new TypeToken<HashSet<Player>>() {}.getType();
-    GsonUtil.deleteObject(player, PLAYERS_FILE_PATH, type);
     GsonUtil.saveObject(player, PLAYERS_FILE_PATH, type);
+  }
+
+  public static void setFigures(HashSet<Figure> figures) {
+    GsonUtil.setObjects(figures, FIGURES_FILE_PATH);
+  }
+
+  public static void setBoards(HashSet<Board> boards) {
+    GsonUtil.setObjects(boards, BOARDS_FILE_PATH);
   }
 }

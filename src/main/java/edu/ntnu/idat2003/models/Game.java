@@ -1,8 +1,7 @@
 package edu.ntnu.idat2003.models;
 
-import java.util.ArrayList;
-
 import edu.ntnu.idat2003.tileactions.LadderAction;
+import java.util.ArrayList;
 
 public class Game {
 
@@ -13,7 +12,7 @@ public class Game {
   private int currentPlayerIndex;
 
   public void createBoard() {
-    board = new Board();
+    board = new Board("Mlem");
     for (int i = 0; i < 100; i++) {
       Tile tile = new Tile(i);
       board.addTile(i, tile);

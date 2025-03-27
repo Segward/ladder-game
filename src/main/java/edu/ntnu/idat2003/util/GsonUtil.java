@@ -69,6 +69,35 @@ public class GsonUtil {
     }
   }
 
+  public static <T> void setObjects(HashSet<T> objects, String filePath) {
+    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    if (!fileExists(filePath)) {
+      createFile(filePath);
+    }
+
+    deleteAllObjects(filePath);
+
+    try (FileWriter writer = new FileWriter(filePath)) {
+      gson.toJson(objects, writer);
+      writer.flush();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static <T> void deleteAllObjects(String filePath) {
+    if (!fileExists(filePath)) {
+      return;
+    }
+
+    try (FileWriter writer = new FileWriter(filePath)) {
+      writer.write("");
+      writer.flush();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
   public static <T> HashSet<T> getObjects(String filePath, Type type) {
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
     HashSet<T> objects = new HashSet<>();
