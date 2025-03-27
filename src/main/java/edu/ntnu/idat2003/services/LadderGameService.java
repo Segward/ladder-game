@@ -21,8 +21,9 @@ public class LadderGameService {
     selectionService.createBoardSelection(flowPane, boards);
   }
 
-  public void getFigures(FlowPane flowPane) {
+  public void createPlayer(String playerName) {
     HashSet<Figure> figures = gsonService.getFigures();
-    selectionService.createFigureSelection(flowPane, figures);
+    Figure figure = selectionService.createFigureSelection(flowPane, figures);
+    stateService.addPlayer(new Player(playerName, figure));
   }
 }
