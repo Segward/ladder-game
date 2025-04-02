@@ -38,7 +38,7 @@ public class BoardSelection {
       boardPane.getChildren().add(selectBoard);
       flowPane.getChildren().add(boardPane);
 
-      selectBoard.setOnAction(e -> LadderGame.init(root));
+      selectBoard.setOnAction(e -> LadderGame.init(root, board));
     }
   }
 }

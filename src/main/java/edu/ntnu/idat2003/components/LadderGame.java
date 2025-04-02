@@ -19,12 +19,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 public class LadderGame {
-  /**
-   * Initializes game panes and board.
-   *
-   * @param root Main pane
-   */
-  public static void init(Pane root) {
+  public static void init(Pane root, Board board) {
     root.getChildren().clear();
 
     FlowPane menuPane = new FlowPane();
