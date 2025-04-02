@@ -11,27 +11,8 @@ public class Game {
   private Player currentPlayer;
   private int currentPlayerIndex;
 
-  public void createBoard() {
-    board = new Board("Mlem");
-    for (int i = 0; i < 100; i++) {
-      Tile tile = new Tile(i);
-      board.addTile(i, tile);
-    }
-    board.setTileAction(1, new LadderAction("Climb the ladder to tile 38", 38));
-    board.setTileAction(4, new LadderAction("Climb the ladder to tile 14", 14));
-    board.setTileAction(9, new LadderAction("Climb the ladder to tile 31", 31));
-    board.setTileAction(16, new LadderAction("Climb the ladder to tile 6", 6));
-    board.setTileAction(28, new LadderAction("Climb the ladder to tile 84", 84));
-    board.setTileAction(21, new LadderAction("Climb the ladder to tile 42", 42));
-    board.setTileAction(36, new LadderAction("Climb the ladder to tile 44", 44));
-    board.setTileAction(47, new LadderAction("Climb the ladder to tile 26", 26));
-    board.setTileAction(49, new LadderAction("Climb the ladder to tile 11", 11));
-    board.setTileAction(51, new LadderAction("Climb the ladder to tile 67", 67));
-    board.setTileAction(56, new LadderAction("Climb the ladder to tile 53", 53));
-    board.setTileAction(62, new LadderAction("Climb the ladder to tile 19", 19));
-    board.setTileAction(64, new LadderAction("Climb the ladder to tile 60", 60));
-    board.setTileAction(71, new LadderAction("Climb the ladder to tile 91", 91));
-    board.setTileAction(80, new LadderAction("Climb the ladder to tile 100", 100));
+  public void createBoard(Board board) {
+    this.board = board;
   }
 
   public void createDice() {
@@ -71,25 +52,5 @@ public class Game {
     if (currentPlayerIndex >= players.size()) {
       currentPlayerIndex = 0;
     }
-  }
-
-  public Board getBoard() {
-    return board;
-  }
-
-  public Dice getDice() {
-    return dice;
-  }
-
-  public Player getCurrentPlayer() {
-    return currentPlayer;
-  }
-
-  public int getCurrentPlayerIndex() {
-    return currentPlayerIndex;
-  }
-
-  public ArrayList<Player> getPlayers() {
-    return players;
   }
 }
