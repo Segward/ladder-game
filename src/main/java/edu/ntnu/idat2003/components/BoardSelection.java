@@ -1,7 +1,7 @@
 package edu.ntnu.idat2003.components;
 
-import edu.ntnu.idat2003.models.Board;
-import edu.ntnu.idat2003.services.GsonService;
+import edu.ntnu.idat2003.model.Board;
+import edu.ntnu.idat2003.repo.BoardRepository;
 import java.util.HashSet;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -27,7 +27,7 @@ public class BoardSelection {
     flowPane.setAlignment(Pos.CENTER);
 
     HashSet<Board> boards = new HashSet<>();
-    boards = GsonService.getBoards();
+    // boards = GsonService.getBoards();
 
     for (Board board : boards) {
       FlowPane boardPane = new FlowPane();
@@ -38,7 +38,7 @@ public class BoardSelection {
       boardPane.getChildren().add(selectBoard);
       flowPane.getChildren().add(boardPane);
 
-      selectBoard.setOnAction(e -> LadderGame.init(root, board));
+      // selectBoard.setOnAction(e -> LadderGame.init(root, board));
     }
   }
 }

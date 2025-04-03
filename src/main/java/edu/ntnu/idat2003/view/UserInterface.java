@@ -1,4 +1,4 @@
-package edu.ntnu.idat2003.views;
+package edu.ntnu.idat2003.view;
 
 import edu.ntnu.idat2003.components.MainFrame;
 import javafx.scene.Scene;

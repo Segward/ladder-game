@@ -1,8 +1,9 @@
 package edu.ntnu.idat2003.components;
 
-import edu.ntnu.idat2003.models.Figure;
-import edu.ntnu.idat2003.models.Player;
-import edu.ntnu.idat2003.services.GsonService;
+import edu.ntnu.idat2003.model.Figure;
+import edu.ntnu.idat2003.model.Player;
+import edu.ntnu.idat2003.repo.FigureRepository;
+import edu.ntnu.idat2003.repo.PlayerRepository;
 import java.util.HashSet;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -33,7 +34,7 @@ public class FigureSelection {
     flowPane.getChildren().add(playerName);
 
     HashSet<Figure> figures = new HashSet<>();
-    figures = GsonService.getAvailableFigures();
+    //figures = GsonService.getAvailableFigures();
 
     for (Figure figure : figures) {
       FlowPane figurePane = new FlowPane();
@@ -54,7 +55,7 @@ public class FigureSelection {
     }
 
     Player player = new Player(playerName, figure);
-    GsonService.savePlayer(player);
+    //GsonService.savePlayer(player);
     PlayerSelection.init(root);
   }
 }

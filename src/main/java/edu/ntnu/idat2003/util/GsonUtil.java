@@ -25,73 +25,14 @@ public class GsonUtil {
     }
   }
 
-  public static <T> void deleteObject(T object, String filePath, Type type) {
-    Gson gson = new GsonBuilder().setPrettyPrinting().create();
-    if (!fileExists(filePath)) {
-      return;
-    }
-
-    HashSet<T> objects = getObjects(filePath, type);
-    if (objects == null) {
-      return;
-    }
-
-    if (!objects.contains(object)) {
-      return;
-    }
-
-    objects.remove(object);
-    try (FileWriter writer = new FileWriter(filePath)) {
-      gson.toJson(objects, writer);
-      writer.flush();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
-
-  public static <T> void saveObject(T object, String filePath, Type type) {
+  public static <T> void saveObjects(HashSet<T> objects, String filePath) {
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
     if (!fileExists(filePath)) {
       createFile(filePath);
     }
 
-    HashSet<T> objects = getObjects(filePath, type);
-    if (objects == null) {
-      objects = new HashSet<>();
-    }
-
-    objects.add(object);
     try (FileWriter writer = new FileWriter(filePath)) {
       gson.toJson(objects, writer);
-      writer.flush();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
-
-  public static <T> void setObjects(HashSet<T> objects, String filePath) {
-    Gson gson = new GsonBuilder().setPrettyPrinting().create();
-    if (!fileExists(filePath)) {
-      createFile(filePath);
-    }
-
-    deleteAllObjects(filePath);
-
-    try (FileWriter writer = new FileWriter(filePath)) {
-      gson.toJson(objects, writer);
-      writer.flush();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
-
-  public static <T> void deleteAllObjects(String filePath) {
-    if (!fileExists(filePath)) {
-      return;
-    }
-
-    try (FileWriter writer = new FileWriter(filePath)) {
-      writer.write("");
       writer.flush();
     } catch (IOException e) {
       e.printStackTrace();
@@ -116,5 +57,12 @@ public class GsonUtil {
     }
 
     return objects;
+  }
+
+  public static <T> void deleteObjects(String filePath) {
+    File file = new File(filePath);
+    if (file.exists()) {
+      file.delete();
+    }
   }
 }

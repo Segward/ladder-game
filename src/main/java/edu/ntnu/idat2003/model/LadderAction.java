@@ -1,6 +1,4 @@
-package edu.ntnu.idat2003.tileactions;
-
-import edu.ntnu.idat2003.models.Player;
+package edu.ntnu.idat2003.model;
 
 public class LadderAction extends TileAction {
   private int destination;

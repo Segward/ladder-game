@@ -4,9 +4,10 @@ import edu.ntnu.idat2003.util.GsonUtil;
 import edu.ntnu.idat2003.model.Player;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
+import java.util.HashSet;
 
 public class PlayerRepository {
-  private static final string path = "src/main/resources/player.json";
+  private static final String path = "src/main/resources/player.json";
   
   public static HashSet<Player> getPlayers() {
     Type playerSetType = new TypeToken<HashSet<Player>>() {}.getType();
@@ -15,7 +16,7 @@ public class PlayerRepository {
   }
 
   public static void savePlayers(HashSet<Player> players) {
-    GsonUtil.saveObjects(path, players);
+    GsonUtil.saveObjects(players, path);
   }
 
   public static void addPlayer(Player player) {

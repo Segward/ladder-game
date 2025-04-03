@@ -5,18 +5,19 @@ import edu.ntnu.idat2003.model.Figure;
 import edu.ntnu.idat2003.model.Player;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
+import java.util.HashSet;
 
 public class FigureRepository {
-  private static final string path = "src/main/resources/figure.json";
+  private static final String path = "src/main/resources/figure.json";
   
   public static HashSet<Figure> getFigures() {
     Type figureSetType = new TypeToken<HashSet<Figure>>() {}.getType();
     HashSet<Figure> figures = GsonUtil.getObjects(path, figureSetType);
-    return figures != null ? players : new HashSet<>();
+    return figures != null ? figures : new HashSet<>();
   }
 
   public static void saveFigures(HashSet<Figure> figures) {
-    GsonUtil.saveObjects(path, figures);
+    GsonUtil.saveObjects(figures, path);
   }
 
   public static HashSet<Figure> getAvailableFigures() {

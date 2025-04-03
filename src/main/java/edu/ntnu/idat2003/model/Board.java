@@ -1,6 +1,5 @@
-package edu.ntnu.idat2003.models;
+package edu.ntnu.idat2003.model;
 
-import edu.ntnu.idat2003.tileactions.TileAction;
 import java.util.HashMap;
 
 public class Board {

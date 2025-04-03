@@ -1,11 +1,10 @@
 package edu.ntnu.idat2003.components;
 
-import edu.ntnu.idat2003.models.Game;
-import edu.ntnu.idat2003.models.Board;
-import edu.ntnu.idat2003.models.Figure;
-import edu.ntnu.idat2003.models.Player;
-import edu.ntnu.idat2003.models.Tile;
-import edu.ntnu.idat2003.util.DataStorage;
+import edu.ntnu.idat2003.model.Game;
+import edu.ntnu.idat2003.model.Board;
+import edu.ntnu.idat2003.model.Figure;
+import edu.ntnu.idat2003.model.Player;
+import edu.ntnu.idat2003.model.Tile;
 import java.util.HashSet;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
@@ -17,7 +16,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import edu.ntnu.idat2003.services.LadderGameService;
 
 public class LadderGame {
   public static void init(Pane root, Board board) {
@@ -87,7 +85,7 @@ public class LadderGame {
     Button rollDiceButton = new Button("Roll Dice");
     playerPane.getChildren().add(rollDiceButton);
 
-    rollDiceButton.setOnAction(e -> LadderGameService.rollDice(text));
+    // rollDiceButton.setOnAction(e -> LadderGameService.rollDice(text));
     endGameButton.setOnAction(e -> MainFrame.init(root));
   }
 }

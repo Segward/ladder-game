@@ -1,6 +1,5 @@
-package edu.ntnu.idat2003.models;
+package edu.ntnu.idat2003.model;
 
-import edu.ntnu.idat2003.tileactions.LadderAction;
 import java.util.ArrayList;
 
 public class Game {
@@ -52,5 +51,21 @@ public class Game {
     if (currentPlayerIndex >= players.size()) {
       currentPlayerIndex = 0;
     }
+  }
+
+  public ArrayList<Player> getPlayers() {
+    return players;
+  }
+  public Board getBoard() {
+    return board;
+  }
+  public Dice getDice() {
+    return dice;
+  }
+  public Player getCurrentPlayer() {
+    return currentPlayer;
+  }
+  public int getCurrentPlayerIndex() {
+    return currentPlayerIndex;
   }
 }

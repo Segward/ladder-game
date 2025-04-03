@@ -1,7 +1,7 @@
 package edu.ntnu.idat2003.components;
 
-import edu.ntnu.idat2003.models.Player;
-import edu.ntnu.idat2003.services.GsonService;
+import edu.ntnu.idat2003.model.Player;
+import edu.ntnu.idat2003.repo.PlayerRepository;
 import java.util.HashSet;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -26,7 +26,7 @@ public class PlayerSelection {
     flowPane.setAlignment(Pos.CENTER);
 
     HashSet<Player> players = new HashSet<>();
-    players = GsonService.getPlayers();
+    // players = GsonService.getPlayers();
 
     for (Player player : players) {
       FlowPane playerPane = new FlowPane();
@@ -39,7 +39,7 @@ public class PlayerSelection {
 
       deletePlayer.setOnAction(
           e -> {
-            GsonService.deletePlayer(player);
+            // GsonService.deletePlayer(player);
             init(root);
           });
     }

@@ -6,13 +6,12 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.FlowPane;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import edu.ntnu.idat2003.controller.MainFrameController;
 
 public class MainFrame {
   public static void init(Pane root) {
-    // Clear the stack pane
     root.getChildren().clear();
     
-    // Create the content
     StackPane stackPane = new StackPane();
     root.getChildren().add(stackPane);
     stackPane.prefWidthProperty().bind(root.widthProperty());    
@@ -30,9 +29,7 @@ public class MainFrame {
     Button exitAppButton = new Button("Exit");
     flowPane.getChildren().add(exitAppButton);
 
-    // Handle button click events
-    startGameButton.setOnAction(e -> PlayerSelection.init(root));
-    exitAppButton.setOnAction(e -> exitApp());
+    MainFrameController controller = new MainFrameController(root, startGameButton, exitAppButton);
   }
 
   private static void exitApp() {
