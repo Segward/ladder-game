@@ -7,7 +7,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import edu.ntnu.idat2003.component.MainFrame;
-
+import edu.ntnu.idat2003.model.Dice;
+import edu.ntnu.idat2003.model.Game;
+import edu.ntnu.idat2003.model.Player;
+import edu.ntnu.idat2003.repo.PlayerRepository;
+import java.util.HashSet;
 
 public class LadderGameController {
   
@@ -17,6 +21,7 @@ public class LadderGameController {
   private GridPane gridPane;
   private Button roll;
   private Button stop;
+  private Game game;  
 
   public LadderGameController(Pane root, Board board, Text rollText, GridPane gridPane, Button roll, Button stop) {
     this.root = root;
@@ -28,14 +33,16 @@ public class LadderGameController {
   }
 
   public void init() {
+    HashSet<Player> players = PlayerRepository.getPlayers();
+    Dice dice = new Dice(2);
+    game = new Game(players, board, dice);
     roll.setOnAction(this::onRollClick);
     stop.setOnAction(this::onStopClick);
     updateBoard();
   }
-
+  
   public void onRollClick(ActionEvent event) {
-    int rand = (int) (Math.random() * 6) + 1;
-    rollText.setText("You rolled a " + rand);
+    game.roll();
     updateBoard();
   }
 
@@ -52,6 +59,19 @@ public class LadderGameController {
         button.setMaxSize(50, 50);
         gridPane.add(button, j, i);
       }
+    }
+    
+    HashSet<Player> players = game.getPlayers2();
+    for (Player player : players) {
+      int position = player.getPosition();
+      int row = 8 - position / 10;
+      int col = position % 10;
+      System.out.println("Player " + player.getName() + " is at position " + position);
+      Button button = new Button(player.getName());
+      button.setMinSize(50, 50);
+      button.setMaxSize(50, 50);
+      button.setStyle("-fx-background-color: red;");
+      gridPane.add(button, col, row);
     }
   }
 }

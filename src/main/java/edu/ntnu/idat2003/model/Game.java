@@ -1,6 +1,7 @@
 package edu.ntnu.idat2003.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Game {
 
@@ -9,6 +10,47 @@ public class Game {
   private Dice dice;
   private Player currentPlayer;
   private int currentPlayerIndex;
+  
+  public Game(HashSet<Player> players, Board board, Dice dice) {
+    this.players = new ArrayList<>(players);
+    this.board = board;
+    this.dice = dice;
+    this.currentPlayerIndex = 0;
+    this.currentPlayer = this.players.get(currentPlayerIndex); 
+  }
+
+  public void roll() {
+    int steps = dice.roll();
+    currentPlayer.move(steps);
+    currentPlayerIndex++;
+    if (currentPlayerIndex >= players.size()) {
+      currentPlayerIndex = 0;
+    }
+    currentPlayer = players.get(currentPlayerIndex);
+  }
+  
+  public HashSet<Player> getPlayers2() {
+    HashSet<Player> playersSet = new HashSet<>();
+    for (Player player : players) {
+      playersSet.add(player);
+    }
+    return playersSet;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   public void createBoard(Board board) {
     this.board = board;
