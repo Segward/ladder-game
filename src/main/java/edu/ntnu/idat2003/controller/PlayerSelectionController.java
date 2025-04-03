@@ -7,6 +7,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.scene.layout.FlowPane;
 import edu.ntnu.idat2003.component.PlayerSelection;
+import edu.ntnu.idat2003.component.BoardSelection;
 import edu.ntnu.idat2003.repo.PlayerRepository;
 import edu.ntnu.idat2003.model.Player;
 import javafx.geometry.Orientation;
@@ -38,7 +39,7 @@ public class PlayerSelectionController {
   }
 
   public void onResumeClick(ActionEvent event) {
-    // Handle resume button click
+    BoardSelection.init(root);
   }
 
   private void onDeleteClick(ActionEvent event, Player player) {
