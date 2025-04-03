@@ -1,4 +1,4 @@
-package edu.ntnu.idat2003.components;
+package edu.ntnu.idat2003.component;
 
 import edu.ntnu.idat2003.model.Board;
 import edu.ntnu.idat2003.repo.BoardRepository;

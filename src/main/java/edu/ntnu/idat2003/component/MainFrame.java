@@ -1,4 +1,4 @@
-package edu.ntnu.idat2003.components;
+package edu.ntnu.idat2003.component;
 
 import javafx.scene.layout.Pane;
 import javafx.scene.control.Button;
