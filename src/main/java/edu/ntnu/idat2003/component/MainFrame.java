@@ -13,10 +13,10 @@ public class MainFrame {
     root.getChildren().clear();
     
     StackPane stackPane = new StackPane();
-    root.getChildren().add(stackPane);
     stackPane.prefWidthProperty().bind(root.widthProperty());    
     stackPane.prefHeightProperty().bind(root.heightProperty());
     stackPane.setAlignment(Pos.CENTER);
+    root.getChildren().add(stackPane);
 
     FlowPane flowPane = new FlowPane();
     stackPane.getChildren().add(flowPane);
@@ -30,6 +30,7 @@ public class MainFrame {
     flowPane.getChildren().add(exitAppButton);
 
     MainFrameController controller = new MainFrameController(root, startGameButton, exitAppButton);
+    controller.init();
   }
 
   private static void exitApp() {

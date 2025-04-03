@@ -1,9 +1,9 @@
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/App.java
-/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/components/BoardSelection.java
-/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/components/FigureSelection.java
-/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/components/LadderGame.java
-/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/components/MainFrame.java
-/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/components/PlayerSelection.java
+/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/component/BoardSelection.java
+/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/component/FigureSelection.java
+/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/component/LadderGame.java
+/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/component/MainFrame.java
+/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/component/PlayerSelection.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/controller/BoardSelectionController.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/controller/FigureSelectionController.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/controller/MainFrameController.java

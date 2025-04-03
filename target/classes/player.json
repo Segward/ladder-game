@@ -1,0 +1,37 @@
+[
+  {
+    "name": "dawddd",
+    "figure": {
+      "color": "Bishop"
+    },
+    "position": 0
+  },
+  {
+    "name": "dwaiudidwad",
+    "figure": {
+      "color": "Rook"
+    },
+    "position": 0
+  },
+  {
+    "name": "dwadd",
+    "figure": {
+      "color": "Pawn"
+    },
+    "position": 0
+  },
+  {
+    "name": "iifiifif",
+    "figure": {
+      "color": "Knight"
+    },
+    "position": 0
+  },
+  {
+    "name": "dwadgg",
+    "figure": {
+      "color": "King"
+    },
+    "position": 0
+  }
+]

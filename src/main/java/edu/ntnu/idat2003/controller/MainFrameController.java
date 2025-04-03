@@ -3,26 +3,30 @@ package edu.ntnu.idat2003.controller;
 import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
 import javafx.scene.layout.Pane;
+import edu.ntnu.idat2003.component.PlayerSelection;
 
 public class MainFrameController {
 
-  public Pane root;
-  public Button start;
-  public Button exit;  
+  private Pane root;
+  private Button start;
+  private Button exit;  
   
   public MainFrameController(Pane root, Button start, Button exit) {
     this.root = root;
     this.start = start;
     this.exit = exit;
-    this.start.setOnAction(this::onStartClick);
-    this.exit.setOnAction(this::onExitClick);
+  }
+
+  public void init() {
+    start.setOnAction(this::onStartClick);
+    exit.setOnAction(this::onExitClick);
   }
 
   public void onStartClick(ActionEvent event) {
-    System.out.println("Game started!");
+    PlayerSelection.init(root);
   }
   
   public void onExitClick(ActionEvent event) {
-    System.out.println("Game exited!");
+    System.exit(0);
   } 
 }

@@ -1,0 +1,20 @@
+[
+  {
+    "color": "Rook"
+  },
+  {
+    "color": "Knight"
+  },
+  {
+    "color": "King"
+  },
+  {
+    "color": "Pawn"
+  },
+  {
+    "color": "Bishop"
+  },
+  {
+    "color": "Queen"
+  }
+]
