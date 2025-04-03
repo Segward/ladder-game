@@ -6,6 +6,7 @@
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/component/PlayerSelection.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/controller/BoardSelectionController.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/controller/FigureSelectionController.java
+/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/controller/LadderGameController.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/controller/MainFrameController.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/controller/PlayerSelectionController.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/exception/DataReadException.java

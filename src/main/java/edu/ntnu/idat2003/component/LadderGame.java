@@ -16,6 +16,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import edu.ntnu.idat2003.controller.LadderGameController;
 
 public class LadderGame {
   public static void init(Pane root, Board board) {
@@ -47,16 +48,12 @@ public class LadderGame {
     playerPane.prefHeightProperty().bind(root.heightProperty());
     playerPane.setOrientation(Orientation.VERTICAL);
 
-    // Game game = new Game(board, players);
-    // LadderGameService.renderBoard(boardPane, board);
-    // LadderGameService.renderPlayers(playerPane, players);
-    // Button.onAction(e -> LadderGameService.rollDice());
-
     GridPane bord = new GridPane();
     bord.setPadding(new Insets(5, 5, 5, 5));
     bord.setVgap(5);
     bord.setHgap(5);
     bord.setStyle("-fx-background-color: gray");
+    boardPane.getChildren().add(bord);
 
     int tileNum = 90;
     for (int i = 0; i < 9; i++) {
@@ -74,8 +71,6 @@ public class LadderGame {
       }
     }
 
-    boardPane.getChildren().addAll(bord);
-
     Button endGameButton = new Button("End game");
     playerPane.getChildren().add(endGameButton);
 
@@ -85,7 +80,7 @@ public class LadderGame {
     Button rollDiceButton = new Button("Roll Dice");
     playerPane.getChildren().add(rollDiceButton);
 
-    // rollDiceButton.setOnAction(e -> LadderGameService.rollDice(text));
-    endGameButton.setOnAction(e -> MainFrame.init(root));
+    LadderGameController controller = new LadderGameController(root, board, text, bord, rollDiceButton, endGameButton);
+    controller.init();
   }
 }
