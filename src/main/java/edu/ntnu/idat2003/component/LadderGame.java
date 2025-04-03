@@ -55,22 +55,6 @@ public class LadderGame {
     bord.setStyle("-fx-background-color: gray");
     boardPane.getChildren().add(bord);
 
-    int tileNum = 90;
-    for (int i = 0; i < 9; i++) {
-      for (int j = 0; j < 10; j++) {
-        FlowPane gameTile = new FlowPane();
-        gameTile.setAlignment(Pos.CENTER);
-        gameTile.setPrefWidth(50);
-        gameTile.setPrefHeight(50);
-        Text text = new Text(String.valueOf(tileNum));
-        tileNum--;
-
-        gameTile.setStyle("-fx-background-color: WHITE;");
-        gameTile.getChildren().add(text);
-        bord.add(gameTile, j, i);
-      }
-    }
-
     Button endGameButton = new Button("End game");
     playerPane.getChildren().add(endGameButton);
 
