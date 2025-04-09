@@ -1,5 +1,12 @@
 [
   {
+    "name": "",
+    "figure": {
+      "color": "Pawn"
+    },
+    "position": 0
+  },
+  {
     "name": "dwadddd",
     "figure": {
       "color": "Rook"

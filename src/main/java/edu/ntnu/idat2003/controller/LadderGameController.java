@@ -5,6 +5,9 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import edu.ntnu.idat2003.component.MainFrame;
 import edu.ntnu.idat2003.model.Dice;
@@ -12,6 +15,7 @@ import edu.ntnu.idat2003.model.Game;
 import edu.ntnu.idat2003.model.Player;
 import edu.ntnu.idat2003.repo.PlayerRepository;
 import java.util.HashSet;
+import java.util.Stack;
 
 public class LadderGameController {
   
@@ -51,6 +55,7 @@ public class LadderGameController {
   }
 
   private void updateBoard() {
+    /*
     gridPane.getChildren().clear();
     for (int i = 0; i < 9; i++) {
       for (int j = 0; j < 10; j++) {
@@ -61,6 +66,9 @@ public class LadderGameController {
       }
     }
     
+    
+    
+
     HashSet<Player> players = game.getPlayers2();
     for (Player player : players) {
       int position = player.getPosition();
@@ -72,6 +80,28 @@ public class LadderGameController {
       button.setMaxSize(50, 50);
       button.setStyle("-fx-background-color: red;");
       gridPane.add(button, col, row);
+    }
+    */
+    createBord();
+  }
+
+  public void createBord() {
+    gridPane.getChildren().clear();
+    for(int i = 0; i < 10; i++) {
+      for(int j = 0; j < 9; j++) {
+        StackPane stackPane = new StackPane();
+        Rectangle visualTile = new Rectangle(50,50);
+
+        visualTile.setFill(Color.RED);
+
+        String tileString = String.valueOf(i) + String.valueOf(j);
+        int tileNum= Integer.parseInt(tileString);
+        visualTile.setUserData(board.getTile((tileNum)));
+
+        Text text = new Text(String.valueOf(board.getTile((tileNum)).getPosition()+1));
+        stackPane.getChildren().addAll(visualTile, text);
+        gridPane.add(stackPane, j, i);
+      }
     }
   }
 }
