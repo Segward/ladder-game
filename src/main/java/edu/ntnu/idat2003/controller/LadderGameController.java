@@ -87,12 +87,13 @@ public class LadderGameController {
 
   public void createBord() {
     gridPane.getChildren().clear();
-    for(int i = 0; i < 10; i++) {
-      for(int j = 0; j < 9; j++) {
+    for(int i = 0; i < 9; i++) {
+      
+      for(int j = 0; j < 10; j++) {
         StackPane stackPane = new StackPane();
         Rectangle visualTile = new Rectangle(50,50);
 
-        visualTile.setFill(Color.RED);
+        visualTile.setFill(Color.BEIGE);
 
         String tileString = String.valueOf(i) + String.valueOf(j);
         int tileNum= Integer.parseInt(tileString);
@@ -101,7 +102,30 @@ public class LadderGameController {
         Text text = new Text(String.valueOf(board.getTile((tileNum)).getPosition()+1));
         stackPane.getChildren().addAll(visualTile, text);
         gridPane.add(stackPane, j, i);
+        
       }
+      
+      /* 
+      int j = 0;
+      int add = 1;
+      do {
+        StackPane stackPane = new StackPane();
+        Rectangle visualTile = new Rectangle(50,50);
+
+        visualTile.setFill(Color.BEIGE);
+
+        String tileString = String.valueOf(i) + String.valueOf(j);
+        int tileNum= Integer.parseInt(tileString);
+        visualTile.setUserData(board.getTile((tileNum)));
+
+        Text text = new Text(String.valueOf(board.getTile((tileNum)).getPosition()+1));
+        stackPane.getChildren().addAll(visualTile, text);
+        gridPane.add(stackPane, j, i);
+        j+=add;
+      } while(j >= 0 && j < 10);
+      add*=-1; 
+      */
     }
+     
   }
 }
