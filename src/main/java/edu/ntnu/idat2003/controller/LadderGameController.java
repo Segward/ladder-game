@@ -2,6 +2,7 @@ package edu.ntnu.idat2003.controller;
 
 import edu.ntnu.idat2003.model.Board;
 import javafx.event.ActionEvent;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -82,6 +83,14 @@ public class LadderGameController {
       gridPane.add(button, col, row);
     }
     */
+    HashSet<Player> players = game.getPlayers2();
+    for (Player player : players) {
+      int position = player.getPosition();
+      int row = (position%10);
+      int column = (int)Math.floor((position/10));
+      gridPane.get
+    }
+
     createBord();
   }
 
@@ -97,7 +106,7 @@ public class LadderGameController {
 
         String tileString = String.valueOf(i) + String.valueOf(j);
         int tileNum= Integer.parseInt(tileString);
-        visualTile.setUserData(board.getTile((tileNum)));
+        stackPane.setUserData(board.getTile((tileNum)));
 
         Text text = new Text(String.valueOf(board.getTile((tileNum)).getPosition()+1));
         stackPane.getChildren().addAll(visualTile, text);
@@ -126,6 +135,26 @@ public class LadderGameController {
       add*=-1; 
       */
     }
-     
+    
+  }
+
+  /**
+   *  Method for finding grid stack cordinate.
+   * 
+   * @param row 
+   * @param colum
+   * @return
+   */
+  public StackPane getGridPane(int row, int colum) {
+    for(Node node : gridPane.getChildren()) {
+      int nodeRow = GridPane.getRowIndex(node);
+      int nodeColum = GridPane.getColumnIndex(node);
+
+      if(nodeRow == row && nodeColum == colum){
+        return (StackPane) node;
+      }
+
+    }
+    return null;
   }
 }
