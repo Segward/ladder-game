@@ -83,15 +83,26 @@ public class LadderGameController {
       gridPane.add(button, col, row);
     }
     */
+    createBord();
     HashSet<Player> players = game.getPlayers2();
     for (Player player : players) {
       int position = player.getPosition();
       int row = (position%10);
       int column = (int)Math.floor((position/10));
-      gridPane.get
-    }
 
-    createBord();
+      
+
+      if(getGridPane(row, column) != null) {
+        StackPane stackPaneFromGrid = getGridPane(row, column);
+        Rectangle visualTile = (Rectangle)stackPaneFromGrid.getChildren().get(0);
+        visualTile.setFill(Color.RED);
+        System.out.println("\nPlayer Grid");
+        System.out.println("Row "+ row);
+        System.out.println("Colum " + column);
+      }
+      System.out.println("\nPlayer " + player.getName() + " is at position " + player.getPosition());
+    }
+    
   }
 
   public void createBord() {
@@ -149,8 +160,13 @@ public class LadderGameController {
     for(Node node : gridPane.getChildren()) {
       int nodeRow = GridPane.getRowIndex(node);
       int nodeColum = GridPane.getColumnIndex(node);
+      
+
 
       if(nodeRow == row && nodeColum == colum){
+        System.out.println("\ngridNode");
+        System.out.println("Row "+ nodeRow);
+        System.out.println("Colum " + nodeColum);
         return (StackPane) node;
       }
 

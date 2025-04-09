@@ -1,29 +1,8 @@
 [
   {
-    "name": "",
-    "figure": {
-      "color": "Pawn"
-    },
-    "position": 0
-  },
-  {
-    "name": "dwadddd",
-    "figure": {
-      "color": "Rook"
-    },
-    "position": 0
-  },
-  {
-    "name": "iifiifif",
+    "name": "Big Guy",
     "figure": {
       "color": "Knight"
-    },
-    "position": 0
-  },
-  {
-    "name": "dwadgg",
-    "figure": {
-      "color": "King"
     },
     "position": 0
   }
