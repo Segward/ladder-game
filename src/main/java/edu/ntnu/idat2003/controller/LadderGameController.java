@@ -107,6 +107,7 @@ public class LadderGameController {
 
   public void createBord() {
     gridPane.getChildren().clear();
+    /* 
     for(int i = 0; i < 9; i++) {
       
       for(int j = 0; j < 10; j++) {
@@ -144,9 +145,26 @@ public class LadderGameController {
         j+=add;
       } while(j >= 0 && j < 10);
       add*=-1; 
-      */
-    }
     
+    }
+    */
+    for(int i = 0; i < board.getTileCount()-1; i++){
+      StackPane stackPane = new StackPane();
+      Rectangle visualTile = new Rectangle(50,50);
+
+      visualTile.setFill(Color.BEIGE);
+
+      String tileString = String.valueOf(board.getTile(i).getPosition());
+      visualTile.setUserData(board.getTile((i)));
+      Text text = new Text(tileString);
+
+      int position = board.getTile(i).getPosition();
+      int row = (position%10);
+      int column = (int)Math.floor((position/10));
+
+      stackPane.getChildren().addAll(visualTile, text);
+      gridPane.add(stackPane, column, row);
+    }
   }
 
   /**
