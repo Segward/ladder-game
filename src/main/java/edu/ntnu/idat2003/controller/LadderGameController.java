@@ -100,7 +100,7 @@ public class LadderGameController {
         System.out.println("Row "+ row);
         System.out.println("Colum " + column);
       }
-      System.out.println("\nPlayer " + player.getName() + " is at position " + player.getPosition());
+      System.out.println("\nPlayer " + player.getName() + " is at position " + (position+1));
     }
     
   }
@@ -148,13 +148,13 @@ public class LadderGameController {
     
     }
     */
-    for(int i = 0; i < board.getTileCount()-1; i++){
+    for(int i = 0; i < board.getTileCount(); i++){
       StackPane stackPane = new StackPane();
       Rectangle visualTile = new Rectangle(50,50);
 
       visualTile.setFill(Color.BEIGE);
 
-      String tileString = String.valueOf(board.getTile(i).getPosition());
+      String tileString = String.valueOf(board.getTile(i).getPosition()+1);
       visualTile.setUserData(board.getTile((i)));
       Text text = new Text(tileString);
 
