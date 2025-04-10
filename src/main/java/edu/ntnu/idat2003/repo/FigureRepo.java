@@ -22,7 +22,7 @@ public class FigureRepo {
 
   public static HashSet<Figure> getAvailableFigures() {
     HashSet<Figure> figures = getFigures();
-    HashSet<Player> players = PlayerRepository.getPlayers();
+    HashSet<Player> players = PlayerRepo.getPlayers();
     for (Player player : players) {
       if (player.getFigure() != null) {
         figures.remove(player.getFigure());

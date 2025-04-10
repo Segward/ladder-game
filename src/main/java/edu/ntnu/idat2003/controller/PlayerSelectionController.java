@@ -8,11 +8,11 @@ import javafx.scene.text.Text;
 import javafx.scene.layout.FlowPane;
 import edu.ntnu.idat2003.component.PlayerSelection;
 import edu.ntnu.idat2003.component.BoardSelection;
-import edu.ntnu.idat2003.repo.PlayerRepository;
 import edu.ntnu.idat2003.model.Player;
 import javafx.geometry.Orientation;
 import java.util.HashSet;
 import edu.ntnu.idat2003.component.FigureSelection;
+import edu.ntnu.idat2003.repo.PlayerRepo;
 
 public class PlayerSelectionController {
 
@@ -43,7 +43,7 @@ public class PlayerSelectionController {
   }
 
   private void onDeleteClick(ActionEvent event, Player player) {
-    PlayerRepository.removePlayer(player);
+    PlayerRepo.removePlayer(player);
     PlayerSelection.init(root);
   }
 
@@ -58,7 +58,7 @@ public class PlayerSelectionController {
   }
 
   private void updatePlayers() {
-    HashSet<Player> playerSet = PlayerRepository.getPlayers();
+    HashSet<Player> playerSet = PlayerRepo.getPlayers();
     for (Player player : playerSet) {
       FlowPane playerPane = createPlayerPane(player);
       players.getChildren().add(playerPane);
