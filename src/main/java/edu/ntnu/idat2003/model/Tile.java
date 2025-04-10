@@ -2,31 +2,36 @@ package edu.ntnu.idat2003.model;
 
 public class Tile {
   private TileAction action;
-  private int position;
+  private Vector2 position;
+  private Vector2 nextPosition;
 
-  public Tile(int position, TileAction action) {
+  public Tile(Vector2 position, Vector2 nextPosition, TileAction action) {
     this.action = action;
     this.position = position;
-  }
-
-  public Tile(int position) {
-    this.action = null;
-    this.position = position;
-  }
-
-  public int getNextTile() {
-    return position + 1;
-  }
-
-  public boolean hasAction() {
-    return action != null;
+    this.nextPosition = nextPosition;
   }
 
   public TileAction getAction() {
     return action;
   }
 
-  public int getPosition() {
+  public void setAction(TileAction action) {
+    this.action = action;
+  }
+
+  public Vector2 getPosition() {
     return position;
   }
+
+  public void setPosition(Vector2 position) {
+    this.position = position;
+  }
+
+  public Vector2 getNextPosition() {
+    return nextPosition;
+  }
+  
+  public void setNextPosition(Vector2 nextPosition) {
+    this.nextPosition = nextPosition;
+  } 
 }

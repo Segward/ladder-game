@@ -6,7 +6,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashSet;
 
-public class PlayerRepository {
+public class PlayerRepo {
   private static final String path = "src/main/resources/player.json";
   
   public static HashSet<Player> getPlayers() {

@@ -5,31 +5,35 @@ import java.util.HashSet;
 
 public class Game {
 
-  private ArrayList<Player> players;
+  HashSet<Player> players;
   private Board board;
   private Dice dice;
   private Player currentPlayer;
-  private int currentPlayerIndex;
-  
-  public Game(HashSet<Player> players, Board board, Dice dice) {
-    this.players = new ArrayList<>(players);
+
+  public Game(HashSet<Player> players, Board board) {
+    this.players = players;
     this.board = board;
-    this.dice = dice;
-    this.currentPlayerIndex = 0;
-    this.currentPlayer = this.players.get(currentPlayerIndex); 
+    this.dice = new Dice(1);
+    this.currentPlayer = players.iterator().next();
   }
 
-  public void roll() {
+  public int roll() {
     int steps = dice.roll();
-    currentPlayer.move(steps);
-    currentPlayerIndex++;
-    if (currentPlayerIndex >= players.size()) {
-      currentPlayerIndex = 0;
+    for (int i = 0; i < steps; i++) {
+      Vector2 position = currentPlayer.getPosition();
+      Tile tile = board.getTile(position);
+      int tileNumber = tile.getPosition().getNumber();
+      if (tileNumber >= 90) {
+        continue; 
+      }
+      Vector2 nextPosition = tile.getNextPosition();
+      currentPlayer.setPosition(nextPosition);
     }
-    currentPlayer = players.get(currentPlayerIndex);
+    currentPlayer = getNextPlayer();
+    return steps;
   }
   
-  public HashSet<Player> getPlayers2() {
+  public HashSet<Player> getPlayers() {
     HashSet<Player> playersSet = new HashSet<>();
     for (Player player : players) {
       playersSet.add(player);
@@ -37,77 +41,23 @@ public class Game {
     return playersSet;
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  public void createBoard(Board board) {
-    this.board = board;
+  private Player getNextPlayer() {
+    ArrayList<Player> playerList = new ArrayList<>(players);
+    int currentIndex = playerList.indexOf(currentPlayer);
+    int nextIndex = (currentIndex + 1) % playerList.size();
+    return playerList.get(nextIndex); 
   }
 
-  public void createDice() {
-    dice = new Dice(6);
-  }
-
-  public void addPlayer(Player player) {
-    if (players == null) {
-      players = new ArrayList<>();
-    }
-    players.add(player);
-  }
-
-  public void startGame() {
-    boolean gameIsRunning = true;
-    currentPlayerIndex = 0;
-    while (gameIsRunning) {
-      currentPlayer = players.get(currentPlayerIndex);
-      int steps = dice.roll();
-      currentPlayer.move(steps);
-      int position = currentPlayer.getPosition();
-      System.out.println(currentPlayer.getName() + " is at position " + position);
-      if (position >= board.getTileCount() - 1) {
-        System.out.println(currentPlayer.getName() + " has won the game!");
-        gameIsRunning = false;
-      }
-      Tile tile = board.getTile(position);
-      if (tile != null && tile.hasAction()) {
-        tile.getAction().execute(currentPlayer);
-      }
-      nextPlayer();
-    }
-  }
-
-  public void nextPlayer() {
-    currentPlayerIndex++;
-    if (currentPlayerIndex >= players.size()) {
-      currentPlayerIndex = 0;
-    }
-  }
-
-  public ArrayList<Player> getPlayers() {
-    return players;
-  }
   public Board getBoard() {
     return board;
   }
-  public Dice getDice() {
-    return dice;
-  }
-  public Player getCurrentPlayer() {
-    return currentPlayer;
-  }
-  public int getCurrentPlayerIndex() {
-    return currentPlayerIndex;
+
+  public boolean isGameOver() {
+    for (Player player : players) {
+      if (player.getPosition().getNumber() >= 90) {
+        return true;
+      }
+    }
+    return false;
   }
 }

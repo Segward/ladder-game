@@ -7,7 +7,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashSet;
 
-public class FigureRepository {
+public class FigureRepo {
   private static final String path = "src/main/resources/figure.json";
   
   public static HashSet<Figure> getFigures() {

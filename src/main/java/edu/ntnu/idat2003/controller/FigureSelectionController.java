@@ -14,6 +14,7 @@ import javafx.scene.text.Text;
 import java.util.HashSet;
 import javafx.event.ActionEvent;
 import edu.ntnu.idat2003.repo.RepoFactory;
+import edu.ntnu.idat2003.model.Vector2;
 
 public class FigureSelectionController {
 
@@ -39,6 +40,8 @@ public class FigureSelectionController {
   private void onSelectClick(ActionEvent event, Figure figure) {
     String name = playerName.getText();
     Player player = new Player(name, figure);
+    Vector2 position = new Vector2(0, 0);
+    player.setPosition(position);
     PlayerRepository.addPlayer(player);
     PlayerSelection.init(root);
   }

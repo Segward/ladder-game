@@ -4,7 +4,7 @@ import javafx.scene.layout.FlowPane;
 import java.util.HashSet;
 import javafx.event.ActionEvent;
 import javafx.scene.text.Text;
-import edu.ntnu.idat2003.repo.BoardRepository;
+import edu.ntnu.idat2003.repo.BoardRepo;
 import edu.ntnu.idat2003.component.LadderGame;
 import javafx.scene.layout.Pane;
 import edu.ntnu.idat2003.model.Board;
@@ -23,7 +23,7 @@ public class BoardSelectionController {
   }
 
   public void init() {
-    HashSet<Board> boardSet = BoardRepository.getBoards();
+    HashSet<Board> boardSet = BoardRepo.getBoards();
     if (boardSet.isEmpty()) {
       RepoFactory.makeBoards();
     }
@@ -46,7 +46,7 @@ public class BoardSelectionController {
   }
 
   private void updateBoards() {
-    HashSet<Board> boardSet = BoardRepository.getBoards();
+    HashSet<Board> boardSet = BoardRepo.getBoards();
     for (Board board : boardSet) {
       FlowPane boardPane = createBoardPane(board);
       boards.getChildren().add(boardPane);

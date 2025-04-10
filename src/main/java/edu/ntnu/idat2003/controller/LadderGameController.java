@@ -11,12 +11,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import edu.ntnu.idat2003.component.MainFrame;
-import edu.ntnu.idat2003.model.Dice;
 import edu.ntnu.idat2003.model.Game;
 import edu.ntnu.idat2003.model.Player;
 import edu.ntnu.idat2003.repo.PlayerRepository;
 import java.util.HashSet;
 import java.util.Stack;
+import edu.ntnu.idat2003.model.Vector2;
+import edu.ntnu.idat2003.model.Tile;
+import java.util.HashMap;
 
 public class LadderGameController {
   
@@ -39,15 +41,14 @@ public class LadderGameController {
 
   public void init() {
     HashSet<Player> players = PlayerRepository.getPlayers();
-    Dice dice = new Dice(2);
-    game = new Game(players, board, dice);
+    game = new Game(players, board);
     roll.setOnAction(this::onRollClick);
     stop.setOnAction(this::onStopClick);
     updateBoard();
   }
   
   public void onRollClick(ActionEvent event) {
-    game.roll();
+    int steps = game.roll();
     updateBoard();
   }
 
@@ -56,139 +57,32 @@ public class LadderGameController {
   }
 
   private void updateBoard() {
-    /*
+    if (game.isGameOver()) {
+      rollText.setText("Game Over!");
+      return;
+    }
+
     gridPane.getChildren().clear();
-    for (int i = 0; i < 9; i++) {
-      for (int j = 0; j < 10; j++) {
-        Button button = new Button("Temp");
-        button.setMinSize(50, 50);
-        button.setMaxSize(50, 50);
-        gridPane.add(button, j, i);
-      }
-    }
-    
-    
-    
-
-    HashSet<Player> players = game.getPlayers2();
-    for (Player player : players) {
-      int position = player.getPosition();
-      int row = 8 - position / 10;
-      int col = position % 10;
-      System.out.println("Player " + player.getName() + " is at position " + position);
-      Button button = new Button(player.getName());
-      button.setMinSize(50, 50);
-      button.setMaxSize(50, 50);
-      button.setStyle("-fx-background-color: red;");
-      gridPane.add(button, col, row);
-    }
-    */
-    createBord();
-    HashSet<Player> players = game.getPlayers2();
-    for (Player player : players) {
-      int position = player.getPosition();
-      int row = (position%10);
-      int column = (int)Math.floor((position/10));
-
-      
-
-      if(getGridPane(row, column) != null) {
-        StackPane stackPaneFromGrid = getGridPane(column, row);
-        Rectangle visualTile = (Rectangle)stackPaneFromGrid.getChildren().get(0);
-        visualTile.setFill(Color.RED);
-        System.out.println("\nPlayer Grid");
-        System.out.println("Row "+ row);
-        System.out.println("Colum " + column);
-      }
-      System.out.println("\nPlayer " + player.getName() + " is at position " + (position+1));
-    }
-    
-  }
-
-  public void createBord() {
-    gridPane.getChildren().clear();
-    /* 
-    for(int i = 0; i < 9; i++) {
-      
-      for(int j = 0; j < 10; j++) {
-        StackPane stackPane = new StackPane();
-        Rectangle visualTile = new Rectangle(50,50);
-
-        visualTile.setFill(Color.BEIGE);
-
-        String tileString = String.valueOf(i) + String.valueOf(j);
-        int tileNum= Integer.parseInt(tileString);
-        stackPane.setUserData(board.getTile((tileNum)));
-
-        Text text = new Text(String.valueOf(board.getTile((tileNum)).getPosition()+1));
-        stackPane.getChildren().addAll(visualTile, text);
-        gridPane.add(stackPane, j, i);
-        
-      }
-      
-      /* 
-      int j = 0;
-      int add = 1;
-      do {
-        StackPane stackPane = new StackPane();
-        Rectangle visualTile = new Rectangle(50,50);
-
-        visualTile.setFill(Color.BEIGE);
-
-        String tileString = String.valueOf(i) + String.valueOf(j);
-        int tileNum= Integer.parseInt(tileString);
-        visualTile.setUserData(board.getTile((tileNum)));
-
-        Text text = new Text(String.valueOf(board.getTile((tileNum)).getPosition()+1));
-        stackPane.getChildren().addAll(visualTile, text);
-        gridPane.add(stackPane, j, i);
-        j+=add;
-      } while(j >= 0 && j < 10);
-      add*=-1; 
-    
-    }
-    */
-    for(int i = 0; i < board.getTileCount(); i++){
+    HashMap<Integer, Tile> tiles = board.getTiles();
+    for (Tile tile : tiles.values()) {
       StackPane stackPane = new StackPane();
-      Rectangle visualTile = new Rectangle(50,50);
-
-      visualTile.setFill(Color.BEIGE);
-
-      String tileString = String.valueOf(board.getTile(i).getPosition()+1);
-      visualTile.setUserData(board.getTile((i)));
-      Text text = new Text(tileString);
-
-      int position = board.getTile(i).getPosition();
-      int row = (position%10);
-      int column = (int)Math.floor((position/10));
-
-      stackPane.getChildren().addAll(visualTile, text);
-      gridPane.add(stackPane, row, column);
+      Rectangle rectangle = new Rectangle(50, 50);
+      rectangle.setFill(Color.LIGHTGRAY);
+      int tileNumber = tile.getPosition().getNumber();
+      Text text = new Text(String.valueOf(tileNumber));
+      stackPane.getChildren().addAll(rectangle, text);
+      gridPane.add(stackPane, tile.getPosition().getX(), 9-tile.getPosition().getY());
     }
-  }
 
-  /**
-   *  Method for finding grid stack cordinate.
-   * 
-   * @param row 
-   * @param colum
-   * @return
-   */
-  public StackPane getGridPane(int row, int colum) {
-    for(Node node : gridPane.getChildren()) {
-      int nodeRow = GridPane.getRowIndex(node);
-      int nodeColum = GridPane.getColumnIndex(node);
-      
-
-
-      if(nodeRow == row && nodeColum == colum){
-        System.out.println("\ngridNode");
-        System.out.println("Row "+ nodeRow);
-        System.out.println("Colum " + nodeColum);
-        return (StackPane) node;
-      }
-
+    HashSet<Player> players = game.getPlayers();
+    for (Player player : players) {
+      Vector2 position = player.getPosition();
+      StackPane stackPane = new StackPane();
+      Rectangle rectangle = new Rectangle(50, 50);
+      rectangle.setFill(Color.BLUE);
+      Text text = new Text(player.getName());
+      stackPane.getChildren().addAll(rectangle, text);
+      gridPane.add(stackPane, position.getX(), 9-position.getY());
     }
-    return null;
   }
 }

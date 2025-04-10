@@ -1,9 +1,22 @@
 [
   {
-    "name": "Big Guy",
+    "name": "idwad",
     "figure": {
-      "color": "Knight"
+      "color": "Rook"
     },
-    "position": 0
+    "position": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "name": "dwadd",
+    "figure": {
+      "color": "King"
+    },
+    "position": {
+      "x": 0,
+      "y": 0
+    }
   }
 ]
