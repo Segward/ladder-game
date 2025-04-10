@@ -93,7 +93,7 @@ public class LadderGameController {
       
 
       if(getGridPane(row, column) != null) {
-        StackPane stackPaneFromGrid = getGridPane(row, column);
+        StackPane stackPaneFromGrid = getGridPane(column, row);
         Rectangle visualTile = (Rectangle)stackPaneFromGrid.getChildren().get(0);
         visualTile.setFill(Color.RED);
         System.out.println("\nPlayer Grid");
@@ -163,7 +163,7 @@ public class LadderGameController {
       int column = (int)Math.floor((position/10));
 
       stackPane.getChildren().addAll(visualTile, text);
-      gridPane.add(stackPane, column, row);
+      gridPane.add(stackPane, row, column);
     }
   }
 
