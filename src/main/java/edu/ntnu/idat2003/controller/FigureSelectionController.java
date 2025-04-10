@@ -5,9 +5,9 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.geometry.Orientation;
 import edu.ntnu.idat2003.model.Figure;
-import edu.ntnu.idat2003.repo.FigureRepository;
+import edu.ntnu.idat2003.repo.FigureRepo;
 import edu.ntnu.idat2003.model.Player;
-import edu.ntnu.idat2003.repo.PlayerRepository;
+import edu.ntnu.idat2003.repo.PlayerRepo;
 import edu.ntnu.idat2003.component.PlayerSelection;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
@@ -29,7 +29,7 @@ public class FigureSelectionController {
   }
 
   public void init() {
-    HashSet<Figure> figureSet = FigureRepository.getFigures();
+    HashSet<Figure> figureSet = FigureRepo.getFigures();
     if (figureSet.isEmpty()) {
       RepoFactory.makeFigures();    
     }
@@ -39,10 +39,15 @@ public class FigureSelectionController {
 
   private void onSelectClick(ActionEvent event, Figure figure) {
     String name = playerName.getText();
+    if (name.isEmpty()) {
+      System.out.println("Please enter a name.");
+      return;
+    }    
+
     Player player = new Player(name, figure);
     Vector2 position = new Vector2(0, 0);
     player.setPosition(position);
-    PlayerRepository.addPlayer(player);
+    PlayerRepo.addPlayer(player);
     PlayerSelection.init(root);
   }
   
@@ -57,7 +62,7 @@ public class FigureSelectionController {
   }
 
   private void updateFigures() {
-    HashSet<Figure> figureSet = FigureRepository.getAvailableFigures();
+    HashSet<Figure> figureSet = FigureRepo.getAvailableFigures();
     for (Figure figure : figureSet) {
       FlowPane figurePane = createFigurePane(figure);
       figures.getChildren().add(figurePane);
