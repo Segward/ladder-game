@@ -48,6 +48,12 @@ public class LadderGameController {
   }
   
   public void onRollClick(ActionEvent event) {
+    boolean isGameOver = game.isGameOver();
+    if (isGameOver) {
+      rollText.setText("Game Over");
+      return;
+    }
+
     int steps = game.roll();
     updateBoard();
   }
@@ -57,11 +63,6 @@ public class LadderGameController {
   }
 
   private void updateBoard() {
-    if (game.isGameOver()) {
-      rollText.setText("Game Over!");
-      return;
-    }
-
     gridPane.getChildren().clear();
     HashMap<Integer, Tile> tiles = board.getTiles();
     for (Tile tile : tiles.values()) {

@@ -9,12 +9,14 @@ public class Game {
   private Board board;
   private Dice dice;
   private Player currentPlayer;
+  private boolean gameOver;
 
   public Game(HashSet<Player> players, Board board) {
     this.players = players;
     this.board = board;
-    this.dice = new Dice(1);
+    this.dice = new Dice(2);
     this.currentPlayer = players.iterator().next();
+    this.gameOver = false;
   }
 
   public int roll() {
@@ -22,12 +24,13 @@ public class Game {
     for (int i = 0; i < steps; i++) {
       Vector2 position = currentPlayer.getPosition();
       Tile tile = board.getTile(position);
-      int tileNumber = tile.getPosition().getNumber();
-      if (tileNumber >= 90) {
-        continue; 
-      }
       Vector2 nextPosition = tile.getNextPosition();
       currentPlayer.setPosition(nextPosition);
+      int tileNumber = nextPosition.getNumber();
+      if (tileNumber >= 90) {
+        gameOver = true;
+        break;
+      }
     }
     currentPlayer = getNextPlayer();
     return steps;
@@ -53,11 +56,6 @@ public class Game {
   }
 
   public boolean isGameOver() {
-    for (Player player : players) {
-      if (player.getPosition().getNumber() >= 90) {
-        return true;
-      }
-    }
-    return false;
+    return gameOver;
   }
 }
