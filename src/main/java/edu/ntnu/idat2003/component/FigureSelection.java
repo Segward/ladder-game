@@ -2,8 +2,6 @@ package edu.ntnu.idat2003.component;
 
 import edu.ntnu.idat2003.model.Figure;
 import edu.ntnu.idat2003.model.Player;
-import edu.ntnu.idat2003.repo.FigureRepository;
-import edu.ntnu.idat2003.repo.PlayerRepository;
 import java.util.HashSet;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;

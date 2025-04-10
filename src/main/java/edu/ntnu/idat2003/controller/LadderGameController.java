@@ -13,12 +13,12 @@ import javafx.scene.text.Text;
 import edu.ntnu.idat2003.component.MainFrame;
 import edu.ntnu.idat2003.model.Game;
 import edu.ntnu.idat2003.model.Player;
-import edu.ntnu.idat2003.repo.PlayerRepository;
 import java.util.HashSet;
 import java.util.Stack;
 import edu.ntnu.idat2003.model.Vector2;
 import edu.ntnu.idat2003.model.Tile;
 import java.util.HashMap;
+import edu.ntnu.idat2003.repo.PlayerRepo;
 
 public class LadderGameController {
   
@@ -40,7 +40,7 @@ public class LadderGameController {
   }
 
   public void init() {
-    HashSet<Player> players = PlayerRepository.getPlayers();
+    HashSet<Player> players = PlayerRepo.getPlayers();
     game = new Game(players, board);
     roll.setOnAction(this::onRollClick);
     stop.setOnAction(this::onStopClick);
