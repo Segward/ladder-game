@@ -16,6 +16,10 @@ public class GsonUtil {
     return file.exists() && !file.isDirectory();
   }
 
+  private static Gson createGson() {
+    return new GsonBuilder().setPrettyPrinting().create();
+  }
+
   private static void createFile(String filePath) {
     try {
       File file = new File(filePath);
@@ -26,7 +30,7 @@ public class GsonUtil {
   }
 
   public static <T> void saveObjects(HashSet<T> objects, String filePath) {
-    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    Gson gson = createGson();
     if (!fileExists(filePath)) {
       createFile(filePath);
     }
@@ -40,7 +44,7 @@ public class GsonUtil {
   }
 
   public static <T> HashSet<T> getObjects(String filePath, Type type) {
-    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    Gson gson = createGson();
     HashSet<T> objects = new HashSet<>();
     if (!fileExists(filePath)) {
       return objects;

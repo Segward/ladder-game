@@ -1,24 +1,14 @@
 package edu.ntnu.idat2003.model;
 
 public class Tile {
-  private LadderAction action;
   private Vector2 position;
   private Vector2 nextPosition;
 
-  public Tile(Vector2 position, Vector2 nextPosition, LadderAction action) {
-    this.action = action;
+  public Tile(Vector2 position, Vector2 nextPosition) {
     this.position = position;
     this.nextPosition = nextPosition;
   }
-
-  public LadderAction getAction() {
-    return action;
-  }
-
-  public void setAction(LadderAction action) {
-    this.action = action;
-  }
-
+  
   public Vector2 getPosition() {
     return position;
   }

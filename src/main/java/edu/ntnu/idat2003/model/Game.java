@@ -20,6 +20,7 @@ public class Game {
   }
 
   public int roll() {
+    currentPlayer.setTurns(1);
     int steps = dice.roll();
     for (int i = 0; i < steps; i++) {
       Vector2 position = currentPlayer.getPosition();
@@ -33,16 +34,22 @@ public class Game {
       }
     }
 
-    Tile tile = board.getTile(currentPlayer.getPosition());
-    if (tile.getAction() != null) {
-      Vector2 destination = tile.getAction().getDestination();
-      currentPlayer.setPosition(destination);
+    currentPlayer.setTurns(currentPlayer.getTurns() - 1);
+    Vector2 position = currentPlayer.getPosition();
+    TileAction tileAction = board.getAction(position);
+    if (tileAction == null) {
+      currentPlayer = getNextPlayer();
+      return steps;
     }
 
-    currentPlayer = getNextPlayer();
+    tileAction.execute(currentPlayer);
+    if (currentPlayer.getTurns() == 0) {
+      currentPlayer = getNextPlayer();
+    }
+    
     return steps;
   }
-  
+
   public HashSet<Player> getPlayers() {
     HashSet<Player> playersSet = new HashSet<>();
     for (Player player : players) {
@@ -55,7 +62,7 @@ public class Game {
     ArrayList<Player> playerList = new ArrayList<>(players);
     int currentIndex = playerList.indexOf(currentPlayer);
     int nextIndex = (currentIndex + 1) % playerList.size();
-    return playerList.get(nextIndex); 
+    return playerList.get(nextIndex);
   }
 
   public Board getBoard() {

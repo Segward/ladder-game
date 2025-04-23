@@ -1,17 +1,19 @@
 package edu.ntnu.idat2003.model;
 
-public class LadderAction {
-  private Tile destination;
+public class LadderAction extends TileAction {
+  private Vector2 destination;
 
-  public LadderAction(Tile destination) {
+  public LadderAction(Vector2 start, Vector2 destination) {
+    super(start);
     this.destination = destination;
   }
 
-  public Vector2 getDestination() {
-    return destination.getPosition();
+  @Override
+  public void execute(Player player) {
+    player.setPosition(destination);
   }
 
-  public Tile getDestinationTile() {
+  public Vector2 getDestination() {
     return destination;
   }
 }

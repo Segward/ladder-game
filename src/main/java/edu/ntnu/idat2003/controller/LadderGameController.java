@@ -2,7 +2,9 @@ package edu.ntnu.idat2003.controller;
 
 import edu.ntnu.idat2003.component.MainFrame;
 import edu.ntnu.idat2003.model.Board;
+import edu.ntnu.idat2003.model.ExtraDiceAction;
 import edu.ntnu.idat2003.model.Game;
+import edu.ntnu.idat2003.model.LadderAction;
 import edu.ntnu.idat2003.model.Player;
 import edu.ntnu.idat2003.model.Tile;
 import edu.ntnu.idat2003.model.Vector2;
@@ -70,25 +72,26 @@ public class LadderGameController {
       rectangle.setFill(Color.LIGHTGRAY);
       int tileNumber = tile.getPosition().getNumber();
       Text text = new Text(String.valueOf(tileNumber));
-      stackPane.getChildren().addAll(rectangle, text);
+      stackPane.getChildren().addAll(rectangle);
       gridPane.add(stackPane, tile.getPosition().getX(), 9 - tile.getPosition().getY());
     }
 
-    for (Tile tile : tiles.values()) {
-      if (tile.getAction() != null) {
-        StackPane stackPane = new StackPane();
-        Rectangle rectangle = new Rectangle(50, 50);
-        rectangle.setFill(Color.GREEN);
-        stackPane.getChildren().addAll(rectangle);
-        gridPane.add(stackPane, tile.getPosition().getX(), 9 - tile.getPosition().getY());
+    HashMap<Integer, LadderAction> ladders = board.getLadderActions();
+    for (LadderAction ladder : ladders.values()) {
+      StackPane stackPane = new StackPane();
+      Rectangle rectangle = new Rectangle(50, 50);
+      rectangle.setFill(Color.GREEN);
+      stackPane.getChildren().addAll(rectangle);
+      gridPane.add(stackPane, ladder.getStart().getX(), 9 - ladder.getStart().getY());
+    }
 
-        Tile destinationTile = tile.getAction().getDestinationTile();
-        StackPane stackPane2 = new StackPane();
-        Rectangle rectangle2 = new Rectangle(50, 50);
-        rectangle2.setFill(Color.RED);
-        stackPane2.getChildren().addAll(rectangle2);
-        gridPane.add(stackPane2, destinationTile.getPosition().getX(), 9 - destinationTile.getPosition().getY());
-      }
+    HashMap<Integer, ExtraDiceAction> extraDiceActions = board.getExtraDiceActions();
+    for (ExtraDiceAction extraDiceAction : extraDiceActions.values()) {
+      StackPane stackPane = new StackPane();
+      Rectangle rectangle = new Rectangle(50, 50);
+      rectangle.setFill(Color.YELLOW);
+      stackPane.getChildren().addAll(rectangle);
+      gridPane.add(stackPane, extraDiceAction.getStart().getX(), 9 - extraDiceAction.getStart().getY());
     }
 
     HashSet<Player> players = game.getPlayers();

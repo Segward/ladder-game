@@ -4,6 +4,7 @@ public class Player {
   private String name;
   private Figure figure;
   private Vector2 position;
+  private int turns;
 
   public Player(String name, Figure figure) {
     this.name = name;
@@ -26,6 +27,14 @@ public class Player {
     this.position = position;
   }
 
+  public int getTurns() {
+    return turns;
+  }
+
+  public void setTurns(int turns) {
+    this.turns = turns;
+  }
+
   @Override
   public boolean equals(Object obj) {
     if (obj == this) {
@@ -35,9 +44,9 @@ public class Player {
     if (!(obj instanceof Player)) {
       return false;
     }
-    
+
     Player player = (Player) obj;
-    
+
     if (player.getName().equals(this.name)) {
       return true;
     }

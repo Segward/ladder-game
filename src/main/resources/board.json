@@ -13,18 +13,6 @@
         }
       },
       "2": {
-        "action": {
-          "destination": {
-            "position": {
-              "x": 0,
-              "y": 0
-            },
-            "nextPosition": {
-              "x": 1,
-              "y": 0
-            }
-          }
-        },
         "position": {
           "x": 1,
           "y": 0
@@ -35,18 +23,6 @@
         }
       },
       "3": {
-        "action": {
-          "destination": {
-            "position": {
-              "x": 3,
-              "y": 1
-            },
-            "nextPosition": {
-              "x": 2,
-              "y": 1
-            }
-          }
-        },
         "position": {
           "x": 2,
           "y": 0
@@ -157,18 +133,6 @@
         }
       },
       "14": {
-        "action": {
-          "destination": {
-            "position": {
-              "x": 4,
-              "y": 3
-            },
-            "nextPosition": {
-              "x": 3,
-              "y": 3
-            }
-          }
-        },
         "position": {
           "x": 6,
           "y": 1
@@ -179,18 +143,6 @@
         }
       },
       "15": {
-        "action": {
-          "destination": {
-            "position": {
-              "x": 4,
-              "y": 0
-            },
-            "nextPosition": {
-              "x": 5,
-              "y": 0
-            }
-          }
-        },
         "position": {
           "x": 5,
           "y": 1
@@ -201,18 +153,6 @@
         }
       },
       "16": {
-        "action": {
-          "destination": {
-            "position": {
-              "x": 3,
-              "y": 3
-            },
-            "nextPosition": {
-              "x": 2,
-              "y": 3
-            }
-          }
-        },
         "position": {
           "x": 4,
           "y": 1
@@ -243,18 +183,6 @@
         }
       },
       "19": {
-        "action": {
-          "destination": {
-            "position": {
-              "x": 0,
-              "y": 3
-            },
-            "nextPosition": {
-              "x": 0,
-              "y": 4
-            }
-          }
-        },
         "position": {
           "x": 1,
           "y": 1
@@ -415,18 +343,6 @@
         }
       },
       "35": {
-        "action": {
-          "destination": {
-            "position": {
-              "x": 9,
-              "y": 5
-            },
-            "nextPosition": {
-              "x": 8,
-              "y": 5
-            }
-          }
-        },
         "position": {
           "x": 5,
           "y": 3
@@ -667,18 +583,6 @@
         }
       },
       "59": {
-        "action": {
-          "destination": {
-            "position": {
-              "x": 0,
-              "y": 6
-            },
-            "nextPosition": {
-              "x": 1,
-              "y": 6
-            }
-          }
-        },
         "position": {
           "x": 1,
           "y": 5
@@ -719,18 +623,6 @@
         }
       },
       "63": {
-        "action": {
-          "destination": {
-            "position": {
-              "x": 0,
-              "y": 7
-            },
-            "nextPosition": {
-              "x": 0,
-              "y": 8
-            }
-          }
-        },
         "position": {
           "x": 2,
           "y": 6
@@ -851,18 +743,6 @@
         }
       },
       "75": {
-        "action": {
-          "destination": {
-            "position": {
-              "x": 4,
-              "y": 6
-            },
-            "nextPosition": {
-              "x": 5,
-              "y": 6
-            }
-          }
-        },
         "position": {
           "x": 5,
           "y": 7
@@ -893,18 +773,6 @@
         }
       },
       "78": {
-        "action": {
-          "destination": {
-            "position": {
-              "x": 0,
-              "y": 8
-            },
-            "nextPosition": {
-              "x": 1,
-              "y": 8
-            }
-          }
-        },
         "position": {
           "x": 2,
           "y": 7
@@ -975,18 +843,6 @@
         }
       },
       "85": {
-        "action": {
-          "destination": {
-            "position": {
-              "x": 3,
-              "y": 7
-            },
-            "nextPosition": {
-              "x": 2,
-              "y": 7
-            }
-          }
-        },
         "position": {
           "x": 4,
           "y": 8
@@ -997,18 +853,6 @@
         }
       },
       "86": {
-        "action": {
-          "destination": {
-            "position": {
-              "x": 1,
-              "y": 7
-            },
-            "nextPosition": {
-              "x": 0,
-              "y": 7
-            }
-          }
-        },
         "position": {
           "x": 5,
           "y": 8
@@ -1019,18 +863,6 @@
         }
       },
       "87": {
-        "action": {
-          "destination": {
-            "position": {
-              "x": 5,
-              "y": 6
-            },
-            "nextPosition": {
-              "x": 6,
-              "y": 6
-            }
-          }
-        },
         "position": {
           "x": 6,
           "y": 8
@@ -1064,6 +896,42 @@
         "position": {
           "x": 9,
           "y": 8
+        }
+      }
+    },
+    "ladderActions": {
+      "6": {
+        "destination": {
+          "x": 5,
+          "y": 8
+        },
+        "start": {
+          "x": 5,
+          "y": 0
+        }
+      },
+      "60": {
+        "destination": {
+          "x": 8,
+          "y": 5
+        },
+        "start": {
+          "x": 0,
+          "y": 5
+        }
+      }
+    },
+    "extraDiceActions": {
+      "81": {
+        "start": {
+          "x": 0,
+          "y": 8
+        }
+      },
+      "10": {
+        "start": {
+          "x": 9,
+          "y": 0
         }
       }
     }

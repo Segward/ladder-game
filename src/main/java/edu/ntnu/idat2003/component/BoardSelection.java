@@ -1,14 +1,11 @@
 package edu.ntnu.idat2003.component;
 
-import edu.ntnu.idat2003.model.Board;
-import java.util.HashSet;
+import edu.ntnu.idat2003.controller.BoardSelectionController;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import edu.ntnu.idat2003.controller.BoardSelectionController;
 
 public class BoardSelection {
   public static void init(Pane root) {
@@ -24,7 +21,7 @@ public class BoardSelection {
     stackPane.getChildren().add(flowPane);
     flowPane.setOrientation(Orientation.VERTICAL);
     flowPane.setAlignment(Pos.CENTER);
-    
+
     BoardSelectionController controller = new BoardSelectionController(root, flowPane);
     controller.init();
   }
