@@ -36,16 +36,14 @@ public class LadderGameController {
   private Button roll;
   private Button stop;
   private Game game;
-  private FlowPane playerPane;
 
-  public LadderGameController(Pane root, Board board, Text rollText, GridPane gridPane, Button roll, Button stop , FlowPane playerPane) {
+  public LadderGameController(Pane root, Board board, Text rollText, GridPane gridPane, Button roll, Button stop) {
     this.root = root;
     this.board = board;
     this.rollText = rollText;
     this.gridPane = gridPane;
     this.roll = roll;
     this.stop = stop;
-    this.playerPane = playerPane;
   }
 
   public void init() {
@@ -84,11 +82,6 @@ public class LadderGameController {
     }));
     TimeLine.setCycleCount(50);
     TimeLine.play();
-  }
-  
-  public void updatePlayerPane() {
-    playerPane.getChildren().clear();
-    playerPane.getChildren().addAll(stop, rollText, roll);
   }
   
   public void onStopClick(ActionEvent event) {

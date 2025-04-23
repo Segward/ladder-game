@@ -76,7 +76,7 @@ public class LadderGame {
     rollDiceButton.setStyle("-fx-background-color: transparent;");
     playerPane.getChildren().add(rollDiceButton);
 
-    LadderGameController controller = new LadderGameController(root, board, text, bord, rollDiceButton, endGameButton, playerPane);
+    LadderGameController controller = new LadderGameController(root, board, text, bord, rollDiceButton, endGameButton);
     controller.init();
   }
 }
