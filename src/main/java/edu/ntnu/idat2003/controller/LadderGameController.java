@@ -67,8 +67,9 @@ public class LadderGameController {
       return;
     }
 
-    diceAnimation();
     int steps = game.roll();
+    diceAnimation(steps);
+
     movePlayerWithPause(steps);
   }
 
@@ -87,7 +88,7 @@ public class LadderGameController {
     pause.play();
   }
 
-  public void diceAnimation() {
+  public void diceAnimation(int finalDie) {
     String face = "face.png";
     ImageView diceView = new ImageView();
     diceView.setFitHeight(200);
@@ -105,6 +106,13 @@ public class LadderGameController {
                   roll.setGraphic(diceView);
                 }));
     TimeLine.setCycleCount(50);
+    TimeLine.setOnFinished(e -> {
+      Image diceImage =
+                      new Image(getClass().getResource("/imag/" + finalDie + face).toExternalForm());
+      diceView.setImage(diceImage);
+      roll.setGraphic(diceView);
+    });              
+
     TimeLine.play();
   }
 
