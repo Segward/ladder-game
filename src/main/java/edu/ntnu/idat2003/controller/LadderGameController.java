@@ -9,11 +9,16 @@ import edu.ntnu.idat2003.model.Player;
 import edu.ntnu.idat2003.model.Tile;
 import edu.ntnu.idat2003.model.Vector2;
 import edu.ntnu.idat2003.repo.PlayerRepo;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -31,6 +36,7 @@ public class LadderGameController {
   private Button roll;
   private Button stop;
   private Game game;
+  private boolean moving = false;
 
   public LadderGameController(
       Pane root, Board board, Text rollText, GridPane gridPane, Button roll, Button stop) {
@@ -51,10 +57,17 @@ public class LadderGameController {
   }
 
   public void onRollClick(ActionEvent event) {
+    if (moving) {
+      return;
+    }
+
+    moving = true;
     if (game.isGameOver()) {
       rollText.setText("Game Over");
       return;
     }
+
+    diceAnimation();
     int steps = game.roll();
     movePlayerWithPause(steps);
   }
@@ -63,6 +76,7 @@ public class LadderGameController {
     if (stepsLeft == 0) {
       int actionType = game.checkAction();
       updateBoard();
+      moving = false;
       return;
     }
 
@@ -71,6 +85,27 @@ public class LadderGameController {
     PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
     pause.setOnFinished(e -> movePlayerWithPause(stepsLeft - 1));
     pause.play();
+  }
+
+  public void diceAnimation() {
+    String face = "face.png";
+    ImageView diceView = new ImageView();
+    diceView.setFitHeight(100);
+    diceView.setPreserveRatio(true);
+
+    Timeline TimeLine =
+        new Timeline(
+            new KeyFrame(
+                Duration.millis(10),
+                e -> {
+                  int dice = (int) (Math.random() * 6) + 1;
+                  Image diceImage =
+                      new Image(getClass().getResource("/imag/" + dice + face).toExternalForm());
+                  diceView.setImage(diceImage);
+                  roll.setGraphic(diceView);
+                }));
+    TimeLine.setCycleCount(50);
+    TimeLine.play();
   }
 
   public void onStopClick(ActionEvent event) {
@@ -91,39 +126,57 @@ public class LadderGameController {
     }
 
     HashMap<Integer, LadderAction> ladders = board.getLadderActions();
-    for (LadderAction ladder : ladders.values()) {
+    for (LadderAction action : ladders.values()) {
       StackPane stackPane = new StackPane();
       Rectangle rectangle = new Rectangle(50, 50);
       rectangle.setFill(Color.GREEN);
       stackPane.getChildren().addAll(rectangle);
-      gridPane.add(stackPane, ladder.getStart().getX(), 9 - ladder.getStart().getY());
+      gridPane.add(stackPane, action.getStart().getX(), 9 - action.getStart().getY());
 
       StackPane stackPane2 = new StackPane();
       Rectangle rectangle2 = new Rectangle(50, 50);
       rectangle2.setFill(Color.RED);
       stackPane2.getChildren().addAll(rectangle2);
-      gridPane.add(stackPane2, ladder.getDestination().getX(), 9 - ladder.getDestination().getY());
+      gridPane.add(stackPane2, action.getDestination().getX(), 9 - action.getDestination().getY());
     }
 
     HashMap<Integer, ExtraDiceAction> extraDiceActions = board.getExtraDiceActions();
-    for (ExtraDiceAction extraDiceAction : extraDiceActions.values()) {
+    for (ExtraDiceAction action : extraDiceActions.values()) {
       StackPane stackPane = new StackPane();
       Rectangle rectangle = new Rectangle(50, 50);
       rectangle.setFill(Color.YELLOW);
       stackPane.getChildren().addAll(rectangle);
-      gridPane.add(
-          stackPane, extraDiceAction.getStart().getX(), 9 - extraDiceAction.getStart().getY());
+      gridPane.add(stackPane, action.getStart().getX(), 9 - action.getStart().getY());
     }
 
     HashSet<Player> players = game.getPlayers();
+    HashSet<Vector2> playerPositions = new HashSet<>();
     for (Player player : players) {
-      Vector2 position = player.getPosition();
-      StackPane stackPane = new StackPane();
-      Rectangle rectangle = new Rectangle(50, 50);
-      rectangle.setFill(Color.BLUE);
-      Text text = new Text(player.getName());
-      stackPane.getChildren().addAll(rectangle, text);
-      gridPane.add(stackPane, position.getX(), 9 - position.getY());
+      playerPositions.add(player.getPosition());
+    }
+
+    HashMap<Integer, StackPane> tilePanes = new HashMap<>();
+    for (Vector2 position : playerPositions) {
+      StackPane playerPane = new StackPane();
+      playerPane.setMaxHeight(50);
+      playerPane.setMaxWidth(50);
+      playerPane.setPrefSize(50, 50);
+      gridPane.add(playerPane, position.getX(), 9 - position.getY());
+      tilePanes.put(position.hashCode(), playerPane);
+    }
+
+    for (Player player : players) {
+      StackPane playerPane = tilePanes.get(player.getPosition().hashCode());
+      ImageView imageView = new ImageView();
+      imageView.setFitHeight(40);
+      imageView.setPreserveRatio(true);
+      String figurePath = "/imag/" + player.getFigure().getColor() + ".png";
+      Image figureImage = new Image(getClass().getResource(figurePath).toExternalForm());
+      imageView.setImage(figureImage);
+      int index = new ArrayList<>(players).indexOf(player);
+      imageView.setTranslateX(index * 2);
+      imageView.setTranslateY(index * 2);
+      playerPane.getChildren().add(imageView);
     }
   }
 }
