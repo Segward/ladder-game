@@ -61,6 +61,8 @@ public class LadderGameController {
     }
 
     int actionType = game.checkAction();
+    System.out.println("Action type: " + actionType);
+    
     updateBoard();
   }
 
