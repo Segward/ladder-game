@@ -1,6 +1,9 @@
 package edu.ntnu.idat2003.controller;
 
 import edu.ntnu.idat2003.model.Board;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -13,6 +16,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import edu.ntnu.idat2003.component.MainFrame;
 import edu.ntnu.idat2003.model.Game;
 import edu.ntnu.idat2003.model.Player;
@@ -31,7 +35,8 @@ public class LadderGameController {
   private GridPane gridPane;
   private Button roll;
   private Button stop;
-  private Game game;  
+  private Game game;
+  private FlowPane playerPane;
 
   public LadderGameController(Pane root, Board board, Text rollText, GridPane gridPane, Button roll, Button stop , FlowPane playerPane) {
     this.root = root;
@@ -40,6 +45,7 @@ public class LadderGameController {
     this.gridPane = gridPane;
     this.roll = roll;
     this.stop = stop;
+    this.playerPane = playerPane;
   }
 
   public void init() {
@@ -56,29 +62,35 @@ public class LadderGameController {
       rollText.setText("Game Over");
       return;
     }
+    
     diceAnimation();
     int steps = game.roll();
     updateBoard();
   }
-
-  public void diceAnimation() {
+  
+ 
+  public void diceAnimation() { 
     String face = "face.png";
-    int dice = 1;
+    ImageView diceView = new ImageView();
+    diceView.setFitHeight(100);
+    diceView.setPreserveRatio(true);
+    
 
-    for(int i = 0; i < 100; i++) {
-      if(dice > 6) {
-        dice = 1;
-      }
+    Timeline TimeLine = new Timeline(new KeyFrame(Duration.millis(10),e -> {
+      int dice = (int) (Math.random() * 6) + 1;
       Image diceImage = new Image(getClass().getResource("/imag/" + dice + face).toExternalForm());
-      ImageView diceView = new ImageView(diceImage);
-      diceView.setFitHeight(100);
-      diceView.setPreserveRatio(true);
+      diceView.setImage(diceImage);
       roll.setGraphic(diceView);
-      dice++;
-      System.out.println(dice);
-    }
+    }));
+    TimeLine.setCycleCount(50);
+    TimeLine.play();
   }
-
+  
+  public void updatePlayerPane() {
+    playerPane.getChildren().clear();
+    playerPane.getChildren().addAll(stop, rollText, roll);
+  }
+  
   public void onStopClick(ActionEvent event) {
     MainFrame.init(root);
   }
