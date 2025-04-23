@@ -4,6 +4,9 @@ import edu.ntnu.idat2003.model.Board;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -30,7 +33,7 @@ public class LadderGameController {
   private Button stop;
   private Game game;  
 
-  public LadderGameController(Pane root, Board board, Text rollText, GridPane gridPane, Button roll, Button stop) {
+  public LadderGameController(Pane root, Board board, Text rollText, GridPane gridPane, Button roll, Button stop , FlowPane playerPane) {
     this.root = root;
     this.board = board;
     this.rollText = rollText;
@@ -53,9 +56,27 @@ public class LadderGameController {
       rollText.setText("Game Over");
       return;
     }
-
+    diceAnimation();
     int steps = game.roll();
     updateBoard();
+  }
+
+  public void diceAnimation() {
+    String face = "face.png";
+    int dice = 1;
+
+    for(int i = 0; i < 100; i++) {
+      if(dice > 6) {
+        dice = 1;
+      }
+      Image diceImage = new Image(getClass().getResource("/imag/" + dice + face).toExternalForm());
+      ImageView diceView = new ImageView(diceImage);
+      diceView.setFitHeight(100);
+      diceView.setPreserveRatio(true);
+      roll.setGraphic(diceView);
+      dice++;
+      System.out.println(dice);
+    }
   }
 
   public void onStopClick(ActionEvent event) {

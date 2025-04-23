@@ -5,12 +5,16 @@ import edu.ntnu.idat2003.model.Board;
 import edu.ntnu.idat2003.model.Figure;
 import edu.ntnu.idat2003.model.Player;
 import edu.ntnu.idat2003.model.Tile;
+
+import java.net.URL;
 import java.util.HashSet;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -61,7 +65,15 @@ public class LadderGame {
     Text text = new Text("Hello, World!");
     playerPane.getChildren().add(text);
 
-    Button rollDiceButton = new Button("Roll Dice");
+    Image diceImage = new Image(LadderGame.class.getResource("/imag/firstDice.png").toExternalForm());
+    ImageView diceView = new ImageView(diceImage);
+    diceView.setFitHeight(100);
+    diceView.setPreserveRatio(true);
+
+    Button rollDiceButton = new Button();
+    rollDiceButton.setGraphic(diceView);
+    rollDiceButton.setPrefSize(50, 50);
+    rollDiceButton.setStyle("-fx-background-color: transparent;");
     playerPane.getChildren().add(rollDiceButton);
 
     LadderGameController controller = new LadderGameController(root, board, text, bord, rollDiceButton, endGameButton);
