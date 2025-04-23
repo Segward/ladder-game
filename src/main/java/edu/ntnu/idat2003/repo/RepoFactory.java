@@ -57,13 +57,23 @@ public class RepoFactory {
     LadderAction action2 = new LadderAction(start2, end2);
     board1.addLadderAction(action2);
 
-    Vector2 start3 = new Vector2(8, 2);
-    ExtraDiceAction action3 = new ExtraDiceAction(start3);
-    board1.addExtraDiceAction(action3);
+    Vector2 start3 = new Vector2(1, 5);
+    Vector2 end3 = new Vector2(3, 4);
+    LadderAction action3 = new LadderAction(start3, end3);
+    board1.addLadderAction(action3);
 
-    Vector2 start4 = new Vector2(4, 3);
-    ExtraDiceAction action4 = new ExtraDiceAction(start4);
-    board1.addExtraDiceAction(action4);
+    Vector2 start4 = new Vector2(3, 6);
+    Vector2 end4 = new Vector2(2, 8);
+    LadderAction action4 = new LadderAction(start4, end4);
+    board1.addLadderAction(action4);
+
+    Vector2 start5 = new Vector2(8, 2);
+    ExtraDiceAction action5 = new ExtraDiceAction(start5);
+    board1.addExtraDiceAction(action5);
+
+    Vector2 start6 = new Vector2(4, 3);
+    ExtraDiceAction action6 = new ExtraDiceAction(start6);
+    board1.addExtraDiceAction(action6);
 
     HashSet<Board> boards = new HashSet<>();
     Collections.addAll(boards, board1);
