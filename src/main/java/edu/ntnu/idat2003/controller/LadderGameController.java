@@ -101,14 +101,21 @@ public class LadderGameController {
       gridPane.add(stackPane, tile.getPosition().getX(), 9-tile.getPosition().getY());
     }
 
+    
+
     HashSet<Player> players = game.getPlayers();
     for (Player player : players) {
       Vector2 position = player.getPosition();
       StackPane stackPane = new StackPane();
-      Rectangle rectangle = new Rectangle(50, 50);
-      rectangle.setFill(Color.BLUE);
       Text text = new Text(player.getName());
-      stackPane.getChildren().addAll(rectangle, text);
+
+      ImageView playerView = new ImageView();
+      playerView.setFitHeight(50);
+      playerView.setPreserveRatio(true);
+      Image playerImage = new Image(getClass().getResource("/imag/" + player.getFigure().getColor() + ".png").toExternalForm());
+      playerView.setImage(playerImage);
+
+      stackPane.getChildren().addAll(text, playerView);
       gridPane.add(stackPane, position.getX(), 9-position.getY());
     }
   }
