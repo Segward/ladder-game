@@ -14,7 +14,7 @@ public class Game {
   public Game(HashSet<Player> players, Board board) {
     this.players = players;
     this.board = board;
-    this.dice = new Dice(2);
+    this.dice = new Dice(1);
     this.currentPlayer = players.iterator().next();
     this.gameOver = false;
   }
@@ -32,6 +32,13 @@ public class Game {
         break;
       }
     }
+
+    Tile tile = board.getTile(currentPlayer.getPosition());
+    if (tile.getAction() != null) {
+      Vector2 destination = tile.getAction().getDestination();
+      currentPlayer.setPosition(destination);
+    }
+
     currentPlayer = getNextPlayer();
     return steps;
   }

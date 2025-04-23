@@ -34,7 +34,7 @@ public class Board {
    *  @param position represents the position of the tile 
    *  @param action action to be given to new tile
    */
-  public void setTileAction(Vector2 position, TileAction action) {
+  public void setTileAction(Vector2 position, LadderAction action) {
     int hash = position.hashCode();
     Tile tile = tiles.get(hash);
     tile.setAction(action);
