@@ -1,22 +1,16 @@
 package edu.ntnu.idat2003.component;
 
-import edu.ntnu.idat2003.model.Game;
+import edu.ntnu.idat2003.controller.LadderGameController;
 import edu.ntnu.idat2003.model.Board;
-import edu.ntnu.idat2003.model.Figure;
-import edu.ntnu.idat2003.model.Player;
-import edu.ntnu.idat2003.model.Tile;
-import java.util.HashSet;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import edu.ntnu.idat2003.controller.LadderGameController;
 
 public class LadderGame {
   public static void init(Pane root, Board board) {
@@ -64,7 +58,8 @@ public class LadderGame {
     Button rollDiceButton = new Button("Roll Dice");
     playerPane.getChildren().add(rollDiceButton);
 
-    LadderGameController controller = new LadderGameController(root, board, text, bord, rollDiceButton, endGameButton);
+    LadderGameController controller =
+        new LadderGameController(root, board, text, bord, rollDiceButton, endGameButton);
     controller.init();
   }
 }

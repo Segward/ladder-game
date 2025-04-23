@@ -20,34 +20,42 @@ public class Game {
   }
 
   public int roll() {
-    currentPlayer.setTurns(1);
+    currentPlayer.setTurns(0);
     int steps = dice.roll();
-    for (int i = 0; i < steps; i++) {
-      Vector2 position = currentPlayer.getPosition();
-      Tile tile = board.getTile(position);
-      Vector2 nextPosition = tile.getNextPosition();
-      currentPlayer.setPosition(nextPosition);
-      int tileNumber = nextPosition.getNumber();
-      if (tileNumber >= 90) {
-        gameOver = true;
-        break;
-      }
-    }
+    return steps;
+  }
 
-    currentPlayer.setTurns(currentPlayer.getTurns() - 1);
+  public void movePlayer() {
     Vector2 position = currentPlayer.getPosition();
-    TileAction tileAction = board.getAction(position);
-    if (tileAction == null) {
-      currentPlayer = getNextPlayer();
-      return steps;
+    Tile tile = board.getTile(position);
+    Vector2 nextPosition = tile.getNextPosition();
+    currentPlayer.setPosition(nextPosition);
+    int tileNumber = nextPosition.getNumber();
+    if (tileNumber >= 90) {
+      gameOver = true;
+    }
+  }
+
+  public int checkAction() {
+    Vector2 position = currentPlayer.getPosition();
+    TileAction action = board.getAction(position);
+
+    int actionType = 0;
+    if (action instanceof LadderAction) {
+      actionType = 1;
+    } else if (action instanceof ExtraDiceAction) {
+      actionType = 2;
     }
 
-    tileAction.execute(currentPlayer);
+    if (action != null) {
+      action.execute(currentPlayer);
+    }
+
     if (currentPlayer.getTurns() == 0) {
       currentPlayer = getNextPlayer();
     }
-    
-    return steps;
+
+    return actionType;
   }
 
   public HashSet<Player> getPlayers() {

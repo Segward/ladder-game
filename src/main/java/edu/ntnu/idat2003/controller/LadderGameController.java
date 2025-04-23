@@ -56,6 +56,11 @@ public class LadderGameController {
     }
 
     int steps = game.roll();
+    for (int i = 0; i < steps; i++) {
+      game.movePlayer();
+    }
+
+    int actionType = game.checkAction();
     updateBoard();
   }
 
@@ -72,7 +77,7 @@ public class LadderGameController {
       rectangle.setFill(Color.LIGHTGRAY);
       int tileNumber = tile.getPosition().getNumber();
       Text text = new Text(String.valueOf(tileNumber));
-      stackPane.getChildren().addAll(rectangle);
+      stackPane.getChildren().addAll(rectangle, text);
       gridPane.add(stackPane, tile.getPosition().getX(), 9 - tile.getPosition().getY());
     }
 
@@ -83,6 +88,12 @@ public class LadderGameController {
       rectangle.setFill(Color.GREEN);
       stackPane.getChildren().addAll(rectangle);
       gridPane.add(stackPane, ladder.getStart().getX(), 9 - ladder.getStart().getY());
+
+      StackPane stackPane2 = new StackPane();
+      Rectangle rectangle2 = new Rectangle(50, 50);
+      rectangle2.setFill(Color.RED);
+      stackPane2.getChildren().addAll(rectangle2);
+      gridPane.add(stackPane2, ladder.getDestination().getX(), 9 - ladder.getDestination().getY());
     }
 
     HashMap<Integer, ExtraDiceAction> extraDiceActions = board.getExtraDiceActions();
@@ -91,7 +102,8 @@ public class LadderGameController {
       Rectangle rectangle = new Rectangle(50, 50);
       rectangle.setFill(Color.YELLOW);
       stackPane.getChildren().addAll(rectangle);
-      gridPane.add(stackPane, extraDiceAction.getStart().getX(), 9 - extraDiceAction.getStart().getY());
+      gridPane.add(
+          stackPane, extraDiceAction.getStart().getX(), 9 - extraDiceAction.getStart().getY());
     }
 
     HashSet<Player> players = game.getPlayers();

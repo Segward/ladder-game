@@ -48,20 +48,20 @@ public class RepoFactory {
     }
 
     Vector2 start = new Vector2(5, 0);
-    Vector2 end = new Vector2(5, 8);
+    Vector2 end = new Vector2(4, 2);
     LadderAction action = new LadderAction(start, end);
     board1.addLadderAction(action);
 
-    Vector2 start2 = new Vector2(0, 5);
-    Vector2 end2 = new Vector2(8, 5);
+    Vector2 start2 = new Vector2(8, 5);
+    Vector2 end2 = new Vector2(6, 3);
     LadderAction action2 = new LadderAction(start2, end2);
     board1.addLadderAction(action2);
 
-    Vector2 start3 = new Vector2(9, 0);
+    Vector2 start3 = new Vector2(8, 2);
     ExtraDiceAction action3 = new ExtraDiceAction(start3);
     board1.addExtraDiceAction(action3);
 
-    Vector2 start4 = new Vector2(0, 8);
+    Vector2 start4 = new Vector2(4, 3);
     ExtraDiceAction action4 = new ExtraDiceAction(start4);
     board1.addExtraDiceAction(action4);
 
