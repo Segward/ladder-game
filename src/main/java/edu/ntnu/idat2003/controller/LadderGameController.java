@@ -11,6 +11,7 @@ import edu.ntnu.idat2003.model.Vector2;
 import edu.ntnu.idat2003.repo.PlayerRepo;
 import java.util.HashMap;
 import java.util.HashSet;
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -19,6 +20,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 public class LadderGameController {
 
@@ -49,21 +51,26 @@ public class LadderGameController {
   }
 
   public void onRollClick(ActionEvent event) {
-    boolean isGameOver = game.isGameOver();
-    if (isGameOver) {
+    if (game.isGameOver()) {
       rollText.setText("Game Over");
       return;
     }
-
     int steps = game.roll();
-    for (int i = 0; i < steps; i++) {
-      game.movePlayer();
+    movePlayerWithPause(steps);
+  }
+
+  private void movePlayerWithPause(int stepsLeft) {
+    if (stepsLeft == 0) {
+      int actionType = game.checkAction();
+      updateBoard();
+      return;
     }
 
-    int actionType = game.checkAction();
-    System.out.println("Action type: " + actionType);
-    
+    game.movePlayer();
     updateBoard();
+    PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
+    pause.setOnFinished(e -> movePlayerWithPause(stepsLeft - 1));
+    pause.play();
   }
 
   public void onStopClick(ActionEvent event) {
