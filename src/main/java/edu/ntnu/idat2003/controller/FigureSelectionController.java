@@ -1,6 +1,8 @@
 package edu.ntnu.idat2003.controller;
 
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.geometry.Orientation;
@@ -55,7 +57,16 @@ public class FigureSelectionController {
     FlowPane figurePane = new FlowPane();
     figurePane.setOrientation(Orientation.HORIZONTAL);
     Text name = new Text(figure.getColor());
+
+    Image buttonImage = new Image
+      (getClass().getResource("/imag/" + figure.getColor()+".png").toExternalForm());
+    ImageView buttonView = new ImageView(buttonImage);
+    buttonView.setFitHeight(50);
+    buttonView.setPreserveRatio(true);
+
     Button select = new Button("Select");
+    select.setGraphic(buttonView);
+
     select.setOnAction(e -> onSelectClick(e, figure));
     figurePane.getChildren().addAll(name, select);
     return figurePane;

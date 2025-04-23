@@ -90,7 +90,7 @@ public class LadderGameController {
   public void diceAnimation() {
     String face = "face.png";
     ImageView diceView = new ImageView();
-    diceView.setFitHeight(100);
+    diceView.setFitHeight(200);
     diceView.setPreserveRatio(true);
 
     Timeline TimeLine =
