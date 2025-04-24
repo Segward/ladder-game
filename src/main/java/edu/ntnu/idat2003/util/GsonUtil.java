@@ -1,4 +1,4 @@
-package edu.ntnu.idat2003.service;
+package edu.ntnu.idat2003.util;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.HashSet;
 
-public class GsonService {
+public class GsonUtil {
 
   private static boolean fileExists(String filePath) {
     File file = new File(filePath);
