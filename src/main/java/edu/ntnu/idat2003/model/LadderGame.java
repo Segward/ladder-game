@@ -45,14 +45,14 @@ public class LadderGame {
     Tile tile = board.getTile(position);
     Vector2 nextPosition = tile.getNextPosition();
     currentPlayer.setPosition(nextPosition);
-    observer.onPlayerMoved(currentPlayer, remainder);
-  }
 
-  public void hasWon() {
     if (currentPlayer.getPosition().getNumber() >= 90) {
       gameOver = true;
       observer.onPlayerWon(currentPlayer);
+      return;
     }
+
+    observer.onPlayerMoved(currentPlayer, remainder);
   }
 
   public void executeTileAction() {

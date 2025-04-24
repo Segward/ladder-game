@@ -1,8 +1,19 @@
 [
   {
-    "name": "dwaodoodwaj",
+    "name": "dwadopd",
     "figure": {
       "color": "Rook"
+    },
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "extraDice": false
+  },
+  {
+    "name": "ufidi",
+    "figure": {
+      "color": "King"
     },
     "position": {
       "x": 0,

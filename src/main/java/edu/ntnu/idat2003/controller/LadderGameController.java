@@ -27,6 +27,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import java.io.File;
 
 public class LadderGameController implements LadderGameObserver {
 
@@ -37,6 +40,8 @@ public class LadderGameController implements LadderGameObserver {
   private Button roll;
   private Button stop;
   private LadderGame game;
+  private MediaPlayer backgroundMediaPlayer;
+  private MediaPlayer diceRollMediaPlayer;
 
   public LadderGameController(
       Pane root, Board board, Text rollText, GridPane gridPane, Button roll, Button stop) {
@@ -52,8 +57,27 @@ public class LadderGameController implements LadderGameObserver {
     HashSet<Player> players = PlayerRepo.getPlayers();
     game = new LadderGame(players, board, this);
     roll.setOnAction(e -> game.rollDice());
-    stop.setOnAction(e -> MainFrame.init(root));
+    stop.setOnAction(e -> stop());
     updateBoard();
+
+    File background = new File("src/main/resources/sound/thegrandaffair.mp3");
+    File diceRoll = new File("src/main/resources/sound/diceroll.mp3");
+
+    Media backgroundSound = new Media(background.toURI().toString());
+    backgroundMediaPlayer = new MediaPlayer(backgroundSound);
+    backgroundMediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+    backgroundMediaPlayer.setVolume(0.1);
+    backgroundMediaPlayer.play();
+
+    Media diceRollSound = new Media(diceRoll.toURI().toString());
+    diceRollMediaPlayer = new MediaPlayer(diceRollSound);
+    diceRollMediaPlayer.setVolume(0.2);
+  }
+
+  private void stop() {
+    backgroundMediaPlayer.stop();
+    diceRollMediaPlayer.stop();
+    MainFrame.init(root);
   }
 
   @Override
@@ -66,10 +90,7 @@ public class LadderGameController implements LadderGameObserver {
     }
 
     PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
-    pause.setOnFinished(
-        e -> {
-          game.movePlayer(remainder - 1);
-        });
+    pause.setOnFinished(e -> game.movePlayer(remainder - 1));
     pause.play();
   }
 
@@ -86,11 +107,13 @@ public class LadderGameController implements LadderGameObserver {
   public void onPlayerWon(Player player) {
     rollText.setText(player.getName() + " has won!");
     roll.setDisable(true);
-    stop.setDisable(true);
+    updateBoard();
   }
 
   @Override
   public void onDiceRolled(int diceValue) {
+    diceRollMediaPlayer.seek(Duration.ZERO);
+    diceRollMediaPlayer.play();
     Timeline timeline = new Timeline();
     KeyFrame keyFrame =
         new KeyFrame(Duration.millis(10), e -> updateDice((int) (Math.random() * 6) + 1));

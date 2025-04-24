@@ -37,6 +37,14 @@
             <artifactId>javafx-controls</artifactId>
             <version>23.0.1</version>
         </dependency>
+
+        <!-- JavaFX media -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-media</artifactId>
+            <version>21.0.1</version>
+            <classifier>win</classifier>
+        </dependency>
     </dependencies>
 
     <build>
