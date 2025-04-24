@@ -18,19 +18,10 @@ public class FigureSelection {
     root.getChildren().clear();
 
     StackPane stackPane = new StackPane();
-    root.getChildren().add(stackPane);
     stackPane.prefWidthProperty().bind(root.widthProperty());
     stackPane.prefHeightProperty().bind(root.heightProperty());
-    stackPane.setAlignment(Pos.CENTER);
-
-    Image backImage = new Image("cityBack.png");
-    BackgroundImage background = new BackgroundImage(
-      backImage,
-       BackgroundRepeat.REPEAT,
-       BackgroundRepeat.ROUND,
-         BackgroundPosition.CENTER,
-          null);
-    stackPane.setBackground(new Background(background));
+    stackPane.setId("mainframe");
+    root.getChildren().add(stackPane);
 
     FlowPane flowPane = new FlowPane();
     stackPane.getChildren().add(flowPane);

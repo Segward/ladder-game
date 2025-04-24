@@ -1,0 +1,24 @@
+#sidepane {
+  -fx-background-image: url("background/city1.png");
+  -fx-background-size: cover;
+  -fx-background-position: center;
+  -fx-background-repeat: no-repeat;
+  -fx-orientation: vertical;
+  -fx-alignment: center;
+  -fx-vgap: 30px;
+}
+
+#mainframe {
+  -fx-background-image: url("background/city1.png");
+  -fx-background-size: cover;
+  -fx-background-position: center;
+  -fx-background-repeat: no-repeat;
+  -fx-orientation: vertical;
+  -fx-alignment: center;
+}
+
+.text {
+  -fx-font-family: "Arial";
+  -fx-font-size: 20px;
+  -fx-text-fill: white;
+}

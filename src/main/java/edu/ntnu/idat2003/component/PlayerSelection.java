@@ -20,17 +20,8 @@ public class PlayerSelection {
     StackPane stackPane = new StackPane();
     stackPane.prefWidthProperty().bind(root.widthProperty());
     stackPane.prefHeightProperty().bind(root.heightProperty());
-    stackPane.setAlignment(Pos.CENTER);
+    stackPane.setId("mainframe");
     root.getChildren().add(stackPane);
-
-    Image backImage = new Image("cityBack.png");
-    BackgroundImage background = new BackgroundImage(
-      backImage,
-       BackgroundRepeat.REPEAT,
-       BackgroundRepeat.ROUND,
-         BackgroundPosition.CENTER,
-          null);
-    stackPane.setBackground(new Background(background));
 
     FlowPane flowPane = new FlowPane();
     flowPane.setOrientation(Orientation.VERTICAL);

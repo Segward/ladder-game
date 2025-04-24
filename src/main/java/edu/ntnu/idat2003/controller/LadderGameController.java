@@ -65,7 +65,7 @@ public class LadderGameController implements LadderGameObserver {
       return;
     }
 
-    PauseTransition pause = new PauseTransition(Duration.seconds(1));
+    PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
     pause.setOnFinished(
         e -> {
           game.movePlayer(remainder - 1);
@@ -76,7 +76,7 @@ public class LadderGameController implements LadderGameObserver {
   @Override
   public void onTileActionExecuted(Player player, TileAction action) {
     if (action instanceof LadderAction) {
-      PauseTransition pause = new PauseTransition(Duration.seconds(1));
+      PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
       pause.setOnFinished(e -> updateBoard());
       pause.play();
     }
@@ -106,7 +106,7 @@ public class LadderGameController implements LadderGameObserver {
     diceView.setPreserveRatio(true);
 
     Image diceImage =
-        new Image(getClass().getResource("/" + diceValue + "face.png").toExternalForm());
+        new Image(getClass().getResource("/dice/" + diceValue + "face.png").toExternalForm());
     diceView.setImage(diceImage);
     roll.setGraphic(diceView);
   }
@@ -169,7 +169,7 @@ public class LadderGameController implements LadderGameObserver {
       ImageView imageView = new ImageView();
       imageView.setFitHeight(40);
       imageView.setPreserveRatio(true);
-      String figurePath = "/" + player.getFigure().getColor() + ".png";
+      String figurePath = "/figure/" + player.getFigure().getColor() + ".png";
       Image figureImage = new Image(getClass().getResource(figurePath).toExternalForm());
       imageView.setImage(figureImage);
       int index = new ArrayList<>(players).indexOf(player);

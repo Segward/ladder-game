@@ -59,7 +59,7 @@ public class FigureSelectionController {
     Text name = new Text(figure.getColor());
 
     Image buttonImage = new Image
-      (getClass().getResource("/" + figure.getColor()+".png").toExternalForm());
+      (getClass().getResource("/figure/" + figure.getColor()+".png").toExternalForm());
     ImageView buttonView = new ImageView(buttonImage);
     buttonView.setFitHeight(50);
     buttonView.setPreserveRatio(true);

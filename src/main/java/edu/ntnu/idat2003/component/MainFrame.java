@@ -20,17 +20,7 @@ public class MainFrame {
     StackPane stackPane = new StackPane();
     stackPane.prefWidthProperty().bind(root.widthProperty());
     stackPane.prefHeightProperty().bind(root.heightProperty());
-    stackPane.setAlignment(Pos.CENTER);
-
-    Image backImage = new Image("backG.png");
-    BackgroundImage background = new BackgroundImage(
-      backImage,
-       BackgroundRepeat.REPEAT,
-       BackgroundRepeat.ROUND,
-         BackgroundPosition.CENTER,
-          null);
-
-    stackPane.setBackground(new Background(background));
+    stackPane.setId("mainframe");
     root.getChildren().add(stackPane);
 
     FlowPane flowPane = new FlowPane();

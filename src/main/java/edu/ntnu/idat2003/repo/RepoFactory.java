@@ -14,7 +14,6 @@ public class RepoFactory {
   public static void makeFigures() {
     HashSet<Figure> figures = new HashSet<>();
     figures.add(new Figure("Knight"));
-    figures.add(new Figure("Bishop"));
     figures.add(new Figure("Rook"));
     figures.add(new Figure("Queen"));
     figures.add(new Figure("King"));
