@@ -49,4 +49,17 @@ public class Vector2Test {
     Vector2 vector2 = new Vector2(4, 7);
     assertEquals(76, vector2.getNumber());
   }
+
+  @Test
+  public void testEquals() {
+    Vector2 vector1 = new Vector2(1, 2);
+    Vector2 vector2 = new Vector2(1, 2);
+    assertEquals(vector1, vector2);
+  }
+
+  @Test
+  public void testHashCode() {
+    Vector2 vector = new Vector2(1, 2);
+    assertEquals(vector.getNumber(), vector.hashCode());
+  }
 }
