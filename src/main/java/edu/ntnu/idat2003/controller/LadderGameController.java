@@ -102,8 +102,9 @@ public class LadderGameController implements LadderGameObserver {
 
   private void updateDice(int diceValue) {
     ImageView diceView = new ImageView();
-    diceView.setFitHeight(100);
+    diceView.setFitHeight(200);
     diceView.setPreserveRatio(true);
+
     Image diceImage =
         new Image(getClass().getResource("/" + diceValue + "face.png").toExternalForm());
     diceView.setImage(diceImage);

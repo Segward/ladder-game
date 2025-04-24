@@ -1,0 +1,35 @@
+[
+  {
+    "name": "dwad",
+    "figure": {
+      "color": "Knight"
+    },
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "turns": 0
+  },
+  {
+    "name": "idwad",
+    "figure": {
+      "color": "Rook"
+    },
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "turns": 0
+  },
+  {
+    "name": "dwadd",
+    "figure": {
+      "color": "King"
+    },
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "turns": 0
+  }
+]

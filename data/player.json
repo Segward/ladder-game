@@ -1,8 +1,8 @@
 [
   {
-    "name": "dwadd",
+    "name": "dwaodoodwaj",
     "figure": {
-      "color": "King"
+      "color": "Rook"
     },
     "position": {
       "x": 0,
@@ -11,9 +11,9 @@
     "extraDice": false
   },
   {
-    "name": "olll",
+    "name": "iffiofaw",
     "figure": {
-      "color": "Rook"
+      "color": "Pawn"
     },
     "position": {
       "x": 0,

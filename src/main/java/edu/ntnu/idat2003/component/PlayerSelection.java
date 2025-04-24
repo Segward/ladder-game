@@ -4,6 +4,11 @@ import edu.ntnu.idat2003.controller.PlayerSelectionController;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -17,6 +22,15 @@ public class PlayerSelection {
     stackPane.prefHeightProperty().bind(root.heightProperty());
     stackPane.setAlignment(Pos.CENTER);
     root.getChildren().add(stackPane);
+
+    Image backImage = new Image("cityBack.png");
+    BackgroundImage background = new BackgroundImage(
+      backImage,
+       BackgroundRepeat.REPEAT,
+       BackgroundRepeat.ROUND,
+         BackgroundPosition.CENTER,
+          null);
+    stackPane.setBackground(new Background(background));
 
     FlowPane flowPane = new FlowPane();
     flowPane.setOrientation(Orientation.VERTICAL);
