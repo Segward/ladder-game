@@ -2,6 +2,13 @@ package edu.ntnu.idat2003.model;
 
 import java.util.HashMap;
 
+/**
+ *  Class representing the game bord.
+ *  Utilizes hashMaps to store tiles, ladder actions and
+ *  extra dice actions.
+ *  It incluedes methods for storing and retriving data from these hashMaps.
+ * 
+ */
 public class Board {
   private String name;
   private HashMap<Integer, Tile> tiles;

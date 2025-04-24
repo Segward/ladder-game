@@ -1,5 +1,10 @@
 package edu.ntnu.idat2003.model;
 
+/**
+ *  Class representing the amount of dice a bord Utilizes,
+ *  incluedes method for rolling the dice.
+ * 
+ */
 public class Dice {
   private int die;
 
