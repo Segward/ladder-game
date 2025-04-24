@@ -4,7 +4,7 @@ public class Player {
   private String name;
   private Figure figure;
   private Vector2 position;
-  private int turns;
+  private boolean extraDice;
 
   public Player(String name, Figure figure) {
     this.name = name;
@@ -27,12 +27,12 @@ public class Player {
     this.position = position;
   }
 
-  public int getTurns() {
-    return turns;
+  public boolean hasExtraDice() {
+    return extraDice;
   }
-
-  public void setTurns(int turns) {
-    this.turns = turns;
+  
+  public void setExtraDice(boolean extraDice) {
+    this.extraDice = extraDice;
   }
 
   @Override

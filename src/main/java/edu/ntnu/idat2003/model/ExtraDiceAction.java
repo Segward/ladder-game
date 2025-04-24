@@ -8,6 +8,6 @@ public class ExtraDiceAction extends TileAction {
 
   @Override
   public void execute(Player player) {
-    player.setTurns(player.getTurns() + 1);
+    player.setExtraDice(true);
   }
 }

@@ -3,11 +3,13 @@ package edu.ntnu.idat2003.controller;
 import edu.ntnu.idat2003.component.MainFrame;
 import edu.ntnu.idat2003.model.Board;
 import edu.ntnu.idat2003.model.ExtraDiceAction;
-import edu.ntnu.idat2003.model.Game;
 import edu.ntnu.idat2003.model.LadderAction;
+import edu.ntnu.idat2003.model.LadderGame;
 import edu.ntnu.idat2003.model.Player;
 import edu.ntnu.idat2003.model.Tile;
+import edu.ntnu.idat2003.model.TileAction;
 import edu.ntnu.idat2003.model.Vector2;
+import edu.ntnu.idat2003.observer.LadderGameObserver;
 import edu.ntnu.idat2003.repo.PlayerRepo;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,7 +17,6 @@ import java.util.HashSet;
 import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -27,7 +28,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-public class LadderGameController {
+public class LadderGameController implements LadderGameObserver {
 
   private Pane root;
   private Board board;
@@ -35,8 +36,7 @@ public class LadderGameController {
   private GridPane gridPane;
   private Button roll;
   private Button stop;
-  private Game game;
-  private boolean moving = false;
+  private LadderGame game;
 
   public LadderGameController(
       Pane root, Board board, Text rollText, GridPane gridPane, Button roll, Button stop) {
@@ -50,66 +50,64 @@ public class LadderGameController {
 
   public void init() {
     HashSet<Player> players = PlayerRepo.getPlayers();
-    game = new Game(players, board);
-    roll.setOnAction(this::onRollClick);
-    stop.setOnAction(this::onStopClick);
+    game = new LadderGame(players, board, this);
+    roll.setOnAction(e -> game.rollDice());
+    stop.setOnAction(e -> MainFrame.init(root));
     updateBoard();
   }
 
-  public void onRollClick(ActionEvent event) {
-    if (moving) {
-      return;
-    }
-
-    moving = true;
-    if (game.isGameOver()) {
-      rollText.setText("Game Over");
-      return;
-    }
-
-    diceAnimation();
-    int steps = game.roll();
-    movePlayerWithPause(steps);
-  }
-
-  private void movePlayerWithPause(int stepsLeft) {
-    if (stepsLeft == 0) {
-      int actionType = game.checkAction();
-      updateBoard();
-      moving = false;
-      return;
-    }
-
-    game.movePlayer();
+  @Override
+  public void onPlayerMoved(Player player, int remainder) {
     updateBoard();
-    PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
-    pause.setOnFinished(e -> movePlayerWithPause(stepsLeft - 1));
+    if (remainder == 0) {
+      game.executeTileAction();
+      game.nextPlayer();
+      return;
+    }
+
+    PauseTransition pause = new PauseTransition(Duration.seconds(1));
+    pause.setOnFinished(
+        e -> {
+          game.movePlayer(remainder - 1);
+        });
     pause.play();
   }
 
-  public void diceAnimation() {
-    String face = "face.png";
+  @Override
+  public void onTileActionExecuted(Player player, TileAction action) {
+    if (action instanceof LadderAction) {
+      PauseTransition pause = new PauseTransition(Duration.seconds(1));
+      pause.setOnFinished(e -> updateBoard());
+      pause.play();
+    }
+  }
+
+  @Override
+  public void onPlayerWon(Player player) {
+    rollText.setText(player.getName() + " has won!");
+    roll.setDisable(true);
+    stop.setDisable(true);
+  }
+
+  @Override
+  public void onDiceRolled(int diceValue) {
+    Timeline timeline = new Timeline();
+    KeyFrame keyFrame =
+        new KeyFrame(Duration.millis(10), e -> updateDice((int) (Math.random() * 6) + 1));
+    timeline.getKeyFrames().add(keyFrame);
+    timeline.setCycleCount(50);
+    timeline.play();
+    timeline.setOnFinished(e -> updateDice(diceValue));
+  }
+
+  private void updateDice(int diceValue) {
     ImageView diceView = new ImageView();
     diceView.setFitHeight(100);
     diceView.setPreserveRatio(true);
-
-    Timeline TimeLine =
-        new Timeline(
-            new KeyFrame(
-                Duration.millis(10),
-                e -> {
-                  int dice = (int) (Math.random() * 6) + 1;
-                  Image diceImage =
-                      new Image(getClass().getResource("/imag/" + dice + face).toExternalForm());
-                  diceView.setImage(diceImage);
-                  roll.setGraphic(diceView);
-                }));
-    TimeLine.setCycleCount(50);
-    TimeLine.play();
-  }
-
-  public void onStopClick(ActionEvent event) {
-    MainFrame.init(root);
+    Image diceImage =
+        new Image(getClass().getResource("/imag/" + diceValue + "face.png").toExternalForm());
+    diceView.setImage(diceImage);
+    roll.setGraphic(diceView);
   }
 
   private void updateBoard() {
