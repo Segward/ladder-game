@@ -2,14 +2,14 @@ package edu.ntnu.idat2003.model;
 
 public class Figure {
 
-  private String color;
+  private String name;
 
-  public Figure(String color) {
-    this.color = color;
+  public Figure(String name) {
+    this.name = name;
   }
 
-  public String getColor() {
-    return color;
+  public String getName() {
+    return name;
   }
 
   @Override
@@ -24,7 +24,7 @@ public class Figure {
 
     Figure figure = (Figure) obj;
 
-    if (figure.getColor().equals(this.color)) {
+    if (figure.getName().equals(this.name)) {
       return true;
     }
 
@@ -33,7 +33,7 @@ public class Figure {
 
   @Override
   public int hashCode() {
-    int result = 31 * color.hashCode();
+    int result = 31 * name.hashCode();
     return result;
   }
 }

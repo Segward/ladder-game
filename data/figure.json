@@ -1,17 +1,17 @@
 [
   {
-    "color": "Rook"
+    "name": "Rook"
   },
   {
-    "color": "Knight"
+    "name": "Knight"
   },
   {
-    "color": "King"
+    "name": "King"
   },
   {
-    "color": "Pawn"
+    "name": "Pawn"
   },
   {
-    "color": "Queen"
+    "name": "Queen"
   }
 ]

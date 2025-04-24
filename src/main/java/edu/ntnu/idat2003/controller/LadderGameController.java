@@ -11,6 +11,7 @@ import edu.ntnu.idat2003.model.TileAction;
 import edu.ntnu.idat2003.model.Vector2;
 import edu.ntnu.idat2003.observer.LadderGameObserver;
 import edu.ntnu.idat2003.repo.PlayerRepo;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -23,13 +24,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import java.io.File;
 
 public class LadderGameController implements LadderGameObserver {
 
@@ -199,7 +199,7 @@ public class LadderGameController implements LadderGameObserver {
       ImageView imageView = new ImageView();
       imageView.setFitHeight(40);
       imageView.setPreserveRatio(true);
-      String figurePath = "/figure/" + player.getFigure().getColor() + ".png";
+      String figurePath = "/figure/" + player.getFigure().getName() + ".png";
       Image figureImage = new Image(getClass().getResource(figurePath).toExternalForm());
       imageView.setImage(figureImage);
       int index = new ArrayList<>(players).indexOf(player);

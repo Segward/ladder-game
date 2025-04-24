@@ -16,9 +16,3 @@
   -fx-orientation: vertical;
   -fx-alignment: center;
 }
-
-.text {
-  -fx-font-family: "Arial";
-  -fx-font-size: 20px;
-  -fx-text-fill: white;
-}
