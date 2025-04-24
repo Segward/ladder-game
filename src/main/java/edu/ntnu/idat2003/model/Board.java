@@ -9,8 +9,12 @@ public class Board {
   private HashMap<Integer, ExtraDiceAction> extraDiceActions;
 
   /**
-   * Constructor for bord class Gives the bord a String name and defines a new hashmap<Integer,
-   * tile>.
+   *  The constructor for the board class,
+   *  the single string paramiter is used as the name of the bord.
+   *  It also creates hashMaps for storing tile, ladderaction and
+   *  extraDiceAction objects.
+   * 
+   *  @param name String representing the bord name
    */
   public Board(String name) {
     this.name = name;
@@ -19,6 +23,14 @@ public class Board {
     this.extraDiceActions = new HashMap<>();
   }
 
+  /**
+   *  Method for retrieving tile action from given tile position.
+   *  Utilizes a method from the vector2 class to retrive tile number,
+   *  then checks for tileAction corresponding to tile number.
+   * 
+   *  @param position position to be checked
+   *  @return ladderAction or extraDiceAction if found, null if not
+   */
   public TileAction getAction(Vector2 position) {
     int hash = position.hashCode();
     if (ladderActions.containsKey(hash)) {
@@ -30,20 +42,28 @@ public class Board {
   }
 
   /**
-   * Adds a given tile the bord HashMap.
-   *
-   * @param position represents the position of the tile
-   * @param tile tile object to be added
+   *  Adds a new tile to the tiles hashMap.
+   *  Utilizes a method from the vector2 class to retrive tile number,
+   *  then puts tile parameter as value and tile number as key
+   *  into tiles hashMap. 
+   * 
+   * @param position position of tile
+   * @param tile tile to be added
    */
   public void addTile(Vector2 position, Tile tile) {
     int hash = position.hashCode();
     tiles.put(hash, tile);
   }
 
+
   /**
-   * Adds a new ladder action to the bord HashMap.
-   *
-   * @param action action to be added
+   *  Adds a new ladder action to the ladderAction hashMap.
+   *  Retrives tile number throu super method in ladderaction
+   *  that utilizes a method from the vector2 class to retrive tile number.
+   *  Then puts the tile number as key and ladderAction parameter as value
+   *  in to ladderAction hashMap. 
+   * 
+   *  @param action LadderAction to be added to board.
    */
   public void addLadderAction(LadderAction action) {
     int hash = action.getStart().hashCode();
@@ -51,9 +71,13 @@ public class Board {
   }
 
   /**
-   * Adds a new extra dice action to the bord HashMap.
-   *
-   * @param action action to be added
+   *  Adds a new DiceAction to the extraDiceAction hashMap.
+   *  Retrives tile number throu super method in the ExtraDiceAction class
+   *  that utilizes a method from the vector2 class to retrive tile number.
+   *  Then puts the tile number as key and ExtraDiceAction parameter
+   *  as value in to the extraDiceAction hashMap.
+   * 
+   *  @param action Extra Dice Action to be added to bord.
    */
   public void addExtraDiceAction(ExtraDiceAction action) {
     int hash = action.getStart().hashCode();
@@ -61,10 +85,10 @@ public class Board {
   }
 
   /**
-   * Getter for spesific tile in bord hashmap.
-   *
-   * @param position represents the position of the tile
-   * @return tile object
+   *  Retrives the 
+   * 
+   *  @param position
+   *  @return
    */
   public Tile getTile(Vector2 position) {
     int hash = position.hashCode();
