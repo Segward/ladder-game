@@ -9,10 +9,9 @@
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/controller/LadderGameController.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/controller/MainFrameController.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/controller/PlayerSelectionController.java
+/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/exception/DataCreateException.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/exception/DataReadException.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/exception/DataWriteException.java
-/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/exception/FileCreateException.java
-/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/exception/FileMissingException.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/model/Board.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/model/Dice.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/model/Die.java

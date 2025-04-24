@@ -1,23 +1,30 @@
 package edu.ntnu.idat2003.repo;
 
+import com.google.gson.reflect.TypeToken;
 import edu.ntnu.idat2003.model.Player;
 import edu.ntnu.idat2003.util.GsonUtil;
-
-import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashSet;
 
 public class PlayerRepo {
   private static final String path = "data/player.json";
-  
+
   public static HashSet<Player> getPlayers() {
     Type playerSetType = new TypeToken<HashSet<Player>>() {}.getType();
-    HashSet<Player> players = GsonUtil.getObjects(path, playerSetType);
-    return players != null ? players : new HashSet<>();
+    try {
+      return GsonUtil.getObjects(path, playerSetType);
+    } catch (Exception e) {
+      e.printStackTrace();
+      return new HashSet<>();
+    }
   }
 
   public static void savePlayers(HashSet<Player> players) {
-    GsonUtil.saveObjects(players, path);
+    try {
+      GsonUtil.saveObjects(players, path);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
   public static void addPlayer(Player player) {

@@ -1,24 +1,31 @@
 package edu.ntnu.idat2003.repo;
 
+import com.google.gson.reflect.TypeToken;
 import edu.ntnu.idat2003.model.Figure;
 import edu.ntnu.idat2003.model.Player;
 import edu.ntnu.idat2003.util.GsonUtil;
-
-import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashSet;
 
 public class FigureRepo {
   private static final String path = "data/figure.json";
-  
+
   public static HashSet<Figure> getFigures() {
     Type figureSetType = new TypeToken<HashSet<Figure>>() {}.getType();
-    HashSet<Figure> figures = GsonUtil.getObjects(path, figureSetType);
-    return figures != null ? figures : new HashSet<>();
+    try {
+      return GsonUtil.getObjects(path, figureSetType);
+    } catch (Exception e) {
+      e.printStackTrace();
+      return new HashSet<>();
+    }
   }
 
   public static void saveFigures(HashSet<Figure> figures) {
-    GsonUtil.saveObjects(figures, path);
+    try {
+      GsonUtil.saveObjects(figures, path);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
   public static HashSet<Figure> getAvailableFigures() {

@@ -2,10 +2,11 @@ package edu.ntnu.idat2003.util;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import edu.ntnu.idat2003.exception.DataCreateException;
+import edu.ntnu.idat2003.exception.DataReadException;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.HashSet;
 
@@ -20,30 +21,34 @@ public class GsonUtil {
     return new GsonBuilder().setPrettyPrinting().create();
   }
 
-  private static void createFile(String filePath) {
+  private static void createFile(String filePath) throws DataCreateException {
     try {
       File file = new File(filePath);
       file.createNewFile();
-    } catch (IOException e) {
-      e.printStackTrace();
+    } catch (Exception e) {
+      throw new DataCreateException("Failed to create file at " + filePath, e);
     }
   }
 
-  public static <T> void saveObjects(HashSet<T> objects, String filePath) {
+  public static <T> void saveObjects(HashSet<T> objects, String filePath) throws DataReadException {
     Gson gson = createGson();
     if (!fileExists(filePath)) {
-      createFile(filePath);
+      try {
+        createFile(filePath);
+      } catch (DataCreateException e) {
+        throw new DataReadException("Failed to create file at " + filePath, e);
+      }
     }
 
     try (FileWriter writer = new FileWriter(filePath)) {
       gson.toJson(objects, writer);
       writer.flush();
-    } catch (IOException e) {
-      e.printStackTrace();
+    } catch (Exception e) {
+      throw new DataReadException("Failed to save data to " + filePath, e);
     }
   }
 
-  public static <T> HashSet<T> getObjects(String filePath, Type type) {
+  public static <T> HashSet<T> getObjects(String filePath, Type type) throws DataReadException {
     Gson gson = createGson();
     HashSet<T> objects = new HashSet<>();
     if (!fileExists(filePath)) {
@@ -53,7 +58,7 @@ public class GsonUtil {
     try (FileReader reader = new FileReader(filePath)) {
       objects = gson.fromJson(reader, type);
     } catch (Exception e) {
-      e.printStackTrace();
+      throw new DataReadException("Failed to read data from " + filePath, e);
     }
 
     if (objects == null) {

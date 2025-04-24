@@ -49,9 +49,6 @@ public class LadderGame {
     gridPane.setHgap(5);
     boardPane.getChildren().add(gridPane);
 
-    Button stopGame = new Button("End game");
-    sidePane.getChildren().add(stopGame);
-
     Text gameTitle = new Text("Hello, World!");
     sidePane.getChildren().add(gameTitle);
 
@@ -65,6 +62,9 @@ public class LadderGame {
     rollDice.setPrefSize(50, 50);
     rollDice.setStyle("-fx-background-color: transparent;");
     sidePane.getChildren().add(rollDice);
+
+    Button stopGame = new Button("End game");
+    sidePane.getChildren().add(stopGame);
 
     LadderGameController controller =
         new LadderGameController(root, board, gameTitle, gridPane, rollDice, stopGame);
