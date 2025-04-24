@@ -85,10 +85,13 @@ public class Board {
   }
 
   /**
-   *  Retrives the 
+   *  Getter for retrieving a spesific tile form the bord.
+   *  Utilizes a method from the vector2 class to retrive tile number,
+   *  then retrieves tile object by utilizing the get method on the tiles hashmap
+   *  with the tile numer as a parameter.
    * 
-   *  @param position
-   *  @return
+   *  @param position position of tile
+   *  @return tile object from hashMap
    */
   public Tile getTile(Vector2 position) {
     int hash = position.hashCode();
@@ -96,36 +99,40 @@ public class Board {
   }
 
   /**
-   * Getter for the hashmap of ladder actions.
-   *
-   * @return HashMap with all ladder actions
+   *  Getter for the ladder action hashMap.
+   *  HashMap containing all the ladder actions.
+   * 
+   *  @return the ladderAction hashMap
    */
   public HashMap<Integer, LadderAction> getLadderActions() {
     return ladderActions;
   }
 
   /**
-   * Getter for the hashmap of extra dice actions.
-   *
-   * @return HashMap with all extra dice actions
+   *  Getter for the extra dice action hashMap.
+   *  HashMap containing all of the extraDiceActions.
+   * 
+   *  @return the extraDiceActions hashMap
    */
   public HashMap<Integer, ExtraDiceAction> getExtraDiceActions() {
     return extraDiceActions;
   }
 
   /**
-   * Getter for all tiles in bord hashmap.
-   *
-   * @return HashMap with all tiles
+   *  Getter for the tile hashMap,
+   *  HashMap containing all of the tiles in the bord.
+   * 
+   *  @return the tiles hashMap
    */
   public HashMap<Integer, Tile> getTiles() {
     return tiles;
   }
 
   /**
-   * Getter for bord name.
-   *
-   * @return String representing bord name
+   *  Getter for the bord name.
+   *  A string value representing the game bord name.
+   * 
+   *  @return String representing bord name
    */
   public String getName() {
     return name;
