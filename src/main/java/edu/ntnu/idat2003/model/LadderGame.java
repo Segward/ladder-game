@@ -76,6 +76,7 @@ public class LadderGame {
   public void nextPlayer() {
     isPlayerMoving = false;
     if (currentPlayer.hasExtraDice()) {
+      currentPlayer.setExtraDice(false);
       return;
     }
 
