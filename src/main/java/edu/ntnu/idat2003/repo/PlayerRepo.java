@@ -8,7 +8,7 @@ import java.lang.reflect.Type;
 import java.util.HashSet;
 
 public class PlayerRepo {
-  private static final String path = "src/main/resources/player.json";
+  private static final String path = "data/player.json";
   
   public static HashSet<Player> getPlayers() {
     Type playerSetType = new TypeToken<HashSet<Player>>() {}.getType();

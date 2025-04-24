@@ -105,7 +105,7 @@ public class LadderGameController implements LadderGameObserver {
     diceView.setFitHeight(100);
     diceView.setPreserveRatio(true);
     Image diceImage =
-        new Image(getClass().getResource("/imag/" + diceValue + "face.png").toExternalForm());
+        new Image(getClass().getResource("/" + diceValue + "face.png").toExternalForm());
     diceView.setImage(diceImage);
     roll.setGraphic(diceView);
   }
@@ -168,7 +168,7 @@ public class LadderGameController implements LadderGameObserver {
       ImageView imageView = new ImageView();
       imageView.setFitHeight(40);
       imageView.setPreserveRatio(true);
-      String figurePath = "/imag/" + player.getFigure().getColor() + ".png";
+      String figurePath = "/" + player.getFigure().getColor() + ".png";
       Image figureImage = new Image(getClass().getResource(figurePath).toExternalForm());
       imageView.setImage(figureImage);
       int index = new ArrayList<>(players).indexOf(player);

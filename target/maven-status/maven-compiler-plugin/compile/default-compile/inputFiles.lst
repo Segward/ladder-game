@@ -29,5 +29,5 @@
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/repo/FigureRepo.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/repo/PlayerRepo.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/repo/RepoFactory.java
-/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/service/GsonService.java
+/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/util/GsonUtil.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/UserInterface.java

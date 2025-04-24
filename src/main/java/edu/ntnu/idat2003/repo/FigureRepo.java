@@ -9,7 +9,7 @@ import java.lang.reflect.Type;
 import java.util.HashSet;
 
 public class FigureRepo {
-  private static final String path = "src/main/resources/figure.json";
+  private static final String path = "data/figure.json";
   
   public static HashSet<Figure> getFigures() {
     Type figureSetType = new TypeToken<HashSet<Figure>>() {}.getType();

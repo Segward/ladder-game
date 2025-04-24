@@ -58,7 +58,7 @@ public class LadderGame {
     playerPane.getChildren().add(text);
 
     Image diceImage =
-        new Image(LadderGame.class.getResource("/imag/firstDice.png").toExternalForm());
+        new Image(LadderGame.class.getResource("/firstDice.png").toExternalForm());
     ImageView diceView = new ImageView(diceImage);
     diceView.setFitHeight(100);
     diceView.setPreserveRatio(true);

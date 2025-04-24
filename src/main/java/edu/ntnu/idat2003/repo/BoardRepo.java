@@ -8,7 +8,7 @@ import java.lang.reflect.Type;
 import java.util.HashSet;
 
 public class BoardRepo {
-  private static final String path = "src/main/resources/board.json";
+  private static final String path = "data/board.json";
   
   public static HashSet<Board> getBoards() {
     Type boardSetType = new TypeToken<HashSet<Board>>() {}.getType();
