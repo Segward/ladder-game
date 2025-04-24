@@ -31,7 +31,6 @@ public class LadderGame {
 
     isPlayerMoving = true;
     int steps = dice.roll();
-    System.out.println("Rolled: " + steps);
     observer.onDiceRolled(steps);
     movePlayer(steps - 1);
   }

@@ -28,9 +28,6 @@ public class BoardSelectionController {
       if (boardSet.isEmpty()) {
         RepoFactory.makeBoards();
       }
-
-      System.out.println("Loading boards...");
-
       updateBoards();
     } catch (Exception e) {
       System.out.println("Error loading boards: 1");
