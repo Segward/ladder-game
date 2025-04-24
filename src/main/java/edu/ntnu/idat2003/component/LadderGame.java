@@ -57,7 +57,7 @@ public class LadderGame {
 
     Image diceImage = new Image(LadderGame.class.getResource("/dice/default.png").toExternalForm());
     ImageView diceView = new ImageView(diceImage);
-    diceView.setFitHeight(100);
+    diceView.setFitHeight(200);
     diceView.setPreserveRatio(true);
 
     Button rollDice = new Button();

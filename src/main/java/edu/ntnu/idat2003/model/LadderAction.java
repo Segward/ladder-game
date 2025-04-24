@@ -16,4 +16,13 @@ public class LadderAction extends TileAction {
   public Vector2 getDestination() {
     return destination;
   }
+
+  public String getDirection() {
+    String direction = "up";
+    if (destination.getY() < start.getY()) {
+      direction = "down";
+    }
+
+    return direction;
+  }
 }

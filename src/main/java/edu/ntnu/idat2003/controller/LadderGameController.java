@@ -126,17 +126,24 @@ public class LadderGameController implements LadderGameObserver {
 
     HashMap<Integer, LadderAction> ladders = board.getLadderActions();
     for (LadderAction action : ladders.values()) {
+      String direction = action.getDirection();
       StackPane stackPane = new StackPane();
       Rectangle rectangle = new Rectangle(50, 50);
-      rectangle.setFill(Color.GREEN);
       stackPane.getChildren().addAll(rectangle);
       gridPane.add(stackPane, action.getStart().getX(), 9 - action.getStart().getY());
 
       StackPane stackPane2 = new StackPane();
       Rectangle rectangle2 = new Rectangle(50, 50);
-      rectangle2.setFill(Color.RED);
       stackPane2.getChildren().addAll(rectangle2);
       gridPane.add(stackPane2, action.getDestination().getX(), 9 - action.getDestination().getY());
+
+      if (direction.equals("up")) {
+        rectangle.setFill(Color.DARKGREEN);
+        rectangle2.setFill(Color.GREEN);
+      } else {
+        rectangle.setFill(Color.DARKRED);
+        rectangle2.setFill(Color.RED);
+      }
     }
 
     HashMap<Integer, ExtraDiceAction> extraDiceActions = board.getExtraDiceActions();
