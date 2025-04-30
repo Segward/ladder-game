@@ -1,7 +1,7 @@
-package edu.ntnu.idat2003.component;
+package edu.ntnu.idat2003.view.component;
 
-import edu.ntnu.idat2003.controller.LadderGameController;
 import edu.ntnu.idat2003.model.board.Board;
+import edu.ntnu.idat2003.view.controller.LadderGameController;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;

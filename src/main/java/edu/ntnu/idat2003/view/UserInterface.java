@@ -1,6 +1,6 @@
 package edu.ntnu.idat2003.view;
 
-import edu.ntnu.idat2003.component.MainFrame;
+import edu.ntnu.idat2003.view.component.MainFrame;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;

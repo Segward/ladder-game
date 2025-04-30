@@ -1,9 +1,10 @@
-package edu.ntnu.idat2003.controller;
+package edu.ntnu.idat2003.view.controller;
 
-import edu.ntnu.idat2003.component.LadderGame;
 import edu.ntnu.idat2003.model.board.Board;
 import edu.ntnu.idat2003.repo.BoardRepo;
 import edu.ntnu.idat2003.repo.RepoFactory;
+import edu.ntnu.idat2003.view.component.LadderGame;
+
 import java.util.HashSet;
 import javafx.event.ActionEvent;
 import javafx.geometry.Orientation;

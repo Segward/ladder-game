@@ -1,6 +1,5 @@
-package edu.ntnu.idat2003.controller;
+package edu.ntnu.idat2003.view.controller;
 
-import edu.ntnu.idat2003.component.MainFrame;
 import edu.ntnu.idat2003.model.LadderGame;
 import edu.ntnu.idat2003.model.LadderGameObserver;
 import edu.ntnu.idat2003.model.Vector2;
@@ -11,6 +10,8 @@ import edu.ntnu.idat2003.model.tileactions.ExtraDiceAction;
 import edu.ntnu.idat2003.model.tileactions.LadderAction;
 import edu.ntnu.idat2003.model.tileactions.TileAction;
 import edu.ntnu.idat2003.repo.PlayerRepo;
+import edu.ntnu.idat2003.view.component.MainFrame;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;

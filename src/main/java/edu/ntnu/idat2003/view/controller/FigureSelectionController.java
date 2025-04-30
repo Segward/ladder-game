@@ -1,4 +1,4 @@
-package edu.ntnu.idat2003.controller;
+package edu.ntnu.idat2003.view.controller;
 
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -8,12 +8,12 @@ import javafx.scene.layout.Pane;
 import javafx.geometry.Orientation;
 import edu.ntnu.idat2003.repo.FigureRepo;
 import edu.ntnu.idat2003.repo.PlayerRepo;
-import edu.ntnu.idat2003.component.PlayerSelection;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import java.util.HashSet;
 import javafx.event.ActionEvent;
 import edu.ntnu.idat2003.repo.RepoFactory;
+import edu.ntnu.idat2003.view.component.PlayerSelection;
 import edu.ntnu.idat2003.model.Vector2;
 import edu.ntnu.idat2003.model.player.Figure;
 import edu.ntnu.idat2003.model.player.Player;

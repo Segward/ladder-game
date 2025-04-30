@@ -1,14 +1,13 @@
-package edu.ntnu.idat2003.component;
+package edu.ntnu.idat2003.view.component;
 
-import edu.ntnu.idat2003.controller.PlayerSelectionController;
+import edu.ntnu.idat2003.view.controller.BoardSelectionController;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
-public class PlayerSelection {
+public class BoardSelection {
   public static void init(Pane root) {
     root.getChildren().clear();
 
@@ -19,18 +18,11 @@ public class PlayerSelection {
     root.getChildren().add(stackPane);
 
     FlowPane flowPane = new FlowPane();
+    stackPane.getChildren().add(flowPane);
     flowPane.setOrientation(Orientation.VERTICAL);
     flowPane.setAlignment(Pos.CENTER);
-    stackPane.getChildren().add(flowPane);
 
-    Button add = new Button("Add");
-    flowPane.getChildren().add(add);
-
-    Button resume = new Button("Resume");
-    flowPane.getChildren().add(resume);
-
-    PlayerSelectionController controller =
-        new PlayerSelectionController(root, flowPane, add, resume);
+    BoardSelectionController controller = new BoardSelectionController(root, flowPane);
     controller.init();
   }
 }

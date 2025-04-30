@@ -1,9 +1,9 @@
-package edu.ntnu.idat2003.controller;
+package edu.ntnu.idat2003.view.controller;
 
 import javafx.scene.control.Button;
+import edu.ntnu.idat2003.view.component.PlayerSelection;
 import javafx.event.ActionEvent;
 import javafx.scene.layout.Pane;
-import edu.ntnu.idat2003.component.PlayerSelection;
 
 public class MainFrameController {
 

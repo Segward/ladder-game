@@ -1,14 +1,14 @@
-package edu.ntnu.idat2003.component;
+package edu.ntnu.idat2003.view.component;
 
-import edu.ntnu.idat2003.controller.MainFrameController;
+import edu.ntnu.idat2003.view.controller.FigureSelectionController;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
-public class MainFrame {
+public class FigureSelection {
   public static void init(Pane root) {
     root.getChildren().clear();
 
@@ -23,13 +23,12 @@ public class MainFrame {
     flowPane.setOrientation(Orientation.VERTICAL);
     flowPane.setAlignment(Pos.CENTER);
 
-    Button startGameButton = new Button("Start Game");
-    flowPane.getChildren().add(startGameButton);
+    TextField playerName = new TextField();
+    playerName.setPromptText("Enter player name");
+    flowPane.getChildren().add(playerName);
 
-    Button exitAppButton = new Button("Exit");
-    flowPane.getChildren().add(exitAppButton);
-
-    MainFrameController controller = new MainFrameController(root, startGameButton, exitAppButton);
+    FigureSelectionController controller =
+        new FigureSelectionController(root, flowPane, playerName);
     controller.init();
   }
 }
