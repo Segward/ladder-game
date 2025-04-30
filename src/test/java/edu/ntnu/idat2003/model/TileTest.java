@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import edu.ntnu.idat2003.model.board.Tile;
+
 public class TileTest {
 
   public Vector2 position = new Vector2(1, 2);

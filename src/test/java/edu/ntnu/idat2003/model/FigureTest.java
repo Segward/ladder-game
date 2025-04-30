@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import edu.ntnu.idat2003.model.player.Figure;
+
 public class FigureTest {
 
   public static Figure figure;

@@ -6,9 +6,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.geometry.Orientation;
-import edu.ntnu.idat2003.model.Figure;
 import edu.ntnu.idat2003.repo.FigureRepo;
-import edu.ntnu.idat2003.model.Player;
 import edu.ntnu.idat2003.repo.PlayerRepo;
 import edu.ntnu.idat2003.component.PlayerSelection;
 import javafx.scene.control.Button;
@@ -17,6 +15,8 @@ import java.util.HashSet;
 import javafx.event.ActionEvent;
 import edu.ntnu.idat2003.repo.RepoFactory;
 import edu.ntnu.idat2003.model.Vector2;
+import edu.ntnu.idat2003.model.player.Figure;
+import edu.ntnu.idat2003.model.player.Player;
 
 public class FigureSelectionController {
 

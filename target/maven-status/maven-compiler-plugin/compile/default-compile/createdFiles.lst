@@ -1,17 +1,11 @@
 edu/ntnu/idat2003/model/LadderGame.class
 edu/ntnu/idat2003/component/PlayerSelection.class
 edu/ntnu/idat2003/repo/FigureRepo$1.class
-edu/ntnu/idat2003/model/Board.class
 edu/ntnu/idat2003/component/BoardSelection.class
 edu/ntnu/idat2003/App.class
-edu/ntnu/idat2003/model/TileAction.class
-edu/ntnu/idat2003/model/Die.class
 edu/ntnu/idat2003/controller/PlayerSelectionController.class
 edu/ntnu/idat2003/model/Vector2.class
-edu/ntnu/idat2003/model/Player.class
 edu/ntnu/idat2003/repo/PlayerRepo.class
-edu/ntnu/idat2003/model/Tile.class
-edu/ntnu/idat2003/model/Figure.class
 edu/ntnu/idat2003/controller/FigureSelectionController.class
 edu/ntnu/idat2003/repo/BoardRepo.class
 edu/ntnu/idat2003/repo/FigureRepo.class
@@ -26,7 +20,4 @@ edu/ntnu/idat2003/view/UserInterface.class
 edu/ntnu/idat2003/observer/LadderGameObserver.class
 edu/ntnu/idat2003/controller/LadderGameController.class
 edu/ntnu/idat2003/util/GsonUtil.class
-edu/ntnu/idat2003/model/Dice.class
 edu/ntnu/idat2003/component/FigureSelection.class
-edu/ntnu/idat2003/model/ExtraDiceAction.class
-edu/ntnu/idat2003/model/LadderAction.class

@@ -1,14 +1,14 @@
 package edu.ntnu.idat2003.controller;
 
 import edu.ntnu.idat2003.component.MainFrame;
-import edu.ntnu.idat2003.model.Board;
-import edu.ntnu.idat2003.model.ExtraDiceAction;
-import edu.ntnu.idat2003.model.LadderAction;
 import edu.ntnu.idat2003.model.LadderGame;
-import edu.ntnu.idat2003.model.Player;
-import edu.ntnu.idat2003.model.Tile;
-import edu.ntnu.idat2003.model.TileAction;
 import edu.ntnu.idat2003.model.Vector2;
+import edu.ntnu.idat2003.model.board.Board;
+import edu.ntnu.idat2003.model.board.Tile;
+import edu.ntnu.idat2003.model.player.Player;
+import edu.ntnu.idat2003.model.tileactions.ExtraDiceAction;
+import edu.ntnu.idat2003.model.tileactions.LadderAction;
+import edu.ntnu.idat2003.model.tileactions.TileAction;
 import edu.ntnu.idat2003.observer.LadderGameObserver;
 import edu.ntnu.idat2003.repo.PlayerRepo;
 import java.io.File;
@@ -140,42 +140,17 @@ public class LadderGameController implements LadderGameObserver {
     for (Tile tile : tiles.values()) {
       StackPane stackPane = new StackPane();
       Rectangle rectangle = new Rectangle(50, 50);
-      rectangle.setFill(Color.LIGHTGRAY);
+      if (tile.getAction() instanceof LadderAction) {
+        rectangle.setFill(Color.LIGHTGREEN);
+      } else if (tile.getAction() instanceof ExtraDiceAction) {
+        rectangle.setFill(Color.LIGHTBLUE);
+      } else {
+        rectangle.setFill(Color.LIGHTGRAY);
+      }
       int tileNumber = tile.getPosition().getNumber();
       Text text = new Text(String.valueOf(tileNumber));
       stackPane.getChildren().addAll(rectangle, text);
       gridPane.add(stackPane, tile.getPosition().getX(), 9 - tile.getPosition().getY());
-    }
-
-    HashMap<Integer, LadderAction> ladders = board.getLadderActions();
-    for (LadderAction action : ladders.values()) {
-      String direction = action.getDirection();
-      StackPane stackPane = new StackPane();
-      Rectangle rectangle = new Rectangle(50, 50);
-      stackPane.getChildren().addAll(rectangle);
-      gridPane.add(stackPane, action.getStart().getX(), 9 - action.getStart().getY());
-
-      StackPane stackPane2 = new StackPane();
-      Rectangle rectangle2 = new Rectangle(50, 50);
-      stackPane2.getChildren().addAll(rectangle2);
-      gridPane.add(stackPane2, action.getDestination().getX(), 9 - action.getDestination().getY());
-
-      if (direction.equals("up")) {
-        rectangle.setFill(Color.DARKGREEN);
-        rectangle2.setFill(Color.GREEN);
-      } else {
-        rectangle.setFill(Color.DARKRED);
-        rectangle2.setFill(Color.RED);
-      }
-    }
-
-    HashMap<Integer, ExtraDiceAction> extraDiceActions = board.getExtraDiceActions();
-    for (ExtraDiceAction action : extraDiceActions.values()) {
-      StackPane stackPane = new StackPane();
-      Rectangle rectangle = new Rectangle(50, 50);
-      rectangle.setFill(Color.YELLOW);
-      stackPane.getChildren().addAll(rectangle);
-      gridPane.add(stackPane, action.getStart().getX(), 9 - action.getStart().getY());
     }
 
     HashSet<Player> players = game.getPlayers();

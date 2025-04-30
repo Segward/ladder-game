@@ -6,6 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import edu.ntnu.idat2003.model.player.Figure;
+import edu.ntnu.idat2003.model.player.Player;
+
 public class PlayerTest {
 
   public static Player player;

@@ -3,6 +3,11 @@ package edu.ntnu.idat2003.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+
+import edu.ntnu.idat2003.model.player.Figure;
+import edu.ntnu.idat2003.model.player.Player;
+import edu.ntnu.idat2003.model.tileactions.LadderAction;
+
 import org.junit.jupiter.api.BeforeAll;
 
 public class LadderActionTest {

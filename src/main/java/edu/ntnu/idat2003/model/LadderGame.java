@@ -1,5 +1,10 @@
 package edu.ntnu.idat2003.model;
 
+import edu.ntnu.idat2003.model.board.Board;
+import edu.ntnu.idat2003.model.board.Tile;
+import edu.ntnu.idat2003.model.dice.Dice;
+import edu.ntnu.idat2003.model.player.Player;
+import edu.ntnu.idat2003.model.tileactions.TileAction;
 import edu.ntnu.idat2003.observer.LadderGameObserver;
 import java.util.ArrayList;
 import java.util.HashSet;

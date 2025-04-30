@@ -5,6 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import edu.ntnu.idat2003.model.player.Figure;
+import edu.ntnu.idat2003.model.player.Player;
+import edu.ntnu.idat2003.model.tileactions.ExtraDiceAction;
+
 public class ExtraDiceActionTest {
 
   public static ExtraDiceAction extraDiceAction;

@@ -1,4 +1,7 @@
-package edu.ntnu.idat2003.model;
+package edu.ntnu.idat2003.model.tileactions;
+
+import edu.ntnu.idat2003.model.Vector2;
+import edu.ntnu.idat2003.model.player.Player;
 
 public abstract class TileAction {
   protected Vector2 start;

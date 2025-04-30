@@ -1,11 +1,11 @@
 package edu.ntnu.idat2003.repo;
 
-import edu.ntnu.idat2003.model.Board;
-import edu.ntnu.idat2003.model.ExtraDiceAction;
-import edu.ntnu.idat2003.model.Figure;
-import edu.ntnu.idat2003.model.LadderAction;
-import edu.ntnu.idat2003.model.Tile;
 import edu.ntnu.idat2003.model.Vector2;
+import edu.ntnu.idat2003.model.board.Board;
+import edu.ntnu.idat2003.model.board.Tile;
+import edu.ntnu.idat2003.model.player.Figure;
+import edu.ntnu.idat2003.model.tileactions.ExtraDiceAction;
+import edu.ntnu.idat2003.model.tileactions.LadderAction;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -54,30 +54,30 @@ public class RepoFactory {
     Vector2 start = new Vector2(5, 0);
     Vector2 end = new Vector2(4, 2);
     LadderAction action = new LadderAction(start, end);
-    board1.addLadderAction(action);
+    board1.addAction(end, action);
 
     Vector2 start2 = new Vector2(8, 5);
     Vector2 end2 = new Vector2(6, 3);
     LadderAction action2 = new LadderAction(start2, end2);
-    board1.addLadderAction(action2);
+    board1.addAction(start2, action2);
 
     Vector2 start3 = new Vector2(1, 5);
     Vector2 end3 = new Vector2(3, 4);
     LadderAction action3 = new LadderAction(start3, end3);
-    board1.addLadderAction(action3);
+    board1.addAction(end3, action3);
 
     Vector2 start4 = new Vector2(3, 6);
     Vector2 end4 = new Vector2(2, 8);
     LadderAction action4 = new LadderAction(start4, end4);
-    board1.addLadderAction(action4);
+    board1.addAction(end4, action4);
 
     Vector2 start5 = new Vector2(8, 2);
     ExtraDiceAction action5 = new ExtraDiceAction(start5);
-    board1.addExtraDiceAction(action5);
+    board1.addAction(start5, action5);
 
     Vector2 start6 = new Vector2(4, 3);
     ExtraDiceAction action6 = new ExtraDiceAction(start6);
-    board1.addExtraDiceAction(action6);
+    board1.addAction(start6, action6);
 
     HashSet<Board> boards = new HashSet<>();
     Collections.addAll(boards, board1);

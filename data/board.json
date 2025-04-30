@@ -247,6 +247,21 @@
           "x": 5,
           "y": 2,
           "number": 26
+        },
+        "action": {
+          "type": "LadderAction",
+          "data": {
+            "destination": {
+              "x": 4,
+              "y": 2,
+              "number": 0
+            },
+            "start": {
+              "x": 5,
+              "y": 0,
+              "number": 0
+            }
+          }
         }
       },
       "403": {
@@ -259,6 +274,16 @@
           "x": 3,
           "y": 3,
           "number": 37
+        },
+        "action": {
+          "type": "ExtraDiceAction",
+          "data": {
+            "start": {
+              "x": 4,
+              "y": 3,
+              "number": 0
+            }
+          }
         }
       },
       "404": {
@@ -355,6 +380,16 @@
           "x": 9,
           "y": 2,
           "number": 30
+        },
+        "action": {
+          "type": "ExtraDiceAction",
+          "data": {
+            "start": {
+              "x": 8,
+              "y": 2,
+              "number": 0
+            }
+          }
         }
       },
       "803": {
@@ -391,6 +426,21 @@
           "x": 7,
           "y": 5,
           "number": 53
+        },
+        "action": {
+          "type": "LadderAction",
+          "data": {
+            "destination": {
+              "x": 6,
+              "y": 3,
+              "number": 0
+            },
+            "start": {
+              "x": 8,
+              "y": 5,
+              "number": 0
+            }
+          }
         }
       },
       "806": {
@@ -487,6 +537,21 @@
           "x": 4,
           "y": 4,
           "number": 45
+        },
+        "action": {
+          "type": "LadderAction",
+          "data": {
+            "destination": {
+              "x": 3,
+              "y": 4,
+              "number": 0
+            },
+            "start": {
+              "x": 1,
+              "y": 5,
+              "number": 0
+            }
+          }
         }
       },
       "305": {
@@ -751,6 +816,21 @@
           "x": 3,
           "y": 8,
           "number": 84
+        },
+        "action": {
+          "type": "LadderAction",
+          "data": {
+            "destination": {
+              "x": 2,
+              "y": 8,
+              "number": 0
+            },
+            "start": {
+              "x": 3,
+              "y": 6,
+              "number": 0
+            }
+          }
         }
       },
       "600": {
@@ -1075,72 +1155,6 @@
           "x": 6,
           "y": 8,
           "number": 87
-        }
-      }
-    },
-    "ladderActions": {
-      "306": {
-        "destination": {
-          "x": 2,
-          "y": 8,
-          "number": 0
-        },
-        "start": {
-          "x": 3,
-          "y": 6,
-          "number": 0
-        }
-      },
-      "500": {
-        "destination": {
-          "x": 4,
-          "y": 2,
-          "number": 0
-        },
-        "start": {
-          "x": 5,
-          "y": 0,
-          "number": 0
-        }
-      },
-      "805": {
-        "destination": {
-          "x": 6,
-          "y": 3,
-          "number": 0
-        },
-        "start": {
-          "x": 8,
-          "y": 5,
-          "number": 0
-        }
-      },
-      "105": {
-        "destination": {
-          "x": 3,
-          "y": 4,
-          "number": 0
-        },
-        "start": {
-          "x": 1,
-          "y": 5,
-          "number": 0
-        }
-      }
-    },
-    "extraDiceActions": {
-      "802": {
-        "start": {
-          "x": 8,
-          "y": 2,
-          "number": 0
-        }
-      },
-      "403": {
-        "start": {
-          "x": 4,
-          "y": 3,
-          "number": 0
         }
       }
     }

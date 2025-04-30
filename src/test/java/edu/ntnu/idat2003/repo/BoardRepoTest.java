@@ -2,11 +2,12 @@ package edu.ntnu.idat2003.repo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import edu.ntnu.idat2003.model.Board;
 import java.util.HashSet;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import edu.ntnu.idat2003.model.board.Board;
 
 public class BoardRepoTest {
 

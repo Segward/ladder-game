@@ -1,4 +1,4 @@
-package edu.ntnu.idat2003.model;
+package edu.ntnu.idat2003.model.dice;
 
 public class Dice {
   private int die;

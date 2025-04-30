@@ -1,4 +1,6 @@
-package edu.ntnu.idat2003.model;
+package edu.ntnu.idat2003.model.player;
+
+import edu.ntnu.idat2003.model.Vector2;
 
 public class Player {
   private String name;

@@ -1,7 +1,8 @@
 package edu.ntnu.idat2003.repo;
 
 import com.google.gson.reflect.TypeToken;
-import edu.ntnu.idat2003.model.Player;
+
+import edu.ntnu.idat2003.model.player.Player;
 import edu.ntnu.idat2003.util.GsonUtil;
 import java.lang.reflect.Type;
 import java.util.HashSet;

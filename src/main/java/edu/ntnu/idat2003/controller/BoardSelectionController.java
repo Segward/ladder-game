@@ -1,7 +1,7 @@
 package edu.ntnu.idat2003.controller;
 
 import edu.ntnu.idat2003.component.LadderGame;
-import edu.ntnu.idat2003.model.Board;
+import edu.ntnu.idat2003.model.board.Board;
 import edu.ntnu.idat2003.repo.BoardRepo;
 import edu.ntnu.idat2003.repo.RepoFactory;
 import java.util.HashSet;
