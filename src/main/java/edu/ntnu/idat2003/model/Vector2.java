@@ -3,7 +3,6 @@ package edu.ntnu.idat2003.model;
 public class Vector2 {
   private int x;
   private int y;
-  private int number;
 
   public Vector2(int x, int y) {
     this.x = x;
@@ -29,14 +28,6 @@ public class Vector2 {
 
   public int getY() {
     return y;
-  }
-
-  public void setNumber(int number) {
-    this.number = number;
-  }
-
-  public int getNumber() {
-    return number;
   }
 
   @Override

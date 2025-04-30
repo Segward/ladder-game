@@ -7,10 +7,11 @@ public class Tile {
   private Vector2 position;
   private Vector2 nextPosition;
   private TileAction action;
+  private String text;
 
-  public Tile(Vector2 position, Vector2 nextPosition) {
+  public Tile(Vector2 position, String text) {
     this.position = position;
-    this.nextPosition = nextPosition;
+    this.text = text;
   }
   
   public Vector2 getPosition() {
@@ -27,6 +28,10 @@ public class Tile {
 
   public TileAction getAction() {
     return action;
+  }
+
+  public String getText() {
+    return text;
   }
 
   public void setAction(TileAction action) {

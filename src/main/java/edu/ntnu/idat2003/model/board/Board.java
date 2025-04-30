@@ -1,9 +1,8 @@
 package edu.ntnu.idat2003.model.board;
 
-import java.util.HashMap;
-
 import edu.ntnu.idat2003.model.Vector2;
 import edu.ntnu.idat2003.model.tileactions.TileAction;
+import java.util.HashMap;
 
 public class Board {
   private String name;
@@ -79,5 +78,20 @@ public class Board {
    */
   public String getName() {
     return name;
+  }
+
+  /**
+   * Getter for all actions in bord hashmap.
+   * 
+   * @return HashMap with all actions
+   */
+  public HashMap<Integer, Tile> getActions() {
+    HashMap<Integer, Tile> actions = new HashMap<>();
+    for (Tile tile : tiles.values()) {
+      if (tile.getAction() != null) {
+        actions.put(tile.getPosition().hashCode(), tile);
+      }
+    }
+    return actions;
   }
 }

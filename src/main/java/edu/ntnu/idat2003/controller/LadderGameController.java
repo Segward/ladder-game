@@ -140,17 +140,33 @@ public class LadderGameController implements LadderGameObserver {
     for (Tile tile : tiles.values()) {
       StackPane stackPane = new StackPane();
       Rectangle rectangle = new Rectangle(50, 50);
-      if (tile.getAction() instanceof LadderAction) {
-        rectangle.setFill(Color.LIGHTGREEN);
-      } else if (tile.getAction() instanceof ExtraDiceAction) {
-        rectangle.setFill(Color.LIGHTBLUE);
-      } else {
-        rectangle.setFill(Color.LIGHTGRAY);
-      }
-      int tileNumber = tile.getPosition().getNumber();
-      Text text = new Text(String.valueOf(tileNumber));
+      Text text = new Text(String.valueOf(tile.getText()));
+      stackPane.getChildren().addAll(rectangle, text);
+      rectangle.setFill(Color.LIGHTBLUE);
+      gridPane.add(stackPane, tile.getPosition().getX(), 9 - tile.getPosition().getY());
+    }
+
+    HashMap<Integer, Tile> actions = board.getActions();
+    for (Tile tile : actions.values()) {
+      StackPane stackPane = new StackPane();
+      Rectangle rectangle = new Rectangle(50, 50);
+      Text text = new Text(String.valueOf(tile.getText()));
       stackPane.getChildren().addAll(rectangle, text);
       gridPane.add(stackPane, tile.getPosition().getX(), 9 - tile.getPosition().getY());
+      if (tile.getAction() instanceof LadderAction) {
+        rectangle.setFill(Color.GREEN);
+        LadderAction ladderAction = (LadderAction) tile.getAction();
+        Vector2 destination = ladderAction.getDestination();
+        StackPane destinationPane = new StackPane();
+        Rectangle destinationRectangle = new Rectangle(50, 50);
+        destinationRectangle.setFill(Color.DARKBLUE);
+        Tile destinationTile = board.getTile(destination);
+        Text destinationText = new Text(String.valueOf(destinationTile.getText()));
+        destinationPane.getChildren().addAll(destinationRectangle, destinationText);
+        gridPane.add(destinationPane, destination.getX(), 9 - destination.getY());
+      } else if (tile.getAction() instanceof ExtraDiceAction) {
+        rectangle.setFill(Color.YELLOW);
+      }
     }
 
     HashSet<Player> players = game.getPlayers();

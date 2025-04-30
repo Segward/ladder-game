@@ -5,1157 +5,1058 @@
       "0": {
         "position": {
           "x": 0,
-          "y": 0,
-          "number": 1
+          "y": 0
         },
         "nextPosition": {
           "x": 1,
-          "y": 0,
-          "number": 2
-        }
+          "y": 0
+        },
+        "text": "1"
       },
       "1": {
         "position": {
           "x": 0,
-          "y": 1,
-          "number": 20
+          "y": 1
         },
         "nextPosition": {
           "x": 0,
-          "y": 2,
-          "number": 21
-        }
+          "y": 2
+        },
+        "text": "20"
       },
       "2": {
         "position": {
           "x": 0,
-          "y": 2,
-          "number": 21
+          "y": 2
         },
         "nextPosition": {
           "x": 1,
-          "y": 2,
-          "number": 22
-        }
+          "y": 2
+        },
+        "text": "21"
       },
       "3": {
         "position": {
           "x": 0,
-          "y": 3,
-          "number": 40
+          "y": 3
         },
         "nextPosition": {
           "x": 0,
-          "y": 4,
-          "number": 41
-        }
+          "y": 4
+        },
+        "text": "40"
       },
       "900": {
         "position": {
           "x": 9,
-          "y": 0,
-          "number": 10
+          "y": 0
         },
         "nextPosition": {
           "x": 9,
-          "y": 1,
-          "number": 11
-        }
+          "y": 1
+        },
+        "text": "10"
       },
       "4": {
         "position": {
           "x": 0,
-          "y": 4,
-          "number": 41
+          "y": 4
         },
         "nextPosition": {
           "x": 1,
-          "y": 4,
-          "number": 42
-        }
+          "y": 4
+        },
+        "text": "41"
       },
       "901": {
         "position": {
           "x": 9,
-          "y": 1,
-          "number": 11
+          "y": 1
         },
         "nextPosition": {
           "x": 8,
-          "y": 1,
-          "number": 12
-        }
+          "y": 1
+        },
+        "text": "11"
       },
       "5": {
         "position": {
           "x": 0,
-          "y": 5,
-          "number": 60
+          "y": 5
         },
         "nextPosition": {
           "x": 0,
-          "y": 6,
-          "number": 61
-        }
+          "y": 6
+        },
+        "text": "60"
       },
       "902": {
         "position": {
           "x": 9,
-          "y": 2,
-          "number": 30
+          "y": 2
         },
         "nextPosition": {
           "x": 9,
-          "y": 3,
-          "number": 31
-        }
+          "y": 3
+        },
+        "text": "30"
       },
       "6": {
         "position": {
           "x": 0,
-          "y": 6,
-          "number": 61
+          "y": 6
         },
         "nextPosition": {
           "x": 1,
-          "y": 6,
-          "number": 62
-        }
+          "y": 6
+        },
+        "text": "61"
       },
       "903": {
         "position": {
           "x": 9,
-          "y": 3,
-          "number": 31
+          "y": 3
         },
         "nextPosition": {
           "x": 8,
-          "y": 3,
-          "number": 32
-        }
+          "y": 3
+        },
+        "text": "31"
       },
       "7": {
         "position": {
           "x": 0,
-          "y": 7,
-          "number": 80
+          "y": 7
         },
         "nextPosition": {
           "x": 0,
-          "y": 8,
-          "number": 81
-        }
+          "y": 8
+        },
+        "text": "80"
       },
       "904": {
         "position": {
           "x": 9,
-          "y": 4,
-          "number": 50
+          "y": 4
         },
         "nextPosition": {
           "x": 9,
-          "y": 5,
-          "number": 51
-        }
+          "y": 5
+        },
+        "text": "50"
       },
       "8": {
         "position": {
           "x": 0,
-          "y": 8,
-          "number": 81
+          "y": 8
         },
         "nextPosition": {
           "x": 1,
-          "y": 8,
-          "number": 82
-        }
+          "y": 8
+        },
+        "text": "81"
       },
       "905": {
         "position": {
           "x": 9,
-          "y": 5,
-          "number": 51
+          "y": 5
         },
         "nextPosition": {
           "x": 8,
-          "y": 5,
-          "number": 52
-        }
+          "y": 5
+        },
+        "text": "51"
       },
       "906": {
         "position": {
           "x": 9,
-          "y": 6,
-          "number": 70
+          "y": 6
         },
         "nextPosition": {
           "x": 9,
-          "y": 7,
-          "number": 71
-        }
+          "y": 7
+        },
+        "text": "70"
       },
       "907": {
         "position": {
           "x": 9,
-          "y": 7,
-          "number": 71
+          "y": 7
         },
         "nextPosition": {
           "x": 8,
-          "y": 7,
-          "number": 72
-        }
+          "y": 7
+        },
+        "text": "71"
       },
       "908": {
         "position": {
           "x": 9,
-          "y": 8,
-          "number": 90
-        }
+          "y": 8
+        },
+        "text": "90"
       },
       "400": {
         "position": {
           "x": 4,
-          "y": 0,
-          "number": 5
+          "y": 0
         },
         "nextPosition": {
           "x": 5,
-          "y": 0,
-          "number": 6
-        }
+          "y": 0
+        },
+        "text": "5"
       },
       "401": {
         "position": {
           "x": 4,
-          "y": 1,
-          "number": 16
+          "y": 1
         },
         "nextPosition": {
           "x": 3,
-          "y": 1,
-          "number": 17
-        }
+          "y": 1
+        },
+        "text": "16"
       },
       "402": {
         "position": {
           "x": 4,
-          "y": 2,
-          "number": 25
+          "y": 2
         },
         "nextPosition": {
           "x": 5,
-          "y": 2,
-          "number": 26
+          "y": 2
         },
-        "action": {
-          "type": "LadderAction",
-          "data": {
-            "destination": {
-              "x": 4,
-              "y": 2,
-              "number": 0
-            },
-            "start": {
-              "x": 5,
-              "y": 0,
-              "number": 0
-            }
-          }
-        }
+        "text": "25"
       },
       "403": {
         "position": {
           "x": 4,
-          "y": 3,
-          "number": 36
+          "y": 3
         },
         "nextPosition": {
           "x": 3,
-          "y": 3,
-          "number": 37
+          "y": 3
         },
         "action": {
           "type": "ExtraDiceAction",
           "data": {
             "start": {
               "x": 4,
-              "y": 3,
-              "number": 0
+              "y": 3
             }
           }
-        }
+        },
+        "text": "36"
       },
       "404": {
         "position": {
           "x": 4,
-          "y": 4,
-          "number": 45
+          "y": 4
         },
         "nextPosition": {
           "x": 5,
-          "y": 4,
-          "number": 46
-        }
+          "y": 4
+        },
+        "text": "45"
       },
       "405": {
         "position": {
           "x": 4,
-          "y": 5,
-          "number": 56
+          "y": 5
         },
         "nextPosition": {
           "x": 3,
-          "y": 5,
-          "number": 57
-        }
+          "y": 5
+        },
+        "text": "56"
       },
       "406": {
         "position": {
           "x": 4,
-          "y": 6,
-          "number": 65
+          "y": 6
         },
         "nextPosition": {
           "x": 5,
-          "y": 6,
-          "number": 66
-        }
+          "y": 6
+        },
+        "text": "65"
       },
       "407": {
         "position": {
           "x": 4,
-          "y": 7,
-          "number": 76
+          "y": 7
         },
         "nextPosition": {
           "x": 3,
-          "y": 7,
-          "number": 77
-        }
+          "y": 7
+        },
+        "text": "76"
       },
       "408": {
         "position": {
           "x": 4,
-          "y": 8,
-          "number": 85
+          "y": 8
         },
         "nextPosition": {
           "x": 5,
-          "y": 8,
-          "number": 86
-        }
+          "y": 8
+        },
+        "text": "85"
       },
       "800": {
         "position": {
           "x": 8,
-          "y": 0,
-          "number": 9
+          "y": 0
         },
         "nextPosition": {
           "x": 9,
-          "y": 0,
-          "number": 10
-        }
+          "y": 0
+        },
+        "text": "9"
       },
       "801": {
         "position": {
           "x": 8,
-          "y": 1,
-          "number": 12
+          "y": 1
         },
         "nextPosition": {
           "x": 7,
-          "y": 1,
-          "number": 13
-        }
+          "y": 1
+        },
+        "text": "12"
       },
       "802": {
         "position": {
           "x": 8,
-          "y": 2,
-          "number": 29
+          "y": 2
         },
         "nextPosition": {
           "x": 9,
-          "y": 2,
-          "number": 30
+          "y": 2
         },
         "action": {
           "type": "ExtraDiceAction",
           "data": {
             "start": {
               "x": 8,
-              "y": 2,
-              "number": 0
+              "y": 2
             }
           }
-        }
+        },
+        "text": "29"
       },
       "803": {
         "position": {
           "x": 8,
-          "y": 3,
-          "number": 32
+          "y": 3
         },
         "nextPosition": {
           "x": 7,
-          "y": 3,
-          "number": 33
-        }
+          "y": 3
+        },
+        "text": "32"
       },
       "804": {
         "position": {
           "x": 8,
-          "y": 4,
-          "number": 49
+          "y": 4
         },
         "nextPosition": {
           "x": 9,
-          "y": 4,
-          "number": 50
-        }
+          "y": 4
+        },
+        "text": "49"
       },
       "805": {
         "position": {
           "x": 8,
-          "y": 5,
-          "number": 52
+          "y": 5
         },
         "nextPosition": {
           "x": 7,
-          "y": 5,
-          "number": 53
+          "y": 5
         },
         "action": {
           "type": "LadderAction",
           "data": {
             "destination": {
               "x": 6,
-              "y": 3,
-              "number": 0
+              "y": 3
             },
             "start": {
               "x": 8,
-              "y": 5,
-              "number": 0
+              "y": 5
             }
           }
-        }
+        },
+        "text": "52"
       },
       "806": {
         "position": {
           "x": 8,
-          "y": 6,
-          "number": 69
+          "y": 6
         },
         "nextPosition": {
           "x": 9,
-          "y": 6,
-          "number": 70
-        }
+          "y": 6
+        },
+        "text": "69"
       },
       "807": {
         "position": {
           "x": 8,
-          "y": 7,
-          "number": 72
+          "y": 7
         },
         "nextPosition": {
           "x": 7,
-          "y": 7,
-          "number": 73
-        }
+          "y": 7
+        },
+        "text": "72"
       },
       "808": {
         "position": {
           "x": 8,
-          "y": 8,
-          "number": 89
+          "y": 8
         },
         "nextPosition": {
           "x": 9,
-          "y": 8,
-          "number": 90
-        }
+          "y": 8
+        },
+        "text": "89"
       },
       "300": {
         "position": {
           "x": 3,
-          "y": 0,
-          "number": 4
+          "y": 0
         },
         "nextPosition": {
           "x": 4,
-          "y": 0,
-          "number": 5
-        }
+          "y": 0
+        },
+        "text": "4"
       },
       "301": {
         "position": {
           "x": 3,
-          "y": 1,
-          "number": 17
+          "y": 1
         },
         "nextPosition": {
           "x": 2,
-          "y": 1,
-          "number": 18
-        }
+          "y": 1
+        },
+        "text": "17"
       },
       "302": {
         "position": {
           "x": 3,
-          "y": 2,
-          "number": 24
+          "y": 2
         },
         "nextPosition": {
           "x": 4,
-          "y": 2,
-          "number": 25
-        }
+          "y": 2
+        },
+        "text": "24"
       },
       "303": {
         "position": {
           "x": 3,
-          "y": 3,
-          "number": 37
+          "y": 3
         },
         "nextPosition": {
           "x": 2,
-          "y": 3,
-          "number": 38
-        }
+          "y": 3
+        },
+        "text": "37"
       },
       "304": {
         "position": {
           "x": 3,
-          "y": 4,
-          "number": 44
+          "y": 4
         },
         "nextPosition": {
           "x": 4,
-          "y": 4,
-          "number": 45
+          "y": 4
         },
-        "action": {
-          "type": "LadderAction",
-          "data": {
-            "destination": {
-              "x": 3,
-              "y": 4,
-              "number": 0
-            },
-            "start": {
-              "x": 1,
-              "y": 5,
-              "number": 0
-            }
-          }
-        }
+        "text": "44"
       },
       "305": {
         "position": {
           "x": 3,
-          "y": 5,
-          "number": 57
+          "y": 5
         },
         "nextPosition": {
           "x": 2,
-          "y": 5,
-          "number": 58
-        }
+          "y": 5
+        },
+        "text": "57"
       },
       "306": {
         "position": {
           "x": 3,
-          "y": 6,
-          "number": 64
+          "y": 6
         },
         "nextPosition": {
           "x": 4,
-          "y": 6,
-          "number": 65
-        }
-      },
-      "307": {
-        "position": {
-          "x": 3,
-          "y": 7,
-          "number": 77
-        },
-        "nextPosition": {
-          "x": 2,
-          "y": 7,
-          "number": 78
-        }
-      },
-      "308": {
-        "position": {
-          "x": 3,
-          "y": 8,
-          "number": 84
-        },
-        "nextPosition": {
-          "x": 4,
-          "y": 8,
-          "number": 85
-        }
-      },
-      "700": {
-        "position": {
-          "x": 7,
-          "y": 0,
-          "number": 8
-        },
-        "nextPosition": {
-          "x": 8,
-          "y": 0,
-          "number": 9
-        }
-      },
-      "701": {
-        "position": {
-          "x": 7,
-          "y": 1,
-          "number": 13
-        },
-        "nextPosition": {
-          "x": 6,
-          "y": 1,
-          "number": 14
-        }
-      },
-      "702": {
-        "position": {
-          "x": 7,
-          "y": 2,
-          "number": 28
-        },
-        "nextPosition": {
-          "x": 8,
-          "y": 2,
-          "number": 29
-        }
-      },
-      "703": {
-        "position": {
-          "x": 7,
-          "y": 3,
-          "number": 33
-        },
-        "nextPosition": {
-          "x": 6,
-          "y": 3,
-          "number": 34
-        }
-      },
-      "704": {
-        "position": {
-          "x": 7,
-          "y": 4,
-          "number": 48
-        },
-        "nextPosition": {
-          "x": 8,
-          "y": 4,
-          "number": 49
-        }
-      },
-      "705": {
-        "position": {
-          "x": 7,
-          "y": 5,
-          "number": 53
-        },
-        "nextPosition": {
-          "x": 6,
-          "y": 5,
-          "number": 54
-        }
-      },
-      "706": {
-        "position": {
-          "x": 7,
-          "y": 6,
-          "number": 68
-        },
-        "nextPosition": {
-          "x": 8,
-          "y": 6,
-          "number": 69
-        }
-      },
-      "707": {
-        "position": {
-          "x": 7,
-          "y": 7,
-          "number": 73
-        },
-        "nextPosition": {
-          "x": 6,
-          "y": 7,
-          "number": 74
-        }
-      },
-      "708": {
-        "position": {
-          "x": 7,
-          "y": 8,
-          "number": 88
-        },
-        "nextPosition": {
-          "x": 8,
-          "y": 8,
-          "number": 89
-        }
-      },
-      "200": {
-        "position": {
-          "x": 2,
-          "y": 0,
-          "number": 3
-        },
-        "nextPosition": {
-          "x": 3,
-          "y": 0,
-          "number": 4
-        }
-      },
-      "201": {
-        "position": {
-          "x": 2,
-          "y": 1,
-          "number": 18
-        },
-        "nextPosition": {
-          "x": 1,
-          "y": 1,
-          "number": 19
-        }
-      },
-      "202": {
-        "position": {
-          "x": 2,
-          "y": 2,
-          "number": 23
-        },
-        "nextPosition": {
-          "x": 3,
-          "y": 2,
-          "number": 24
-        }
-      },
-      "203": {
-        "position": {
-          "x": 2,
-          "y": 3,
-          "number": 38
-        },
-        "nextPosition": {
-          "x": 1,
-          "y": 3,
-          "number": 39
-        }
-      },
-      "204": {
-        "position": {
-          "x": 2,
-          "y": 4,
-          "number": 43
-        },
-        "nextPosition": {
-          "x": 3,
-          "y": 4,
-          "number": 44
-        }
-      },
-      "205": {
-        "position": {
-          "x": 2,
-          "y": 5,
-          "number": 58
-        },
-        "nextPosition": {
-          "x": 1,
-          "y": 5,
-          "number": 59
-        }
-      },
-      "206": {
-        "position": {
-          "x": 2,
-          "y": 6,
-          "number": 63
-        },
-        "nextPosition": {
-          "x": 3,
-          "y": 6,
-          "number": 64
-        }
-      },
-      "207": {
-        "position": {
-          "x": 2,
-          "y": 7,
-          "number": 78
-        },
-        "nextPosition": {
-          "x": 1,
-          "y": 7,
-          "number": 79
-        }
-      },
-      "208": {
-        "position": {
-          "x": 2,
-          "y": 8,
-          "number": 83
-        },
-        "nextPosition": {
-          "x": 3,
-          "y": 8,
-          "number": 84
+          "y": 6
         },
         "action": {
           "type": "LadderAction",
           "data": {
             "destination": {
               "x": 2,
-              "y": 8,
-              "number": 0
+              "y": 8
             },
             "start": {
               "x": 3,
-              "y": 6,
-              "number": 0
+              "y": 6
             }
           }
-        }
+        },
+        "text": "64"
+      },
+      "307": {
+        "position": {
+          "x": 3,
+          "y": 7
+        },
+        "nextPosition": {
+          "x": 2,
+          "y": 7
+        },
+        "text": "77"
+      },
+      "308": {
+        "position": {
+          "x": 3,
+          "y": 8
+        },
+        "nextPosition": {
+          "x": 4,
+          "y": 8
+        },
+        "text": "84"
+      },
+      "700": {
+        "position": {
+          "x": 7,
+          "y": 0
+        },
+        "nextPosition": {
+          "x": 8,
+          "y": 0
+        },
+        "text": "8"
+      },
+      "701": {
+        "position": {
+          "x": 7,
+          "y": 1
+        },
+        "nextPosition": {
+          "x": 6,
+          "y": 1
+        },
+        "text": "13"
+      },
+      "702": {
+        "position": {
+          "x": 7,
+          "y": 2
+        },
+        "nextPosition": {
+          "x": 8,
+          "y": 2
+        },
+        "text": "28"
+      },
+      "703": {
+        "position": {
+          "x": 7,
+          "y": 3
+        },
+        "nextPosition": {
+          "x": 6,
+          "y": 3
+        },
+        "text": "33"
+      },
+      "704": {
+        "position": {
+          "x": 7,
+          "y": 4
+        },
+        "nextPosition": {
+          "x": 8,
+          "y": 4
+        },
+        "text": "48"
+      },
+      "705": {
+        "position": {
+          "x": 7,
+          "y": 5
+        },
+        "nextPosition": {
+          "x": 6,
+          "y": 5
+        },
+        "text": "53"
+      },
+      "706": {
+        "position": {
+          "x": 7,
+          "y": 6
+        },
+        "nextPosition": {
+          "x": 8,
+          "y": 6
+        },
+        "text": "68"
+      },
+      "707": {
+        "position": {
+          "x": 7,
+          "y": 7
+        },
+        "nextPosition": {
+          "x": 6,
+          "y": 7
+        },
+        "text": "73"
+      },
+      "708": {
+        "position": {
+          "x": 7,
+          "y": 8
+        },
+        "nextPosition": {
+          "x": 8,
+          "y": 8
+        },
+        "text": "88"
+      },
+      "200": {
+        "position": {
+          "x": 2,
+          "y": 0
+        },
+        "nextPosition": {
+          "x": 3,
+          "y": 0
+        },
+        "text": "3"
+      },
+      "201": {
+        "position": {
+          "x": 2,
+          "y": 1
+        },
+        "nextPosition": {
+          "x": 1,
+          "y": 1
+        },
+        "text": "18"
+      },
+      "202": {
+        "position": {
+          "x": 2,
+          "y": 2
+        },
+        "nextPosition": {
+          "x": 3,
+          "y": 2
+        },
+        "text": "23"
+      },
+      "203": {
+        "position": {
+          "x": 2,
+          "y": 3
+        },
+        "nextPosition": {
+          "x": 1,
+          "y": 3
+        },
+        "text": "38"
+      },
+      "204": {
+        "position": {
+          "x": 2,
+          "y": 4
+        },
+        "nextPosition": {
+          "x": 3,
+          "y": 4
+        },
+        "text": "43"
+      },
+      "205": {
+        "position": {
+          "x": 2,
+          "y": 5
+        },
+        "nextPosition": {
+          "x": 1,
+          "y": 5
+        },
+        "text": "58"
+      },
+      "206": {
+        "position": {
+          "x": 2,
+          "y": 6
+        },
+        "nextPosition": {
+          "x": 3,
+          "y": 6
+        },
+        "text": "63"
+      },
+      "207": {
+        "position": {
+          "x": 2,
+          "y": 7
+        },
+        "nextPosition": {
+          "x": 1,
+          "y": 7
+        },
+        "text": "78"
+      },
+      "208": {
+        "position": {
+          "x": 2,
+          "y": 8
+        },
+        "nextPosition": {
+          "x": 3,
+          "y": 8
+        },
+        "text": "83"
       },
       "600": {
         "position": {
           "x": 6,
-          "y": 0,
-          "number": 7
+          "y": 0
         },
         "nextPosition": {
           "x": 7,
-          "y": 0,
-          "number": 8
-        }
+          "y": 0
+        },
+        "text": "7"
       },
       "601": {
         "position": {
           "x": 6,
-          "y": 1,
-          "number": 14
+          "y": 1
         },
         "nextPosition": {
           "x": 5,
-          "y": 1,
-          "number": 15
-        }
+          "y": 1
+        },
+        "text": "14"
       },
       "602": {
         "position": {
           "x": 6,
-          "y": 2,
-          "number": 27
+          "y": 2
         },
         "nextPosition": {
           "x": 7,
-          "y": 2,
-          "number": 28
-        }
+          "y": 2
+        },
+        "text": "27"
       },
       "603": {
         "position": {
           "x": 6,
-          "y": 3,
-          "number": 34
+          "y": 3
         },
         "nextPosition": {
           "x": 5,
-          "y": 3,
-          "number": 35
-        }
+          "y": 3
+        },
+        "text": "34"
       },
       "604": {
         "position": {
           "x": 6,
-          "y": 4,
-          "number": 47
+          "y": 4
         },
         "nextPosition": {
           "x": 7,
-          "y": 4,
-          "number": 48
-        }
+          "y": 4
+        },
+        "text": "47"
       },
       "605": {
         "position": {
           "x": 6,
-          "y": 5,
-          "number": 54
+          "y": 5
         },
         "nextPosition": {
           "x": 5,
-          "y": 5,
-          "number": 55
-        }
+          "y": 5
+        },
+        "text": "54"
       },
       "606": {
         "position": {
           "x": 6,
-          "y": 6,
-          "number": 67
+          "y": 6
         },
         "nextPosition": {
           "x": 7,
-          "y": 6,
-          "number": 68
-        }
+          "y": 6
+        },
+        "text": "67"
       },
       "607": {
         "position": {
           "x": 6,
-          "y": 7,
-          "number": 74
+          "y": 7
         },
         "nextPosition": {
           "x": 5,
-          "y": 7,
-          "number": 75
-        }
+          "y": 7
+        },
+        "text": "74"
       },
       "608": {
         "position": {
           "x": 6,
-          "y": 8,
-          "number": 87
+          "y": 8
         },
         "nextPosition": {
           "x": 7,
-          "y": 8,
-          "number": 88
-        }
+          "y": 8
+        },
+        "text": "87"
       },
       "100": {
         "position": {
           "x": 1,
-          "y": 0,
-          "number": 2
+          "y": 0
         },
         "nextPosition": {
           "x": 2,
-          "y": 0,
-          "number": 3
-        }
+          "y": 0
+        },
+        "text": "2"
       },
       "101": {
         "position": {
           "x": 1,
-          "y": 1,
-          "number": 19
+          "y": 1
         },
         "nextPosition": {
           "x": 0,
-          "y": 1,
-          "number": 20
-        }
+          "y": 1
+        },
+        "text": "19"
       },
       "102": {
         "position": {
           "x": 1,
-          "y": 2,
-          "number": 22
+          "y": 2
         },
         "nextPosition": {
           "x": 2,
-          "y": 2,
-          "number": 23
-        }
+          "y": 2
+        },
+        "text": "22"
       },
       "103": {
         "position": {
           "x": 1,
-          "y": 3,
-          "number": 39
+          "y": 3
         },
         "nextPosition": {
           "x": 0,
-          "y": 3,
-          "number": 40
-        }
+          "y": 3
+        },
+        "text": "39"
       },
       "104": {
         "position": {
           "x": 1,
-          "y": 4,
-          "number": 42
+          "y": 4
         },
         "nextPosition": {
           "x": 2,
-          "y": 4,
-          "number": 43
-        }
+          "y": 4
+        },
+        "text": "42"
       },
       "105": {
         "position": {
           "x": 1,
-          "y": 5,
-          "number": 59
+          "y": 5
         },
         "nextPosition": {
           "x": 0,
-          "y": 5,
-          "number": 60
-        }
+          "y": 5
+        },
+        "action": {
+          "type": "LadderAction",
+          "data": {
+            "destination": {
+              "x": 3,
+              "y": 4
+            },
+            "start": {
+              "x": 1,
+              "y": 5
+            }
+          }
+        },
+        "text": "59"
       },
       "106": {
         "position": {
           "x": 1,
-          "y": 6,
-          "number": 62
+          "y": 6
         },
         "nextPosition": {
           "x": 2,
-          "y": 6,
-          "number": 63
-        }
+          "y": 6
+        },
+        "text": "62"
       },
       "107": {
         "position": {
           "x": 1,
-          "y": 7,
-          "number": 79
+          "y": 7
         },
         "nextPosition": {
           "x": 0,
-          "y": 7,
-          "number": 80
-        }
+          "y": 7
+        },
+        "text": "79"
       },
       "108": {
         "position": {
           "x": 1,
-          "y": 8,
-          "number": 82
+          "y": 8
         },
         "nextPosition": {
           "x": 2,
-          "y": 8,
-          "number": 83
-        }
+          "y": 8
+        },
+        "text": "82"
       },
       "500": {
         "position": {
           "x": 5,
-          "y": 0,
-          "number": 6
+          "y": 0
         },
         "nextPosition": {
           "x": 6,
-          "y": 0,
-          "number": 7
-        }
+          "y": 0
+        },
+        "action": {
+          "type": "LadderAction",
+          "data": {
+            "destination": {
+              "x": 4,
+              "y": 2
+            },
+            "start": {
+              "x": 5,
+              "y": 0
+            }
+          }
+        },
+        "text": "6"
       },
       "501": {
         "position": {
           "x": 5,
-          "y": 1,
-          "number": 15
+          "y": 1
         },
         "nextPosition": {
           "x": 4,
-          "y": 1,
-          "number": 16
-        }
+          "y": 1
+        },
+        "text": "15"
       },
       "502": {
         "position": {
           "x": 5,
-          "y": 2,
-          "number": 26
+          "y": 2
         },
         "nextPosition": {
           "x": 6,
-          "y": 2,
-          "number": 27
-        }
+          "y": 2
+        },
+        "text": "26"
       },
       "503": {
         "position": {
           "x": 5,
-          "y": 3,
-          "number": 35
+          "y": 3
         },
         "nextPosition": {
           "x": 4,
-          "y": 3,
-          "number": 36
-        }
+          "y": 3
+        },
+        "text": "35"
       },
       "504": {
         "position": {
           "x": 5,
-          "y": 4,
-          "number": 46
+          "y": 4
         },
         "nextPosition": {
           "x": 6,
-          "y": 4,
-          "number": 47
-        }
+          "y": 4
+        },
+        "text": "46"
       },
       "505": {
         "position": {
           "x": 5,
-          "y": 5,
-          "number": 55
+          "y": 5
         },
         "nextPosition": {
           "x": 4,
-          "y": 5,
-          "number": 56
-        }
+          "y": 5
+        },
+        "text": "55"
       },
       "506": {
         "position": {
           "x": 5,
-          "y": 6,
-          "number": 66
+          "y": 6
         },
         "nextPosition": {
           "x": 6,
-          "y": 6,
-          "number": 67
-        }
+          "y": 6
+        },
+        "text": "66"
       },
       "507": {
         "position": {
           "x": 5,
-          "y": 7,
-          "number": 75
+          "y": 7
         },
         "nextPosition": {
           "x": 4,
-          "y": 7,
-          "number": 76
-        }
+          "y": 7
+        },
+        "text": "75"
       },
       "508": {
         "position": {
           "x": 5,
-          "y": 8,
-          "number": 86
+          "y": 8
         },
         "nextPosition": {
           "x": 6,
-          "y": 8,
-          "number": 87
-        }
+          "y": 8
+        },
+        "text": "86"
       }
     }
   }

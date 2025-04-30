@@ -50,7 +50,10 @@ public class LadderGame {
     Vector2 nextPosition = tile.getNextPosition();
     currentPlayer.setPosition(nextPosition);
 
-    if (currentPlayer.getPosition().getNumber() >= 90) {
+    tile = board.getTile(nextPosition);
+    String text = tile.getText();
+
+    if (text == "90") {
       gameOver = true;
       observer.onPlayerWon(currentPlayer);
       return;
