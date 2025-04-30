@@ -32,9 +32,14 @@ public class Player {
   public boolean hasExtraDice() {
     return extraDice;
   }
-  
+
   public void setExtraDice(boolean extraDice) {
     this.extraDice = extraDice;
+  }
+
+  @Override
+  public String toString() {
+    return String.format("%s,%s", name, figure.getName());
   }
 
   @Override

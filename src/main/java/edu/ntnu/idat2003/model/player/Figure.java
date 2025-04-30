@@ -3,13 +3,24 @@ package edu.ntnu.idat2003.model.player;
 public class Figure {
 
   private String name;
+  private String path;
 
-  public Figure(String name) {
+  public Figure(String name, String path) {
     this.name = name;
+    this.path = path;
   }
 
   public String getName() {
     return name;
+  }
+
+  public String getPath() {
+    return path;
+  }
+
+  @Override
+  public String toString() {
+    return String.format("%s,%s", name, path);
   }
 
   @Override

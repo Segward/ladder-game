@@ -57,6 +57,8 @@ public class LadderGameController implements LadderGameObserver {
   public void init() {
     HashSet<Player> players = PlayerRepo.getPlayers();
     game = new LadderGame(players, board, this);
+    game.init();
+
     roll.setOnAction(e -> game.rollDice());
     stop.setOnAction(e -> stop());
     updateBoard();

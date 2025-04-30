@@ -11,13 +11,15 @@ import java.util.HashSet;
 
 public class RepoFactory {
 
+
+
   public static void makeFigures() {
     HashSet<Figure> figures = new HashSet<>();
-    figures.add(new Figure("Knight"));
-    figures.add(new Figure("Rook"));
-    figures.add(new Figure("Queen"));
-    figures.add(new Figure("King"));
-    figures.add(new Figure("Pawn"));
+    figures.add(new Figure("Knight", "/figure/knight.png"));
+    figures.add(new Figure("Rook", "/figure/rook.png"));
+    figures.add(new Figure("Queen", "/figure/queen.png"));
+    figures.add(new Figure("King", "/figure/king.png"));
+    figures.add(new Figure("Pawn", "/figure/pawn.png"));
     FigureRepo.saveFigures(figures);
   }
 

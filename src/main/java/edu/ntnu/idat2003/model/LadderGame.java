@@ -5,7 +5,6 @@ import edu.ntnu.idat2003.model.board.Tile;
 import edu.ntnu.idat2003.model.dice.Dice;
 import edu.ntnu.idat2003.model.player.Player;
 import edu.ntnu.idat2003.model.tileactions.TileAction;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -27,6 +26,13 @@ public class LadderGame {
     this.dice = new Dice(1);
     this.gameOver = false;
     this.isPlayerMoving = false;
+  }
+
+  public void init() {
+    for (Player player : players) {
+      Vector2 startPosition = new Vector2(0, 0);
+      player.setPosition(startPosition);
+    }
   }
 
   public void rollDice() {

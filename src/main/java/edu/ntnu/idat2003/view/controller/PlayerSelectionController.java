@@ -6,10 +6,10 @@ import javafx.event.ActionEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.scene.layout.FlowPane;
-import edu.ntnu.idat2003.model.player.Player;
 import javafx.geometry.Orientation;
 import java.util.HashSet;
 
+import edu.ntnu.idat2003.model.player.Player;
 import edu.ntnu.idat2003.repo.PlayerRepo;
 import edu.ntnu.idat2003.view.component.BoardSelection;
 import edu.ntnu.idat2003.view.component.FigureSelection;
