@@ -56,7 +56,7 @@ public class FigureSelectionController {
   private FlowPane createFigurePane(Figure figure) {
     FlowPane figurePane = new FlowPane();
     figurePane.setOrientation(Orientation.HORIZONTAL);
-    Text name = new Text(figure.getColor());
+    //Text name = new Text(figure.getColor());
 
     Image buttonImage = new Image
       (getClass().getResource("/figure/" + figure.getColor()+".png").toExternalForm());
@@ -64,11 +64,11 @@ public class FigureSelectionController {
     buttonView.setFitHeight(50);
     buttonView.setPreserveRatio(true);
 
-    Button select = new Button("Select");
+    Button select = new Button("Select " + figure.getColor());
     select.setGraphic(buttonView);
 
     select.setOnAction(e -> onSelectClick(e, figure));
-    figurePane.getChildren().addAll(name, select);
+    figurePane.getChildren().addAll(select);
     return figurePane;
   }
 
