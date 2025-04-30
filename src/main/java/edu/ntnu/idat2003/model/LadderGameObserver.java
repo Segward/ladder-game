@@ -1,4 +1,4 @@
-package edu.ntnu.idat2003.observer;
+package edu.ntnu.idat2003.model;
 
 import edu.ntnu.idat2003.model.player.Player;
 import edu.ntnu.idat2003.model.tileactions.TileAction;

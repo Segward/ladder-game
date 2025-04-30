@@ -2,6 +2,7 @@ package edu.ntnu.idat2003.controller;
 
 import edu.ntnu.idat2003.component.MainFrame;
 import edu.ntnu.idat2003.model.LadderGame;
+import edu.ntnu.idat2003.model.LadderGameObserver;
 import edu.ntnu.idat2003.model.Vector2;
 import edu.ntnu.idat2003.model.board.Board;
 import edu.ntnu.idat2003.model.board.Tile;
@@ -9,7 +10,6 @@ import edu.ntnu.idat2003.model.player.Player;
 import edu.ntnu.idat2003.model.tileactions.ExtraDiceAction;
 import edu.ntnu.idat2003.model.tileactions.LadderAction;
 import edu.ntnu.idat2003.model.tileactions.TileAction;
-import edu.ntnu.idat2003.observer.LadderGameObserver;
 import edu.ntnu.idat2003.repo.PlayerRepo;
 import java.io.File;
 import java.util.ArrayList;

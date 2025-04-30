@@ -2,9 +2,10 @@ package edu.ntnu.idat2003.util;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import edu.ntnu.idat2003.adapter.TileActionAdapter;
+
 import edu.ntnu.idat2003.exception.DataCreateException;
 import edu.ntnu.idat2003.exception.DataReadException;
+import edu.ntnu.idat2003.model.board.TileActionAdapter;
 import edu.ntnu.idat2003.model.tileactions.TileAction;
 
 import java.io.File;

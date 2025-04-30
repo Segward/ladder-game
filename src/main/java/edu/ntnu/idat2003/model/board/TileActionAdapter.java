@@ -1,4 +1,4 @@
-package edu.ntnu.idat2003.adapter;
+package edu.ntnu.idat2003.model.board;
 
 import java.lang.reflect.Type;
 
