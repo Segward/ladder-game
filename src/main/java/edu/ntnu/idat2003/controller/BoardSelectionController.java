@@ -41,10 +41,10 @@ public class BoardSelectionController {
   private FlowPane createBoardPane(Board board) {
     FlowPane boardPane = new FlowPane();
     boardPane.setOrientation(Orientation.HORIZONTAL);
-    Text boardName = new Text(board.getName());
-    Button select = new Button("Select");
+    //Text boardName = new Text(board.getName());
+    Button select = new Button("Select " + board.getName());
     select.setOnAction(e -> onSelectClick(e, board));
-    boardPane.getChildren().addAll(boardName, select);
+    boardPane.getChildren().addAll(select);
     return boardPane;
   }
 
