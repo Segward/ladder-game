@@ -1,11 +1,12 @@
 package edu.ntnu.idat2003.repo;
 
+import edu.ntnu.idat2003.model.Board;
 import edu.ntnu.idat2003.model.Vector2;
-import edu.ntnu.idat2003.model.board.Board;
-import edu.ntnu.idat2003.model.board.Tile;
 import edu.ntnu.idat2003.model.player.Figure;
-import edu.ntnu.idat2003.model.tileactions.ExtraDiceAction;
-import edu.ntnu.idat2003.model.tileactions.LadderAction;
+import edu.ntnu.idat2003.model.tile.Tile;
+import edu.ntnu.idat2003.model.tile.tileactions.ExtraDiceAction;
+import edu.ntnu.idat2003.model.tile.tileactions.LadderAction;
+
 import java.util.Collections;
 import java.util.HashSet;
 

@@ -1,4 +1,4 @@
-package edu.ntnu.idat2003.model.board;
+package edu.ntnu.idat2003.model.tile;
 
 import java.lang.reflect.Type;
 
@@ -11,9 +11,9 @@ import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
-import edu.ntnu.idat2003.model.tileactions.ExtraDiceAction;
-import edu.ntnu.idat2003.model.tileactions.LadderAction;
-import edu.ntnu.idat2003.model.tileactions.TileAction;
+import edu.ntnu.idat2003.model.tile.tileactions.ExtraDiceAction;
+import edu.ntnu.idat2003.model.tile.tileactions.LadderAction;
+import edu.ntnu.idat2003.model.tile.tileactions.TileAction;
 
 public class TileActionAdapter implements JsonSerializer<TileAction>, JsonDeserializer<TileAction> {
 

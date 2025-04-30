@@ -1,4 +1,4 @@
-package edu.ntnu.idat2003.model.tileactions;
+package edu.ntnu.idat2003.model.tile.tileactions;
 
 import edu.ntnu.idat2003.model.Vector2;
 import edu.ntnu.idat2003.model.player.Player;

@@ -1,6 +1,6 @@
 package edu.ntnu.idat2003.view.controller;
 
-import edu.ntnu.idat2003.model.board.Board;
+import edu.ntnu.idat2003.model.Board;
 import edu.ntnu.idat2003.repo.BoardRepo;
 import edu.ntnu.idat2003.repo.RepoFactory;
 import edu.ntnu.idat2003.view.component.LadderGame;

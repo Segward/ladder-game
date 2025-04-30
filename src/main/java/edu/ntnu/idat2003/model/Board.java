@@ -1,7 +1,8 @@
-package edu.ntnu.idat2003.model.board;
+package edu.ntnu.idat2003.model;
 
-import edu.ntnu.idat2003.model.Vector2;
-import edu.ntnu.idat2003.model.tileactions.TileAction;
+import edu.ntnu.idat2003.model.tile.Tile;
+import edu.ntnu.idat2003.model.tile.tileactions.TileAction;
+
 import java.util.HashMap;
 
 public class Board {

@@ -1,14 +1,14 @@
 package edu.ntnu.idat2003.view.controller;
 
+import edu.ntnu.idat2003.model.Board;
 import edu.ntnu.idat2003.model.LadderGame;
 import edu.ntnu.idat2003.model.LadderGameObserver;
 import edu.ntnu.idat2003.model.Vector2;
-import edu.ntnu.idat2003.model.board.Board;
-import edu.ntnu.idat2003.model.board.Tile;
 import edu.ntnu.idat2003.model.player.Player;
-import edu.ntnu.idat2003.model.tileactions.ExtraDiceAction;
-import edu.ntnu.idat2003.model.tileactions.LadderAction;
-import edu.ntnu.idat2003.model.tileactions.TileAction;
+import edu.ntnu.idat2003.model.tile.Tile;
+import edu.ntnu.idat2003.model.tile.tileactions.ExtraDiceAction;
+import edu.ntnu.idat2003.model.tile.tileactions.LadderAction;
+import edu.ntnu.idat2003.model.tile.tileactions.TileAction;
 import edu.ntnu.idat2003.repo.PlayerRepo;
 import edu.ntnu.idat2003.view.component.MainFrame;
 
