@@ -6,10 +6,13 @@ import javafx.event.ActionEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import edu.ntnu.idat2003.component.PlayerSelection;
 import edu.ntnu.idat2003.component.BoardSelection;
 import edu.ntnu.idat2003.model.Player;
 import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
+
 import java.util.HashSet;
 import edu.ntnu.idat2003.component.FigureSelection;
 import edu.ntnu.idat2003.repo.PlayerRepo;
@@ -17,11 +20,11 @@ import edu.ntnu.idat2003.repo.PlayerRepo;
 public class PlayerSelectionController {
 
   private Pane root;
-  private FlowPane players;
+  private GridPane players;
   private Button add;
   private Button resume;  
   
-  public PlayerSelectionController(Pane root, FlowPane players, Button add, Button resume) {
+  public PlayerSelectionController(Pane root, GridPane players, Button add, Button resume) {
     this.root = root;
     this.players = players;
     this.add = add;
@@ -49,8 +52,12 @@ public class PlayerSelectionController {
 
   private FlowPane createPlayerPane(Player player) {
     FlowPane playerPane = new FlowPane();
-    playerPane.setOrientation(Orientation.HORIZONTAL);
+    playerPane.setPrefWidth(50);
+    playerPane.setPrefHeight(50);
+    playerPane.setOrientation(Orientation.VERTICAL);
+
     Text name = new Text(player.getName());
+    name.setId("playerSelectText");
     Button delete = new Button("Delete");
     delete.setOnAction(e -> onDeleteClick(e, player));
     playerPane.getChildren().addAll(name, delete);
@@ -59,9 +66,10 @@ public class PlayerSelectionController {
 
   private void updatePlayers() {
     HashSet<Player> playerSet = PlayerRepo.getPlayers();
+    int place = 0;
     for (Player player : playerSet) {
       FlowPane playerPane = createPlayerPane(player);
-      players.getChildren().add(playerPane);
+      players.add(playerPane, place++, 1);
     }
   }
 }
