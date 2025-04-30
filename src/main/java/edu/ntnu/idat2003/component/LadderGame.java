@@ -49,7 +49,7 @@ public class LadderGame {
     gridPane.setHgap(5);
     boardPane.getChildren().add(gridPane);
 
-    Text gameTitle = new Text("Hello, World!");
+    Text gameTitle = new Text("Click on the die to roll!");
     sidePane.getChildren().add(gameTitle);
 
     Image diceImage = new Image(LadderGame.class.getResource("/dice/default.png").toExternalForm());
