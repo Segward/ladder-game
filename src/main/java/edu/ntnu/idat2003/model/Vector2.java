@@ -3,6 +3,7 @@ package edu.ntnu.idat2003.model;
 public class Vector2 {
   private int x;
   private int y;
+  private int number;
 
   public Vector2(int x, int y) {
     this.x = x;
@@ -30,12 +31,12 @@ public class Vector2 {
     return y;
   }
 
+  public void setNumber(int number) {
+    this.number = number;
+  }
+
   public int getNumber() {
-    if (y % 2 == 1) {
-      return y * 10 + (9 - x) + 1;
-    } else {
-      return y * 10 + x + 1;
-    }
+    return number;
   }
 
   @Override
@@ -54,7 +55,7 @@ public class Vector2 {
 
   @Override
   public int hashCode() {
-    int result = getNumber();
-    return result;
+    int hash = x * 100 + y;
+    return hash;
   }
 }

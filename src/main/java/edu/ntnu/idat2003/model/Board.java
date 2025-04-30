@@ -19,6 +19,12 @@ public class Board {
     this.extraDiceActions = new HashMap<>();
   }
 
+  /**
+   * Getter for spesific action in bord hashmap.
+   *
+   * @param position represents the position of the tile
+   * @return action object
+   */
   public TileAction getAction(Vector2 position) {
     int hash = position.hashCode();
     if (ladderActions.containsKey(hash)) {
