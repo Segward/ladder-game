@@ -2,20 +2,20 @@ package edu.ntnu.idat2003.component;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 public class TicTacToe {
-    public static void inti(Pane root) {
+    public static void init(Pane root) {
         root.getChildren().clear();
 
         HBox menuPane = new HBox();
         menuPane.prefWidthProperty().bind(root.widthProperty());
         menuPane.prefHeightProperty().bind(root.heightProperty());
         menuPane.setAlignment(Pos.CENTER);
-        menuPane.setStyle("-fx-background-color: gray;");
 
         StackPane playerOnePanal = new StackPane();
         playerOnePanal.prefWidthProperty().bind(root.widthProperty().multiply(0.2));
@@ -28,14 +28,18 @@ public class TicTacToe {
         StackPane playingPane = new StackPane();
         playingPane.prefWidthProperty().bind(root.widthProperty().multiply(0.6));
         playingPane.prefHeightProperty().bind(root.heightProperty());
+        playingPane.setStyle("-fx-background-color: gray;");
 
         GridPane playingBord = new GridPane();
         playingBord.setPadding(new Insets(5, 5, 5, 5));
         playingBord.setVgap(5);
         playingBord.setHgap(5);
 
+        Button tile;
+
         playingPane.getChildren().addAll(playingBord);
         menuPane.getChildren().addAll(playerOnePanal, playingPane, playerTwoPanal);
+        root.getChildren().addAll(menuPane);
 
     }
 }

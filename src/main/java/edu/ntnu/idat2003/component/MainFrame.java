@@ -29,7 +29,10 @@ public class MainFrame {
     Button exitAppButton = new Button("Exit");
     flowPane.getChildren().add(exitAppButton);
 
-    MainFrameController controller = new MainFrameController(root, startGameButton, exitAppButton);
+    Button TicTacToe = new Button("TicTacToe");
+    flowPane.getChildren().add(TicTacToe);
+
+    MainFrameController controller = new MainFrameController(root, startGameButton, exitAppButton, TicTacToe);
     controller.init();
   }
 }

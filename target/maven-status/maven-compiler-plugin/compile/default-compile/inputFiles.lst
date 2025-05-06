@@ -11,6 +11,7 @@ C:\Users\trymo\Documents\Java\sem2\ladder-game\src\main\java\edu\ntnu\idat2003\c
 C:\Users\trymo\Documents\Java\sem2\ladder-game\src\main\java\edu\ntnu\idat2003\controller\LadderGameController.java
 C:\Users\trymo\Documents\Java\sem2\ladder-game\src\main\java\edu\ntnu\idat2003\controller\MainFrameController.java
 C:\Users\trymo\Documents\Java\sem2\ladder-game\src\main\java\edu\ntnu\idat2003\controller\PlayerSelectionController.java
+C:\Users\trymo\Documents\Java\sem2\ladder-game\src\main\java\edu\ntnu\idat2003\controller\TicTacToeController.java
 C:\Users\trymo\Documents\Java\sem2\ladder-game\src\main\java\edu\ntnu\idat2003\exception\DataCreateException.java
 C:\Users\trymo\Documents\Java\sem2\ladder-game\src\main\java\edu\ntnu\idat2003\exception\DataReadException.java
 C:\Users\trymo\Documents\Java\sem2\ladder-game\src\main\java\edu\ntnu\idat2003\exception\DataWriteException.java
@@ -28,6 +29,7 @@ C:\Users\trymo\Documents\Java\sem2\ladder-game\src\main\java\edu\ntnu\idat2003\m
 C:\Users\trymo\Documents\Java\sem2\ladder-game\src\main\java\edu\ntnu\idat2003\model\tileactions\TileAction.java
 C:\Users\trymo\Documents\Java\sem2\ladder-game\src\main\java\edu\ntnu\idat2003\model\Vector2.java
 C:\Users\trymo\Documents\Java\sem2\ladder-game\src\main\java\edu\ntnu\idat2003\observer\LadderGameObserver.java
+C:\Users\trymo\Documents\Java\sem2\ladder-game\src\main\java\edu\ntnu\idat2003\observer\TicTacToeObserver.java
 C:\Users\trymo\Documents\Java\sem2\ladder-game\src\main\java\edu\ntnu\idat2003\repo\BoardRepo.java
 C:\Users\trymo\Documents\Java\sem2\ladder-game\src\main\java\edu\ntnu\idat2003\repo\FigureRepo.java
 C:\Users\trymo\Documents\Java\sem2\ladder-game\src\main\java\edu\ntnu\idat2003\repo\PlayerRepo.java
