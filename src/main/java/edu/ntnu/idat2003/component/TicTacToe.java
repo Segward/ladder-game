@@ -1,8 +1,8 @@
 package edu.ntnu.idat2003.component;
 
+import edu.ntnu.idat2003.controller.TicTacToeController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -34,12 +34,13 @@ public class TicTacToe {
         playingBord.setPadding(new Insets(5, 5, 5, 5));
         playingBord.setVgap(5);
         playingBord.setHgap(5);
-
-        Button tile;
+        playingBord.setAlignment(Pos.CENTER);
 
         playingPane.getChildren().addAll(playingBord);
         menuPane.getChildren().addAll(playerOnePanal, playingPane, playerTwoPanal);
         root.getChildren().addAll(menuPane);
 
+        TicTacToeController controller = new TicTacToeController(root, playerOnePanal, playerTwoPanal, playingBord, playingPane);
+        controller.init();
     }
 }

@@ -1,0 +1,16 @@
+edu\ntnu\idat2003\repo\BoardRepoTest.class
+edu\ntnu\idat2003\model\PlayerTest.class
+edu\ntnu\idat2003\model\DieTest.class
+edu\ntnu\idat2003\model\LadderActionTest.class
+edu\ntnu\idat2003\repo\FigureRepoTest.class
+edu\ntnu\idat2003\model\DiceTest.class
+edu\ntnu\idat2003\model\ExtraDiceActionTest.class
+edu\ntnu\idat2003\model\FigureTest.class
+edu\ntnu\idat2003\exception\DataWriteExceptionTest.class
+edu\ntnu\idat2003\model\TileTest.class
+edu\ntnu\idat2003\util\GsonUtilTest.class
+edu\ntnu\idat2003\model\Vector2Test.class
+edu\ntnu\idat2003\repo\PlayerRepoTest.class
+edu\ntnu\idat2003\util\GsonUtilTest$1.class
+edu\ntnu\idat2003\exception\DataCreateExceptionTest.class
+edu\ntnu\idat2003\exception\DataReadExceptionTest.class
