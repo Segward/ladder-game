@@ -46,7 +46,7 @@ public class Vector2 {
 
   @Override
   public int hashCode() {
-    int hash = x * 100 + y;
+    int hash = x + y * 100;
     return hash;
   }
 }

@@ -41,6 +41,7 @@ public class LadderGameController implements LadderGameObserver {
   private LadderGame game;
   private MediaPlayer backgroundMediaPlayer;
   private MediaPlayer diceRollMediaPlayer;
+  private HashMap<Integer, StackPane> tilePanes;
 
   public LadderGameController(
       Pane root,
@@ -57,6 +58,7 @@ public class LadderGameController implements LadderGameObserver {
     this.gridPane = gridPane;
     this.roll = roll;
     this.stop = stop;
+    this.tilePanes = new HashMap<>();
   }
 
   public void init() {
@@ -66,7 +68,6 @@ public class LadderGameController implements LadderGameObserver {
 
     roll.setOnAction(e -> game.rollDice());
     stop.setOnAction(e -> stop());
-    updateBoard();
 
     File background = new File("src/main/resources/sound/thegrandaffair.mp3");
     File diceRoll = new File("src/main/resources/sound/diceroll.mp3");
@@ -80,6 +81,21 @@ public class LadderGameController implements LadderGameObserver {
     Media diceRollSound = new Media(diceRoll.toURI().toString());
     diceRollMediaPlayer = new MediaPlayer(diceRollSound);
     diceRollMediaPlayer.setVolume(0.2);
+
+    HashMap<Integer, Tile> tiles = board.getTiles();
+    for (Tile tile : tiles.values()) {
+      Vector2 position = tile.getPosition();
+      StackPane tilePane = new StackPane();
+      tilePane.setStyle("-fx-background-color: red;");
+      tilePane.setPrefSize(50, 50);
+      tilePanes.put(position.hashCode(), tilePane);
+      Text text = new Text(tile.getText());
+      text.setFill(Color.BLACK);
+      tilePane.getChildren().add(text);
+      gridPane.add(tilePane, position.getX(), 9 - tile.getPosition().getY());
+    }
+
+    Platform.runLater(() -> updateBoard());
   }
 
   private void stop() {
@@ -142,45 +158,28 @@ public class LadderGameController implements LadderGameObserver {
     roll.setGraphic(diceView);
   }
 
-  private HashMap<Integer, StackPane> drawTiles() {
-    HashMap<Integer, StackPane> tilePanes = new HashMap<>();
-    HashMap<Integer, Tile> tiles = board.getTiles();
-    for (Tile tile : tiles.values()) {
-      Vector2 position = tile.getPosition();
-      StackPane tilePane = new StackPane();
-      tilePane.setStyle("-fx-background-color: red;");
-      tilePane.setPrefSize(50, 50);
-      tilePanes.put(position.hashCode(), tilePane);
-      Text text = new Text(tile.getText());
-      text.setFill(Color.BLACK);
-      tilePane.getChildren().add(text);
-      gridPane.add(tilePane, position.getX(), 9 - tile.getPosition().getY());
-    }
-    return tilePanes;
-  }
-
-  private void drawPlayers(HashMap<Integer, StackPane> tilePanes) {
+  private void drawPlayers() {
     HashSet<Player> players = game.getPlayers();
     for (Player player : players) {
       Vector2 position = player.getPosition();
+      System.out.println(position.hashCode());
       StackPane tilePane = tilePanes.get(position.hashCode());
       double x = tilePane.getLayoutX();
       double y = tilePane.getLayoutY();
+      System.out.println("x: " + x + ", y: " + y);
       Pane playerPane = new Pane();
       overlay.getChildren().add(playerPane);
       ImageView figureView = new ImageView(player.getFigure().getPath());
       figureView.setFitHeight(50);
       figureView.setPreserveRatio(true);
-      figureView.setLayoutX(x + tilePane.getWidth() / 2 - figureView.getFitWidth() / 2);
+      figureView.setLayoutX(x);
       figureView.setLayoutY(y);
       playerPane.getChildren().add(figureView);
     }
   }
 
   private void updateBoard() {
-    gridPane.getChildren().clear();
     overlay.getChildren().clear();
-    HashMap<Integer, StackPane> tilePanes = drawTiles();
-    Platform.runLater(() -> drawPlayers(tilePanes));
+    drawPlayers();
   }
 }
