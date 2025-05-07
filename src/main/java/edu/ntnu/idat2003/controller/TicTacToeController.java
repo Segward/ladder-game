@@ -16,16 +16,17 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 public class TicTacToeController implements TicTacToeObserver{
     private Pane root;
     private StackPane playerOnePanal;
     private StackPane playerTwoPanal;
     private GridPane playingBord;
-    private StackPane playingPane;
+    private VBox playingPane;
     private TicTacToe game;
 
-    public TicTacToeController(Pane root, StackPane playerOnePanal, StackPane playerTwoPanal, GridPane playingBord, StackPane playingPane) {
+    public TicTacToeController(Pane root, StackPane playerOnePanal, StackPane playerTwoPanal, GridPane playingBord, VBox playingPane) {
         this.root = root;
         this.playerOnePanal = playerOnePanal;
         this.playerTwoPanal = playerTwoPanal;
@@ -46,11 +47,10 @@ public class TicTacToeController implements TicTacToeObserver{
             game.setCurrentPlayer(players.get(0));
         }
 
-        updateBoard();
-
+        createBoard();
     }
 
-    public void updateBoard() {
+    public void createBoard() {
         for(int i = 0; i<3; i++) {
             for(int j = 0; j<3; j++) {
                 Button tile = new Button();

@@ -8,6 +8,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
 public class TicTacToe {
     public static void init(Pane root) {
@@ -28,10 +31,11 @@ public class TicTacToe {
         playerTwoPanal.prefHeightProperty().bind(root.heightProperty());
         playerTwoPanal.setId("playerTwoPanal");
 
-        StackPane playingPane = new StackPane();
+        VBox playingPane = new VBox();
         playingPane.prefWidthProperty().bind(root.widthProperty().multiply(0.6));
         playingPane.prefHeightProperty().bind(root.heightProperty());
         playingPane.setStyle("-fx-background-color: gray;");
+        playingPane.setAlignment(Pos.CENTER);
 
         GridPane playingBoard = new GridPane();
         playingBoard.setPadding(new Insets(5, 5, 5, 5));
@@ -40,7 +44,10 @@ public class TicTacToe {
         playingBoard.setAlignment(Pos.CENTER);
         playingPane.setId("ticTacToeBoard");
 
-        playingPane.getChildren().addAll(playingBoard);
+        Text gameText = new Text("TicTackToe");
+        gameText.setId("ticTacToeGameText");
+
+        playingPane.getChildren().addAll(gameText, playingBoard);
         menuPane.getChildren().addAll(playerOnePanal, playingPane, playerTwoPanal);
         root.getChildren().addAll(menuPane);
 

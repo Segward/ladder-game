@@ -35,6 +35,8 @@
   -fx-alignment: center;
 }
 
-#ticTacToeBoard {
-  -fx-background-color: red;
+#ticTacToeGameText{
+  -fx-font-smoothing-type: lcd;
+  -fx-fill: white;
+  -fx-font-size: 25pt;
 }
