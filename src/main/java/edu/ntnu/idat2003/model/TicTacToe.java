@@ -29,4 +29,8 @@ public class TicTacToe {
     public void setCurrentPlayer(Player player) {
         curentPlayer = player;
     }
+
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
 }

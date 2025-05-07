@@ -61,11 +61,12 @@ public class TicTacToeController implements TicTacToeObserver{
         }
     }
 
+    @Override
     public void onClick(Button tile) {
         Player currentPlayer = game.getCurrentPlayer();
         ImageView iconView = new ImageView();
-        iconView.setFitHeight(tile.getHeight());
-        iconView.setFitWidth(tile.getWidth());
+        iconView.setFitHeight(tile.getHeight()*0.8);
+        iconView.setFitWidth(tile.getWidth()*0.8);
         if (currentPlayer.getName().equals("PlayerOne")) {
             Image xMark = new Image(getClass().getResource("/icons/xMark.png").toExternalForm());
             iconView.setImage(xMark);
@@ -76,5 +77,16 @@ public class TicTacToeController implements TicTacToeObserver{
         tile.setGraphic(iconView);
         tile.setDisable(true);
         tile.setStyle("-fx-opacity: 1");
+        
+        setNextPlayer();
+    }
+
+    public void setNextPlayer() {
+        Player currentPlayer = game.getCurrentPlayer();
+        if(currentPlayer.getName().equals(game.getPlayers().stream().findFirst().get().getName())) {
+            game.setCurrentPlayer(game.getPlayers().get(1));
+        }else {
+            game.setCurrentPlayer(game.getPlayers().stream().findFirst().get());
+        }
     }
 }

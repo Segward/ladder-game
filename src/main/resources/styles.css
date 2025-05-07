@@ -36,10 +36,5 @@
 }
 
 #ticTacToeBoard {
-  -fx-background-image: url("/figure/King.png");
-  -fx-background-size: cover;
-  -fx-background-position: center;
-  -fx-background-repeat: no-repeat;
-  -fx-orientation: vertical;
-  -fx-alignment: center;
+  -fx-background-color: red;
 }
