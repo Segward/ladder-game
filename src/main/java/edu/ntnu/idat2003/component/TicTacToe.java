@@ -33,17 +33,18 @@ public class TicTacToe {
         playingPane.prefHeightProperty().bind(root.heightProperty());
         playingPane.setStyle("-fx-background-color: gray;");
 
-        GridPane playingBord = new GridPane();
-        playingBord.setPadding(new Insets(5, 5, 5, 5));
-        playingBord.setVgap(5);
-        playingBord.setHgap(5);
-        playingBord.setAlignment(Pos.CENTER);
+        GridPane playingBoard = new GridPane();
+        playingBoard.setPadding(new Insets(5, 5, 5, 5));
+        playingBoard.setVgap(5);
+        playingBoard.setHgap(5);
+        playingBoard.setAlignment(Pos.CENTER);
+        playingPane.setId("ticTacToeBoard");
 
-        playingPane.getChildren().addAll(playingBord);
+        playingPane.getChildren().addAll(playingBoard);
         menuPane.getChildren().addAll(playerOnePanal, playingPane, playerTwoPanal);
         root.getChildren().addAll(menuPane);
 
-        TicTacToeController controller = new TicTacToeController(root, playerOnePanal, playerTwoPanal, playingBord, playingPane);
+        TicTacToeController controller = new TicTacToeController(root, playerOnePanal, playerTwoPanal, playingBoard, playingPane);
         controller.init();
     }
 }

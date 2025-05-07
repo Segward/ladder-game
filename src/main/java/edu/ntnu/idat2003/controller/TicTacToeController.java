@@ -1,6 +1,7 @@
 package edu.ntnu.idat2003.controller;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 import edu.ntnu.idat2003.model.TicTacToe;
@@ -33,10 +34,18 @@ public class TicTacToeController implements TicTacToeObserver{
     }
 
     public void init() {
-        HashSet<Player> players = new HashSet<>();
+        ArrayList<Player> players = new ArrayList<>();
         players.add(new Player("PlayerOne", new Figure("Queen")));
         players.add(new Player("PlayerTwo", new Figure("King")));
         this.game = new TicTacToe(players, new Dice(1));
+        
+        int randStart = game.rollDice();
+        if(randStart >3) {
+            game.setCurrentPlayer(players.get(1));
+        }else {
+            game.setCurrentPlayer(players.get(0));
+        }
+
         updateBoard();
 
     }
@@ -46,20 +55,26 @@ public class TicTacToeController implements TicTacToeObserver{
             for(int j = 0; j<3; j++) {
                 Button tile = new Button();
                 tile.setPrefSize(100, 100);
-                tile.setOnAction(this::onClick);
+                tile.setOnAction(e -> onClick(tile));
                 playingBord.add(tile, i, j);
             }
         }
     }
 
-    public void onClick(ActionEvent event) {
+    public void onClick(Button tile) {
         Player currentPlayer = game.getCurrentPlayer();
+        ImageView iconView = new ImageView();
+        iconView.setFitHeight(tile.getHeight());
+        iconView.setFitWidth(tile.getWidth());
         if (currentPlayer.getName().equals("PlayerOne")) {
             Image xMark = new Image(getClass().getResource("/icons/xMark.png").toExternalForm());
+            iconView.setImage(xMark);
         } else {
             Image circle = new Image(getClass().getResource("/icons/circleRed.png").toExternalForm());
+            iconView.setImage(circle);
         }
-        ImageView iconView = new ImageView();
-        
+        tile.setGraphic(iconView);
+        tile.setDisable(true);
+        tile.setStyle("-fx-opacity: 1");
     }
 }
