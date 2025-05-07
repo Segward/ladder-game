@@ -3,6 +3,7 @@ package edu.ntnu.idat2003.component;
 import edu.ntnu.idat2003.controller.TicTacToeController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;

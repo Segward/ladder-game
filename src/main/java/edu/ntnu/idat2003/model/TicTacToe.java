@@ -16,4 +16,7 @@ public class TicTacToe {
         this.dice = dice;
     }
     
+    public Player getCurrentPlayer(){
+        return curentPlayer;
+    }
 }
