@@ -4,12 +4,14 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import edu.ntnu.idat2003.component.MainFrame;
 import edu.ntnu.idat2003.model.TicTacToe;
 import edu.ntnu.idat2003.model.dice.Dice;
 import edu.ntnu.idat2003.model.player.Figure;
 import edu.ntnu.idat2003.model.player.Player;
 import edu.ntnu.idat2003.observer.TicTacToeObserver;
 import javafx.event.ActionEvent;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,6 +19,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 public class TicTacToeController implements TicTacToeObserver{
     private Pane root;
@@ -25,13 +28,17 @@ public class TicTacToeController implements TicTacToeObserver{
     private GridPane playingBord;
     private VBox playingPane;
     private TicTacToe game;
+    private Text gameText;
+    private Button exitButton;
 
-    public TicTacToeController(Pane root, StackPane playerOnePanal, StackPane playerTwoPanal, GridPane playingBord, VBox playingPane) {
+    public TicTacToeController(Pane root, Text gameText, Button exitButton, StackPane playerOnePanal, StackPane playerTwoPanal, GridPane playingBord, VBox playingPane) {
         this.root = root;
         this.playerOnePanal = playerOnePanal;
         this.playerTwoPanal = playerTwoPanal;
         this.playingBord = playingBord;
         this.playingPane = playingPane;
+        this.gameText = gameText;
+        this.exitButton = exitButton;
     }
 
     public void init() {
@@ -39,6 +46,7 @@ public class TicTacToeController implements TicTacToeObserver{
         players.add(new Player("PlayerOne", new Figure("Queen")));
         players.add(new Player("PlayerTwo", new Figure("King")));
         this.game = new TicTacToe(players, new Dice(1));
+        exitButton.setOnAction(e -> MainFrame.init(root));
         
         int randStart = game.rollDice();
         if(randStart >3) {
@@ -46,6 +54,7 @@ public class TicTacToeController implements TicTacToeObserver{
         }else {
             game.setCurrentPlayer(players.get(0));
         }
+        gameText.setText(game.getCurrentPlayer().getName() + "! it is your turn!");
 
         createBoard();
     }
@@ -70,15 +79,23 @@ public class TicTacToeController implements TicTacToeObserver{
         if (currentPlayer.getName().equals("PlayerOne")) {
             Image xMark = new Image(getClass().getResource("/icons/xMark.png").toExternalForm());
             iconView.setImage(xMark);
+            tile.setUserData("X");
         } else {
             Image circle = new Image(getClass().getResource("/icons/circleRed.png").toExternalForm());
             iconView.setImage(circle);
+            tile.setUserData("O");
         }
         tile.setGraphic(iconView);
+        
         tile.setDisable(true);
         tile.setStyle("-fx-opacity: 1");
-        
+
         setNextPlayer();
+        gameText.setText(game.getCurrentPlayer().getName() + "! it is your turn!");
+
+        if(gameScoreCheck()) {
+            System.out.println(game.getCurrentPlayer().getName() + " has won!");
+        }
     }
 
     public void setNextPlayer() {
@@ -88,5 +105,43 @@ public class TicTacToeController implements TicTacToeObserver{
         }else {
             game.setCurrentPlayer(game.getPlayers().stream().findFirst().get());
         }
+    }
+
+    @Override
+    public boolean gameScoreCheck() {
+        String r1 = "";
+        String r2 = "";
+        String r3 = "";
+        String c1 = "";
+        String c2 = "";
+        String c3 = "";
+        String l1 = "";
+        String l2 = "";
+
+        String result = "";
+        int count = 0;
+
+        for(Node node : playingBord.getChildren()) {
+            if(node instanceof Button) {
+                count++;
+                int row = GridPane.getRowIndex(node); //X
+                int colum = GridPane.getColumnIndex(node); //Y
+                
+                System.out.println(row +  " " + colum + " ");
+                
+                Button tile = (Button) node;
+
+                if(tile.getUserData() != null) {
+                    //result+= (String)tile.getUserData() + " (" + row + ", " + colum + ") ";
+                    if(count >= 3) {
+                        c1 += (String)tile.getUserData();
+                    }
+                }
+                
+            }
+        }
+        if(c1.equals("XXX")){ return true;}
+        System.out.println(result);
+        return false;
     }
 }

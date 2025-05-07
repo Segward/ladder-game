@@ -15,7 +15,6 @@ public class TicTacToe {
     public TicTacToe(ArrayList<Player> players, Dice dice) {
         this.players = players;
         this.dice = dice;
-        this.curentPlayer = players.stream().findFirst().get();
     }
     
     public Player getCurrentPlayer(){
