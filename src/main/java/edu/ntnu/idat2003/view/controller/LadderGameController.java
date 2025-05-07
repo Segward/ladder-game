@@ -6,19 +6,17 @@ import edu.ntnu.idat2003.model.LadderGameObserver;
 import edu.ntnu.idat2003.model.Vector2;
 import edu.ntnu.idat2003.model.player.Player;
 import edu.ntnu.idat2003.model.tile.Tile;
-import edu.ntnu.idat2003.model.tile.tileactions.ExtraDiceAction;
 import edu.ntnu.idat2003.model.tile.tileactions.LadderAction;
 import edu.ntnu.idat2003.model.tile.tileactions.TileAction;
 import edu.ntnu.idat2003.repo.PlayerRepo;
 import edu.ntnu.idat2003.view.component.MainFrame;
-
 import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -28,13 +26,13 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 public class LadderGameController implements LadderGameObserver {
 
   private Pane root;
+  private StackPane overlay;
   private Board board;
   private Text rollText;
   private GridPane gridPane;
@@ -45,8 +43,15 @@ public class LadderGameController implements LadderGameObserver {
   private MediaPlayer diceRollMediaPlayer;
 
   public LadderGameController(
-      Pane root, Board board, Text rollText, GridPane gridPane, Button roll, Button stop) {
+      Pane root,
+      StackPane overlay,
+      Board board,
+      Text rollText,
+      GridPane gridPane,
+      Button roll,
+      Button stop) {
     this.root = root;
+    this.overlay = overlay;
     this.board = board;
     this.rollText = rollText;
     this.gridPane = gridPane;
@@ -137,69 +142,45 @@ public class LadderGameController implements LadderGameObserver {
     roll.setGraphic(diceView);
   }
 
-  private void updateBoard() {
-    gridPane.getChildren().clear();
+  private HashMap<Integer, StackPane> drawTiles() {
+    HashMap<Integer, StackPane> tilePanes = new HashMap<>();
     HashMap<Integer, Tile> tiles = board.getTiles();
     for (Tile tile : tiles.values()) {
-      StackPane stackPane = new StackPane();
-      Rectangle rectangle = new Rectangle(50, 50);
-      Text text = new Text(String.valueOf(tile.getText()));
-      stackPane.getChildren().addAll(rectangle, text);
-      rectangle.setFill(Color.LIGHTBLUE);
-      gridPane.add(stackPane, tile.getPosition().getX(), 9 - tile.getPosition().getY());
+      Vector2 position = tile.getPosition();
+      StackPane tilePane = new StackPane();
+      tilePane.setStyle("-fx-background-color: red;");
+      tilePane.setPrefSize(50, 50);
+      tilePanes.put(position.hashCode(), tilePane);
+      Text text = new Text(tile.getText());
+      text.setFill(Color.BLACK);
+      tilePane.getChildren().add(text);
+      gridPane.add(tilePane, position.getX(), 9 - tile.getPosition().getY());
     }
+    return tilePanes;
+  }
 
-    HashMap<Integer, Tile> actions = board.getActions();
-    for (Tile tile : actions.values()) {
-      StackPane stackPane = new StackPane();
-      Rectangle rectangle = new Rectangle(50, 50);
-      Text text = new Text(String.valueOf(tile.getText()));
-      stackPane.getChildren().addAll(rectangle, text);
-      gridPane.add(stackPane, tile.getPosition().getX(), 9 - tile.getPosition().getY());
-      if (tile.getAction() instanceof LadderAction) {
-        rectangle.setFill(Color.GREEN);
-        LadderAction ladderAction = (LadderAction) tile.getAction();
-        Vector2 destination = ladderAction.getDestination();
-        StackPane destinationPane = new StackPane();
-        Rectangle destinationRectangle = new Rectangle(50, 50);
-        destinationRectangle.setFill(Color.DARKBLUE);
-        Tile destinationTile = board.getTile(destination);
-        Text destinationText = new Text(String.valueOf(destinationTile.getText()));
-        destinationPane.getChildren().addAll(destinationRectangle, destinationText);
-        gridPane.add(destinationPane, destination.getX(), 9 - destination.getY());
-      } else if (tile.getAction() instanceof ExtraDiceAction) {
-        rectangle.setFill(Color.YELLOW);
-      }
-    }
-
+  private void drawPlayers(HashMap<Integer, StackPane> tilePanes) {
     HashSet<Player> players = game.getPlayers();
-    HashSet<Vector2> playerPositions = new HashSet<>();
     for (Player player : players) {
-      playerPositions.add(player.getPosition());
+      Vector2 position = player.getPosition();
+      StackPane tilePane = tilePanes.get(position.hashCode());
+      double x = tilePane.getLayoutX();
+      double y = tilePane.getLayoutY();
+      Pane playerPane = new Pane();
+      overlay.getChildren().add(playerPane);
+      ImageView figureView = new ImageView(player.getFigure().getPath());
+      figureView.setFitHeight(50);
+      figureView.setPreserveRatio(true);
+      figureView.setLayoutX(x + tilePane.getWidth() / 2 - figureView.getFitWidth() / 2);
+      figureView.setLayoutY(y);
+      playerPane.getChildren().add(figureView);
     }
+  }
 
-    HashMap<Integer, StackPane> tilePanes = new HashMap<>();
-    for (Vector2 position : playerPositions) {
-      StackPane playerPane = new StackPane();
-      playerPane.setMaxHeight(50);
-      playerPane.setMaxWidth(50);
-      playerPane.setPrefSize(50, 50);
-      gridPane.add(playerPane, position.getX(), 9 - position.getY());
-      tilePanes.put(position.hashCode(), playerPane);
-    }
-
-    for (Player player : players) {
-      StackPane playerPane = tilePanes.get(player.getPosition().hashCode());
-      ImageView imageView = new ImageView();
-      imageView.setFitHeight(40);
-      imageView.setPreserveRatio(true);
-      String figurePath = "/figure/" + player.getFigure().getName() + ".png";
-      Image figureImage = new Image(getClass().getResource(figurePath).toExternalForm());
-      imageView.setImage(figureImage);
-      int index = new ArrayList<>(players).indexOf(player);
-      imageView.setTranslateX(index * 2);
-      imageView.setTranslateY(index * 2);
-      playerPane.getChildren().add(imageView);
-    }
+  private void updateBoard() {
+    gridPane.getChildren().clear();
+    overlay.getChildren().clear();
+    HashMap<Integer, StackPane> tilePanes = drawTiles();
+    Platform.runLater(() -> drawPlayers(tilePanes));
   }
 }

@@ -12,6 +12,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
 public class LadderGame {
@@ -29,13 +30,12 @@ public class LadderGame {
     HBox hBox = new HBox();
     root.getChildren().add(hBox);
 
-    FlowPane boardPane = new FlowPane();
-    hBox.getChildren().add(boardPane);
+    StackPane boardPane = new StackPane();
     boardPane.setStyle("-fx-background-color: WHITE;");
     boardPane.prefWidthProperty().bind(root.widthProperty().multiply(0.7));
     boardPane.prefHeightProperty().bind(root.heightProperty());
-    boardPane.setOrientation(Orientation.VERTICAL);
     boardPane.setAlignment(Pos.CENTER);
+    hBox.getChildren().add(boardPane);
 
     FlowPane sidePane = new FlowPane();
     sidePane.prefWidthProperty().bind(root.widthProperty().multiply(0.3));
@@ -47,7 +47,16 @@ public class LadderGame {
     gridPane.setPadding(new Insets(5, 5, 5, 5));
     gridPane.setVgap(5);
     gridPane.setHgap(5);
+    gridPane.setAlignment(Pos.CENTER);
+    gridPane.prefWidthProperty().bind(boardPane.widthProperty());
+    gridPane.prefHeightProperty().bind(boardPane.heightProperty());
     boardPane.getChildren().add(gridPane);
+
+    StackPane overlay = new StackPane();
+    overlay.setAlignment(Pos.CENTER);
+    overlay.prefWidthProperty().bind(boardPane.widthProperty());
+    overlay.prefHeightProperty().bind(boardPane.heightProperty());
+    boardPane.getChildren().add(overlay);
 
     Text gameTitle = new Text("Hello, World!");
     sidePane.getChildren().add(gameTitle);
@@ -67,7 +76,7 @@ public class LadderGame {
     sidePane.getChildren().add(stopGame);
 
     LadderGameController controller =
-        new LadderGameController(root, board, gameTitle, gridPane, rollDice, stopGame);
+        new LadderGameController(root, overlay, board, gameTitle, gridPane, rollDice, stopGame);
     controller.init();
   }
 }
