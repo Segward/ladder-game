@@ -16,3 +16,21 @@
   -fx-orientation: vertical;
   -fx-alignment: center;
 }
+
+#playerOnePanal {
+  -fx-background-image: url("/figure/Queen.png");
+  -fx-background-size: cover;
+  -fx-background-position: center;
+  -fx-background-repeat: no-repeat;
+  -fx-orientation: vertical;
+  -fx-alignment: center;
+}
+
+#playerTwoPanal {
+  -fx-background-image: url("/figure/King.png");
+  -fx-background-size: cover;
+  -fx-background-position: center;
+  -fx-background-repeat: no-repeat;
+  -fx-orientation: vertical;
+  -fx-alignment: center;
+}

@@ -21,10 +21,12 @@ public class TicTacToe {
         StackPane playerOnePanal = new StackPane();
         playerOnePanal.prefWidthProperty().bind(root.widthProperty().multiply(0.2));
         playerOnePanal.prefHeightProperty().bind(root.heightProperty());
+        playerOnePanal.setId("playerOnePanal");
 
         StackPane playerTwoPanal = new StackPane();
         playerTwoPanal.prefWidthProperty().bind(root.widthProperty().multiply(0.2));
         playerTwoPanal.prefHeightProperty().bind(root.heightProperty());
+        playerTwoPanal.setId("playerTwoPanal");
 
         StackPane playingPane = new StackPane();
         playingPane.prefWidthProperty().bind(root.widthProperty().multiply(0.6));

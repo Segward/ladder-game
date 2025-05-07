@@ -1,5 +1,6 @@
 package edu.ntnu.idat2003.controller;
 
+import java.io.File;
 import java.util.HashSet;
 
 import edu.ntnu.idat2003.model.TicTacToe;
@@ -9,6 +10,7 @@ import edu.ntnu.idat2003.model.player.Player;
 import edu.ntnu.idat2003.observer.TicTacToeObserver;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -35,6 +37,7 @@ public class TicTacToeController implements TicTacToeObserver{
         players.add(new Player("PlayerTwo", new Figure("King")));
         this.game = new TicTacToe(players, new Dice(1));
         updateBoard();
+        
     }
 
     public void updateBoard() {
