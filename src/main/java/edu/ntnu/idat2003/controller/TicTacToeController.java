@@ -11,6 +11,7 @@ import edu.ntnu.idat2003.observer.TicTacToeObserver;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -37,7 +38,7 @@ public class TicTacToeController implements TicTacToeObserver{
         players.add(new Player("PlayerTwo", new Figure("King")));
         this.game = new TicTacToe(players, new Dice(1));
         updateBoard();
-        
+
     }
 
     public void updateBoard() {
@@ -52,6 +53,13 @@ public class TicTacToeController implements TicTacToeObserver{
     }
 
     public void onClick(ActionEvent event) {
-
+        Player currentPlayer = game.getCurrentPlayer();
+        if (currentPlayer.getName().equals("PlayerOne")) {
+            Image xMark = new Image(getClass().getResource("/icons/xMark.png").toExternalForm());
+        } else {
+            Image circle = new Image(getClass().getResource("/icons/circleRed.png").toExternalForm());
+        }
+        ImageView iconView = new ImageView();
+        
     }
 }
