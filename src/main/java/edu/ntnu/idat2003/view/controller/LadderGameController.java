@@ -162,19 +162,15 @@ public class LadderGameController implements LadderGameObserver {
     HashSet<Player> players = game.getPlayers();
     for (Player player : players) {
       Vector2 position = player.getPosition();
-      System.out.println(position.hashCode());
       StackPane tilePane = tilePanes.get(position.hashCode());
-      double x = tilePane.getLayoutX();
-      double y = tilePane.getLayoutY();
-      System.out.println("x: " + x + ", y: " + y);
       Pane playerPane = new Pane();
-      overlay.getChildren().add(playerPane);
       ImageView figureView = new ImageView(player.getFigure().getPath());
       figureView.setFitHeight(50);
       figureView.setPreserveRatio(true);
-      figureView.setLayoutX(x);
-      figureView.setLayoutY(y);
+      figureView.layoutXProperty().bind(tilePane.layoutXProperty());
+      figureView.layoutYProperty().bind(tilePane.layoutYProperty());
       playerPane.getChildren().add(figureView);
+      overlay.getChildren().add(playerPane);
     }
   }
 
