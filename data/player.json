@@ -1,5 +1,17 @@
 [
   {
+    "name": "dewdwd",
+    "figure": {
+      "name": "King"
+    },
+    "position": {
+      "x": 0,
+      "y": 0,
+      "number": 0
+    },
+    "extraDice": false
+  },
+  {
     "name": "dwad",
     "figure": {
       "name": "Knight"

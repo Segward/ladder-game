@@ -2,10 +2,12 @@ package edu.ntnu.idat2003.controller;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 
 import edu.ntnu.idat2003.component.MainFrame;
 import edu.ntnu.idat2003.model.TicTacToe;
+import edu.ntnu.idat2003.model.Vector2;
 import edu.ntnu.idat2003.model.dice.Dice;
 import edu.ntnu.idat2003.model.player.Figure;
 import edu.ntnu.idat2003.model.player.Player;
@@ -30,6 +32,7 @@ public class TicTacToeController implements TicTacToeObserver{
     private TicTacToe game;
     private Text gameText;
     private Button exitButton;
+    private HashMap<Vector2, Button> resultHash;
 
     public TicTacToeController(Pane root, Text gameText, Button exitButton, StackPane playerOnePanal, StackPane playerTwoPanal, GridPane playingBord, VBox playingPane) {
         this.root = root;
@@ -93,8 +96,10 @@ public class TicTacToeController implements TicTacToeObserver{
         setNextPlayer();
         gameText.setText(game.getCurrentPlayer().getName() + "! it is your turn!");
 
-        if(gameScoreCheck()) {
-            System.out.println(game.getCurrentPlayer().getName() + " has won!");
+        gameScoreCheck();
+        if(win() != null){
+            gameText.setText(win().getName() + " Has Won!!");
+            playingBord.getChildren().clear();
         }
     }
 
@@ -108,22 +113,11 @@ public class TicTacToeController implements TicTacToeObserver{
     }
 
     @Override
-    public boolean gameScoreCheck() {
-        String r1 = "";
-        String r2 = "";
-        String r3 = "";
-        String c1 = "";
-        String c2 = "";
-        String c3 = "";
-        String l1 = "";
-        String l2 = "";
-
-        String result = "";
-        int count = 0;
+    public boolean gameScoreCheck() {  
+        this.resultHash = new HashMap<>();
 
         for(Node node : playingBord.getChildren()) {
             if(node instanceof Button) {
-                count++;
                 int row = GridPane.getRowIndex(node); //X
                 int colum = GridPane.getColumnIndex(node); //Y
                 
@@ -132,16 +126,85 @@ public class TicTacToeController implements TicTacToeObserver{
                 Button tile = (Button) node;
 
                 if(tile.getUserData() != null) {
-                    //result+= (String)tile.getUserData() + " (" + row + ", " + colum + ") ";
-                    if(count >= 3) {
-                        c1 += (String)tile.getUserData();
-                    }
+                    resultHash.put(new Vector2(row, colum), tile);
                 }
                 
             }
         }
-        if(c1.equals("XXX")){ return true;}
-        System.out.println(result);
         return false;
+    }
+
+    public Player win() {
+        String row1 = "";
+        String row2 = "";
+        String row3 = "";
+
+        String colum1 = "";
+        String colum2 = "";
+        String colum3 = "";
+
+        String line1 = "";
+        String line2 = "";
+
+        for(Vector2 placment : resultHash.keySet()) {
+            switch (placment.getX()) {
+                case 0:
+                    if(placment.getY() == 0) {
+                        row1 += resultHash.get(placment).getUserData();
+                        colum1 += resultHash.get(placment).getUserData();
+                        line1 += resultHash.get(placment).getUserData();
+                    } if(placment.getY() == 1) {
+                        row1 += resultHash.get(placment).getUserData();
+                        colum2 += resultHash.get(placment).getUserData();
+                    } if(placment.getY() == 2) {
+                        row1 += resultHash.get(placment).getUserData();
+                        colum3 += resultHash.get(placment).getUserData();
+                        line2 += resultHash.get(placment).getUserData();
+                    } 
+                    break;
+                case 1:
+                    if(placment.getY() == 0) {
+                        row2 += resultHash.get(placment).getUserData();
+                        colum1 += resultHash.get(placment).getUserData();
+                    } if(placment.getY() == 1) {
+                        row2 += resultHash.get(placment).getUserData();
+                        colum2 += resultHash.get(placment).getUserData();
+                        line1 += resultHash.get(placment).getUserData();
+                        line2 += resultHash.get(placment).getUserData();
+                    } if(placment.getY() == 2) {
+                        row2 += resultHash.get(placment).getUserData();
+                        colum3 += resultHash.get(placment).getUserData();
+                    } 
+                    break;
+                case 2:
+                    if(placment.getY() == 0) {
+                        row3 += resultHash.get(placment).getUserData();
+                        colum1 += resultHash.get(placment).getUserData();
+                        line2 += resultHash.get(placment).getUserData();
+                    } if(placment.getY() == 1) {
+                        row3 += resultHash.get(placment).getUserData();
+                        colum2 += resultHash.get(placment).getUserData();
+                    } if(placment.getY() == 2) {
+                        row3 += resultHash.get(placment).getUserData();
+                        colum3 += resultHash.get(placment).getUserData();
+                        line1 += resultHash.get(placment).getUserData();
+                    } 
+                    break;
+
+                default:
+                    break;
+            }
+        }
+        if(row1.equals("XXX") || row2.equals("XXX") || row3.equals("XXX") 
+        || colum1.equals("XXX") || colum2.equals("XXX") || colum3.equals("XXX") 
+        || line1.equals("XXX") || line2.equals("XXX")) {
+            return game.getPlayers().stream().findFirst().get();
+        }
+        if(row1.equals("OOO") || row2.equals("OOO") || row3.equals("OOO") 
+        || colum1.equals("OOO") || colum2.equals("OOO") || colum3.equals("OOO") 
+        || line1.equals("OOO") || line2.equals("OOO")) {
+            return game.getPlayers().get(1);
+        }
+        return null;
     }
 }
