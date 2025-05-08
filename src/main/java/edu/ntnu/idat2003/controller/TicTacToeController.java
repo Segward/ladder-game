@@ -33,6 +33,7 @@ public class TicTacToeController implements TicTacToeObserver{
     private Text gameText;
     private Button exitButton;
     private HashMap<Vector2, Button> resultHash;
+    private int roundNumber = 1;
 
     public TicTacToeController(Pane root, Text gameText, Button exitButton, StackPane playerOnePanal, StackPane playerTwoPanal, GridPane playingBord, VBox playingPane) {
         this.root = root;
@@ -63,11 +64,14 @@ public class TicTacToeController implements TicTacToeObserver{
     }
 
     public void createBoard() {
+        playingBord.getChildren().clear();
+        roundNumber = 1;
         for(int i = 0; i<3; i++) {
             for(int j = 0; j<3; j++) {
                 Button tile = new Button();
                 tile.setPrefSize(100, 100);
                 tile.setOnAction(e -> onClick(tile));
+                tile.setDisable(false);
                 playingBord.add(tile, i, j);
             }
         }
@@ -94,13 +98,27 @@ public class TicTacToeController implements TicTacToeObserver{
         tile.setStyle("-fx-opacity: 1");
 
         setNextPlayer();
-        gameText.setText(game.getCurrentPlayer().getName() + "! it is your turn!");
+        roundNumber++;
+        gameStatus();
+    }   
 
-        gameScoreCheck();
-        if(win() != null){
-            gameText.setText(win().getName() + " Has Won!!");
-            playingBord.getChildren().clear();
+    @Override
+    public void gameStatus() {
+        if(roundNumber >= 10 && win() == null) {
+            createBoard();
+        } else {
+            gameText.setText(game.getCurrentPlayer().getName() + "! it is your turn!");
+            gameScoreCheck();
+
+            if(win() != null){
+                gameText.setText(win().getName() + " Has Won!!");
+                playingBord.getChildren().clear();
+                Button newGame = new Button("New game");
+                newGame.setOnAction(e -> init());
+                playingBord.getChildren().add(newGame);
+            }
         }
+        
     }
 
     public void setNextPlayer() {
