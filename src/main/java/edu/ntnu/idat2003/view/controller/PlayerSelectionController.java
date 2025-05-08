@@ -6,6 +6,8 @@ import edu.ntnu.idat2003.view.component.BoardSelection;
 import edu.ntnu.idat2003.view.component.FigureSelection;
 import edu.ntnu.idat2003.view.component.PlayerSelection;
 import java.util.HashSet;
+import java.util.Stack;
+
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -33,6 +35,14 @@ public class PlayerSelectionController {
   public void init() {
     add.setOnAction(this::onAddClick);
     resume.setOnAction(this::onResumeClick);
+
+    HashSet<Player> playerSet = PlayerRepo.getPlayers();
+    int size = playerSet.size();
+    if (size == 5) {
+      add.setDisable(true);
+      add.setVisible(false);
+    }
+
     updatePlayers();
   }
 
@@ -50,25 +60,31 @@ public class PlayerSelectionController {
   }
 
   private StackPane createPlayerPane(Player player) {
-    VBox playerInfo = new VBox(10);
+    StackPane playerPane = new StackPane();
+    playerPane.setAlignment(Pos.CENTER);
+    playerPane.setMinSize(100, 50);
+
+    VBox playerInfo = new VBox();
     playerInfo.setAlignment(Pos.CENTER);
+    playerInfo.setSpacing(10);
+    playerPane.getChildren().add(playerInfo);
 
     Text playerName = new Text(player.getName());
-    playerName.setStyle("-fx-text-fill: #ffffff;");
+    playerName.setStyle("-fx-font-size: 20px; -fx-fill: white;");
+    playerInfo.getChildren().add(playerName);
 
-    ImageView imageView = new ImageView(player.getFigure().getPath());
-    imageView.setFitWidth(100);
-    imageView.setFitHeight(100);
-    imageView.setPreserveRatio(true);
+    ImageView figureImage = new ImageView(player.getFigure().getPath());
+    figureImage.setFitWidth(50);
+    figureImage.setFitHeight(50);
+    figureImage.setPreserveRatio(true);
+    playerInfo.getChildren().add(figureImage);
 
-    Button deleteButton = new Button("Delete");
+    Button deleteButton = new Button("X");
     deleteButton.setOnAction(e -> onDeleteClick(e, player));
-    playerInfo.getChildren().addAll(playerName, imageView, deleteButton);
+    playerInfo.getChildren().add(deleteButton);
 
-    StackPane playerPane = new StackPane(playerInfo);
-    playerPane.setAlignment(Pos.CENTER);
     return playerPane;
-  }
+}
 
   private void updatePlayers() {
     HashSet<Player> playerSet = PlayerRepo.getPlayers();

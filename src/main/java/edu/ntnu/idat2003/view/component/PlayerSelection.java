@@ -30,17 +30,17 @@ public class PlayerSelection {
     flowPane.prefWidthProperty().bind(vBox.widthProperty());
     flowPane.prefHeightProperty().bind(vBox.heightProperty().multiply(0.5));
     flowPane.setOrientation(Orientation.VERTICAL);
-    flowPane.setAlignment(Pos.CENTER);
+    flowPane.setAlignment(Pos.BOTTOM_CENTER);
     flowPane.setVgap(20);
     vBox.getChildren().add(flowPane);
-
-    Button addPlayerButton = new Button("Add");
-    addPlayerButton.setPrefSize(300, 50);
-    flowPane.getChildren().add(addPlayerButton);
 
     Button resumeButton = new Button("Resume");
     resumeButton.setPrefSize(300, 50);
     flowPane.getChildren().add(resumeButton);
+
+    Button addPlayerButton = new Button("Add");
+    addPlayerButton.setPrefSize(300, 50);
+    flowPane.getChildren().add(addPlayerButton);
 
     HBox hBox = new HBox();
     hBox.prefWidthProperty().bind(vBox.widthProperty());
