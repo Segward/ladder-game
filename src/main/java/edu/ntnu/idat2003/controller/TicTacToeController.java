@@ -13,6 +13,7 @@ import edu.ntnu.idat2003.model.player.Figure;
 import edu.ntnu.idat2003.model.player.Player;
 import edu.ntnu.idat2003.observer.TicTacToeObserver;
 import javafx.event.ActionEvent;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -65,7 +66,7 @@ public class TicTacToeController implements TicTacToeObserver{
 
     public void createBoard() {
         playingBord.getChildren().clear();
-        roundNumber = 1;
+        roundNumber = 0;
         for(int i = 0; i<3; i++) {
             for(int j = 0; j<3; j++) {
                 Button tile = new Button();
@@ -98,27 +99,38 @@ public class TicTacToeController implements TicTacToeObserver{
         tile.setStyle("-fx-opacity: 1");
 
         setNextPlayer();
-        roundNumber++;
         gameStatus();
+        
     }   
 
     @Override
     public void gameStatus() {
-        if(roundNumber >= 10 && win() == null) {
-            createBoard();
+        gameScoreCheck();
+        if(roundNumber >= 8 && win() == null) {
+            gameText.setText("It is a TIE!!!");
+            Button newGame = new Button("New game");
+            newGame.setOnAction(e -> init());
+            playingBord.add(newGame, 1, 1);
         } else {
             gameText.setText(game.getCurrentPlayer().getName() + "! it is your turn!");
-            gameScoreCheck();
-
+            roundNumber++;
             if(win() != null){
+                disableAll();
                 gameText.setText(win().getName() + " Has Won!!");
-                playingBord.getChildren().clear();
                 Button newGame = new Button("New game");
                 newGame.setOnAction(e -> init());
-                playingBord.getChildren().add(newGame);
+                playingBord.add(newGame, 1, 1);
             }
         }
         
+    }
+
+    public void disableAll() {
+        for(Node node : playingBord.getChildren()) {
+            if(node instanceof Button) {
+                node.setDisable(true);
+            }
+        }
     }
 
     public void setNextPlayer() {
@@ -139,7 +151,7 @@ public class TicTacToeController implements TicTacToeObserver{
                 int row = GridPane.getRowIndex(node); //X
                 int colum = GridPane.getColumnIndex(node); //Y
                 
-                System.out.println(row +  " " + colum + " ");
+                //System.out.println(row +  " " + colum + " ");
                 
                 Button tile = (Button) node;
 
