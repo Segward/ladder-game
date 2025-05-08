@@ -2,8 +2,6 @@ package edu.ntnu.idat2003.view.component;
 
 import edu.ntnu.idat2003.model.Board;
 import edu.ntnu.idat2003.view.controller.LadderGameController;
-import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -13,19 +11,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 
 public class LadderGame {
   public static void init(Pane root, Board board) {
     root.getChildren().clear();
-
-    FlowPane menuPane = new FlowPane();
-    menuPane.prefWidthProperty().bind(root.widthProperty());
-    menuPane.prefHeightProperty().bind(root.heightProperty());
-    menuPane.setAlignment(Pos.CENTER);
-    menuPane.setStyle("-fx-background-color: gray;");
-    menuPane.setOrientation(Orientation.VERTICAL);
-    root.getChildren().add(menuPane);
 
     HBox hBox = new HBox();
     root.getChildren().add(hBox);
@@ -34,8 +23,25 @@ public class LadderGame {
     boardPane.setStyle("-fx-background-color: WHITE;");
     boardPane.prefWidthProperty().bind(root.widthProperty().multiply(0.7));
     boardPane.prefHeightProperty().bind(root.heightProperty());
-    boardPane.setAlignment(Pos.CENTER);
+    boardPane.setAlignment(Pos.TOP_LEFT);
     hBox.getChildren().add(boardPane);
+
+    StackPane tilesPane = new StackPane();
+    tilesPane.prefWidthProperty().bind(boardPane.widthProperty());
+    tilesPane.prefHeightProperty().bind(boardPane.heightProperty());
+    boardPane.getChildren().add(tilesPane);
+
+    GridPane boardGrid = new GridPane();
+    boardGrid.setVgap(2);
+    boardGrid.setHgap(2);
+    boardGrid.prefWidthProperty().bind(tilesPane.widthProperty());
+    boardGrid.prefHeightProperty().bind(tilesPane.heightProperty());
+    tilesPane.getChildren().add(boardGrid);
+
+    Pane ladderPane = new StackPane();
+    ladderPane.prefWidthProperty().bind(boardGrid.widthProperty());
+    ladderPane.prefHeightProperty().bind(boardGrid.heightProperty());
+    boardPane.getChildren().add(ladderPane);
 
     FlowPane sidePane = new FlowPane();
     sidePane.prefWidthProperty().bind(root.widthProperty().multiply(0.3));
@@ -43,40 +49,22 @@ public class LadderGame {
     sidePane.setId("sidepane");
     hBox.getChildren().add(sidePane);
 
-    GridPane gridPane = new GridPane();
-    gridPane.setPadding(new Insets(5, 5, 5, 5));
-    gridPane.setVgap(5);
-    gridPane.setHgap(5);
-    gridPane.setAlignment(Pos.CENTER);
-    gridPane.prefWidthProperty().bind(boardPane.widthProperty());
-    gridPane.prefHeightProperty().bind(boardPane.heightProperty());
-    boardPane.getChildren().add(gridPane);
-
-    StackPane overlay = new StackPane();
-    overlay.setAlignment(Pos.CENTER);
-    overlay.prefWidthProperty().bind(boardPane.widthProperty());
-    overlay.prefHeightProperty().bind(boardPane.heightProperty());
-    boardPane.getChildren().add(overlay);
-
-    Text gameTitle = new Text("Hello, World!");
-    sidePane.getChildren().add(gameTitle);
-
     Image diceImage = new Image(LadderGame.class.getResource("/dice/default.png").toExternalForm());
     ImageView diceView = new ImageView(diceImage);
     diceView.setFitHeight(200);
     diceView.setPreserveRatio(true);
 
-    Button rollDice = new Button();
-    rollDice.setGraphic(diceView);
-    rollDice.setPrefSize(50, 50);
-    rollDice.setStyle("-fx-background-color: transparent;");
-    sidePane.getChildren().add(rollDice);
+    Button diceButton = new Button();
+    diceButton.setGraphic(diceView);
+    diceButton.setPrefSize(50, 50);
+    diceButton.setStyle("-fx-background-color: transparent;");
+    sidePane.getChildren().add(diceButton);
 
-    Button stopGame = new Button("End game");
-    sidePane.getChildren().add(stopGame);
+    Button endButton = new Button("End game");
+    sidePane.getChildren().add(endButton);
 
     LadderGameController controller =
-        new LadderGameController(root, overlay, board, gameTitle, gridPane, rollDice, stopGame);
+        new LadderGameController(root, board, ladderPane, boardGrid, diceButton, endButton);
     controller.init();
   }
 }

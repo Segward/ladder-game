@@ -1,9 +1,10 @@
 package edu.ntnu.idat2003.model;
 
 import edu.ntnu.idat2003.model.tile.Tile;
+import edu.ntnu.idat2003.model.tile.tileactions.LadderAction;
 import edu.ntnu.idat2003.model.tile.tileactions.TileAction;
-
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class Board {
   private String name;
@@ -64,6 +65,21 @@ public class Board {
   }
 
   /**
+   * Getter for all ladders in bord hashmap.
+   *
+   * @return HashSet with all ladders
+   */
+  public HashSet<LadderAction> getLadders() {
+    HashSet<LadderAction> ladders = new HashSet<>();
+    for (Tile tile : tiles.values()) {
+      if (tile.getAction() instanceof LadderAction) {
+        ladders.add((LadderAction) tile.getAction());
+      }
+    }
+    return ladders;
+  }
+
+  /**
    * Getter for all tiles in bord hashmap.
    *
    * @return HashMap with all tiles
@@ -83,7 +99,7 @@ public class Board {
 
   /**
    * Getter for all actions in bord hashmap.
-   * 
+   *
    * @return HashMap with all actions
    */
   public HashMap<Integer, Tile> getActions() {

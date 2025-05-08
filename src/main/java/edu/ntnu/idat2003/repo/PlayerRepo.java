@@ -5,6 +5,7 @@ import edu.ntnu.idat2003.exception.DataWriteException;
 import edu.ntnu.idat2003.model.player.Figure;
 import edu.ntnu.idat2003.model.player.Player;
 import edu.ntnu.idat2003.util.CsvUtil;
+
 import java.util.HashSet;
 
 public class PlayerRepo {

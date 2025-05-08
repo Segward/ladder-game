@@ -11,12 +11,12 @@ import edu.ntnu.idat2003.model.tile.tileactions.TileAction;
 import edu.ntnu.idat2003.repo.PlayerRepo;
 import edu.ntnu.idat2003.view.component.MainFrame;
 import java.io.File;
-import java.util.HashMap;
 import java.util.HashSet;
 import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -26,39 +26,34 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 public class LadderGameController implements LadderGameObserver {
-
   private Pane root;
-  private StackPane overlay;
   private Board board;
-  private Text rollText;
-  private GridPane gridPane;
-  private Button roll;
-  private Button stop;
+  private Pane ladderPane;
+  private GridPane boardGrid;
+  private Button rollButton;
+  private Button endButton;
   private LadderGame game;
   private MediaPlayer backgroundMediaPlayer;
   private MediaPlayer diceRollMediaPlayer;
-  private HashMap<Integer, StackPane> tilePanes;
 
   public LadderGameController(
       Pane root,
-      StackPane overlay,
       Board board,
-      Text rollText,
-      GridPane gridPane,
-      Button roll,
-      Button stop) {
+      Pane ladderPane,
+      GridPane boardGrid,
+      Button rollButton,
+      Button endButton) {
     this.root = root;
-    this.overlay = overlay;
     this.board = board;
-    this.rollText = rollText;
-    this.gridPane = gridPane;
-    this.roll = roll;
-    this.stop = stop;
-    this.tilePanes = new HashMap<>();
+    this.ladderPane = ladderPane;
+    this.boardGrid = boardGrid;
+    this.rollButton = rollButton;
+    this.endButton = endButton;
   }
 
   public void init() {
@@ -66,8 +61,8 @@ public class LadderGameController implements LadderGameObserver {
     game = new LadderGame(players, board, this);
     game.init();
 
-    roll.setOnAction(e -> game.rollDice());
-    stop.setOnAction(e -> stop());
+    rollButton.setOnAction(e -> game.rollDice());
+    endButton.setOnAction(e -> stop());
 
     File background = new File("src/main/resources/sound/thegrandaffair.mp3");
     File diceRoll = new File("src/main/resources/sound/diceroll.mp3");
@@ -81,19 +76,6 @@ public class LadderGameController implements LadderGameObserver {
     Media diceRollSound = new Media(diceRoll.toURI().toString());
     diceRollMediaPlayer = new MediaPlayer(diceRollSound);
     diceRollMediaPlayer.setVolume(0.2);
-
-    HashMap<Integer, Tile> tiles = board.getTiles();
-    for (Tile tile : tiles.values()) {
-      Vector2 position = tile.getPosition();
-      StackPane tilePane = new StackPane();
-      tilePane.setStyle("-fx-background-color: red;");
-      tilePane.setPrefSize(50, 50);
-      tilePanes.put(position.hashCode(), tilePane);
-      Text text = new Text(tile.getText());
-      text.setFill(Color.BLACK);
-      tilePane.getChildren().add(text);
-      gridPane.add(tilePane, position.getX(), 9 - tile.getPosition().getY());
-    }
 
     Platform.runLater(() -> updateBoard());
   }
@@ -129,8 +111,7 @@ public class LadderGameController implements LadderGameObserver {
 
   @Override
   public void onPlayerWon(Player player) {
-    rollText.setText(player.getName() + " has won!");
-    roll.setDisable(true);
+    rollButton.setDisable(true);
     updateBoard();
   }
 
@@ -155,27 +136,56 @@ public class LadderGameController implements LadderGameObserver {
     Image diceImage =
         new Image(getClass().getResource("/dice/" + diceValue + "face.png").toExternalForm());
     diceView.setImage(diceImage);
-    roll.setGraphic(diceView);
+    rollButton.setGraphic(diceView);
   }
 
-  private void drawPlayers() {
-    HashSet<Player> players = game.getPlayers();
-    for (Player player : players) {
-      Vector2 position = player.getPosition();
-      StackPane tilePane = tilePanes.get(position.hashCode());
-      Pane playerPane = new Pane();
-      ImageView figureView = new ImageView(player.getFigure().getPath());
-      figureView.setFitHeight(50);
-      figureView.setPreserveRatio(true);
-      figureView.layoutXProperty().bind(tilePane.layoutXProperty());
-      figureView.layoutYProperty().bind(tilePane.layoutYProperty());
-      playerPane.getChildren().add(figureView);
-      overlay.getChildren().add(playerPane);
-    }
+  private void drawLadder(Vector2 start, Vector2 destination) {
+
+  }
+
+  private void drawPlayer(Player player) {
+    StackPane playerPane = new StackPane();
+    playerPane.prefWidthProperty().bind(boardGrid.widthProperty().divide(10));
+    playerPane.prefHeightProperty().bind(boardGrid.heightProperty().divide(9));
+    ImageView playerImage = new ImageView(player.getFigure().getPath());
+    playerImage.setFitHeight(50);
+    playerImage.setPreserveRatio(true);
+    playerPane.getChildren().add(playerImage);
+    int column = player.getPosition().getX();
+    int row = 9 - player.getPosition().getY();
+    boardGrid.add(playerPane, column, row);
+  }
+
+  private void drawTile(Tile tile) {
+    StackPane tilePane = new StackPane();
+    tilePane.setStyle("-fx-background-color: GREEN;");
+    tilePane.prefWidthProperty().bind(boardGrid.widthProperty().divide(10));
+    tilePane.prefHeightProperty().bind(boardGrid.heightProperty().divide(9));
+    Text tileText = new Text(tile.getText());
+    tileText.setStyle("-fx-font-size: 20px; -fx-text-fill: WHITE;");
+    tilePane.getChildren().add(tileText);
+    int column = tile.getPosition().getX();
+    int row = 9 - tile.getPosition().getY();
+    boardGrid.add(tilePane, column, row);
   }
 
   private void updateBoard() {
-    overlay.getChildren().clear();
-    drawPlayers();
+    boardGrid.getChildren().clear();
+    ladderPane.getChildren().clear();
+
+    for (Tile tile : board.getTiles().values()) {
+      drawTile(tile);
+    }
+
+    for (Player player : game.getPlayers()) {
+      drawPlayer(player);
+    }
+
+    HashSet<LadderAction> ladders = board.getLadders();
+    for (LadderAction ladder : ladders) {
+      Vector2 start = ladder.getStart();
+      Vector2 destination = ladder.getDestination();
+      Platform.runLater(() -> drawLadder(start, destination));
+    }
   }
 }

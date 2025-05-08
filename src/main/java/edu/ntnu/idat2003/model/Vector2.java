@@ -31,6 +31,11 @@ public class Vector2 {
   }
 
   @Override
+  public String toString() {
+    return "(" + x + ", " + y + ")";
+  }
+
+  @Override
   public boolean equals(Object obj) {
     if (obj == this) {
       return true;
