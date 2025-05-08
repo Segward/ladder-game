@@ -27,6 +27,7 @@
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/UserInterface.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/component/BoardSelection.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/component/FigureSelection.java
+/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/component/HBox.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/component/LadderGame.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/component/MainFrame.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/component/PlayerSelection.java

@@ -19,14 +19,17 @@ public class MainFrame {
     root.getChildren().add(stackPane);
 
     FlowPane flowPane = new FlowPane();
-    stackPane.getChildren().add(flowPane);
     flowPane.setOrientation(Orientation.VERTICAL);
     flowPane.setAlignment(Pos.CENTER);
+    flowPane.setVgap(20);
+    stackPane.getChildren().add(flowPane);
 
     Button startGameButton = new Button("Start Game");
+    startGameButton.setPrefSize(300, 50);
     flowPane.getChildren().add(startGameButton);
 
     Button exitAppButton = new Button("Exit");
+    exitAppButton.setPrefSize(300, 50);
     flowPane.getChildren().add(exitAppButton);
 
     MainFrameController controller = new MainFrameController(root, startGameButton, exitAppButton);
