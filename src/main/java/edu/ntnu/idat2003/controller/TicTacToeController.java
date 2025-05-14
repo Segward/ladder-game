@@ -98,8 +98,8 @@ public class TicTacToeController implements TicTacToeObserver{
     }
 
     public void setPlayersScore() {
-        playerOneScoreText.setText("PlayerOne Score: " + game.getPlayerOneScore());
-        playerTwoScoreText.setText("PlayerTwo Score: " + game.getPlayerTwoScore());
+        playerOneScoreText.setText(game.getPlayers().stream().findFirst().get().getName() +" Score: " + game.getPlayerOneScore());
+        playerTwoScoreText.setText(game.getPlayers().get(1).getName() + " Score: " + game.getPlayerTwoScore());
     }
  
     /**
