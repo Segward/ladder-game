@@ -46,14 +46,23 @@ public class TicTacToe {
 
         Text gameText = new Text("TicTackToe");
         gameText.setId("ticTacToeGameText");
+        
+        Text playerOneScore = new Text();
+        playerOneScore.setId("ticTacToeGameText");
+
+        Text playerTwoScore = new Text();
+        playerTwoScore.setId("ticTacToeGameText");
 
         Button exitButton = new Button("Exit the game");
 
+        playerOnePanal.getChildren().add(playerOneScore);
+        playerTwoPanal.getChildren().add(playerTwoScore);
         playingPane.getChildren().addAll(gameText, playingBoard, exitButton);
         menuPane.getChildren().addAll(playerOnePanal, playingPane, playerTwoPanal);
         root.getChildren().addAll(menuPane);
 
-        TicTacToeController controller = new TicTacToeController(root, gameText, exitButton, playerOnePanal, playerTwoPanal, playingBoard, playingPane);
+        TicTacToeController controller = new TicTacToeController(root, gameText, playerOneScore, playerTwoScore, 
+        exitButton, playerOnePanal, playerTwoPanal, playingBoard, playingPane);
         controller.init();
     }
 }

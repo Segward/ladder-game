@@ -10,7 +10,8 @@ public class TicTacToe {
     private ArrayList<Player> players;
     private Player curentPlayer;
     private Dice dice;
-    private boolean gameOver;
+    private int playerOneScore = 0;
+    private int playerTwoScore = 0;
 
     public TicTacToe(ArrayList<Player> players, Dice dice) {
         this.players = players;
@@ -31,5 +32,21 @@ public class TicTacToe {
 
     public ArrayList<Player> getPlayers() {
         return players;
+    }
+
+    public int getPlayerOneScore() {
+        return playerOneScore;
+    }
+
+    public int getPlayerTwoScore() {
+        return playerTwoScore;
+    }
+
+    public void setPlayerOneScore(int score) {
+        this.playerOneScore = score;
+    }
+
+    public void setPlayerTwoScore(int score) {
+        this.playerTwoScore = score;
     }
 }

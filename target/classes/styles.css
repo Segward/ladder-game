@@ -35,6 +35,6 @@
 
 #ticTacToeGameText{
   -fx-font-smoothing-type: lcd;
-  -fx-fill: white;
+  -fx-fill: black;
   -fx-font-size: 25pt;
 }

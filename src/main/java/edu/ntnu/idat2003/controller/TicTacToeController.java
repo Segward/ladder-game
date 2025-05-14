@@ -36,17 +36,21 @@ public class TicTacToeController implements TicTacToeObserver{
     private VBox playingPane;
     private TicTacToe game;
     private Text gameText;
+    private Text playerOneScoreText;
+    private Text playerTwoScoreText;
     private Button exitButton;
     private HashMap<Vector2, Button> resultHash;
     private int roundNumber = 1;
 
-    public TicTacToeController(Pane root, Text gameText, Button exitButton, StackPane playerOnePanal, StackPane playerTwoPanal, GridPane playingBord, VBox playingPane) {
+    public TicTacToeController(Pane root, Text gameText, Text playerOneScoreText, Text playerTwoScoreText, Button exitButton, StackPane playerOnePanal, StackPane playerTwoPanal, GridPane playingBord, VBox playingPane) {
         this.root = root;
         this.playerOnePanal = playerOnePanal;
         this.playerTwoPanal = playerTwoPanal;
         this.playingBord = playingBord;
         this.playingPane = playingPane;
         this.gameText = gameText;
+        this.playerOneScoreText = playerOneScoreText;
+        this.playerTwoScoreText = playerTwoScoreText;
         this.exitButton = exitButton;
     }
 
@@ -55,13 +59,16 @@ public class TicTacToeController implements TicTacToeObserver{
         players.add(new Player("PlayerOne", new Figure("Queen")));
         players.add(new Player("PlayerTwo", new Figure("King")));
         this.game = new TicTacToe(players, new Dice(1));
+        
+        gameStartSetup();
+    }
 
-       
-        String playerOneImage = getClass().getResource("/figure/" + players.stream().
+    public void gameStartSetup() {
+        String playerOneImage = getClass().getResource("/figure/" + game.getPlayers().stream().
         findFirst().get().getFigure().getName() + ".png").toExternalForm();
         playerOnePanal.setStyle("-fx-background-image: url('" + playerOneImage + "'); ");
 
-        String playerTwoImage = getClass().getResource("/figure/" + players.get(1).getFigure().getName() +".png").toExternalForm();
+        String playerTwoImage = getClass().getResource("/figure/" + game.getPlayers().get(1).getFigure().getName() +".png").toExternalForm();
         playerTwoPanal.setStyle("-fx-background-image: url('" + playerTwoImage + "'); ");
 
         exitButton.setOnAction(e -> MainFrame.init(root));
@@ -69,9 +76,9 @@ public class TicTacToeController implements TicTacToeObserver{
         int randStart = game.rollDice();
 
         if(randStart >3) {
-            game.setCurrentPlayer(players.get(1));
+            game.setCurrentPlayer(game.getPlayers().get(1));
         }else {
-            game.setCurrentPlayer(players.get(0));
+            game.setCurrentPlayer(game.getPlayers().get(0));
         }
 
         Timeline timeline = new Timeline();
@@ -90,6 +97,11 @@ public class TicTacToeController implements TicTacToeObserver{
         );
     }
 
+    public void setPlayersScore() {
+        playerOneScoreText.setText("PlayerOne Score: " + game.getPlayerOneScore());
+        playerTwoScoreText.setText("PlayerTwo Score: " + game.getPlayerTwoScore());
+    }
+ 
     /**
      *  Mehtod for changing the die image
      * 
@@ -119,6 +131,7 @@ public class TicTacToeController implements TicTacToeObserver{
                 playingBord.add(tile, i, j);
             }
         }
+        setPlayersScore();
     }
     
     @Override
@@ -143,7 +156,6 @@ public class TicTacToeController implements TicTacToeObserver{
 
         setNextPlayer();
         gameStatus();
-        
     }   
 
     @Override
@@ -160,11 +172,17 @@ public class TicTacToeController implements TicTacToeObserver{
             if(win() != null){
                 disableAll();
                 gameText.setText(win().getName() + " Has Won!!");
+                if(win().getName().equals(game.getPlayers().stream().findFirst().get().getName())) {
+                    game.setPlayerOneScore(game.getPlayerOneScore() +1);
+                } else {
+                    game.setPlayerTwoScore(game.getPlayerTwoScore() +1);
+                }
                 Button newGame = new Button("New game");
-                newGame.setOnAction(e -> init());
+                newGame.setOnAction(e -> gameStartSetup());
                 playingBord.add(newGame, 1, 1);
             }
         }
+        setPlayersScore();
         
     }
 
