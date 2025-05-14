@@ -20,6 +20,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -54,6 +55,15 @@ public class TicTacToeController implements TicTacToeObserver{
         players.add(new Player("PlayerOne", new Figure("Queen")));
         players.add(new Player("PlayerTwo", new Figure("King")));
         this.game = new TicTacToe(players, new Dice(1));
+
+       
+        String playerOneImage = getClass().getResource("/figure/" + players.stream().
+        findFirst().get().getFigure().getName() + ".png").toExternalForm();
+        playerOnePanal.setStyle("-fx-background-image: url('" + playerOneImage + "'); ");
+
+        String playerTwoImage = getClass().getResource("/figure/" + players.get(1).getFigure().getName() +".png").toExternalForm();
+        playerTwoPanal.setStyle("-fx-background-image: url('" + playerTwoImage + "'); ");
+
         exitButton.setOnAction(e -> MainFrame.init(root));
         
         int randStart = game.rollDice();
@@ -78,8 +88,6 @@ public class TicTacToeController implements TicTacToeObserver{
             gameText.setText(game.getCurrentPlayer().getName() + " starts!!");
         }
         );
-        
-        System.out.println(randStart);
     }
 
     /**
@@ -185,8 +193,6 @@ public class TicTacToeController implements TicTacToeObserver{
             if(node instanceof Button) {
                 int row = GridPane.getRowIndex(node); //X
                 int colum = GridPane.getColumnIndex(node); //Y
-                
-                //System.out.println(row +  " " + colum + " ");
                 
                 Button tile = (Button) node;
 
