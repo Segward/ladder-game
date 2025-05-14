@@ -12,6 +12,8 @@ import edu.ntnu.idat2003.model.dice.Dice;
 import edu.ntnu.idat2003.model.player.Figure;
 import edu.ntnu.idat2003.model.player.Player;
 import edu.ntnu.idat2003.observer.TicTacToeObserver;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -23,6 +25,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 public class TicTacToeController implements TicTacToeObserver{
     private Pane root;
@@ -54,14 +57,46 @@ public class TicTacToeController implements TicTacToeObserver{
         exitButton.setOnAction(e -> MainFrame.init(root));
         
         int randStart = game.rollDice();
+
         if(randStart >3) {
             game.setCurrentPlayer(players.get(1));
         }else {
             game.setCurrentPlayer(players.get(0));
         }
-        gameText.setText(game.getCurrentPlayer().getName() + "! it is your turn!");
 
-        createBoard();
+        Timeline timeline = new Timeline();
+        KeyFrame keyFrame =
+            new KeyFrame(Duration.millis(10), e -> diceImage((int) (Math.random() * 6) +1));
+        timeline.getKeyFrames().add(keyFrame);
+        timeline.setCycleCount(50);
+        timeline.play();
+        timeline.setOnFinished(e -> {
+            diceImage(randStart);
+            Button startGame = new Button("Start Game");
+            startGame.setOnAction(action -> createBoard());
+            playingBord.add(startGame, 0, 2);
+            gameText.setText(game.getCurrentPlayer().getName() + " starts!!");
+        }
+        );
+        
+        System.out.println(randStart);
+    }
+
+    /**
+     *  Mehtod for changing the die image
+     * 
+     * @param diceSide
+     */
+    public void diceImage(int diceSide){
+        playingBord.getChildren().clear();
+        ImageView diceView = new ImageView();
+        diceView.setFitHeight(200);
+        diceView.setPreserveRatio(true);
+
+        Image diceImage =
+            new Image(getClass().getResource("/dice/" + diceSide + "face.png").toExternalForm());
+        diceView.setImage(diceImage);
+        playingBord.getChildren().add(diceView);
     }
 
     public void createBoard() {
@@ -77,7 +112,7 @@ public class TicTacToeController implements TicTacToeObserver{
             }
         }
     }
-
+    
     @Override
     public void onClick(Button tile) {
         Player currentPlayer = game.getCurrentPlayer();
