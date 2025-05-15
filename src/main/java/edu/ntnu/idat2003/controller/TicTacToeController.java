@@ -164,7 +164,7 @@ public class TicTacToeController implements TicTacToeObserver{
         if(roundNumber >= 8 && win() == null) {
             gameText.setText("It is a TIE!!!");
             Button newGame = new Button("New game");
-            newGame.setOnAction(e -> init());
+            newGame.setOnAction(e -> gameStartSetup());
             playingBord.add(newGame, 1, 1);
         } else {
             gameText.setText(game.getCurrentPlayer().getName() + "! it is your turn!");
