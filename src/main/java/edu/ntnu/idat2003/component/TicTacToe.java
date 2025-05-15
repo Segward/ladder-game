@@ -10,9 +10,19 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 
+/**
+ *  Class representing the visal panes used in the TicTacToe game.
+ *  The class constructes the different panes, text and buttons which
+ *  will be displayed during the TicTacToe.
+ * 
+ */
 public class TicTacToe {
+    /**
+     *  Intizilases the panes and adds them to the root scene.
+     * 
+     * @param root Main scene
+     */
     public static void init(Pane root) {
         root.getChildren().clear();
 

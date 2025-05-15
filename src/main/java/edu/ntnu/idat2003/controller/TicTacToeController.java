@@ -68,7 +68,7 @@ public class TicTacToeController implements TicTacToeObserver{
         findFirst().get().getFigure().getName() + ".png").toExternalForm();
         playerOnePanal.setStyle("-fx-background-image: url('" + playerOneImage + "'); ");
 
-        String playerTwoImage = getClass().getResource("/figure/" + game.getPlayers().get(1).getFigure().getName() +".png").toExternalForm();
+        String playerTwoImage = getClass().getResource("/figure/" + game.getPlayers().get(game.getPlayers().size()-1).getFigure().getName() +".png").toExternalForm();
         playerTwoPanal.setStyle("-fx-background-image: url('" + playerTwoImage + "'); ");
 
         exitButton.setOnAction(e -> MainFrame.init(root));
@@ -76,9 +76,10 @@ public class TicTacToeController implements TicTacToeObserver{
         int randStart = game.rollDice();
 
         if(randStart >3) {
-            game.setCurrentPlayer(game.getPlayers().get(1));
+            game.setCurrentPlayer(game.getPlayers().get(game.getPlayers().size()-1));
         }else {
-            game.setCurrentPlayer(game.getPlayers().get(0));
+            game.setCurrentPlayer(game.getPlayers().stream().
+            findFirst().get());
         }
 
         Timeline timeline = new Timeline();
@@ -99,7 +100,7 @@ public class TicTacToeController implements TicTacToeObserver{
 
     public void setPlayersScore() {
         playerOneScoreText.setText(game.getPlayers().stream().findFirst().get().getName() +" Score: " + game.getPlayerOneScore());
-        playerTwoScoreText.setText(game.getPlayers().get(1).getName() + " Score: " + game.getPlayerTwoScore());
+        playerTwoScoreText.setText(game.getPlayers().get(game.getPlayers().size()-1).getName() + " Score: " + game.getPlayerTwoScore());
     }
  
     /**
@@ -197,7 +198,7 @@ public class TicTacToeController implements TicTacToeObserver{
     public void setNextPlayer() {
         Player currentPlayer = game.getCurrentPlayer();
         if(currentPlayer.getName().equals(game.getPlayers().stream().findFirst().get().getName())) {
-            game.setCurrentPlayer(game.getPlayers().get(1));
+            game.setCurrentPlayer(game.getPlayers().get(game.getPlayers().size()-1));
         }else {
             game.setCurrentPlayer(game.getPlayers().stream().findFirst().get());
         }
@@ -292,7 +293,7 @@ public class TicTacToeController implements TicTacToeObserver{
         if(row1.equals("OOO") || row2.equals("OOO") || row3.equals("OOO") 
         || colum1.equals("OOO") || colum2.equals("OOO") || colum3.equals("OOO") 
         || line1.equals("OOO") || line2.equals("OOO")) {
-            return game.getPlayers().get(1);
+            return game.getPlayers().get(game.getPlayers().size()-1);
         }
         return null;
     }
