@@ -6,6 +6,8 @@ import javafx.geometry.Pos;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 public class BoardSelection {
   public static void init(Pane root) {
@@ -17,12 +19,14 @@ public class BoardSelection {
     stackPane.setId("mainframe");
     root.getChildren().add(stackPane);
 
-    FlowPane flowPane = new FlowPane();
-    stackPane.getChildren().add(flowPane);
-    flowPane.setOrientation(Orientation.VERTICAL);
-    flowPane.setAlignment(Pos.CENTER);
+    HBox hBox = new HBox();
+    hBox.prefWidthProperty().bind(stackPane.widthProperty());
+    hBox.prefHeightProperty().bind(stackPane.heightProperty());
+    hBox.setAlignment(Pos.CENTER);
+    stackPane.getChildren().add(hBox);
+    hBox.setSpacing(20);
 
-    BoardSelectionController controller = new BoardSelectionController(root, flowPane);
+    BoardSelectionController controller = new BoardSelectionController(root, hBox);
     controller.init();
   }
 }

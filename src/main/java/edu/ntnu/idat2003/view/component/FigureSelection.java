@@ -7,6 +7,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.layout.HBox;
 
 public class FigureSelection {
   public static void init(Pane root) {
@@ -18,17 +21,32 @@ public class FigureSelection {
     stackPane.setId("mainframe");
     root.getChildren().add(stackPane);
 
-    FlowPane flowPane = new FlowPane();
-    stackPane.getChildren().add(flowPane);
-    flowPane.setOrientation(Orientation.VERTICAL);
-    flowPane.setAlignment(Pos.CENTER);
+    VBox vBox = new VBox();
+    vBox.prefWidthProperty().bind(stackPane.widthProperty());
+    vBox.prefHeightProperty().bind(stackPane.heightProperty());
+    stackPane.getChildren().add(vBox);
+
+    StackPane playerNamePane = new StackPane();
+    playerNamePane.prefWidthProperty().bind(vBox.widthProperty());
+    playerNamePane.prefHeightProperty().bind(vBox.heightProperty().multiply(0.5));
+    playerNamePane.setAlignment(Pos.CENTER);
+    vBox.getChildren().add(playerNamePane);
 
     TextField playerName = new TextField();
     playerName.setPromptText("Enter player name");
-    flowPane.getChildren().add(playerName);
+    playerName.setPrefSize(300, 50);
+    playerName.setMaxSize(300, 50);
+    playerNamePane.getChildren().add(playerName);
+
+    HBox hBox = new HBox();
+    hBox.prefWidthProperty().bind(vBox.widthProperty());
+    hBox.prefHeightProperty().bind(vBox.heightProperty().multiply(0.5));
+    hBox.setAlignment(Pos.CENTER);
+    hBox.setSpacing(20);
+    vBox.getChildren().add(hBox);
 
     FigureSelectionController controller =
-        new FigureSelectionController(root, flowPane, playerName);
+        new FigureSelectionController(root, hBox, playerName);
     controller.init();
   }
 }

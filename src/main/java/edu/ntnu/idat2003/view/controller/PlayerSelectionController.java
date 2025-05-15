@@ -84,7 +84,7 @@ public class PlayerSelectionController {
     playerInfo.getChildren().add(deleteButton);
 
     return playerPane;
-}
+  }
 
   private void updatePlayers() {
     HashSet<Player> playerSet = PlayerRepo.getPlayers();

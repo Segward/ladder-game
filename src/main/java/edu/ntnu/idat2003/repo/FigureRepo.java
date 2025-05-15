@@ -64,7 +64,6 @@ public class FigureRepo {
     HashSet<Figure> figures = getFigures();
     HashSet<Figure> availableFigures = new HashSet<>(figures);
     for (Player player : players) {
-      System.out.println("Removing figure: " + player.getFigure().getName());
       availableFigures.remove(player.getFigure());
     }
     return availableFigures;
