@@ -31,15 +31,23 @@ public class PlayerSelection {
     flowPane.prefHeightProperty().bind(vBox.heightProperty().multiply(0.5));
     flowPane.setOrientation(Orientation.VERTICAL);
     flowPane.setAlignment(Pos.BOTTOM_CENTER);
-    flowPane.setVgap(20);
+    flowPane.setVgap(10);
     vBox.getChildren().add(flowPane);
 
     Button resumeButton = new Button("Resume");
     resumeButton.setPrefSize(300, 50);
     flowPane.getChildren().add(resumeButton);
 
+    Button loadFromFileButton = new Button("Load from file");
+    loadFromFileButton.setPrefSize(300, 50);
+    flowPane.getChildren().add(loadFromFileButton);
+
+    Button saveToFileButton = new Button("Save to file");
+    saveToFileButton.setPrefSize(300, 50);
+    flowPane.getChildren().add(saveToFileButton);
+
     Button addPlayerButton = new Button("Add");
-    addPlayerButton.setPrefSize(300, 50);
+    addPlayerButton.setPrefSize(300, 25);
     flowPane.getChildren().add(addPlayerButton);
 
     HBox hBox = new HBox();
@@ -48,7 +56,7 @@ public class PlayerSelection {
     vBox.getChildren().add(hBox);
 
     PlayerSelectionController controller =
-        new PlayerSelectionController(root, addPlayerButton, resumeButton, hBox);
+        new PlayerSelectionController(root, addPlayerButton, resumeButton, hBox, loadFromFileButton, saveToFileButton);
     controller.init();
   }
 }

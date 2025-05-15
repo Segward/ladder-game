@@ -1,4 +1,3 @@
-// filepath: /Volumes/DiskName/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/App.java
 package edu.ntnu.idat2003;
 
 import edu.ntnu.idat2003.view.UserInterface;

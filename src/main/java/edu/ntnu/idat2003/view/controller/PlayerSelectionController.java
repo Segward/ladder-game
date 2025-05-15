@@ -7,7 +7,10 @@ import edu.ntnu.idat2003.view.component.FigureSelection;
 import edu.ntnu.idat2003.view.component.PlayerSelection;
 import java.util.HashSet;
 import java.util.Stack;
+import javafx.stage.FileChooser;
+import java.io.File;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -24,17 +27,23 @@ public class PlayerSelectionController {
   private Button add;
   private Button resume;
   private HBox hBox;
+  private Button loadFromFile;
+  private Button saveToFile;
 
-  public PlayerSelectionController(Pane root, Button add, Button resume, HBox hBox) {
+  public PlayerSelectionController(Pane root, Button add, Button resume, HBox hBox, Button loadFromFile, Button saveToFile) {
     this.root = root;
     this.add = add;
     this.resume = resume;
     this.hBox = hBox;
+    this.loadFromFile = loadFromFile;
+    this.saveToFile = saveToFile;
   }
 
   public void init() {
-    add.setOnAction(this::onAddClick);
-    resume.setOnAction(this::onResumeClick);
+    add.setOnAction(e -> onAddClick());
+    resume.setOnAction(e -> onResumeClick());
+    loadFromFile.setOnAction(e -> onLoadFromFileClick());
+    saveToFile.setOnAction(e -> onSaveToFileClick());
 
     HashSet<Player> playerSet = PlayerRepo.getPlayers();
     int size = playerSet.size();
@@ -44,17 +53,39 @@ public class PlayerSelectionController {
     }
 
     updatePlayers();
+    Platform.runLater(() -> root.requestLayout());
   }
 
-  public void onAddClick(ActionEvent event) {
+  private void onSaveToFileClick() {
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV files", "*.csv"));
+    File file = fileChooser.showSaveDialog(root.getScene().getWindow());
+    String path = file.getAbsolutePath();
+    if (file != null) {
+      PlayerRepo.savePlayersToFile(path);
+    }
+  }
+
+  private void onLoadFromFileClick() {
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV files", "*.csv"));
+    File file = fileChooser.showOpenDialog(root.getScene().getWindow());
+    String path = file.getAbsolutePath();
+    if (file != null) {
+      PlayerRepo.loadPlayersFromFile(path);
+      PlayerSelection.init(root);
+    }
+  }
+
+  private void onAddClick() {
     FigureSelection.init(root);
   }
 
-  public void onResumeClick(ActionEvent event) {
+  private void onResumeClick() {
     BoardSelection.init(root);
   }
 
-  private void onDeleteClick(ActionEvent event, Player player) {
+  private void onDeleteClick(Player player) {
     PlayerRepo.removePlayer(player);
     PlayerSelection.init(root);
   }
@@ -80,7 +111,7 @@ public class PlayerSelectionController {
     playerInfo.getChildren().add(figureImage);
 
     Button deleteButton = new Button("X");
-    deleteButton.setOnAction(e -> onDeleteClick(e, player));
+    deleteButton.setOnAction(e -> onDeleteClick(player));
     playerInfo.getChildren().add(deleteButton);
 
     return playerPane;

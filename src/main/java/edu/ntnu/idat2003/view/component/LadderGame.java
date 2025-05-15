@@ -49,7 +49,7 @@ public class LadderGame {
     sidePane.setId("sidepane");
     hBox.getChildren().add(sidePane);
 
-    Image diceImage = new Image(LadderGame.class.getResource("/dice/default.png").toExternalForm());
+    Image diceImage = new Image("/dice/default.png");
     ImageView diceView = new ImageView(diceImage);
     diceView.setFitHeight(200);
     diceView.setPreserveRatio(true);

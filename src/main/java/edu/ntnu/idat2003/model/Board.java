@@ -2,6 +2,7 @@ package edu.ntnu.idat2003.model;
 
 import edu.ntnu.idat2003.model.tile.Tile;
 import edu.ntnu.idat2003.model.tile.tileactions.LadderAction;
+import edu.ntnu.idat2003.model.tile.tileactions.ExtraDiceAction;
 import edu.ntnu.idat2003.model.tile.tileactions.TileAction;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -77,6 +78,21 @@ public class Board {
       }
     }
     return ladders;
+  }
+
+  /**
+   * Getter for all extra dice in bord hashmap.
+   *
+   * @return HashSet with all extra dice
+   */
+  public HashSet<ExtraDiceAction> getExtraDice() {
+    HashSet<ExtraDiceAction> extraDice = new HashSet<>();
+    for (Tile tile : tiles.values()) {
+      if (tile.getAction() instanceof ExtraDiceAction) {
+        extraDice.add((ExtraDiceAction) tile.getAction());
+      }
+    }
+    return extraDice;
   }
 
   /**

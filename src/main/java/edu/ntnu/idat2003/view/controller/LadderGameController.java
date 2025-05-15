@@ -7,6 +7,7 @@ import edu.ntnu.idat2003.model.Vector2;
 import edu.ntnu.idat2003.model.player.Player;
 import edu.ntnu.idat2003.model.tile.Tile;
 import edu.ntnu.idat2003.model.tile.tileactions.LadderAction;
+import edu.ntnu.idat2003.model.tile.tileactions.ExtraDiceAction;
 import edu.ntnu.idat2003.model.tile.tileactions.TileAction;
 import edu.ntnu.idat2003.repo.PlayerRepo;
 import edu.ntnu.idat2003.view.component.MainFrame;
@@ -29,6 +30,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import java.util.HashMap;
 
 public class LadderGameController implements LadderGameObserver {
   private Pane root;
@@ -95,7 +97,7 @@ public class LadderGameController implements LadderGameObserver {
       return;
     }
 
-    PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
+    PauseTransition pause = new PauseTransition(Duration.seconds(0.2));
     pause.setOnFinished(e -> game.movePlayer(remainder - 1));
     pause.play();
   }
@@ -103,7 +105,7 @@ public class LadderGameController implements LadderGameObserver {
   @Override
   public void onTileActionExecuted(Player player, TileAction action) {
     if (action instanceof LadderAction) {
-      PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
+      PauseTransition pause = new PauseTransition(Duration.seconds(0.2));
       pause.setOnFinished(e -> updateBoard());
       pause.play();
     }
@@ -133,14 +135,9 @@ public class LadderGameController implements LadderGameObserver {
     diceView.setFitHeight(200);
     diceView.setPreserveRatio(true);
 
-    Image diceImage =
-        new Image(getClass().getResource("/dice/" + diceValue + "face.png").toExternalForm());
+    Image diceImage = new Image("/dice/" + diceValue + "face.png");
     diceView.setImage(diceImage);
     rollButton.setGraphic(diceView);
-  }
-
-  private void drawLadder(Vector2 start, Vector2 destination) {
-
   }
 
   private void drawPlayer(Player player) {
@@ -158,7 +155,7 @@ public class LadderGameController implements LadderGameObserver {
 
   private void drawTile(Tile tile) {
     StackPane tilePane = new StackPane();
-    tilePane.setStyle("-fx-background-color: GREEN;");
+    tilePane.setStyle("-fx-background-color: GREY; -fx-background-radius: 5px;");
     tilePane.prefWidthProperty().bind(boardGrid.widthProperty().divide(10));
     tilePane.prefHeightProperty().bind(boardGrid.heightProperty().divide(9));
     Text tileText = new Text(tile.getText());
@@ -169,6 +166,49 @@ public class LadderGameController implements LadderGameObserver {
     boardGrid.add(tilePane, column, row);
   }
 
+  private void drawLadder(Vector2 start, Vector2 destination) {
+    StackPane startPane = new StackPane();
+    ladderPane.prefWidthProperty().bind(boardGrid.widthProperty().divide(10));
+    ladderPane.prefHeightProperty().bind(boardGrid.heightProperty().divide(9));
+    
+    ImageView ladderImage = new ImageView("/ladder/portal3.png");
+    ladderImage.setFitHeight(50);
+    ladderImage.setPreserveRatio(true);
+    startPane.getChildren().add(ladderImage);
+
+    int startColumn = start.getX();
+    int startRow = 9 - start.getY();
+    boardGrid.add(startPane, startColumn, startRow);
+
+    StackPane destinationPane = new StackPane();
+    ladderPane.prefWidthProperty().bind(boardGrid.widthProperty().divide(10));
+    ladderPane.prefHeightProperty().bind(boardGrid.heightProperty().divide(9));
+
+    ImageView destinationImage = new ImageView("/ladder/portal4.png");
+    destinationImage.setFitHeight(50);
+    destinationImage.setPreserveRatio(true);
+    destinationPane.getChildren().add(destinationImage);
+
+    int destinationColumn = destination.getX();
+    int destinationRow = 9 - destination.getY();
+    boardGrid.add(destinationPane, destinationColumn, destinationRow);
+  }
+
+  private void drawExtraDice(Vector2 start) {
+    StackPane extraDicePane = new StackPane();
+    extraDicePane.prefWidthProperty().bind(boardGrid.widthProperty().divide(10));
+    extraDicePane.prefHeightProperty().bind(boardGrid.heightProperty().divide(9));
+
+    ImageView extraDiceImage = new ImageView("/dice/default.png");
+    extraDiceImage.setFitHeight(50);
+    extraDiceImage.setPreserveRatio(true);
+    extraDicePane.getChildren().add(extraDiceImage);
+
+    int column = start.getX();
+    int row = 9 - start.getY();
+    boardGrid.add(extraDicePane, column, row);
+  }
+
   private void updateBoard() {
     boardGrid.getChildren().clear();
     ladderPane.getChildren().clear();
@@ -177,15 +217,21 @@ public class LadderGameController implements LadderGameObserver {
       drawTile(tile);
     }
 
-    for (Player player : game.getPlayers()) {
-      drawPlayer(player);
-    }
-
     HashSet<LadderAction> ladders = board.getLadders();
     for (LadderAction ladder : ladders) {
       Vector2 start = ladder.getStart();
       Vector2 destination = ladder.getDestination();
-      Platform.runLater(() -> drawLadder(start, destination));
+      drawLadder(start, destination);
+    }
+
+    HashSet<ExtraDiceAction> extraDice = board.getExtraDice();
+    for (TileAction extra : extraDice) {
+      Vector2 start = extra.getStart();
+      drawExtraDice(start);
+    }
+
+    for (Player player : game.getPlayers()) {
+      drawPlayer(player);
     }
   }
 }
