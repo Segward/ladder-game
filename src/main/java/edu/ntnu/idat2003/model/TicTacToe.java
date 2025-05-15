@@ -1,8 +1,6 @@
 package edu.ntnu.idat2003.model;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-
 import edu.ntnu.idat2003.model.dice.Dice;
 import edu.ntnu.idat2003.model.player.Player;
 /**

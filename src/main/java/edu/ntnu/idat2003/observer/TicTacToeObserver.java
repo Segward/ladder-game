@@ -6,7 +6,7 @@ public interface TicTacToeObserver {
 
     void onClick(Button tile);
 
-    boolean gameScoreCheck();
+    void retreveTiles();
 
     void gameStatus();
 }
