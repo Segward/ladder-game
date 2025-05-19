@@ -87,6 +87,7 @@ public class TicTacToeControllerTest extends ApplicationTest {
 
     @Test
     void testWin() {
+        testGame.init();
         testGame.createBoard();
         testGame.retreveTiles();
         HashMap<Vector2, Button> tiles = testGame.getResultHash();
@@ -95,6 +96,22 @@ public class TicTacToeControllerTest extends ApplicationTest {
             if(node instanceof Button) {
                 Button tile = (Button) node;
                 tile.setUserData("X");
+            }
+        }
+        assertTrue(testGame.win() instanceof Player);
+    }
+
+    @Test
+    void testNotWin() {
+        testGame.init();
+        testGame.createBoard();
+        testGame.retreveTiles();
+        HashMap<Vector2, Button> tiles = testGame.getResultHash();
+        
+        for(Node node : testGame.getResultHash().values()) {
+            if(node instanceof Button) {
+                Button tile = (Button) node;
+                tile.setUserData("");
             }
         }
         assertFalse(testGame.win() instanceof Player);

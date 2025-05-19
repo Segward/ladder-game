@@ -184,6 +184,7 @@ public class TicTacToeController implements TicTacToeObserver{
                 tile.setPrefSize(100, 100);
                 tile.setOnAction(e -> onClick(tile));
                 tile.setDisable(false);
+                tile.setUserData("");
                 playingBoard.add(tile, i, j);
             }
         }
