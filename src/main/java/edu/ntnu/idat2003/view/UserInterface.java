@@ -1,34 +1,34 @@
 package edu.ntnu.idat2003.view;
 
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class UserInterface {
 
-  private Stage primaryStage;
-  private Pane root;
+  private final Stage primaryStage;
+  private final int WIDTH = 1000;
+  private final int HEIGHT = 800;
+  private final BorderPane root;
 
   public UserInterface(Stage primaryStage) {
     this.primaryStage = primaryStage;
-    this.root = new Pane();
+    this.root = new BorderPane();
   }
 
   public void init() {
-    primaryStage.setTitle("Ladder Game");
-    primaryStage.setMinWidth(1000);
-    primaryStage.setMinHeight(600);
+    primaryStage.setTitle("Board Games");
+    primaryStage.setMinHeight(HEIGHT);
+    primaryStage.setMinWidth(WIDTH);
+    primaryStage.setResizable(false);
 
-    root.prefWidthProperty().bind(primaryStage.widthProperty());
-    root.prefHeightProperty().bind(primaryStage.heightProperty());
-
-    root.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
-    root.setId("root");
+    MainFrame mainFrame = new MainFrame(root);
+    mainFrame.init();
   }
 
   public void start() {
-    MainFrame.init(root);
-    primaryStage.setScene(new Scene(root));
+    Scene scene = new Scene(root);
+    primaryStage.setScene(scene);
     primaryStage.show();
   }
 }

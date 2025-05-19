@@ -8,9 +8,9 @@ public class App extends Application {
 
   @Override
   public void start(Stage primaryStage) {
-    UserInterface userInterface = new UserInterface(primaryStage);
-    userInterface.init();
-    userInterface.start();
+    UserInterface ui = new UserInterface(primaryStage);
+    ui.init();
+    ui.start();
   }
 
   public static void main(String[] args) {

@@ -4,35 +4,34 @@ import edu.ntnu.idat2003.controller.MainFrameController;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 
 public class MainFrame {
-  public static void init(Pane root) {
-    root.getChildren().clear();
 
-    StackPane stackPane = new StackPane();
-    stackPane.prefWidthProperty().bind(root.widthProperty());
-    stackPane.prefHeightProperty().bind(root.heightProperty());
-    stackPane.setId("mainframe");
-    root.getChildren().add(stackPane);
+  private final BorderPane root;
 
-    FlowPane flowPane = new FlowPane();
-    flowPane.setOrientation(Orientation.VERTICAL);
-    flowPane.setAlignment(Pos.CENTER);
-    flowPane.setVgap(20);
-    stackPane.getChildren().add(flowPane);
+  public MainFrame(BorderPane borderPane) {
+    this.root = borderPane;
+  }
 
-    Button startGameButton = new Button("Start Game");
-    startGameButton.setPrefSize(300, 50);
-    flowPane.getChildren().add(startGameButton);
+  public void init() {
+    root.setCenter(null);
 
-    Button exitAppButton = new Button("Exit");
-    exitAppButton.setPrefSize(300, 50);
-    flowPane.getChildren().add(exitAppButton);
+    Button startGame = new Button("Start Game");
+    startGame.setPrefSize(200, 50);
 
-    MainFrameController controller = new MainFrameController(root, startGameButton, exitAppButton);
-    controller.init();
+    Button exitGame = new Button("Exit Game");
+    exitGame.setPrefSize(200, 50);
+
+    FlowPane buttonPane = new FlowPane();
+    buttonPane.setOrientation(Orientation.VERTICAL);
+    buttonPane.setAlignment(Pos.CENTER);
+    buttonPane.setVgap(10);
+    buttonPane.getChildren().addAll(startGame, exitGame);
+    root.setCenter(buttonPane);
+
+    MainFrameController mainFrameController = new MainFrameController(root);
+    mainFrameController.init(startGame, exitGame);
   }
 }

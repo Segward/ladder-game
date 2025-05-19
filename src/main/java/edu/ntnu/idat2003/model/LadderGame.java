@@ -1,10 +1,9 @@
 package edu.ntnu.idat2003.model;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-
 import edu.ntnu.idat2003.model.tileactions.TileAction;
 import edu.ntnu.idat2003.observer.LadderGameObserver;
+import java.util.ArrayList;
+import java.util.HashSet;
 
 public class LadderGame {
 
@@ -21,7 +20,7 @@ public class LadderGame {
     this.board = board;
     this.currentPlayer = players.iterator().next();
     this.observer = observer;
-    this.dice = new Dice(1);
+    this.dice = new Dice(2);
     this.gameOver = false;
     this.isPlayerMoving = false;
   }
@@ -53,11 +52,9 @@ public class LadderGame {
     Tile tile = board.getTile(position);
     Vector2 nextPosition = tile.getNextPosition();
     currentPlayer.setPosition(nextPosition);
-
     tile = board.getTile(nextPosition);
-    String text = tile.getText();
 
-    if (text == "90") {
+    if (tile.getNextPosition() == null) {
       gameOver = true;
       observer.onPlayerWon(currentPlayer);
       return;
@@ -95,5 +92,9 @@ public class LadderGame {
     int currentIndex = playerList.indexOf(currentPlayer);
     int nextIndex = (currentIndex + 1) % playerList.size();
     currentPlayer = playerList.get(nextIndex);
+  }
+
+  public Board getBoard() {
+    return board;
   }
 }

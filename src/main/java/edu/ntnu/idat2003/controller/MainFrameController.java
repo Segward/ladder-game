@@ -1,32 +1,28 @@
 package edu.ntnu.idat2003.controller;
 
+import edu.ntnu.idat2003.view.LadderGame;
 import javafx.scene.control.Button;
-import edu.ntnu.idat2003.view.PlayerSelection;
-import javafx.event.ActionEvent;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.BorderPane;
 
 public class MainFrameController {
 
-  private Pane root;
-  private Button start;
-  private Button exit;  
-  
-  public MainFrameController(Pane root, Button start, Button exit) {
-    this.root = root;
-    this.start = start;
-    this.exit = exit;
+  private final BorderPane root;
+
+  public MainFrameController(BorderPane borderPane) {
+    this.root = borderPane;
   }
 
-  public void init() {
-    start.setOnAction(this::onStartClick);
-    exit.setOnAction(this::onExitClick);
+  public void init(Button startGame, Button exitGame) {
+    startGame.setOnAction(e -> startGame());
+    exitGame.setOnAction(e -> exitGame());
   }
 
-  public void onStartClick(ActionEvent event) {
-    PlayerSelection.init(root);
+  private void startGame() {
+    LadderGame ladderGame = new LadderGame(root);
+    ladderGame.init();
   }
-  
-  public void onExitClick(ActionEvent event) {
+
+  private void exitGame() {
     System.exit(0);
-  } 
+  }
 }

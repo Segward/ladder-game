@@ -1,70 +1,53 @@
 package edu.ntnu.idat2003.view;
 
 import edu.ntnu.idat2003.controller.LadderGameController;
-import edu.ntnu.idat2003.model.Board;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 public class LadderGame {
-  public static void init(Pane root, Board board) {
-    root.getChildren().clear();
 
-    HBox hBox = new HBox();
-    root.getChildren().add(hBox);
+  private final BorderPane root;
 
-    StackPane boardPane = new StackPane();
-    boardPane.setStyle("-fx-background-color: WHITE;");
-    boardPane.prefWidthProperty().bind(root.widthProperty().multiply(0.7));
-    boardPane.prefHeightProperty().bind(root.heightProperty());
-    boardPane.setAlignment(Pos.TOP_LEFT);
-    hBox.getChildren().add(boardPane);
+  private final int WIDTH = 1000;
+  private final int HEIGHT = 800;
+  private final double WIDTH_RATIO = 0.8;
 
-    StackPane tilesPane = new StackPane();
-    tilesPane.prefWidthProperty().bind(boardPane.widthProperty());
-    tilesPane.prefHeightProperty().bind(boardPane.heightProperty());
-    boardPane.getChildren().add(tilesPane);
+  public LadderGame(BorderPane borderPane) {
+    this.root = borderPane;
+  }
 
-    GridPane boardGrid = new GridPane();
-    boardGrid.setVgap(2);
-    boardGrid.setHgap(2);
-    boardGrid.prefWidthProperty().bind(tilesPane.widthProperty());
-    boardGrid.prefHeightProperty().bind(tilesPane.heightProperty());
-    tilesPane.getChildren().add(boardGrid);
+  public void init() {
+    root.setCenter(null);
 
-    Pane ladderPane = new StackPane();
-    ladderPane.prefWidthProperty().bind(boardGrid.widthProperty());
-    ladderPane.prefHeightProperty().bind(boardGrid.heightProperty());
-    boardPane.getChildren().add(ladderPane);
+    Canvas canvas = new Canvas(WIDTH * WIDTH_RATIO, HEIGHT);
+    StackPane canvasPane = new StackPane(canvas);
 
-    FlowPane sidePane = new FlowPane();
-    sidePane.prefWidthProperty().bind(root.widthProperty().multiply(0.3));
-    sidePane.prefHeightProperty().bind(root.heightProperty());
-    sidePane.setId("sidepane");
-    hBox.getChildren().add(sidePane);
+    Button rollDice = new Button("Roll Dice");
+    rollDice.setPrefSize(100, 100);
 
-    Image diceImage = new Image("/dice/default.png");
-    ImageView diceView = new ImageView(diceImage);
-    diceView.setFitHeight(200);
-    diceView.setPreserveRatio(true);
+    Button exitGame = new Button("Exit Game");
+    exitGame.setPrefSize(100, 100);
 
-    Button diceButton = new Button();
-    diceButton.setGraphic(diceView);
-    diceButton.setPrefSize(50, 50);
-    diceButton.setStyle("-fx-background-color: transparent;");
-    sidePane.getChildren().add(diceButton);
+    FlowPane buttonPane = new FlowPane();
+    buttonPane.setPrefSize(WIDTH * (1 - WIDTH_RATIO), HEIGHT);
+    buttonPane.setOrientation(Orientation.VERTICAL);
+    buttonPane.setAlignment(Pos.CENTER);
+    buttonPane.setVgap(10);
+    buttonPane.getChildren().addAll(rollDice, exitGame);
 
-    Button endButton = new Button("End game");
-    sidePane.getChildren().add(endButton);
+    HBox hBox = new HBox(canvasPane, buttonPane);
+    hBox.setPrefSize(WIDTH, HEIGHT);
+    root.setCenter(hBox);
 
-    LadderGameController controller =
-        new LadderGameController(root, board, ladderPane, boardGrid, diceButton, endButton);
-    controller.init();
+    buttonPane.setStyle("-fx-background-color:rgb(174, 109, 109);");
+
+    LadderGameController ladderGameController = new LadderGameController(root, canvas);
+    ladderGameController.init(rollDice, exitGame);
   }
 }

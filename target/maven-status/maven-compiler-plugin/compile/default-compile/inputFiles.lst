@@ -1,11 +1,6 @@
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/App.java
-/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/controller/BoardSelectionController.java
-/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/controller/FigureSelectionController.java
-/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/controller/GameSelectionController.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/controller/LadderGameController.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/controller/MainFrameController.java
-/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/controller/PartyGameController.java
-/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/controller/PlayerSelectionController.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/exception/DataCreateException.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/exception/DataReadException.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/exception/DataWriteException.java
@@ -38,13 +33,6 @@
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/util/CsvUtil.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/util/FileUtil.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/util/GsonUtil.java
-/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/BoardSelection.java
-/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/DiceWall.java
-/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/FigureSelection.java
-/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/GameSelection.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/LadderGame.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/MainFrame.java
-/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/PartyGame.java
-/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/PlayerSelection.java
-/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/QuizGame.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/UserInterface.java

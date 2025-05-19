@@ -8,7 +8,7 @@ public class Vector2 {
     this.x = x;
     this.y = y;
   }
-  
+
   public void setX(int x) {
     this.x = x;
   }
@@ -28,6 +28,14 @@ public class Vector2 {
 
   public int getY() {
     return y;
+  }
+
+  public Vector2 add(Vector2 vector) {
+    return new Vector2(this.x + vector.x, this.y + vector.y);
+  }
+
+  public Vector2 subtract(Vector2 vector) {
+    return new Vector2(this.x - vector.x, this.y - vector.y);
   }
 
   @Override
