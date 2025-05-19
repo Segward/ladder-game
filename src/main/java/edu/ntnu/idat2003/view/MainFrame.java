@@ -18,8 +18,11 @@ public class MainFrame {
   public void init() {
     root.setCenter(null);
 
-    Button startGame = new Button("Start Game");
-    startGame.setPrefSize(200, 50);
+    Button startLadderGame = new Button("Start Ladder Game");
+    startLadderGame.setPrefSize(200, 50);
+
+    Button startPartyGame = new Button("Start Party Game");
+    startPartyGame.setPrefSize(200, 50);
 
     Button exitGame = new Button("Exit Game");
     exitGame.setPrefSize(200, 50);
@@ -28,10 +31,10 @@ public class MainFrame {
     buttonPane.setOrientation(Orientation.VERTICAL);
     buttonPane.setAlignment(Pos.CENTER);
     buttonPane.setVgap(10);
-    buttonPane.getChildren().addAll(startGame, exitGame);
+    buttonPane.getChildren().addAll(startLadderGame, startPartyGame, exitGame);
     root.setCenter(buttonPane);
 
     MainFrameController mainFrameController = new MainFrameController(root);
-    mainFrameController.init(startGame, exitGame);
+    mainFrameController.init(startLadderGame, startPartyGame, exitGame);
   }
 }

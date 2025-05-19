@@ -14,7 +14,6 @@ public class PartyGame {
   private Dice dice;
   private boolean gameOver;
   private boolean isPlayerMoving;
-  private boolean isMiniGameActive;
 
   public PartyGame(HashSet<Player> players, Board board, PartyGameObserver observer) {
     this.players = players;
@@ -24,7 +23,6 @@ public class PartyGame {
     this.dice = new Dice(1);
     this.gameOver = false;
     this.isPlayerMoving = false;
-    this.isMiniGameActive = false;
   }
 
   public void init() {
@@ -50,16 +48,19 @@ public class PartyGame {
   }
 
   public void movePlayer(int remainder) {
+    if (gameOver) {
+      observer.onPlayerWon(currentPlayer);
+      return;
+    }
+
     Vector2 position = currentPlayer.getPosition();
     Tile tile = board.getTile(position);
     Vector2 nextPosition = tile.getNextPosition();
     currentPlayer.setPosition(nextPosition);
     tile = board.getTile(nextPosition);
 
-    if (position.getX() >= 10 && position.getY() >= 9) {
+    if (tile.getNextPosition() == null) {
       gameOver = true;
-      observer.onPlayerWon(currentPlayer);
-      return;
     }
 
     observer.onPlayerMoved(currentPlayer, remainder);
@@ -94,5 +95,9 @@ public class PartyGame {
     int currentIndex = playerList.indexOf(currentPlayer);
     int nextIndex = (currentIndex + 1) % playerList.size();
     currentPlayer = playerList.get(nextIndex);
+  }
+
+  public Board getBoard() {
+    return board;
   }
 }
