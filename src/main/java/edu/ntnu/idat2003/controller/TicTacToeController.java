@@ -2,6 +2,7 @@ package edu.ntnu.idat2003.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 import edu.ntnu.idat2003.component.MainFrame;
 import edu.ntnu.idat2003.model.TicTacToe;
@@ -10,6 +11,7 @@ import edu.ntnu.idat2003.model.dice.Dice;
 import edu.ntnu.idat2003.model.player.Figure;
 import edu.ntnu.idat2003.model.player.Player;
 import edu.ntnu.idat2003.observer.TicTacToeObserver;
+import edu.ntnu.idat2003.repo.PlayerRepo;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.Node;
@@ -78,9 +80,12 @@ public class TicTacToeController implements TicTacToeObserver{
      * 
      */
     public void init() {
+        HashSet<Player> hashSetPlayer = PlayerRepo.getPlayers();
         ArrayList<Player> players = new ArrayList<>();
-        players.add(new Player("PlayerOne", new Figure("Queen")));
-        players.add(new Player("PlayerTwo", new Figure("King")));
+        for(Player player : hashSetPlayer) {
+            players.add(player);
+        }
+        
         this.game = new TicTacToe(players, new Dice(1));
         
         gameStartSetup();

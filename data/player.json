@@ -1,6 +1,18 @@
 [
   {
-    "name": "dewdwd",
+    "name": "Pelle",
+    "figure": {
+      "name": "Rook"
+    },
+    "position": {
+      "x": 0,
+      "y": 0,
+      "number": 0
+    },
+    "extraDice": false
+  },
+  {
+    "name": "Pelle3",
     "figure": {
       "name": "King"
     },
@@ -12,21 +24,9 @@
     "extraDice": false
   },
   {
-    "name": "dwad",
+    "name": "Pjolle",
     "figure": {
       "name": "Knight"
-    },
-    "position": {
-      "x": 0,
-      "y": 0,
-      "number": 0
-    },
-    "extraDice": false
-  },
-  {
-    "name": "vfr",
-    "figure": {
-      "name": "Rook"
     },
     "position": {
       "x": 0,
