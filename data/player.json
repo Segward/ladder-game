@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Pelle",
+    "figure": {
+      "name": "Rook"
+    },
+    "position": {
+      "x": 0,
+      "y": 0,
+      "number": 0
+    },
+    "extraDice": false
+  },
+  {
+    "name": "Pelle3",
+    "figure": {
+      "name": "King"
+    },
+    "position": {
+      "x": 0,
+      "y": 0,
+      "number": 0
+    },
+    "extraDice": false
+  },
+  {
+    "name": "Pjolle",
+    "figure": {
+      "name": "Knight"
+    },
+    "position": {
+      "x": 0,
+      "y": 0,
+      "number": 0
+    },
+    "extraDice": false
+  }
+]

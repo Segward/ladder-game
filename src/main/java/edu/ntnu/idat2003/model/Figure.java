@@ -1,5 +1,9 @@
 package edu.ntnu.idat2003.model;
 
+/**
+ *  Class representing player figure.
+ *  Consists of methods that defines this object.
+ */
 public class Figure {
 
   private String name;
@@ -10,6 +14,12 @@ public class Figure {
     this.path = path;
   }
 
+  /**
+   *  Getter for the Figure name.
+   *  Retreves the name String variable value.
+   * 
+   * @return String representing figure name
+   */
   public String getName() {
     return name;
   }
@@ -42,6 +52,12 @@ public class Figure {
     return false;
   }
 
+  /**
+   *  Method for reducing collision with similar names.
+   *  Uses a hash Code method on the String name value to 
+   *  generate a hash code of the name, then multiplies that
+   *  value wiht 31 to reduce the likelihood of collision.
+   */
   @Override
   public int hashCode() {
     int result = 31 * name.hashCode();

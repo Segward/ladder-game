@@ -24,6 +24,9 @@ public class MainFrame {
     Button startPartyGame = new Button("Start Party Game");
     startPartyGame.setPrefSize(200, 50);
 
+    Button startTicTacToeGame = new Button("Start Tic Tac Toe Game");
+    startTicTacToeGame.setPrefSize(200, 50);
+
     Button exitGame = new Button("Exit Game");
     exitGame.setPrefSize(200, 50);
 
@@ -31,10 +34,10 @@ public class MainFrame {
     buttonPane.setOrientation(Orientation.VERTICAL);
     buttonPane.setAlignment(Pos.CENTER);
     buttonPane.setVgap(10);
-    buttonPane.getChildren().addAll(startLadderGame, startPartyGame, exitGame);
+    buttonPane.getChildren().addAll(startLadderGame, startPartyGame, startTicTacToeGame, exitGame);
     root.setCenter(buttonPane);
 
     MainFrameController mainFrameController = new MainFrameController(root);
-    mainFrameController.init(startLadderGame, startPartyGame, exitGame);
+    mainFrameController.init(startLadderGame, startPartyGame, startTicTacToeGame, exitGame);
   }
 }

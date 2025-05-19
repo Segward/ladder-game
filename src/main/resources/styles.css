@@ -17,6 +17,7 @@
   -fx-alignment: center;
 }
 
+<<<<<<< HEAD
 .button {
   -fx-background-color: #ffffff;
   -fx-text-fill: #000000;
@@ -28,4 +29,26 @@
 .text {
   -fx-font-size: 20px;
   -fx-text-fill: #ffffff;
+=======
+#playerOnePanal {
+  -fx-background-size: cover;
+  -fx-background-position: center;
+  -fx-background-repeat: no-repeat;
+  -fx-orientation: vertical;
+  -fx-alignment: center;
+}
+
+#playerTwoPanal {
+  -fx-background-size: cover;
+  -fx-background-position: center;
+  -fx-background-repeat: no-repeat;
+  -fx-orientation: vertical;
+  -fx-alignment: center;
+}
+
+#ticTacToeGameText{
+  -fx-font-smoothing-type: lcd;
+  -fx-fill: black;
+  -fx-font-size: 25pt;
+>>>>>>> tictactoe
 }
