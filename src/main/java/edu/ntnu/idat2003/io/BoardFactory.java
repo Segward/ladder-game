@@ -11,7 +11,7 @@ import java.util.HashSet;
 public class BoardFactory {
 
   public static void makeLadderBoards() {
-    Board board1 = new Board("Default Board");
+    Board board1 = new Board("Default Ladder Board");
     Tile previous = null;
     int count = 1;
     for (int i = 0; i < 9; i++) {
@@ -56,7 +56,7 @@ public class BoardFactory {
     ExtraDiceAction action6 = new ExtraDiceAction(start6);
     board1.addAction(start6, action6);
 
-    Board board2 = new Board("Difficult Board");
+    Board board2 = new Board("Difficult Ladder Board");
     Tile previous2 = null;
     int count2 = 1;
     for (int i = 0; i < 9; i++) {
@@ -107,13 +107,20 @@ public class BoardFactory {
   }
 
   public static void makePartyBoards() {
-    Board board1 = new Board("Default Board");
-    Tile previous = null;
     int count = 1;
-    for (int i = 0; i < 9; i++) {
-      for (int j = 0; j < 10; j++) {
-        int x = i % 2 == 1 ? 9 - j : j;
-        Vector2 pos = new Vector2(x, i);
+    int rows = 9;
+    int cols = 10;
+    int top = 0;
+    int bottom = rows - 1;
+    int left = 0;
+    int right = cols - 1;
+
+    Board board1 = new Board("Default Party Board");
+    Tile previous = null;
+    
+    while (count <= rows * cols) {
+      for (int i = left; i <= right; i++) {
+        Vector2 pos = new Vector2(i, top);
         Tile tile = new Tile(pos, String.valueOf(count));
         board1.addTile(pos, tile);
         if (previous != null) {
@@ -122,6 +129,43 @@ public class BoardFactory {
         previous = tile;
         count++;
       }
+      top++;
+
+      for (int i = top; i <= bottom; i++) {
+        Vector2 pos = new Vector2(right, i);
+        Tile tile = new Tile(pos, String.valueOf(count));
+        board1.addTile(pos, tile);
+        if (previous != null) {
+          previous.setNextPosition(tile.getPosition());
+        }
+        previous = tile;
+        count++;
+      }
+      right--;
+
+      for (int i = right; i >= left; i--) {
+        Vector2 pos = new Vector2(i, bottom);
+        Tile tile = new Tile(pos, String.valueOf(count));
+        board1.addTile(pos, tile);
+        if (previous != null) {
+          previous.setNextPosition(tile.getPosition());
+        }
+        previous = tile;
+        count++;
+      }
+      bottom--;
+
+      for (int i = bottom; i >= top; i--) {
+        Vector2 pos = new Vector2(left, i);
+        Tile tile = new Tile(pos, String.valueOf(count));
+        board1.addTile(pos, tile);
+        if (previous != null) {
+          previous.setNextPosition(tile.getPosition());
+        }
+        previous = tile;
+        count++;
+      }
+      left++;
     }
 
     HashSet<Board> boards = new HashSet<>();

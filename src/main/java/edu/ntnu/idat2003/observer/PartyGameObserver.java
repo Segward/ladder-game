@@ -12,5 +12,11 @@ public interface PartyGameObserver {
 
   void onDiceRolled(int diceValue);
 
-  void onMinigameStarted(Player player);
+  void onQuizGameStarted(Player player);
+
+  void onQuizGameFinished(Player player, int score);
+
+  void onDiceWallGameStarted(Player player);
+
+  void onDiceWallGameFinished(Player player, int score);
 }

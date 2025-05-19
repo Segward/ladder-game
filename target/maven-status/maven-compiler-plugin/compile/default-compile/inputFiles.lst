@@ -28,6 +28,8 @@
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/model/Tile.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/model/TileActionAdapter.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/model/Vector2.java
+/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/model/minigames/QuizGame.java
+/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/model/minigames/WallOfMisfortune.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/model/tileactions/ExtraDiceAction.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/model/tileactions/LadderAction.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/model/tileactions/TileAction.java
@@ -37,10 +39,12 @@
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/util/FileUtil.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/util/GsonUtil.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/BoardSelection.java
+/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/DiceWall.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/FigureSelection.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/GameSelection.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/LadderGame.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/MainFrame.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/PartyGame.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/PlayerSelection.java
+/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/QuizGame.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/UserInterface.java
