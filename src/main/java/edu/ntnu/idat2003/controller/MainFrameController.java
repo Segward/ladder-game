@@ -1,5 +1,6 @@
 package edu.ntnu.idat2003.controller;
 
+import edu.ntnu.idat2003.view.Configuration;
 import edu.ntnu.idat2003.view.LadderGame;
 import edu.ntnu.idat2003.view.PartyGame;
 import javafx.scene.control.Button;
@@ -13,9 +14,11 @@ public class MainFrameController {
     this.root = borderPane;
   }
 
-  public void init(Button startLadderGame, Button startPartyGame, Button exitGame) {
+  public void init(
+      Button startLadderGame, Button startPartyGame, Button configureGame, Button exitGame) {
     startLadderGame.setOnAction(e -> startLadderGame());
     startPartyGame.setOnAction(e -> startPartyGame());
+    configureGame.setOnAction(e -> configureGame());
     exitGame.setOnAction(e -> exitGame());
   }
 
@@ -27,6 +30,11 @@ public class MainFrameController {
   private void startPartyGame() {
     PartyGame partyGame = new PartyGame(root);
     partyGame.init();
+  }
+
+  private void configureGame() {
+    Configuration configuration = new Configuration(root);
+    configuration.init();
   }
 
   private void exitGame() {
