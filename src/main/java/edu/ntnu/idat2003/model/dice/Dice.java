@@ -20,7 +20,7 @@ public class Dice {
 
   /**
    *  Method for rolling all of the dice.
-   *  Creates a new die object and result int.
+   *  Creates a new die object with 6 sides and a result int.
    *  Utilizes a for loop that loops equal to this
    *  dice objects int die value. Adds each consecutive
    *  int result to the new result int. 
