@@ -85,7 +85,7 @@ public class TicTacToeController implements TicTacToeObserver{
         for(Player player : hashSetPlayer) {
             players.add(player);
         }
-        
+
         this.game = new TicTacToe(players, new Dice(1));
         
         gameStartSetup();
@@ -205,7 +205,7 @@ public class TicTacToeController implements TicTacToeObserver{
         ImageView iconView = new ImageView();
         iconView.setFitHeight(tile.getHeight()*0.8);
         iconView.setFitWidth(tile.getWidth()*0.8);
-        if (currentPlayer.getName().equals("PlayerOne")) {
+        if (currentPlayer.getName().equals(game.getPlayers().stream().findFirst().get().getName())) {
             Image xMark = new Image(getClass().getResource("/icons/xMark.png").toExternalForm());
             iconView.setImage(xMark);
             tile.setUserData("X");
