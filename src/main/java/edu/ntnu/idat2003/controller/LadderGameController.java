@@ -68,6 +68,9 @@ public class LadderGameController implements LadderGameObserver {
     gc.setStroke(Color.BLACK);
     gc.setLineWidth(2);
 
+    Image background = new Image("/background/spooky.jpg");
+    gc.drawImage(background, 0, 0, canvas.getWidth(), canvas.getHeight());
+
     double gridWidth = columns * cellWidth;
     double gridHeight = rows * cellHeight;
     double offsetX = (canvas.getWidth() - gridWidth) / 2;
@@ -75,8 +78,7 @@ public class LadderGameController implements LadderGameObserver {
 
     int number = 1;
     double arc = Math.min(cellWidth, cellHeight) * 0.3;
-    double innerPadding =
-        cellPadding; // padding inside each cell (space between cell border and content)
+    double innerPadding = cellPadding;
 
     for (int row = rows - 1; row >= 0; row--) {
       for (int col = 0; col < columns; col++) {
@@ -86,7 +88,7 @@ public class LadderGameController implements LadderGameObserver {
         double y = offsetY + row * cellHeight;
 
         // Draw cell background with padding inside cell
-        gc.setFill(Color.WHITE);
+        gc.setFill(Color.GRAY);
         gc.fillRoundRect(
             x + innerPadding,
             y + innerPadding,
@@ -130,13 +132,45 @@ public class LadderGameController implements LadderGameObserver {
       double endX = offsetX + endCol * cellWidth + cellWidth / 2;
       double endY = offsetY + endRow * cellHeight + cellHeight / 2;
 
-      gc.setLineWidth(4);
-      if (action.getDirection().equals("up")) {
-        gc.setStroke(Color.GREEN);
-      } else {
-        gc.setStroke(Color.RED);
+      // Calculate perpendicular offset for ladder width
+      double dx = endX - startX;
+      double dy = endY - startY;
+      double length = Math.hypot(dx, dy);
+      double ladderWidth = cellWidth * 0.3; // Adjust for ladder thickness
+
+      // Perpendicular vector (normalized)
+      double perpX = -dy / length;
+      double perpY = dx / length;
+
+      // Side 1
+      double sx1 = startX + perpX * ladderWidth / 2;
+      double sy1 = startY + perpY * ladderWidth / 2;
+      double ex1 = endX + perpX * ladderWidth / 2;
+      double ey1 = endY + perpY * ladderWidth / 2;
+
+      // Side 2
+      double sx2 = startX - perpX * ladderWidth / 2;
+      double sy2 = startY - perpY * ladderWidth / 2;
+      double ex2 = endX - perpX * ladderWidth / 2;
+      double ey2 = endY - perpY * ladderWidth / 2;
+
+      // Draw the two sides
+      gc.setLineWidth(8);
+      gc.setStroke(Color.SADDLEBROWN);
+      gc.strokeLine(sx1, sy1, ex1, ey1);
+      gc.strokeLine(sx2, sy2, ex2, ey2);
+
+      // Draw rungs
+      int rungs = 4;
+      for (int i = 1; i < rungs; i++) {
+        double t = i / (double) rungs;
+        double rx1 = sx1 + (ex1 - sx1) * t;
+        double ry1 = sy1 + (ey1 - sy1) * t;
+        double rx2 = sx2 + (ex2 - sx2) * t;
+        double ry2 = sy2 + (ey2 - sy2) * t;
+        gc.setLineWidth(4);
+        gc.strokeLine(rx1, ry1, rx2, ry2);
       }
-      gc.strokeLine(startX, startY, endX, endY);
     }
 
     // Draw ExtraDiceAction circles
@@ -149,9 +183,8 @@ public class LadderGameController implements LadderGameObserver {
       double px = offsetX + drawCol * cellWidth + innerPadding;
       double py = offsetY + drawRow * cellHeight + innerPadding;
 
-      gc.setFill(Color.YELLOW);
-      double size = cellWidth - 2 * innerPadding;
-      gc.fillOval(px + 10, py + 10, size - 20, size - 20);
+      Image playerImage = new Image("/dice/default.png");
+      gc.drawImage(playerImage, px + 10, py + 10, cellWidth - 20, cellHeight - 20);
     }
 
     // Draw players
@@ -195,6 +228,8 @@ public class LadderGameController implements LadderGameObserver {
 
   @Override
   public void onPlayerWon(Player player) {
+    drawCanvas();
+
     GraphicsContext gc = canvas.getGraphicsContext2D();
     double width = canvas.getWidth();
     double height = canvas.getHeight();

@@ -48,6 +48,11 @@ public class LadderGame {
   }
 
   public void movePlayer(int remainder) {
+    if (gameOver) {
+      observer.onPlayerWon(currentPlayer);
+      return;
+    }
+
     Vector2 position = currentPlayer.getPosition();
     Tile tile = board.getTile(position);
     Vector2 nextPosition = tile.getNextPosition();
@@ -56,8 +61,6 @@ public class LadderGame {
 
     if (tile.getNextPosition() == null) {
       gameOver = true;
-      observer.onPlayerWon(currentPlayer);
-      return;
     }
 
     observer.onPlayerMoved(currentPlayer, remainder);
