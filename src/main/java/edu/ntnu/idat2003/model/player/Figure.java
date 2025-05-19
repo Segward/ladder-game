@@ -33,7 +33,7 @@ public class Figure {
    *  Method for checking if an object is equal to
    *  this spesific Figure object. Checks if the 
    *  parameter object is the same as this object.
-   *  Checks both for object value and if string name
+   *  Checks for both object value and if string name
    *  value is equal.
    * 
    *  @return true if objects are the same, false if not
@@ -62,7 +62,6 @@ public class Figure {
    *  Uses a hash Code method on the String name value to 
    *  generate a hash code of the name, then multiplies that
    *  value wiht 31 to reduce the likelihood of collision.
-   * 
    */
   @Override
   public int hashCode() {
