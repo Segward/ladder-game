@@ -1,0 +1,20 @@
+package edu.ntnu.idat2003.model;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.ArrayList;
+
+import org.junit.jupiter.api.Test;
+
+import edu.ntnu.idat2003.model.dice.Dice;
+import edu.ntnu.idat2003.model.player.Player;
+
+public class TicTacToeTest {
+    @Test
+    void testRollDice() {
+        ArrayList<Player> players = new ArrayList<>();
+        TicTacToe game = new TicTacToe(players, new Dice(1));
+        int diceRoll = game.rollDice();
+        assertTrue(diceRoll >= 1 && diceRoll <= 6);
+    }
+}
