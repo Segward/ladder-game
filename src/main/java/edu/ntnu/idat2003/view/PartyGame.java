@@ -1,6 +1,7 @@
 package edu.ntnu.idat2003.view;
 
 import edu.ntnu.idat2003.controller.PartyGameController;
+import edu.ntnu.idat2003.model.Board;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
@@ -13,13 +14,15 @@ import javafx.scene.layout.StackPane;
 public class PartyGame {
 
   private final BorderPane root;
+  private final Board board;
 
   private final int WIDTH = 1000;
   private final int HEIGHT = 800;
   private final double WIDTH_RATIO = 0.8;
 
-  public PartyGame(BorderPane borderPane) {
+  public PartyGame(BorderPane borderPane, Board board) {
     this.root = borderPane;
+    this.board = board;
   }
 
   public void init() {
@@ -47,7 +50,7 @@ public class PartyGame {
 
     buttonPane.setStyle("-fx-background-color:rgb(174, 109, 109);");
 
-    PartyGameController partyGameController = new PartyGameController(root, canvas);
+    PartyGameController partyGameController = new PartyGameController(root, canvas, board);
     partyGameController.init(rollDice, exitGame);
   }
 }

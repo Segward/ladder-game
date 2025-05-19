@@ -12,7 +12,6 @@ import javafx.scene.layout.VBox;
 public class Configuration {
 
   private final BorderPane root;
-
   private final int WIDTH = 1000;
   private final int HEIGHT = 800;
   private final double HEIGHT_RATIO = 0.4;

@@ -1,8 +1,7 @@
 package edu.ntnu.idat2003.controller;
 
+import edu.ntnu.idat2003.view.BoardSelection;
 import edu.ntnu.idat2003.view.Configuration;
-import edu.ntnu.idat2003.view.LadderGame;
-import edu.ntnu.idat2003.view.PartyGame;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 
@@ -23,13 +22,13 @@ public class MainFrameController {
   }
 
   private void startLadderGame() {
-    LadderGame ladderGame = new LadderGame(root);
-    ladderGame.init();
+    BoardSelection boardSelection = new BoardSelection(root, 1);
+    boardSelection.init();
   }
 
   private void startPartyGame() {
-    PartyGame partyGame = new PartyGame(root);
-    partyGame.init();
+    BoardSelection boardSelection = new BoardSelection(root, 2);
+    boardSelection.init();
   }
 
   private void configureGame() {
