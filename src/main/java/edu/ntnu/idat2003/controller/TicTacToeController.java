@@ -101,6 +101,7 @@ public class TicTacToeController implements TicTacToeObserver{
      * 
      */
     public void gameStartSetup() {
+        setPlayersScore();
         String playerOneImage = getClass().getResource("/figure/" + game.getPlayers().stream().
         findFirst().get().getFigure().getName() + ".png").toExternalForm();
         playerOnePanal.setStyle("-fx-background-image: url('" + playerOneImage + "'); ");
@@ -186,7 +187,6 @@ public class TicTacToeController implements TicTacToeObserver{
                 playingBoard.add(tile, i, j);
             }
         }
-        setPlayersScore();
     }
     
     /**
@@ -317,6 +317,17 @@ public class TicTacToeController implements TicTacToeObserver{
                 
             }
         }
+    }
+
+    /**
+     *  Getter for resultHash.
+     *  Retreves the HashMap containing all of the
+     *  tiles/buttons on the board/GridPane.
+     * 
+     *  @return HashMap<Vector2, Button> all tiles/buttons 
+     */
+    public HashMap<Vector2, Button> getResultHash() {
+        return resultHash;
     }
 
     /**
