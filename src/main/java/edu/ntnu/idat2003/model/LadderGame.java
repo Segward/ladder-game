@@ -1,12 +1,10 @@
 package edu.ntnu.idat2003.model;
 
-import edu.ntnu.idat2003.model.dice.Dice;
-import edu.ntnu.idat2003.model.player.Player;
-import edu.ntnu.idat2003.model.tile.Tile;
-import edu.ntnu.idat2003.model.tile.tileactions.TileAction;
-
 import java.util.ArrayList;
 import java.util.HashSet;
+
+import edu.ntnu.idat2003.model.tileactions.TileAction;
+import edu.ntnu.idat2003.observer.LadderGameObserver;
 
 public class LadderGame {
 

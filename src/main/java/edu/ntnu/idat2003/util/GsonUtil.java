@@ -5,9 +5,8 @@ import com.google.gson.GsonBuilder;
 import edu.ntnu.idat2003.exception.DataCreateException;
 import edu.ntnu.idat2003.exception.DataReadException;
 import edu.ntnu.idat2003.exception.DataWriteException;
-import edu.ntnu.idat2003.model.tile.TileActionAdapter;
-import edu.ntnu.idat2003.model.tile.tileactions.TileAction;
-
+import edu.ntnu.idat2003.model.TileActionAdapter;
+import edu.ntnu.idat2003.model.tileactions.TileAction;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.lang.reflect.Type;

@@ -1,11 +1,11 @@
 package edu.ntnu.idat2003.model;
 
-import edu.ntnu.idat2003.model.tile.Tile;
-import edu.ntnu.idat2003.model.tile.tileactions.LadderAction;
-import edu.ntnu.idat2003.model.tile.tileactions.ExtraDiceAction;
-import edu.ntnu.idat2003.model.tile.tileactions.TileAction;
 import java.util.HashMap;
 import java.util.HashSet;
+
+import edu.ntnu.idat2003.model.tileactions.ExtraDiceAction;
+import edu.ntnu.idat2003.model.tileactions.LadderAction;
+import edu.ntnu.idat2003.model.tileactions.TileAction;
 
 public class Board {
   private String name;
