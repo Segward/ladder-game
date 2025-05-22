@@ -90,7 +90,11 @@ public class LadderGameController implements LadderGameObserver {
     mainFrame.init();
   }
 
-  /** Method for drawing main game visuals. */
+  /**
+   *  Method for drawing main game visuals.
+   * 
+   * 
+   */
   private void drawCanvas() {
     GraphicsContext gc = canvas.getGraphicsContext2D();
     gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -212,6 +216,18 @@ public class LadderGameController implements LadderGameObserver {
     }
   }
 
+  /**
+   *  Method for animating player movement.
+   *  Takes Player and int as parameters.
+   *  Draws canvas then uses remainder int as 
+   *  a remainder of how many times to redraw canvas.
+   *  If the remainder is not equal to 0 change player utilize
+   *  movePlayer() method from the game object that changes 
+   *  player posision.
+   * 
+   *  @param player Player Object to be animated
+   *  @param remainder Int representing draw amount
+   */
   @Override
   public void onPlayerMoved(Player player, int remainder) {
     drawCanvas();
@@ -226,6 +242,15 @@ public class LadderGameController implements LadderGameObserver {
     pause.play();
   }
 
+  /**
+   *  Method for visualising ladder action.
+   *  Takes Player and TileAction as parameters.
+   *  Checks if action parameter is a LadderACtion object.
+   *  If true pause transition and redraw board.
+   * 
+   *  @param player Player Object invloved with action  
+   *  @param action TileAction to be checked
+   */
   @Override
   public void onTileActionExecuted(Player player, TileAction action) {
     if (action instanceof LadderAction) {
@@ -235,6 +260,14 @@ public class LadderGameController implements LadderGameObserver {
     }
   }
 
+  /**
+   *  Method for visulasing player won.
+   *  Takes Player as parameter.
+   *  Drawws Canvas, then clears canvas
+   *  beffore drawing player name has won.
+   * 
+   *  @param player Player Object that has won
+   */
   @Override
   public void onPlayerWon(Player player) {
     drawCanvas();
@@ -277,6 +310,15 @@ public class LadderGameController implements LadderGameObserver {
     scaleTransition.play();
   }
 
+  /**
+   *  Method for animating dice image.
+   *  Take int as parameter.
+   *  Utilizes a foor loop that initializes 
+   *  Timeline to change to random dice image with setDiceImage() method.
+   *  When loop is finished changes dice image to int parameter.
+   * 
+   *  @param diceValue Int representing die side
+   */
   @Override
   public void onDiceRolled(int diceValue) {
     int animationFrames = 10;
@@ -294,6 +336,14 @@ public class LadderGameController implements LadderGameObserver {
     timeline.play();
   }
 
+  /**
+   *  Method for setting dice image.
+   *  Take int as parameter.
+   *  Utilizes Math max and min to generate two die values equal to diceValue.
+   *  Then give each dice a new image that qeual to diceValue.
+   * 
+   *  @param diceValue Int representing dice side amount
+   */
   private void setDiceImage(int diceValue) {
     int minFirst = Math.max(1, diceValue - 6);
     int maxFirst = Math.min(6, diceValue - 1);
