@@ -32,6 +32,10 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 
+/**
+ * The QuizGameController class is responsible for managing the user interface and interactions of
+ * the quiz game. It handles player movements, tile actions, and game events.
+ */
 public class QuizGameController implements QuizGameObserver {
 
   private final BorderPane root;
@@ -55,6 +59,20 @@ public class QuizGameController implements QuizGameObserver {
   private QuizGame game;
   private boolean isQuestionAction = false;
 
+  /**
+   * Constructor for the QuizGameController class.
+   *
+   * @param borderPane The main layout of the application.
+   * @param canvas The canvas where the game board is drawn.
+   * @param board The game board.
+   * @param overlayPane The overlay pane for displaying questions.
+   * @param questionText The text field for displaying questions.
+   * @param answerField The text field for player answers.
+   * @param rollDice The button to roll the dice.
+   * @param submitAnswer The button to submit answers.
+   * @param dice1 The first dice image view.
+   * @param dice2 The second dice image view.
+   */
   public QuizGameController(
       BorderPane borderPane,
       Canvas canvas,
@@ -78,6 +96,12 @@ public class QuizGameController implements QuizGameObserver {
     this.dice2 = dice2;
   }
 
+  /**
+   * Initializes the game controller with the provided exit button. It sets up the game then draws
+   * the board.
+   *
+   * @param exitGame The button to exit the game. It's only used once.
+   */
   public void init(Button exitGame) {
     rollDice.setOnAction(e -> game.rollDice());
     exitGame.setOnAction(e -> exitGame());
@@ -89,11 +113,18 @@ public class QuizGameController implements QuizGameObserver {
     drawCanvas();
   }
 
+  /** Exits the game and returns to the main menu. */
   private void exitGame() {
     MainFrame mainFrame = new MainFrame(root);
     mainFrame.init();
   }
 
+  /**
+   * Draws the game board on the canvas. It clears the canvas, sets the background, and draws the
+   * tiles, players, and questions. Previously used a gridpane, but now uses a canvas for better
+   * performance. It draws the board first, overlays the actions, and then draws the players on top.
+   * The canvas is cleared before each draw to avoid flickering.
+   */
   private void drawCanvas() {
     GraphicsContext gc = canvas.getGraphicsContext2D();
     gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -158,6 +189,14 @@ public class QuizGameController implements QuizGameObserver {
     }
   }
 
+  /**
+   * Handles the player movement. It draws the canvas and checks if the player has moved to a new
+   * tile. If the player has finished moving, it executes the tile action. This method also has a
+   * timer of 50 milliseconds so that it looks animated.
+   *
+   * @param player The player who moved.
+   * @param remainder The number of moves remaining.
+   */
   @Override
   public void onPlayerMoved(Player player, int remainder) {
     drawCanvas();
@@ -174,12 +213,24 @@ public class QuizGameController implements QuizGameObserver {
     pause.play();
   }
 
+  /**
+   * This method updates the game state for questions then moves on to the next player.
+   *
+   * @param player The player who executed the action.
+   * @param action The tile action executed.
+   */
   @Override
   public void onTileActionExecuted(Player player, TileAction action) {
     isQuestionAction = false;
     game.nextPlayer();
   }
 
+  /**
+   * This method is called when a player wins the game. It draws the canvas and displays a message
+   * indicating the winner.
+   *
+   * @param player The player who won.
+   */
   @Override
   public void onPlayerWon(Player player) {
     drawCanvas();
@@ -222,6 +273,9 @@ public class QuizGameController implements QuizGameObserver {
     scaleTransition.play();
   }
 
+  /**
+   * 
+   */
   @Override
   public void onDiceRolled(int diceValue) {
     int animationFrames = 10;
