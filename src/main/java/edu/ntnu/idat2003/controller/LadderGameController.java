@@ -13,14 +13,17 @@ import edu.ntnu.idat2003.observer.LadderGameObserver;
 import edu.ntnu.idat2003.view.MainFrame;
 import java.util.HashMap;
 import java.util.HashSet;
+import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
 import javafx.animation.ScaleTransition;
+import javafx.animation.Timeline;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -32,6 +35,8 @@ public class LadderGameController implements LadderGameObserver {
   private final BorderPane root;
   private final Canvas canvas;
   private final Board board;
+  private final ImageView dice1;
+  private final ImageView dice2;
 
   private final int columns = 10;
   private final int rows = 9;
@@ -42,10 +47,13 @@ public class LadderGameController implements LadderGameObserver {
 
   private LadderGame game;
 
-  public LadderGameController(BorderPane borderPane, Canvas canvas, Board board) {
+  public LadderGameController(
+      BorderPane borderPane, Canvas canvas, Board board, ImageView dice1, ImageView dice2) {
     this.root = borderPane;
     this.canvas = canvas;
     this.board = board;
+    this.dice1 = dice1;
+    this.dice2 = dice2;
   }
 
   public void init(Button rollDice, Button exitGame) {
@@ -88,7 +96,7 @@ public class LadderGameController implements LadderGameObserver {
       double px = offsetX + drawCol * cellWidth + innerPadding;
       double py = offsetY + drawRow * cellHeight + innerPadding;
 
-      gc.setFill(Color.LIGHTGREEN);
+      gc.setFill(Color.BURLYWOOD);
       gc.fillRoundRect(
           px, py, cellWidth - 2 * innerPadding, cellHeight - 2 * innerPadding, arc, arc);
 
@@ -102,6 +110,7 @@ public class LadderGameController implements LadderGameObserver {
     for (LadderAction action : game.getBoard().getLadders()) {
       Vector2 start = action.getStart();
       Vector2 end = action.getDestination();
+      String direction = action.getDirection();
 
       int startRow = rows - 1 - start.getY();
       int startCol = start.getX();
@@ -133,8 +142,13 @@ public class LadderGameController implements LadderGameObserver {
       double ex2 = endX - perpX * ladderWidth / 2;
       double ey2 = endY - perpY * ladderWidth / 2;
 
+      if (direction.equals("up")) {
+        gc.setStroke(Color.GREEN);
+      } else if (direction.equals("down")) {
+        gc.setStroke(Color.RED);
+      }
+
       gc.setLineWidth(8);
-      gc.setStroke(Color.SADDLEBROWN);
       gc.strokeLine(sx1, sy1, ex1, ey1);
       gc.strokeLine(sx2, sy2, ex2, ey2);
 
@@ -244,5 +258,30 @@ public class LadderGameController implements LadderGameObserver {
   }
 
   @Override
-  public void onDiceRolled(int diceValue) {}
+  public void onDiceRolled(int diceValue) {
+    int animationFrames = 10;
+    Timeline timeline = new Timeline();
+    for (int i = 0; i < animationFrames; i++) {
+      timeline
+          .getKeyFrames()
+          .add(
+              new KeyFrame(
+                  Duration.seconds(i * 0.05), e -> setDiceImage((int) (Math.random() * 11) + 2)));
+    }
+    timeline
+        .getKeyFrames()
+        .add(new KeyFrame(Duration.seconds(animationFrames * 0.05), e -> setDiceImage(diceValue)));
+    timeline.play();
+  }
+
+  private void setDiceImage(int diceValue) {
+    int minFirst = Math.max(1, diceValue - 6);
+    int maxFirst = Math.min(6, diceValue - 1);
+    int dice1Value = minFirst + (int) (Math.random() * (maxFirst - minFirst + 1));
+    int dice2Value = diceValue - dice1Value;
+    Image image1 = new Image("/dice/" + dice1Value + "face.png");
+    Image image2 = new Image("/dice/" + dice2Value + "face.png");
+    dice1.setImage(image1);
+    dice2.setImage(image2);
+  }
 }
