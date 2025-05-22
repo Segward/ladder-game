@@ -44,11 +44,10 @@ public class CsvUtil {
    *  Method for converting cvs file string data.
    *  Takes String representing filePath as parameter.
    *  Creates new FileReader for storing fetched data.
-   *  
    * 
-   *  @param filePath
-   *  @return
-   *  @throws DataReadException
+   *  @param filePath String representing csv path
+   *  @return String with data from cvs file
+   *  @throws DataReadException Exception handeling read failure
    */
   public static String readFile(String filePath) throws DataReadException {
     StringBuilder data = new StringBuilder();
