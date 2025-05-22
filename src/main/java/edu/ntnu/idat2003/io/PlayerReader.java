@@ -40,6 +40,12 @@ public class PlayerReader {
       players.add(player);
     }
 
+    if (players.size() > 5) {
+      while (players.size() > 5) {
+        players.remove(players.iterator().next());
+      }
+    }
+
     return players;
   }
 }

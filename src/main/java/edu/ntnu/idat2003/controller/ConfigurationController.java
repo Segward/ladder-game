@@ -5,7 +5,6 @@ import edu.ntnu.idat2003.io.PlayerWriter;
 import edu.ntnu.idat2003.model.Player;
 import edu.ntnu.idat2003.view.MainFrame;
 import edu.ntnu.idat2003.view.PlayerCreation;
-
 import java.io.File;
 import java.util.HashSet;
 import javafx.geometry.Pos;
@@ -27,11 +26,11 @@ public class ConfigurationController {
   private final HBox hBox;
 
   /**
-   *  Constructor for the ConfigurationController Class.
-   *  Takes an BoarderPane and an Hbox as parameters.
-   * 
-   *  @param root BorderPane representing the main canvas
-   *  @param hBox HBox representing the Configuration screen
+   * Constructor for the ConfigurationController Class. Takes an BoarderPane and an Hbox as
+   * parameters.
+   *
+   * @param root BorderPane representing the main canvas
+   * @param hBox HBox representing the Configuration screen
    */
   public ConfigurationController(BorderPane root, HBox hBox) {
     this.root = root;
@@ -39,10 +38,9 @@ public class ConfigurationController {
   }
 
   /**
-   *  Initializes the functionality of buttons,
-   *  as well as method for displaying selected characters.
-   *  Deffines the methods each button initializes.
-   * 
+   * Initializes the functionality of buttons, as well as method for displaying selected characters.
+   * Deffines the methods each button initializes.
+   *
    * @param returnButton Button returns to main screen
    * @param loadPlayersFromFile Button for inserting new player file
    * @param savePlayersToFileButton Button creates new player file
@@ -61,64 +59,53 @@ public class ConfigurationController {
     updatePlayers();
   }
 
-  /**
-   *  Method for transporting user to main manue.
-   *  Initializes the init() method in MainFrame.
-   */
+  /** Method for transporting user to main manue. Initializes the init() method in MainFrame. */
   public void onReturn() {
     MainFrame mainFrame = new MainFrame(root);
     mainFrame.init();
   }
 
   /**
-   *  Method for creating new player file.
-   *  Creates new file and saves player data
-   *  with methods from the PlayerWriter class.
-   * 
+   * Method for creating new player file. Creates new file and saves player data with methods from
+   * the PlayerWriter class.
    */
   private void onSavePlayersToFile() {
     FileChooser fileChooser = new FileChooser();
     fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV files", "*.csv"));
     File file = fileChooser.showSaveDialog(root.getScene().getWindow());
-    String path = file.getAbsolutePath();
     if (file != null) {
+      String path = file.getAbsolutePath();
       PlayerWriter.savePlayersToFile(path);
     }
   }
 
   /**
-   *  Method for inserting new players in to game.
-   *  Creates new file with data from user selected file.
-   *  Then loades new players based on new file.
+   * Method for inserting new players in to game. Creates new file with data from user selected
+   * file. Then loades new players based on new file.
    */
   private void onLoadPlayersFromFile() {
     FileChooser fileChooser = new FileChooser();
     fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV files", "*.csv"));
     File file = fileChooser.showOpenDialog(root.getScene().getWindow());
-    String path = file.getAbsolutePath();
     if (file != null) {
+      String path = file.getAbsolutePath();
       PlayerWriter.loadPlayersFromFile(path);
       updatePlayers();
     }
   }
 
-  /**
-   *  Takes user to add player screen
-   *  Initializes the init() method in PlaterCreation.
-   */
+  /** Takes user to add player screen Initializes the init() method in PlaterCreation. */
   public void onAddPlayer() {
     PlayerCreation playerCreation = new PlayerCreation(root);
     playerCreation.init();
   }
 
   /**
-   *  Creates a StackPane for a singel Plater display.
-   *  Creates a stackpane that holds a VBox that
-   *  holdes the Text player name and a button for deletion,
-   *  and a image of the player figure.
-   * 
-   *  @param player Player object to be displayed
-   *  @return StackPane that inclued player data
+   * Creates a StackPane for a singel Plater display. Creates a stackpane that holds a VBox that
+   * holdes the Text player name and a button for deletion, and a image of the player figure.
+   *
+   * @param player Player object to be displayed
+   * @return StackPane that inclued player data
    */
   private StackPane createPlayerPane(Player player) {
     StackPane playerPane = new StackPane();
@@ -148,9 +135,8 @@ public class ConfigurationController {
   }
 
   /**
-   *  Method for updating displayed players.
-   *  Utilazes a for loop to go through each player
-   *  and creates a display pane for them. 
+   * Method for updating displayed players. Utilazes a for loop to go through each player and
+   * creates a display pane for them.
    */
   private void updatePlayers() {
     hBox.getChildren().clear();
@@ -165,10 +151,9 @@ public class ConfigurationController {
   }
 
   /**
-   *  Method for removing player from game.
-   *  Fetches all players in an HasSet then removes 
-   *  parameter player and updates displayed players.
-   * 
+   * Method for removing player from game. Fetches all players in an HasSet then removes parameter
+   * player and updates displayed players.
+   *
    * @param player Player object to be removed
    */
   public void removePlayer(Player player) {

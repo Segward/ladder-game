@@ -8,6 +8,8 @@ import edu.ntnu.idat2003.model.Vector2;
 import edu.ntnu.idat2003.view.Configuration;
 import java.util.HashSet;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -37,6 +39,14 @@ public class PlayerCreationController {
   public void onReturn() {
     Configuration configuration = new Configuration(root);
     configuration.init();
+  }
+
+  private void alert(String message) {
+    Alert alert = new Alert(AlertType.INFORMATION);
+    alert.setTitle("Notice");
+    alert.setHeaderText(null);
+    alert.setContentText(message);
+    alert.showAndWait();
   }
 
   private StackPane createFigurePane(Figure figure) {
@@ -81,7 +91,7 @@ public class PlayerCreationController {
   public void addPlayer(Figure figure) {
     String name = playerName.getText();
     if (name.isEmpty()) {
-      System.out.println("Please enter a name.");
+      alert("Please enter a name for the player.");
       return;
     }
 

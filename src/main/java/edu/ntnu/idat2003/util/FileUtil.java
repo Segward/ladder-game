@@ -18,22 +18,4 @@ public class FileUtil {
       throw new DataCreateException("Failed to create file at " + filePath, e);
     }
   }
-
-  public static void createDirectory(String dirPath) throws DataCreateException {
-    try {
-      File dir = new File(dirPath);
-      if (!dir.exists()) {
-        dir.mkdirs();
-      }
-    } catch (Exception e) {
-      throw new DataCreateException("Failed to create directory at " + dirPath, e);
-    }
-  }
-
-  public static void deleteFile(String filePath) {
-    File file = new File(filePath);
-    if (file.exists()) {
-      file.delete();
-    }
-  }
 }

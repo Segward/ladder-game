@@ -53,22 +53,6 @@ public class PlayerWriterTest {
   }
 
   @Test
-  void testRemovePlayerDeletesFile() throws Exception {
-    Player player = new Player("Kim Dokja", new Figure("reader", "/path/reader.png"));
-    HashSet<Player> players = new HashSet<>();
-    players.add(player);
-
-    try (MockedStatic<CsvUtil> csvUtilMock = mockStatic(CsvUtil.class);
-        MockedStatic<FileUtil> fileUtilMock = mockStatic(FileUtil.class);
-        MockedStatic<PlayerReader> playerReaderMock = mockStatic(PlayerReader.class)) {
-      playerReaderMock.when(PlayerReader::getPlayers).thenReturn(players);
-      PlayerWriter.removePlayer(player);
-      fileUtilMock.verify(() -> FileUtil.deleteFile("data/player.csv"), times(1));
-      csvUtilMock.verifyNoInteractions();
-    }
-  }
-
-  @Test
   void testRemovePlayer() throws Exception {
     Player player1 = new Player("Kim Dokja", new Figure("reader", "/path/reader.png"));
     Player player2 =

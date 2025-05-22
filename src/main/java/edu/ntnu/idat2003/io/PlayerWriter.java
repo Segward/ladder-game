@@ -1,18 +1,17 @@
 package edu.ntnu.idat2003.io;
 
-import java.util.HashSet;
-
 import edu.ntnu.idat2003.exception.DataReadException;
 import edu.ntnu.idat2003.exception.DataWriteException;
 import edu.ntnu.idat2003.model.Figure;
 import edu.ntnu.idat2003.model.Player;
 import edu.ntnu.idat2003.util.CsvUtil;
 import edu.ntnu.idat2003.util.FileUtil;
+import java.util.HashSet;
 
 public class PlayerWriter {
 
-    private static final String path = "data/player.csv";
-    private static final String figures = "data/figures.csv";
+  private static final String path = "data/player.csv";
+  private static final String figures = "data/figures.csv";
 
   public static void savePlayers(HashSet<Player> players) {
     StringBuilder data = new StringBuilder();
@@ -38,14 +37,22 @@ public class PlayerWriter {
     savePlayers(players);
   }
 
+  private static void wipePlayerFile() {
+    try {
+      CsvUtil.writeFile(path, "");
+    } catch (DataWriteException e) {
+      e.printStackTrace();
+    }
+  }
+
   public static void removePlayer(Player player) {
     HashSet<Player> players = PlayerReader.getPlayers();
     players.remove(player);
     if (players.isEmpty()) {
-      FileUtil.deleteFile(path);
+      wipePlayerFile();
       return;
     }
-    
+
     savePlayers(players);
   }
 
@@ -80,6 +87,12 @@ public class PlayerWriter {
       Figure figureObj = new Figure(figure, figurePath);
       Player player = new Player(name, figureObj);
       players.add(player);
+    }
+
+    if (players.size() > 5) {
+      while (players.size() > 5) {
+        players.remove(players.iterator().next());
+      }
     }
 
     savePlayers(players);
