@@ -7,8 +7,23 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ *  Class representing the CsvUtil methods.
+ *  Includes method for interacting with the cvs file format.
+ *  
+ */
 public class CsvUtil {
 
+  /**
+   *  Checks if file allready exist before creating new cvs file.
+   *  Takes String representing file path and String representing
+   *  data to be writen as parameters. Checks if file allready exist before 
+   *  utilizing FileUtil methods to write to file.
+   * 
+   *  @param filePath String representing file path
+   *  @param data String representing data to be writen
+   *  @throws DataWriteException Exception handeling write failure 
+   */
   public static void writeFile(String filePath, String data) throws DataWriteException {
     if (!FileUtil.fileExists(filePath)) {
       try {
@@ -25,6 +40,16 @@ public class CsvUtil {
     }
   }
 
+  /**
+   *  Method for converting cvs file string data.
+   *  Takes String representing filePath as parameter.
+   *  Creates new FileReader for storing fetched data.
+   *  
+   * 
+   *  @param filePath
+   *  @return
+   *  @throws DataReadException
+   */
   public static String readFile(String filePath) throws DataReadException {
     StringBuilder data = new StringBuilder();
     try (FileReader reader = new FileReader(filePath)) {
