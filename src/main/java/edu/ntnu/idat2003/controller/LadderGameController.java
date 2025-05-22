@@ -25,6 +25,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 
+/**
+ *  Class representing the ladder game visual logic.
+ *  Incluedes methods that draws the visual data.
+ */
 public class LadderGameController implements LadderGameObserver {
 
   private final BorderPane root;
@@ -40,12 +44,30 @@ public class LadderGameController implements LadderGameObserver {
 
   private LadderGame game;
 
+  /**
+   *  Constructor for the LadderGameController class.
+   *  Takes an BorderPane, Canvas and Board as parameters.
+   * 
+   *  @param borderPane BorderPane representing the main Canvas
+   *  @param canvas Canvas representing the game visuales
+   *  @param board Board object representing the game board
+   */
   public LadderGameController(BorderPane borderPane, Canvas canvas, Board board) {
     this.root = borderPane;
     this.canvas = canvas;
     this.board = board;
   }
 
+  /**
+   *  Initilases the game data.
+   *  Deffines the different button logics,
+   *  collectes all players in a HashSet, creates a new
+   *  Ladder game object representing the game, and 
+   *  draws the game visuals.
+   * 
+   *  @param rollDice Button for rolling dice
+   *  @param exitGame Button for returning to main menue
+   */
   public void init(Button rollDice, Button exitGame) {
     rollDice.setOnAction(e -> game.rollDice());
     exitGame.setOnAction(e -> exitGame());
@@ -56,11 +78,20 @@ public class LadderGameController implements LadderGameObserver {
     drawCanvas();
   }
 
+   /**
+   *  Method for transporting user to main manue.
+   *  Initializes the init() method in MainFrame.
+   */
   private void exitGame() {
     MainFrame mainFrame = new MainFrame(root);
     mainFrame.init();
   }
 
+  /**
+   *  Method for drawing main game visuals.
+   *  
+   * 
+   */
   private void drawCanvas() {
     GraphicsContext gc = canvas.getGraphicsContext2D();
     gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
