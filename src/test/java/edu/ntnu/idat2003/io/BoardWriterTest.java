@@ -1,7 +1,5 @@
 package edu.ntnu.idat2003.io;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.*;
 
 import edu.ntnu.idat2003.exception.DataWriteException;
