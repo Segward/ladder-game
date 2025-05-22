@@ -18,7 +18,7 @@ public class FigureWriter {
      *  Method for saving figure objects to spesific csv file.
      *  Takes HasSet<Figure> as parameter.
      *  Using a for loop, saves all figure data as StringBuilder.
-     *  Then utilizing different string methods fomats string to csv format,
+     *  Then utilizing different string methods formats string to csv format,
      *  before utilising CsvUtil method to write data to spesific csv file.
      * 
      *  @param figures
