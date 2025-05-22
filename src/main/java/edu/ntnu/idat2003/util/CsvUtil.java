@@ -7,6 +7,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ *  Class representing the CsvUtil methods.
+ *  
+ * 
+ */
 public class CsvUtil {
 
   public static void writeFile(String filePath, String data) throws DataWriteException {
