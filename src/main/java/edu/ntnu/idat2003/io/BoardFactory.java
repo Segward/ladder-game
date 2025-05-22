@@ -91,7 +91,7 @@ public class BoardFactory {
     LadderAction ladder10 = new LadderAction(start10, new Vector2(7, 0));
     board1.addAction(start10, ladder10);
 
-    Vector2 start11 = new Vector2(1, 0);
+    Vector2 start11 = new Vector2(3, 0);
     ExtraDiceAction extraDiceAction1 = new ExtraDiceAction(start11);
     board1.addAction(start11, extraDiceAction1);
 
@@ -99,7 +99,7 @@ public class BoardFactory {
     ExtraDiceAction extraDiceAction2 = new ExtraDiceAction(start12);
     board1.addAction(start12, extraDiceAction2);
 
-    Vector2 start13 = new Vector2(8, 8);
+    Vector2 start13 = new Vector2(4, 8);
     ExtraDiceAction extraDiceAction3 = new ExtraDiceAction(start13);
     board1.addAction(start13, extraDiceAction3);
 
@@ -110,15 +110,15 @@ public class BoardFactory {
     Board board2 = makeBoard("Difficult Board");
 
     Vector2 start15 = new Vector2(4, 0);
-    LadderAction ladder11 = new LadderAction(start15, new Vector2(5, 4));
+    LadderAction ladder11 = new LadderAction(start15, new Vector2(5, 1));
     board2.addAction(start15, ladder11);
 
-    Vector2 start16 = new Vector2(2, 3);
-    LadderAction ladder12 = new LadderAction(start16, new Vector2(4, 6));
+    Vector2 start16 = new Vector2(2, 6);
+    LadderAction ladder12 = new LadderAction(start16, new Vector2(4, 3));
     board2.addAction(start16, ladder12);
 
-    Vector2 start17 = new Vector2(7, 4);
-    LadderAction ladder13 = new LadderAction(start17, new Vector2(5, 5));
+    Vector2 start17 = new Vector2(7, 5);
+    LadderAction ladder13 = new LadderAction(start17, new Vector2(5, 2));
     board2.addAction(start17, ladder13);
 
     Vector2 start18 = new Vector2(2, 6);
@@ -130,15 +130,15 @@ public class BoardFactory {
     board2.addAction(start19, ladder15);
 
     Vector2 start20 = new Vector2(0, 8);
-    LadderAction ladder16 = new LadderAction(start20, new Vector2(1, 7));
+    LadderAction ladder16 = new LadderAction(start20, new Vector2(3, 0));
     board2.addAction(start20, ladder16);
 
-    Vector2 start21 = new Vector2(1, 5);
-    LadderAction ladder17 = new LadderAction(start21, new Vector2(0, 4));
+    Vector2 start21 = new Vector2(0, 4);
+    LadderAction ladder17 = new LadderAction(start21, new Vector2(1, 0));
     board2.addAction(start21, ladder17);
 
     Vector2 start22 = new Vector2(3, 8);
-    LadderAction ladder18 = new LadderAction(start22, new Vector2(4, 7));
+    LadderAction ladder18 = new LadderAction(start22, new Vector2(4, 3));
     board2.addAction(start22, ladder18);
 
     Vector2 start23 = new Vector2(6, 5);
@@ -149,8 +149,8 @@ public class BoardFactory {
     LadderAction ladder20 = new LadderAction(start24, new Vector2(7, 0));
     board2.addAction(start24, ladder20);
 
-    Vector2 start25 = new Vector2(1, 0);
-    LadderAction ladder21 = new LadderAction(start25, new Vector2(0, 1));
+    Vector2 start25 = new Vector2(5, 8);
+    LadderAction ladder21 = new LadderAction(start25, new Vector2(0, 0));
     board2.addAction(start25, ladder21);
 
     Vector2 start26 = new Vector2(3, 8);
@@ -161,12 +161,12 @@ public class BoardFactory {
     LadderAction ladder23 = new LadderAction(start27, new Vector2(4, 2));
     board2.addAction(start27, ladder23);
 
-    Vector2 start28 = new Vector2(8, 1);
+    Vector2 start28 = new Vector2(8, 5);
     LadderAction ladder24 = new LadderAction(start28, new Vector2(7, 0));
     board2.addAction(start28, ladder24);
 
     Vector2 start29 = new Vector2(8, 8);
-    LadderAction ladder25 = new LadderAction(start29, new Vector2(9, 6));
+    LadderAction ladder25 = new LadderAction(start29, new Vector2(9, 4));
     board2.addAction(start29, ladder25);
 
     Vector2 start30 = new Vector2(8, 2);
@@ -177,7 +177,7 @@ public class BoardFactory {
     ExtraDiceAction extraDiceAction6 = new ExtraDiceAction(start31);
     board2.addAction(start31, extraDiceAction6);
 
-    Vector2 start32 = new Vector2(8, 8);
+    Vector2 start32 = new Vector2(5, 8);
     ExtraDiceAction extraDiceAction7 = new ExtraDiceAction(start32);
     board2.addAction(start32, extraDiceAction7);
 
