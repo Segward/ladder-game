@@ -4,12 +4,14 @@ import edu.ntnu.idat2003.io.PlayerReader;
 import edu.ntnu.idat2003.model.Board;
 import edu.ntnu.idat2003.model.LadderGame;
 import edu.ntnu.idat2003.model.Player;
+import edu.ntnu.idat2003.model.Tile;
 import edu.ntnu.idat2003.model.Vector2;
 import edu.ntnu.idat2003.model.tileactions.ExtraDiceAction;
 import edu.ntnu.idat2003.model.tileactions.LadderAction;
 import edu.ntnu.idat2003.model.tileactions.TileAction;
 import edu.ntnu.idat2003.observer.LadderGameObserver;
 import edu.ntnu.idat2003.view.MainFrame;
+import java.util.HashMap;
 import java.util.HashSet;
 import javafx.animation.PauseTransition;
 import javafx.animation.ScaleTransition;
@@ -75,55 +77,37 @@ public class LadderGameController implements LadderGameObserver {
     double offsetX = (canvas.getWidth() - gridWidth) / 2;
     double offsetY = (canvas.getHeight() - gridHeight) / 2;
 
-    int number = 1;
     double arc = Math.min(cellWidth, cellHeight) * 0.3;
     double innerPadding = cellPadding;
 
-    for (int row = rows - 1; row >= 0; row--) {
-      for (int col = 0; col < columns; col++) {
-        int drawCol = ((rows - 1 - row) % 2 == 0) ? col : (columns - 1 - col);
+    HashMap<Integer, Tile> tiles = game.getBoard().getTiles();
+    for (Tile tile : tiles.values()) {
+      int drawRow = rows - 1 - tile.getPosition().getY();
+      int drawCol = tile.getPosition().getX();
 
-        double x = offsetX + drawCol * cellWidth;
-        double y = offsetY + row * cellHeight;
+      double px = offsetX + drawCol * cellWidth + innerPadding;
+      double py = offsetY + drawRow * cellHeight + innerPadding;
 
-        // Draw cell background with padding inside cell
-        gc.setFill(Color.GRAY);
-        gc.fillRoundRect(
-            x + innerPadding,
-            y + innerPadding,
-            cellWidth - 2 * innerPadding,
-            cellHeight - 2 * innerPadding,
-            arc,
-            arc);
+      gc.setFill(Color.LIGHTGREEN);
+      gc.fillRoundRect(
+          px, py, cellWidth - 2 * innerPadding, cellHeight - 2 * innerPadding, arc, arc);
 
-        gc.setStroke(Color.BLACK);
-        gc.strokeRoundRect(
-            x + innerPadding,
-            y + innerPadding,
-            cellWidth - 2 * innerPadding,
-            cellHeight - 2 * innerPadding,
-            arc,
-            arc);
-
-        // Draw cell number near top-left inside the cell with padding
-        gc.setFill(Color.BLACK);
-        gc.fillText(String.valueOf(number), x + innerPadding + 4, y + innerPadding + 16);
-
-        number++;
-      }
+      gc.setFill(Color.BLACK);
+      gc.setFont(new Font("Arial Black", 12));
+      gc.setTextAlign(TextAlignment.CENTER);
+      gc.setTextBaseline(VPos.CENTER);
+      gc.fillText(String.valueOf(tile.getText()), px + 12, py + 12);
     }
 
-    // Draw ladders
     for (LadderAction action : game.getBoard().getLadders()) {
       Vector2 start = action.getStart();
       Vector2 end = action.getDestination();
 
-      // Flip rows because we draw from bottom to top
       int startRow = rows - 1 - start.getY();
-      int startCol = ((startRow % 2) == 0) ? start.getX() : (columns - 1 - start.getX());
+      int startCol = start.getX();
 
       int endRow = rows - 1 - end.getY();
-      int endCol = ((endRow % 2) == 0) ? end.getX() : (columns - 1 - end.getX());
+      int endCol = end.getX();
 
       double startX = offsetX + startCol * cellWidth + cellWidth / 2;
       double startY = offsetY + startRow * cellHeight + cellHeight / 2;
@@ -131,35 +115,29 @@ public class LadderGameController implements LadderGameObserver {
       double endX = offsetX + endCol * cellWidth + cellWidth / 2;
       double endY = offsetY + endRow * cellHeight + cellHeight / 2;
 
-      // Calculate perpendicular offset for ladder width
       double dx = endX - startX;
       double dy = endY - startY;
       double length = Math.hypot(dx, dy);
-      double ladderWidth = cellWidth * 0.3; // Adjust for ladder thickness
+      double ladderWidth = cellWidth * 0.3;
 
-      // Perpendicular vector (normalized)
       double perpX = -dy / length;
       double perpY = dx / length;
 
-      // Side 1
       double sx1 = startX + perpX * ladderWidth / 2;
       double sy1 = startY + perpY * ladderWidth / 2;
       double ex1 = endX + perpX * ladderWidth / 2;
       double ey1 = endY + perpY * ladderWidth / 2;
 
-      // Side 2
       double sx2 = startX - perpX * ladderWidth / 2;
       double sy2 = startY - perpY * ladderWidth / 2;
       double ex2 = endX - perpX * ladderWidth / 2;
       double ey2 = endY - perpY * ladderWidth / 2;
 
-      // Draw the two sides
       gc.setLineWidth(8);
       gc.setStroke(Color.SADDLEBROWN);
       gc.strokeLine(sx1, sy1, ex1, ey1);
       gc.strokeLine(sx2, sy2, ex2, ey2);
 
-      // Draw rungs
       int rungs = 4;
       for (int i = 1; i < rungs; i++) {
         double t = i / (double) rungs;
@@ -172,7 +150,6 @@ public class LadderGameController implements LadderGameObserver {
       }
     }
 
-    // Draw ExtraDiceAction circles
     for (ExtraDiceAction action : game.getBoard().getExtraDice()) {
       Vector2 pos = action.getStart();
 
@@ -186,7 +163,6 @@ public class LadderGameController implements LadderGameObserver {
       gc.drawImage(playerImage, px + 10, py + 10, cellWidth - 20, cellHeight - 20);
     }
 
-    // Draw players
     for (Player player : game.getPlayers()) {
       Vector2 pos = player.getPosition();
 

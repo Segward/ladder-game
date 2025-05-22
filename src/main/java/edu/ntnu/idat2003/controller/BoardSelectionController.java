@@ -1,5 +1,6 @@
 package edu.ntnu.idat2003.controller;
 
+import edu.ntnu.idat2003.io.BoardFactory;
 import edu.ntnu.idat2003.io.BoardReader;
 import edu.ntnu.idat2003.model.Board;
 import edu.ntnu.idat2003.view.LadderGame;
@@ -62,8 +63,16 @@ public class BoardSelectionController {
       HashSet<Board> boardSet = new HashSet<>();
       if (gameType == 1) {
         boardSet = BoardReader.getLadderBoards();
+        if (boardSet.isEmpty()) {
+          BoardFactory.makeLadderBoards();
+          boardSet = BoardReader.getLadderBoards();
+        }
       } else if (gameType == 2) {
         boardSet = BoardReader.getPartyBoards();
+        if (boardSet.isEmpty()) {
+          BoardFactory.makePartyBoards();
+          boardSet = BoardReader.getPartyBoards();
+        }
       }
 
       for (Board board : boardSet) {
