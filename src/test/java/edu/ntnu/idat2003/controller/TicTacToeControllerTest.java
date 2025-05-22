@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import edu.ntnu.idat2003.model.Player;
-import edu.ntnu.idat2003.model.Vector2;
-import java.util.HashMap;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
@@ -106,8 +104,6 @@ public class TicTacToeControllerTest extends ApplicationTest {
     testGame.init();
     testGame.createBoard();
     testGame.retreveTiles();
-    HashMap<Vector2, Button> tiles = testGame.getResultHash();
-
     for (Node node : testGame.getResultHash().values()) {
       if (node instanceof Button) {
         Button tile = (Button) node;
@@ -122,8 +118,6 @@ public class TicTacToeControllerTest extends ApplicationTest {
     testGame.init();
     testGame.createBoard();
     testGame.retreveTiles();
-    HashMap<Vector2, Button> tiles = testGame.getResultHash();
-
     for (Node node : testGame.getResultHash().values()) {
       if (node instanceof Button) {
         Button tile = (Button) node;
