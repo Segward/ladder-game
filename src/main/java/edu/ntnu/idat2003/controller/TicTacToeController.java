@@ -17,7 +17,6 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
@@ -32,7 +31,6 @@ public class TicTacToeController implements TicTacToeObserver {
   private StackPane playerOnePanal;
   private StackPane playerTwoPanal;
   private GridPane playingBoard;
-  private FlowPane buttonPane;
   private TicTacToe game;
   private Text gameText;
   private Text playerOneScoreText;
@@ -65,13 +63,11 @@ public class TicTacToeController implements TicTacToeObserver {
       StackPane playerOnePanal,
       StackPane playerTwoPanal,
       GridPane playingBoard,
-      FlowPane buttonPane,
       Button playAgainButton) {
     this.root = root;
     this.playerOnePanal = playerOnePanal;
     this.playerTwoPanal = playerTwoPanal;
     this.playingBoard = playingBoard;
-    this.buttonPane = buttonPane;
     this.gameText = gameText;
     this.playerOneScoreText = playerOneScoreText;
     this.playerTwoScoreText = playerTwoScoreText;

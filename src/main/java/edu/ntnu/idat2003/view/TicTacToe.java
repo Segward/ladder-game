@@ -93,7 +93,6 @@ public class TicTacToe {
             playerOnePanal,
             playerTwoPanal,
             playingBoard,
-            buttonPane,
             playAgainButton);
     controller.init();
   }

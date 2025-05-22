@@ -8,7 +8,6 @@ import edu.ntnu.idat2003.model.Player;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
@@ -26,7 +25,6 @@ public class TicTacToeControllerTest extends ApplicationTest {
     Button testButton = new Button();
     StackPane testStackPane = new StackPane();
     GridPane testGridPane = new GridPane();
-    FlowPane testFlowPane = new FlowPane();
     Button testButton2 = new Button();
 
     testGame =
@@ -39,7 +37,6 @@ public class TicTacToeControllerTest extends ApplicationTest {
             testStackPane,
             testStackPane,
             testGridPane,
-            testFlowPane,
             testButton2);
   }
 
