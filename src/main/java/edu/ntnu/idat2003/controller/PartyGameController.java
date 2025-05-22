@@ -26,6 +26,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 
+/**
+ * Class representing the quiz game visual logic. Incluedes methods that draws the visual data.
+ */
 public class PartyGameController implements PartyGameObserver {
 
   private final BorderPane root;
@@ -41,12 +44,27 @@ public class PartyGameController implements PartyGameObserver {
 
   private PartyGame game;
 
+   /**
+   * Constructor for the quizGameController class. Takes an BorderPane, Canvas and Board as
+   * parameters.
+   * 
+   * @param borderPane BorderPane representing the main Canvas
+   * @param canvas Canvas representing the game visuales
+   * @param board Board object representing the game board
+   */
   public PartyGameController(BorderPane borderPane, Canvas canvas, Board board) {
     this.root = borderPane;
     this.canvas = canvas;
     this.board = board;
   }
 
+ /**
+   * Initilases the game data. Deffines the different button logics, collectes all players in a
+   * HashSet, creates a new quiz game object representing the game, and draws the game visuals.
+   *
+   * @param rollDice Button for rolling dice
+   * @param exitGame Button for returning to main menue
+   */
   public void init(Button rollDice, Button exitGame) {
     rollDice.setOnAction(e -> game.rollDice());
     exitGame.setOnAction(e -> exitGame());
@@ -57,11 +75,17 @@ public class PartyGameController implements PartyGameObserver {
     drawCanvas();
   }
 
+  /** Method for transporting user to main manue. Initializes the init() method in MainFrame. */
   private void exitGame() {
     MainFrame mainFrame = new MainFrame(root);
     mainFrame.init();
   }
 
+   /**
+   *  Method for drawing main game visuals.
+   * 
+   * 
+   */
   private void drawCanvas() {
     GraphicsContext gc = canvas.getGraphicsContext2D();
     gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -113,6 +137,18 @@ public class PartyGameController implements PartyGameObserver {
     }
   }
 
+  /**
+   *  Method for animating player movement.
+   *  Takes Player and int as parameters.
+   *  Draws canvas then uses remainder int as 
+   *  a remainder of how many times to redraw canvas.
+   *  If the remainder is not equal to 0 change player utilize
+   *  movePlayer() method from the game object that changes 
+   *  player posision.
+   * 
+   *  @param player Player Object to be animated
+   *  @param remainder Int representing draw amount
+   */
   @Override
   public void onPlayerMoved(Player player, int remainder) {
     drawCanvas();
@@ -127,6 +163,15 @@ public class PartyGameController implements PartyGameObserver {
     pause.play();
   }
 
+  /**
+   *  Method for visualising quize action.
+   *  Takes Player and TileAction as parameters.
+   *  Checks if action parameter is a quiz object.
+   *  If true pause transition and redraw board.
+   * 
+   *  @param player Player Object invloved with action  
+   *  @param action TileAction to be checked
+   */
   @Override
   public void onTileActionExecuted(Player player, TileAction action) {
     if (action instanceof LadderAction) {
@@ -136,6 +181,14 @@ public class PartyGameController implements PartyGameObserver {
     }
   }
 
+   /**
+   *  Method for visulasing player won.
+   *  Takes Player as parameter.
+   *  Drawws Canvas, then clears canvas
+   *  beffore drawing player name has won.
+   * 
+   *  @param player Player Object that has won
+   */
   @Override
   public void onPlayerWon(Player player) {
     drawCanvas();
