@@ -7,16 +7,8 @@
   -fx-alignment: center;
 }
 
-#playerOnePanal {
-  -fx-background-size: cover;
-  -fx-background-position: center;
-  -fx-background-repeat: no-repeat;
-  -fx-orientation: vertical;
-  -fx-alignment: center;
-}
-
-#playerTwoPanal {
-  -fx-background-size: cover;
+#playerPane {
+  -fx-background-size: contain;
   -fx-background-position: center;
   -fx-background-repeat: no-repeat;
   -fx-orientation: vertical;
@@ -37,6 +29,14 @@
 
 .button {
   -fx-background-color: #000000;
+  -fx-text-fill: black;
+  -fx-font-size: 20pt;
+  -fx-border-radius: 10px;
+  -fx-background-radius: 10px;
+}
+
+#ticTacToeButton {
+  -fx-background-color: #ffffff;
   -fx-text-fill: black;
   -fx-font-size: 20pt;
   -fx-border-radius: 10px;

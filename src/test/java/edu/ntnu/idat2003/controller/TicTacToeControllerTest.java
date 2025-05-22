@@ -8,9 +8,9 @@ import edu.ntnu.idat2003.model.Player;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
@@ -26,7 +26,8 @@ public class TicTacToeControllerTest extends ApplicationTest {
     Button testButton = new Button();
     StackPane testStackPane = new StackPane();
     GridPane testGridPane = new GridPane();
-    VBox testVBox = new VBox();
+    FlowPane testFlowPane = new FlowPane();
+    Button testButton2 = new Button();
 
     testGame =
         new TicTacToeController(
@@ -38,7 +39,8 @@ public class TicTacToeControllerTest extends ApplicationTest {
             testStackPane,
             testStackPane,
             testGridPane,
-            testVBox);
+            testFlowPane,
+            testButton2);
   }
 
   @Test

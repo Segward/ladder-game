@@ -17,9 +17,9 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
@@ -32,7 +32,7 @@ public class TicTacToeController implements TicTacToeObserver {
   private StackPane playerOnePanal;
   private StackPane playerTwoPanal;
   private GridPane playingBoard;
-  private VBox playingPane;
+  private FlowPane buttonPane;
   private TicTacToe game;
   private Text gameText;
   private Text playerOneScoreText;
@@ -40,6 +40,7 @@ public class TicTacToeController implements TicTacToeObserver {
   private Button exitButton;
   private HashMap<Vector2, Button> resultHash;
   private int roundNumber = 1;
+  private Button playAgainButton;
 
   /**
    * Constructor for the TicTacToeController. Uses the different parameters to set the value of
@@ -64,16 +65,18 @@ public class TicTacToeController implements TicTacToeObserver {
       StackPane playerOnePanal,
       StackPane playerTwoPanal,
       GridPane playingBoard,
-      VBox playingPane) {
+      FlowPane buttonPane,
+      Button playAgainButton) {
     this.root = root;
     this.playerOnePanal = playerOnePanal;
     this.playerTwoPanal = playerTwoPanal;
     this.playingBoard = playingBoard;
-    this.playingPane = playingPane;
+    this.buttonPane = buttonPane;
     this.gameText = gameText;
     this.playerOneScoreText = playerOneScoreText;
     this.playerTwoScoreText = playerTwoScoreText;
     this.exitButton = exitButton;
+    this.playAgainButton = playAgainButton;
   }
 
   /**
@@ -90,6 +93,7 @@ public class TicTacToeController implements TicTacToeObserver {
     this.game = new TicTacToe(players, new Dice(1));
 
     gameStartSetup();
+    playAgainButton.setOnAction(e -> gameStartSetup());
   }
 
   /**
@@ -151,6 +155,7 @@ public class TicTacToeController implements TicTacToeObserver {
         e -> {
           diceImage(randStart);
           Button startGame = new Button("Start Game");
+          startGame.setPrefSize(400, 50);
           startGame.setOnAction(action -> createBoard());
           playingBoard.add(startGame, 0, 2);
           gameText.setText(game.getCurrentPlayer().getName() + " starts!!");
@@ -181,7 +186,7 @@ public class TicTacToeController implements TicTacToeObserver {
   public void diceImage(int diceSide) {
     playingBoard.getChildren().clear();
     ImageView diceView = new ImageView();
-    diceView.setFitHeight(200);
+    diceView.setFitHeight(400);
     diceView.setPreserveRatio(true);
 
     Image diceImage =
@@ -201,6 +206,7 @@ public class TicTacToeController implements TicTacToeObserver {
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j < 3; j++) {
         Button tile = new Button();
+        tile.setId("ticTacToeButton");
         tile.setPrefSize(100, 100);
         tile.setOnAction(e -> onClick(tile));
         tile.setDisable(false);
@@ -221,8 +227,8 @@ public class TicTacToeController implements TicTacToeObserver {
   public void onClick(Button tile) {
     Player currentPlayer = game.getCurrentPlayer();
     ImageView iconView = new ImageView();
-    iconView.setFitHeight(tile.getHeight() * 0.8);
-    iconView.setFitWidth(tile.getWidth() * 0.8);
+    iconView.setFitHeight(tile.getHeight() * 0.6);
+    iconView.setFitWidth(tile.getWidth() * 0.6);
     if (currentPlayer.getName().equals(game.getPlayers().stream().findFirst().get().getName())) {
       Image xMark = new Image(getClass().getResource("/icons/xMark.png").toExternalForm());
       iconView.setImage(xMark);
@@ -254,9 +260,6 @@ public class TicTacToeController implements TicTacToeObserver {
     retreveTiles();
     if (roundNumber >= 8 && win() == null) {
       gameText.setText("It is a TIE!!!");
-      Button newGame = new Button("New game");
-      newGame.setOnAction(e -> gameStartSetup());
-      playingBoard.add(newGame, 1, 1);
     } else {
       gameText.setText(game.getCurrentPlayer().getName() + "! it is your turn!");
       roundNumber++;
@@ -268,9 +271,6 @@ public class TicTacToeController implements TicTacToeObserver {
         } else {
           game.setPlayerTwoScore(game.getPlayerTwoScore() + 1);
         }
-        Button newGame = new Button("New game");
-        newGame.setOnAction(e -> gameStartSetup());
-        playingBoard.add(newGame, 1, 1);
       }
     }
     setPlayersScore();
