@@ -80,7 +80,7 @@ public class BoardSelectionController {
     Text boardName = new Text(board.getName());
     boardName.setStyle("-fx-font-size: 30px; -fx-fill: WHITE;");
     boardInfo.getChildren().add(boardName);
-
+    
     Button selectButton = new Button("Select");
     selectButton.setOnAction(e -> onSelectClick(board));
     boardInfo.getChildren().add(selectButton);
@@ -136,5 +136,16 @@ public class BoardSelectionController {
       PartyGame partyGame = new PartyGame(root, board);
       partyGame.init();
     }
+  }
+
+  /**
+   *  Method created for testing.
+   *  Easy access to private createBoradPane method.
+   * 
+   *  @param board Board object to be placed in pane
+   *  @return StackPane that holds board infromation
+   */
+  public StackPane getCreatboPane(Board board){
+    return createBoardPane(board);
   }
 }
