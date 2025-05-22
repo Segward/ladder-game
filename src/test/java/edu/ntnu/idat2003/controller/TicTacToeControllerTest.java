@@ -1,6 +1,7 @@
 package edu.ntnu.idat2003.controller;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import java.util.HashMap;
 
@@ -37,56 +38,66 @@ public class TicTacToeControllerTest extends ApplicationTest {
 
     @Test
     void testCreateBoard() {
-        
+        testGame.createBoard();
+        testGame.retreveTiles();
+        int tileNum = 0;
+        for(Node node : testGame.getResultHash().values()) {
+            if(node instanceof Button) {
+                tileNum++;
+            }
+        }
+        assertTrue(tileNum == 9);
     }
 
-    @Test
-    void testDiceImage() {
 
-    }
 
     @Test
     void testDisableAll() {
+        testGame.createBoard();
+        testGame.disableAll();
+        testGame.retreveTiles();
+        int tileDisableNumb = 0;
 
+        for(Node node : testGame.getResultHash().values()) {
+            if(node instanceof Button) {
+                if(node.isDisable()){
+                    tileDisableNumb++;
+                }
+            }
+        }
+        assertEquals(tileDisableNumb, 9);
     }
 
     @Test
-    void testGameStartSetup() {
-
+    void testInitFalse() {
+        testGame.init();
+        assertFalse(testGame.getGame().getPlayers().isEmpty());
     }
 
     @Test
-    void testGameStatus() {
-
+    void testInitTrue() {
+        testGame.init();
+        assertTrue(!testGame.getGame().getPlayers().isEmpty());
     }
 
     @Test
-    void testInit() {
-
+    void testSetNextPlayerFasle() {
+        testGame.init();
+        Player currentPlayer = testGame.getGame().getCurrentPlayer();
+        testGame.setNextPlayer();
+        assertFalse(currentPlayer == testGame.getGame().getCurrentPlayer());
     }
 
     @Test
-    void testOnClick() {
-
+    void testSetNextPlayerTrue() {
+        testGame.init();
+        Player currentPlayer = testGame.getGame().getCurrentPlayer();
+        testGame.setNextPlayer();
+        assertTrue(currentPlayer != testGame.getGame().getCurrentPlayer());
     }
 
     @Test
-    void testRetreveTiles() {
-
-    }
-
-    @Test
-    void testSetNextPlayer() {
-
-    }
-
-    @Test
-    void testSetPlayersScore() {
-
-    }
-
-    @Test
-    void testWin() {
+    void testWinTrue() {
         testGame.init();
         testGame.createBoard();
         testGame.retreveTiles();
@@ -102,7 +113,7 @@ public class TicTacToeControllerTest extends ApplicationTest {
     }
 
     @Test
-    void testNotWin() {
+    void testWinFalse() {
         testGame.init();
         testGame.createBoard();
         testGame.retreveTiles();

@@ -92,6 +92,18 @@ public class TicTacToeController implements TicTacToeObserver{
     }
 
     /**
+     *  Getter for the game.
+     *  Retreves the TicTacToe object
+     *  representing the game data,
+     *  and holds all of the game data.
+     * 
+     *  @return TicTacToe object representing the game
+     */
+    public TicTacToe getGame() {
+        return game;
+    }
+
+    /**
      *  Method for initilizing the start visuals.
      *  Retreves the player visuals and customizes
      *  player panes.
@@ -295,7 +307,7 @@ public class TicTacToeController implements TicTacToeObserver{
     }
 
     /**
-     *  Method for retreveing the tile buttons form the board.
+     *  Method for retreveing used tile buttons form the board.
      *  Utilizes a for loop to circle through each node
      *  registed in the board GridPane. If the node is a button,
      *  the button is added to the resultHash HashMap with
