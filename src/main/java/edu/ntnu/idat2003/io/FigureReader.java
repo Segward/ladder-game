@@ -1,17 +1,16 @@
 package edu.ntnu.idat2003.io;
 
-import java.util.HashSet;
-
 import edu.ntnu.idat2003.exception.DataReadException;
 import edu.ntnu.idat2003.model.Figure;
 import edu.ntnu.idat2003.model.Player;
 import edu.ntnu.idat2003.util.CsvUtil;
+import java.util.HashSet;
 
 public class FigureReader {
 
-    private static final String path = "data/figure.csv";
+  private static final String path = "data/figure.csv";
 
-    public static HashSet<Figure> getFigures() {
+  public static HashSet<Figure> getFigures() {
     HashSet<Figure> figures = new HashSet<>();
     StringBuilder data = new StringBuilder();
     try {

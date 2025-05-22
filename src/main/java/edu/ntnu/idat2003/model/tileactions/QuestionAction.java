@@ -26,6 +26,10 @@ public class QuestionAction extends TileAction {
     return answer;
   }
 
+  public String getGiven() {
+    return given;
+  }
+
   @Override
   public void execute(Player player) {
     if (given != null && given.equals(answer)) {
