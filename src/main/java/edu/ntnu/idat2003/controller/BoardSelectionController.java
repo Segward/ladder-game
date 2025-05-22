@@ -48,7 +48,7 @@ public class BoardSelectionController {
     boardPane.getChildren().add(boardInfo);
 
     Text boardName = new Text(board.getName());
-    boardName.setStyle("-fx-font-size: 20px; -fx-fill: BLACK;");
+    boardName.setStyle("-fx-font-size: 30px; -fx-fill: WHITE;");
     boardInfo.getChildren().add(boardName);
 
     Button selectButton = new Button("Select");
