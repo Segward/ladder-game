@@ -147,6 +147,11 @@ public class PlayerCreationController {
       return;
     }
 
+    if (name.length() > 20) {
+      alert("Player name is too long. Please choose a name with 20 characters or less.");
+      return;
+    }
+
     HashSet<Player> players = PlayerReader.getPlayers();
     for (Player player : players) {
       if (player.getName().equals(name)) {
