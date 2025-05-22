@@ -12,6 +12,7 @@ import edu.ntnu.idat2003.model.Player;
 import edu.ntnu.idat2003.util.CsvUtil;
 import edu.ntnu.idat2003.util.FileUtil;
 import java.util.HashSet;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.MockedStatic;
@@ -19,6 +20,7 @@ import org.mockito.MockedStatic;
 public class PlayerWriterTest {
 
   @Test
+  @DisplayName("Test savePlayers")
   void testSavePlayers() throws DataWriteException {
     Player player1 = new Player("Kim Dokja", new Figure("reader", "/path/reader.png"));
     Player player2 =
@@ -38,6 +40,7 @@ public class PlayerWriterTest {
   }
 
   @Test
+  @DisplayName("Test savePlayers")
   void testAddPlayer() throws DataWriteException {
     Player player = new Player("Kim Dokja", new Figure("reader", "/path/reader.png"));
     HashSet<Player> players = new HashSet<>();
@@ -53,6 +56,7 @@ public class PlayerWriterTest {
   }
 
   @Test
+  @DisplayName("Test removePlayer")
   void testRemovePlayer() throws Exception {
     Player player1 = new Player("Kim Dokja", new Figure("reader", "/path/reader.png"));
     Player player2 =

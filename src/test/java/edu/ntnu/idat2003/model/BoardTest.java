@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.HashMap;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class BoardTest {
@@ -11,6 +12,7 @@ public class BoardTest {
   public static Board board;
 
   @BeforeAll
+  @DisplayName("Setup Board")
   public static void setup() {
     board = new Board("Test Board");
     Tile previous = null;
@@ -38,11 +40,13 @@ public class BoardTest {
   }
 
   @Test
+  @DisplayName("Test getName")
   public void testGetName() {
     assertEquals("Test Board", board.getName());
   }
 
   @Test
+  @DisplayName("Test getTile")
   public void testGetTile() {
     Tile tile = board.getTile(new Vector2(0, 0));
     assertEquals(new Vector2(0, 0), tile.getPosition());
@@ -55,6 +59,7 @@ public class BoardTest {
   }
 
   @Test
+  @DisplayName("Test getTiles")
   public void testGetTiles() {
     HashMap<Integer, Tile> tiles = board.getTiles();
     assertEquals(90, tiles.size());

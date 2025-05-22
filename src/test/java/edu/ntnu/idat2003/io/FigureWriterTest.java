@@ -8,12 +8,14 @@ import edu.ntnu.idat2003.exception.DataWriteException;
 import edu.ntnu.idat2003.model.Figure;
 import edu.ntnu.idat2003.util.CsvUtil;
 import java.util.HashSet;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 
 public class FigureWriterTest {
 
   @Test
+  @DisplayName("Test saveFigures")
   void testSaveFigures() throws DataWriteException {
     Figure figure1 = new Figure("Kim Dokja", "/path/reader.png");
     Figure figure2 = new Figure("Yoo Joonghyuk", "/path/protagonist.png");

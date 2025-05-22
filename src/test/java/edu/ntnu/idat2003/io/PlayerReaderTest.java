@@ -7,12 +7,14 @@ import static org.mockito.Mockito.mockStatic;
 import edu.ntnu.idat2003.model.Player;
 import edu.ntnu.idat2003.util.CsvUtil;
 import java.util.HashSet;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 
 public class PlayerReaderTest {
 
   @Test
+  @DisplayName("Test getPlayers")
   void testGetFigures() {
     String mockCsv = "Kim Dokja,reader\nYoo Joonghyuk,protagonist";
     try (MockedStatic<CsvUtil> csvUtilMock = mockStatic(CsvUtil.class)) {

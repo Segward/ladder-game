@@ -7,12 +7,14 @@ import edu.ntnu.idat2003.model.Board;
 import edu.ntnu.idat2003.util.GsonUtil;
 import java.lang.reflect.Type;
 import java.util.HashSet;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 
 public class BoardReaderTest {
 
   @Test
+  @DisplayName("Test getQuizBoards")
   void testGetQuizBoards() {
     Board board1 = new Board("Quiz 1");
     Board board2 = new Board("Quiz 2");
@@ -32,6 +34,7 @@ public class BoardReaderTest {
   }
 
   @Test
+  @DisplayName("Test getLadderBoards")
   void testGetLadderBoards() {
     Board board1 = new Board("Ladder 1");
     HashSet<Board> mockBoards = new HashSet<>();

@@ -7,12 +7,14 @@ import static org.mockito.Mockito.mockStatic;
 import edu.ntnu.idat2003.model.Figure;
 import edu.ntnu.idat2003.util.CsvUtil;
 import java.util.HashSet;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 
 public class FigureReaderTest {
 
   @Test
+  @DisplayName("Test getFigures")
   void testGetFigures() {
     String mockCsv = "Kim Dokja,/path/reader.png\nYoo Joonghyuk,/path/protagonist.png";
     try (MockedStatic<CsvUtil> csvUtilMock = mockStatic(CsvUtil.class)) {
@@ -33,6 +35,7 @@ public class FigureReaderTest {
   }
 
   @Test
+  @DisplayName("Test getAvailableFigures")
   void testGetAvailableFigures() {
     String mockCsv = "Kim Dokja,/path/reader.png\nYoo Joonghyuk,/path/protagonist.png";
 
