@@ -1,0 +1,44 @@
+#mainFrame {
+  -fx-background-image: url("../background/background.jpg");
+  -fx-background-size: cover;
+  -fx-background-position: center;
+  -fx-background-repeat: no-repeat;
+  -fx-orientation: vertical;
+  -fx-alignment: center;
+}
+
+#playerOnePanal {
+  -fx-background-size: cover;
+  -fx-background-position: center;
+  -fx-background-repeat: no-repeat;
+  -fx-orientation: vertical;
+  -fx-alignment: center;
+}
+
+#playerTwoPanal {
+  -fx-background-size: cover;
+  -fx-background-position: center;
+  -fx-background-repeat: no-repeat;
+  -fx-orientation: vertical;
+  -fx-alignment: center;
+}
+
+#ticTacToeGameText {
+  -fx-font-smoothing-type: lcd;
+  -fx-fill: black;
+  -fx-font-size: 25pt;
+}
+
+.text {
+  -fx-font-smoothing-type: lcd;
+  -fx-fill: white;
+  -fx-font-size: 20pt;
+}
+
+.button {
+  -fx-background-color: #000000;
+  -fx-text-fill: black;
+  -fx-font-size: 20pt;
+  -fx-border-radius: 10px;
+  -fx-background-radius: 10px;
+}

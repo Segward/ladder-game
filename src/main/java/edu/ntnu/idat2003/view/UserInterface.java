@@ -22,12 +22,15 @@ public class UserInterface {
     primaryStage.setMinWidth(WIDTH);
     primaryStage.setResizable(false);
 
+    root.setId("mainFrame");
+
     MainFrame mainFrame = new MainFrame(root);
     mainFrame.init();
   }
 
   public void start() {
     Scene scene = new Scene(root);
+    scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
     primaryStage.setScene(scene);
     primaryStage.show();
   }

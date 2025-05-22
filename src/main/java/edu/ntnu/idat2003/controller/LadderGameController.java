@@ -4,21 +4,26 @@ import edu.ntnu.idat2003.io.PlayerReader;
 import edu.ntnu.idat2003.model.Board;
 import edu.ntnu.idat2003.model.LadderGame;
 import edu.ntnu.idat2003.model.Player;
+import edu.ntnu.idat2003.model.Tile;
 import edu.ntnu.idat2003.model.Vector2;
 import edu.ntnu.idat2003.model.tileactions.ExtraDiceAction;
 import edu.ntnu.idat2003.model.tileactions.LadderAction;
 import edu.ntnu.idat2003.model.tileactions.TileAction;
 import edu.ntnu.idat2003.observer.LadderGameObserver;
 import edu.ntnu.idat2003.view.MainFrame;
+import java.util.HashMap;
 import java.util.HashSet;
+import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
 import javafx.animation.ScaleTransition;
+import javafx.animation.Timeline;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -26,14 +31,15 @@ import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 
 /**
- *  Class representing the ladder game visual logic.
- *  Incluedes methods that draws the visual data.
+ * Class representing the ladder game visual logic. Incluedes methods that draws the visual data.
  */
 public class LadderGameController implements LadderGameObserver {
 
   private final BorderPane root;
   private final Canvas canvas;
   private final Board board;
+  private final ImageView dice1;
+  private final ImageView dice2;
 
   private final int columns = 10;
   private final int rows = 9;
@@ -45,28 +51,28 @@ public class LadderGameController implements LadderGameObserver {
   private LadderGame game;
 
   /**
-   *  Constructor for the LadderGameController class.
-   *  Takes an BorderPane, Canvas and Board as parameters.
-   * 
-   *  @param borderPane BorderPane representing the main Canvas
-   *  @param canvas Canvas representing the game visuales
-   *  @param board Board object representing the game board
+   * Constructor for the LadderGameController class. Takes an BorderPane, Canvas and Board as
+   * parameters.
+   *
+   * @param borderPane BorderPane representing the main Canvas
+   * @param canvas Canvas representing the game visuales
+   * @param board Board object representing the game board
    */
-  public LadderGameController(BorderPane borderPane, Canvas canvas, Board board) {
+  public LadderGameController(
+      BorderPane borderPane, Canvas canvas, Board board, ImageView dice1, ImageView dice2) {
     this.root = borderPane;
     this.canvas = canvas;
     this.board = board;
+    this.dice1 = dice1;
+    this.dice2 = dice2;
   }
 
   /**
-   *  Initilases the game data.
-   *  Deffines the different button logics,
-   *  collectes all players in a HashSet, creates a new
-   *  Ladder game object representing the game, and 
-   *  draws the game visuals.
-   * 
-   *  @param rollDice Button for rolling dice
-   *  @param exitGame Button for returning to main menue
+   * Initilases the game data. Deffines the different button logics, collectes all players in a
+   * HashSet, creates a new Ladder game object representing the game, and draws the game visuals.
+   *
+   * @param rollDice Button for rolling dice
+   * @param exitGame Button for returning to main menue
    */
   public void init(Button rollDice, Button exitGame) {
     rollDice.setOnAction(e -> game.rollDice());
@@ -78,20 +84,13 @@ public class LadderGameController implements LadderGameObserver {
     drawCanvas();
   }
 
-   /**
-   *  Method for transporting user to main manue.
-   *  Initializes the init() method in MainFrame.
-   */
+  /** Method for transporting user to main manue. Initializes the init() method in MainFrame. */
   private void exitGame() {
     MainFrame mainFrame = new MainFrame(root);
     mainFrame.init();
   }
 
-  /**
-   *  Method for drawing main game visuals.
-   *  
-   * 
-   */
+  /** Method for drawing main game visuals. */
   private void drawCanvas() {
     GraphicsContext gc = canvas.getGraphicsContext2D();
     gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -106,55 +105,38 @@ public class LadderGameController implements LadderGameObserver {
     double offsetX = (canvas.getWidth() - gridWidth) / 2;
     double offsetY = (canvas.getHeight() - gridHeight) / 2;
 
-    int number = 1;
     double arc = Math.min(cellWidth, cellHeight) * 0.3;
     double innerPadding = cellPadding;
 
-    for (int row = rows - 1; row >= 0; row--) {
-      for (int col = 0; col < columns; col++) {
-        int drawCol = ((rows - 1 - row) % 2 == 0) ? col : (columns - 1 - col);
+    HashMap<Integer, Tile> tiles = game.getBoard().getTiles();
+    for (Tile tile : tiles.values()) {
+      int drawRow = rows - 1 - tile.getPosition().getY();
+      int drawCol = tile.getPosition().getX();
 
-        double x = offsetX + drawCol * cellWidth;
-        double y = offsetY + row * cellHeight;
+      double px = offsetX + drawCol * cellWidth + innerPadding;
+      double py = offsetY + drawRow * cellHeight + innerPadding;
 
-        // Draw cell background with padding inside cell
-        gc.setFill(Color.GRAY);
-        gc.fillRoundRect(
-            x + innerPadding,
-            y + innerPadding,
-            cellWidth - 2 * innerPadding,
-            cellHeight - 2 * innerPadding,
-            arc,
-            arc);
+      gc.setFill(Color.BURLYWOOD);
+      gc.fillRoundRect(
+          px, py, cellWidth - 2 * innerPadding, cellHeight - 2 * innerPadding, arc, arc);
 
-        gc.setStroke(Color.BLACK);
-        gc.strokeRoundRect(
-            x + innerPadding,
-            y + innerPadding,
-            cellWidth - 2 * innerPadding,
-            cellHeight - 2 * innerPadding,
-            arc,
-            arc);
-
-        // Draw cell number near top-left inside the cell with padding
-        gc.setFill(Color.BLACK);
-        gc.fillText(String.valueOf(number), x + innerPadding + 4, y + innerPadding + 16);
-
-        number++;
-      }
+      gc.setFill(Color.BLACK);
+      gc.setFont(new Font("Arial Black", 12));
+      gc.setTextAlign(TextAlignment.CENTER);
+      gc.setTextBaseline(VPos.CENTER);
+      gc.fillText(String.valueOf(tile.getText()), px + 12, py + 12);
     }
 
-    // Draw ladders
     for (LadderAction action : game.getBoard().getLadders()) {
       Vector2 start = action.getStart();
       Vector2 end = action.getDestination();
+      String direction = action.getDirection();
 
-      // Flip rows because we draw from bottom to top
       int startRow = rows - 1 - start.getY();
-      int startCol = ((startRow % 2) == 0) ? start.getX() : (columns - 1 - start.getX());
+      int startCol = start.getX();
 
       int endRow = rows - 1 - end.getY();
-      int endCol = ((endRow % 2) == 0) ? end.getX() : (columns - 1 - end.getX());
+      int endCol = end.getX();
 
       double startX = offsetX + startCol * cellWidth + cellWidth / 2;
       double startY = offsetY + startRow * cellHeight + cellHeight / 2;
@@ -162,35 +144,34 @@ public class LadderGameController implements LadderGameObserver {
       double endX = offsetX + endCol * cellWidth + cellWidth / 2;
       double endY = offsetY + endRow * cellHeight + cellHeight / 2;
 
-      // Calculate perpendicular offset for ladder width
       double dx = endX - startX;
       double dy = endY - startY;
       double length = Math.hypot(dx, dy);
-      double ladderWidth = cellWidth * 0.3; // Adjust for ladder thickness
+      double ladderWidth = cellWidth * 0.3;
 
-      // Perpendicular vector (normalized)
       double perpX = -dy / length;
       double perpY = dx / length;
 
-      // Side 1
       double sx1 = startX + perpX * ladderWidth / 2;
       double sy1 = startY + perpY * ladderWidth / 2;
       double ex1 = endX + perpX * ladderWidth / 2;
       double ey1 = endY + perpY * ladderWidth / 2;
 
-      // Side 2
       double sx2 = startX - perpX * ladderWidth / 2;
       double sy2 = startY - perpY * ladderWidth / 2;
       double ex2 = endX - perpX * ladderWidth / 2;
       double ey2 = endY - perpY * ladderWidth / 2;
 
-      // Draw the two sides
+      if (direction.equals("up")) {
+        gc.setStroke(Color.GREEN);
+      } else if (direction.equals("down")) {
+        gc.setStroke(Color.RED);
+      }
+
       gc.setLineWidth(8);
-      gc.setStroke(Color.SADDLEBROWN);
       gc.strokeLine(sx1, sy1, ex1, ey1);
       gc.strokeLine(sx2, sy2, ex2, ey2);
 
-      // Draw rungs
       int rungs = 4;
       for (int i = 1; i < rungs; i++) {
         double t = i / (double) rungs;
@@ -203,7 +184,6 @@ public class LadderGameController implements LadderGameObserver {
       }
     }
 
-    // Draw ExtraDiceAction circles
     for (ExtraDiceAction action : game.getBoard().getExtraDice()) {
       Vector2 pos = action.getStart();
 
@@ -217,7 +197,6 @@ public class LadderGameController implements LadderGameObserver {
       gc.drawImage(playerImage, px + 10, py + 10, cellWidth - 20, cellHeight - 20);
     }
 
-    // Draw players
     for (Player player : game.getPlayers()) {
       Vector2 pos = player.getPosition();
 
@@ -299,5 +278,30 @@ public class LadderGameController implements LadderGameObserver {
   }
 
   @Override
-  public void onDiceRolled(int diceValue) {}
+  public void onDiceRolled(int diceValue) {
+    int animationFrames = 10;
+    Timeline timeline = new Timeline();
+    for (int i = 0; i < animationFrames; i++) {
+      timeline
+          .getKeyFrames()
+          .add(
+              new KeyFrame(
+                  Duration.seconds(i * 0.05), e -> setDiceImage((int) (Math.random() * 11) + 2)));
+    }
+    timeline
+        .getKeyFrames()
+        .add(new KeyFrame(Duration.seconds(animationFrames * 0.05), e -> setDiceImage(diceValue)));
+    timeline.play();
+  }
+
+  private void setDiceImage(int diceValue) {
+    int minFirst = Math.max(1, diceValue - 6);
+    int maxFirst = Math.min(6, diceValue - 1);
+    int dice1Value = minFirst + (int) (Math.random() * (maxFirst - minFirst + 1));
+    int dice2Value = diceValue - dice1Value;
+    Image image1 = new Image("/dice/" + dice1Value + "face.png");
+    Image image2 = new Image("/dice/" + dice2Value + "face.png");
+    dice1.setImage(image1);
+    dice2.setImage(image2);
+  }
 }

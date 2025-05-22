@@ -131,7 +131,7 @@ public class ConfigurationController {
     playerPane.getChildren().add(playerInfo);
 
     Text playerName = new Text(player.getName());
-    playerName.setStyle("-fx-font-size: 20px; -fx-fill: BLACK;");
+    playerName.setStyle("-fx-font-size: 30px; -fx-fill: WHITE;");
     playerInfo.getChildren().add(playerName);
 
     ImageView figureImage = new ImageView(player.getFigure().getPath());

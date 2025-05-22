@@ -22,6 +22,19 @@
           "x": 2,
           "y": 0
         },
+        "action": {
+          "type": "LadderAction",
+          "data": {
+            "destination": {
+              "x": 0,
+              "y": 1
+            },
+            "start": {
+              "x": 1,
+              "y": 0
+            }
+          }
+        },
         "text": "2"
       },
       "2": {
@@ -44,6 +57,15 @@
           "x": 4,
           "y": 0
         },
+        "action": {
+          "type": "ExtraDiceAction",
+          "data": {
+            "start": {
+              "x": 3,
+              "y": 0
+            }
+          }
+        },
         "text": "4"
       },
       "4": {
@@ -55,6 +77,19 @@
           "x": 5,
           "y": 0
         },
+        "action": {
+          "type": "LadderAction",
+          "data": {
+            "destination": {
+              "x": 5,
+              "y": 4
+            },
+            "start": {
+              "x": 4,
+              "y": 0
+            }
+          }
+        },
         "text": "5"
       },
       "5": {
@@ -65,19 +100,6 @@
         "nextPosition": {
           "x": 6,
           "y": 0
-        },
-        "action": {
-          "type": "LadderAction",
-          "data": {
-            "destination": {
-              "x": 4,
-              "y": 2
-            },
-            "start": {
-              "x": 5,
-              "y": 0
-            }
-          }
         },
         "text": "6"
       },
@@ -211,6 +233,19 @@
           "x": 8,
           "y": 4
         },
+        "action": {
+          "type": "LadderAction",
+          "data": {
+            "destination": {
+              "x": 5,
+              "y": 5
+            },
+            "start": {
+              "x": 7,
+              "y": 4
+            }
+          }
+        },
         "text": "48"
       },
       "408": {
@@ -244,6 +279,19 @@
           "x": 1,
           "y": 8
         },
+        "action": {
+          "type": "LadderAction",
+          "data": {
+            "destination": {
+              "x": 1,
+              "y": 7
+            },
+            "start": {
+              "x": 0,
+              "y": 8
+            }
+          }
+        },
         "text": "81"
       },
       "801": {
@@ -276,6 +324,19 @@
         "nextPosition": {
           "x": 4,
           "y": 8
+        },
+        "action": {
+          "type": "LadderAction",
+          "data": {
+            "destination": {
+              "x": 4,
+              "y": 3
+            },
+            "start": {
+              "x": 3,
+              "y": 8
+            }
+          }
         },
         "text": "84"
       },
@@ -332,6 +393,15 @@
           "x": 9,
           "y": 8
         },
+        "action": {
+          "type": "ExtraDiceAction",
+          "data": {
+            "start": {
+              "x": 8,
+              "y": 8
+            }
+          }
+        },
         "text": "89"
       },
       "809": {
@@ -372,6 +442,19 @@
           "x": 1,
           "y": 3
         },
+        "action": {
+          "type": "LadderAction",
+          "data": {
+            "destination": {
+              "x": 4,
+              "y": 6
+            },
+            "start": {
+              "x": 2,
+              "y": 3
+            }
+          }
+        },
         "text": "38"
       },
       "303": {
@@ -393,15 +476,6 @@
         "nextPosition": {
           "x": 3,
           "y": 3
-        },
-        "action": {
-          "type": "ExtraDiceAction",
-          "data": {
-            "start": {
-              "x": 4,
-              "y": 3
-            }
-          }
         },
         "text": "36"
       },
@@ -457,6 +531,19 @@
         "nextPosition": {
           "x": 8,
           "y": 3
+        },
+        "action": {
+          "type": "LadderAction",
+          "data": {
+            "destination": {
+              "x": 8,
+              "y": 0
+            },
+            "start": {
+              "x": 9,
+              "y": 3
+            }
+          }
         },
         "text": "31"
       },
@@ -720,6 +807,19 @@
           "x": 3,
           "y": 6
         },
+        "action": {
+          "type": "LadderAction",
+          "data": {
+            "destination": {
+              "x": 5,
+              "y": 3
+            },
+            "start": {
+              "x": 2,
+              "y": 6
+            }
+          }
+        },
         "text": "63"
       },
       "603": {
@@ -730,19 +830,6 @@
         "nextPosition": {
           "x": 4,
           "y": 6
-        },
-        "action": {
-          "type": "LadderAction",
-          "data": {
-            "destination": {
-              "x": 2,
-              "y": 8
-            },
-            "start": {
-              "x": 3,
-              "y": 6
-            }
-          }
         },
         "text": "64"
       },
@@ -909,6 +996,19 @@
           "x": 7,
           "y": 1
         },
+        "action": {
+          "type": "LadderAction",
+          "data": {
+            "destination": {
+              "x": 7,
+              "y": 0
+            },
+            "start": {
+              "x": 8,
+              "y": 1
+            }
+          }
+        },
         "text": "12"
       },
       "109": {
@@ -946,7 +1046,7 @@
           "type": "LadderAction",
           "data": {
             "destination": {
-              "x": 3,
+              "x": 0,
               "y": 4
             },
             "start": {
@@ -1010,6 +1110,19 @@
           "x": 5,
           "y": 5
         },
+        "action": {
+          "type": "LadderAction",
+          "data": {
+            "destination": {
+              "x": 4,
+              "y": 2
+            },
+            "start": {
+              "x": 6,
+              "y": 5
+            }
+          }
+        },
         "text": "54"
       },
       "507": {
@@ -1031,19 +1144,6 @@
         "nextPosition": {
           "x": 7,
           "y": 5
-        },
-        "action": {
-          "type": "LadderAction",
-          "data": {
-            "destination": {
-              "x": 6,
-              "y": 3
-            },
-            "start": {
-              "x": 8,
-              "y": 5
-            }
-          }
         },
         "text": "52"
       },
@@ -1083,6 +1183,15 @@
           "x": 2,
           "y": 0
         },
+        "action": {
+          "type": "ExtraDiceAction",
+          "data": {
+            "start": {
+              "x": 1,
+              "y": 0
+            }
+          }
+        },
         "text": "2"
       },
       "2": {
@@ -1116,6 +1225,19 @@
           "x": 5,
           "y": 0
         },
+        "action": {
+          "type": "LadderAction",
+          "data": {
+            "destination": {
+              "x": 5,
+              "y": 2
+            },
+            "start": {
+              "x": 4,
+              "y": 0
+            }
+          }
+        },
         "text": "5"
       },
       "5": {
@@ -1126,19 +1248,6 @@
         "nextPosition": {
           "x": 6,
           "y": 0
-        },
-        "action": {
-          "type": "LadderAction",
-          "data": {
-            "destination": {
-              "x": 4,
-              "y": 2
-            },
-            "start": {
-              "x": 5,
-              "y": 0
-            }
-          }
         },
         "text": "6"
       },
@@ -1272,6 +1381,19 @@
           "x": 8,
           "y": 4
         },
+        "action": {
+          "type": "LadderAction",
+          "data": {
+            "destination": {
+              "x": 5,
+              "y": 5
+            },
+            "start": {
+              "x": 7,
+              "y": 4
+            }
+          }
+        },
         "text": "48"
       },
       "408": {
@@ -1305,6 +1427,19 @@
           "x": 1,
           "y": 8
         },
+        "action": {
+          "type": "LadderAction",
+          "data": {
+            "destination": {
+              "x": 1,
+              "y": 7
+            },
+            "start": {
+              "x": 0,
+              "y": 8
+            }
+          }
+        },
         "text": "81"
       },
       "801": {
@@ -1337,6 +1472,19 @@
         "nextPosition": {
           "x": 4,
           "y": 8
+        },
+        "action": {
+          "type": "LadderAction",
+          "data": {
+            "destination": {
+              "x": 4,
+              "y": 7
+            },
+            "start": {
+              "x": 3,
+              "y": 8
+            }
+          }
         },
         "text": "84"
       },
@@ -1392,6 +1540,15 @@
         "nextPosition": {
           "x": 9,
           "y": 8
+        },
+        "action": {
+          "type": "ExtraDiceAction",
+          "data": {
+            "start": {
+              "x": 8,
+              "y": 8
+            }
+          }
         },
         "text": "89"
       },
@@ -1455,15 +1612,6 @@
           "x": 3,
           "y": 3
         },
-        "action": {
-          "type": "ExtraDiceAction",
-          "data": {
-            "start": {
-              "x": 4,
-              "y": 3
-            }
-          }
-        },
         "text": "36"
       },
       "305": {
@@ -1518,6 +1666,19 @@
         "nextPosition": {
           "x": 8,
           "y": 3
+        },
+        "action": {
+          "type": "LadderAction",
+          "data": {
+            "destination": {
+              "x": 8,
+              "y": 4
+            },
+            "start": {
+              "x": 9,
+              "y": 3
+            }
+          }
         },
         "text": "31"
       },
@@ -1781,6 +1942,19 @@
           "x": 3,
           "y": 6
         },
+        "action": {
+          "type": "LadderAction",
+          "data": {
+            "destination": {
+              "x": 5,
+              "y": 7
+            },
+            "start": {
+              "x": 2,
+              "y": 6
+            }
+          }
+        },
         "text": "63"
       },
       "603": {
@@ -1791,19 +1965,6 @@
         "nextPosition": {
           "x": 4,
           "y": 6
-        },
-        "action": {
-          "type": "LadderAction",
-          "data": {
-            "destination": {
-              "x": 2,
-              "y": 8
-            },
-            "start": {
-              "x": 3,
-              "y": 6
-            }
-          }
         },
         "text": "64"
       },
@@ -1904,6 +2065,19 @@
           "x": 1,
           "y": 1
         },
+        "action": {
+          "type": "LadderAction",
+          "data": {
+            "destination": {
+              "x": 4,
+              "y": 4
+            },
+            "start": {
+              "x": 2,
+              "y": 1
+            }
+          }
+        },
         "text": "18"
       },
       "103": {
@@ -1970,6 +2144,19 @@
           "x": 7,
           "y": 1
         },
+        "action": {
+          "type": "LadderAction",
+          "data": {
+            "destination": {
+              "x": 7,
+              "y": 0
+            },
+            "start": {
+              "x": 8,
+              "y": 1
+            }
+          }
+        },
         "text": "12"
       },
       "109": {
@@ -2007,7 +2194,7 @@
           "type": "LadderAction",
           "data": {
             "destination": {
-              "x": 3,
+              "x": 0,
               "y": 4
             },
             "start": {
@@ -2049,6 +2236,15 @@
           "x": 3,
           "y": 5
         },
+        "action": {
+          "type": "ExtraDiceAction",
+          "data": {
+            "start": {
+              "x": 4,
+              "y": 5
+            }
+          }
+        },
         "text": "56"
       },
       "505": {
@@ -2071,6 +2267,19 @@
           "x": 5,
           "y": 5
         },
+        "action": {
+          "type": "LadderAction",
+          "data": {
+            "destination": {
+              "x": 4,
+              "y": 2
+            },
+            "start": {
+              "x": 6,
+              "y": 5
+            }
+          }
+        },
         "text": "54"
       },
       "507": {
@@ -2092,19 +2301,6 @@
         "nextPosition": {
           "x": 7,
           "y": 5
-        },
-        "action": {
-          "type": "LadderAction",
-          "data": {
-            "destination": {
-              "x": 6,
-              "y": 3
-            },
-            "start": {
-              "x": 8,
-              "y": 5
-            }
-          }
         },
         "text": "52"
       },

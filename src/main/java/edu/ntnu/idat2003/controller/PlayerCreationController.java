@@ -50,7 +50,7 @@ public class PlayerCreationController {
     figurePane.getChildren().add(figureInfo);
 
     Text figureName = new Text(figure.getName());
-    figureName.setStyle("-fx-font-size: 20px; -fx-fill: BLACK;");
+    figureName.setStyle("-fx-font-size: 30px; -fx-fill: WHITE;");
     figureInfo.getChildren().add(figureName);
 
     ImageView figureImage = new ImageView(figure.getPath());
