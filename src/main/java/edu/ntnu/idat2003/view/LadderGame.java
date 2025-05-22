@@ -1,6 +1,7 @@
 package edu.ntnu.idat2003.view;
 
 import edu.ntnu.idat2003.controller.LadderGameController;
+import edu.ntnu.idat2003.model.Board;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
@@ -13,13 +14,15 @@ import javafx.scene.layout.StackPane;
 public class LadderGame {
 
   private final BorderPane root;
+  private final Board board;
 
   private final int WIDTH = 1000;
   private final int HEIGHT = 800;
   private final double WIDTH_RATIO = 0.8;
 
-  public LadderGame(BorderPane borderPane) {
+  public LadderGame(BorderPane borderPane, Board board) {
     this.root = borderPane;
+    this.board = board;
   }
 
   public void init() {
@@ -47,7 +50,7 @@ public class LadderGame {
 
     buttonPane.setStyle("-fx-background-color:rgb(174, 109, 109);");
 
-    LadderGameController ladderGameController = new LadderGameController(root, canvas);
+    LadderGameController ladderGameController = new LadderGameController(root, canvas, board);
     ladderGameController.init(rollDice, exitGame);
   }
 }

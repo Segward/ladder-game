@@ -30,6 +30,7 @@ public class PartyGameController implements PartyGameObserver {
 
   private final BorderPane root;
   private final Canvas canvas;
+  private final Board board;
 
   private final int columns = 10;
   private final int rows = 9;
@@ -40,9 +41,10 @@ public class PartyGameController implements PartyGameObserver {
 
   private PartyGame game;
 
-  public PartyGameController(BorderPane borderPane, Canvas canvas) {
+  public PartyGameController(BorderPane borderPane, Canvas canvas, Board board) {
     this.root = borderPane;
     this.canvas = canvas;
+    this.board = board;
   }
 
   public void init(Button rollDice, Button exitGame) {
@@ -50,9 +52,7 @@ public class PartyGameController implements PartyGameObserver {
     exitGame.setOnAction(e -> exitGame());
 
     HashSet<Player> players = PlayerReader.getPlayers();
-    HashSet<Board> boards = BoardReader.getLadderBoards();
-    Board board = boards.iterator().next();
-    game = new PartyGame(players, board, null);
+    game = new PartyGame(players, board, this);
     game.init();
     drawCanvas();
   }

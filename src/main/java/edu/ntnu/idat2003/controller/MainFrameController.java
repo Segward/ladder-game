@@ -1,7 +1,7 @@
 package edu.ntnu.idat2003.controller;
 
-import edu.ntnu.idat2003.view.LadderGame;
-import edu.ntnu.idat2003.view.PartyGame;
+import edu.ntnu.idat2003.view.BoardSelection;
+import edu.ntnu.idat2003.view.Configuration;
 import edu.ntnu.idat2003.view.TicTacToe;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
@@ -15,21 +15,31 @@ public class MainFrameController {
   }
 
   public void init(
-      Button startLadderGame, Button startPartyGame, Button startTicTacToeGame, Button exitGame) {
+      Button startLadderGame,
+      Button startPartyGame,
+      Button startTicTacToe,
+      Button configureGame,
+      Button exitGame) {
     startLadderGame.setOnAction(e -> startLadderGame());
     startPartyGame.setOnAction(e -> startPartyGame());
-    startTicTacToeGame.setOnAction(e -> startTicTacToeGame());
+    startTicTacToe.setOnAction(e -> startTicTacToeGame());
+    configureGame.setOnAction(e -> configureGame());
     exitGame.setOnAction(e -> exitGame());
   }
 
   private void startLadderGame() {
-    LadderGame ladderGame = new LadderGame(root);
-    ladderGame.init();
+    BoardSelection boardSelection = new BoardSelection(root, 1);
+    boardSelection.init();
   }
 
   private void startPartyGame() {
-    PartyGame partyGame = new PartyGame(root);
-    partyGame.init();
+    BoardSelection boardSelection = new BoardSelection(root, 2);
+    boardSelection.init();
+  }
+
+  private void configureGame() {
+    Configuration configuration = new Configuration(root);
+    configuration.init();
   }
 
   private void startTicTacToeGame() {

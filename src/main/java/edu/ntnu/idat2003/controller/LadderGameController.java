@@ -1,6 +1,5 @@
 package edu.ntnu.idat2003.controller;
 
-import edu.ntnu.idat2003.io.BoardReader;
 import edu.ntnu.idat2003.io.PlayerReader;
 import edu.ntnu.idat2003.model.Board;
 import edu.ntnu.idat2003.model.LadderGame;
@@ -30,6 +29,7 @@ public class LadderGameController implements LadderGameObserver {
 
   private final BorderPane root;
   private final Canvas canvas;
+  private final Board board;
 
   private final int columns = 10;
   private final int rows = 9;
@@ -40,9 +40,10 @@ public class LadderGameController implements LadderGameObserver {
 
   private LadderGame game;
 
-  public LadderGameController(BorderPane borderPane, Canvas canvas) {
+  public LadderGameController(BorderPane borderPane, Canvas canvas, Board board) {
     this.root = borderPane;
     this.canvas = canvas;
+    this.board = board;
   }
 
   public void init(Button rollDice, Button exitGame) {
@@ -50,8 +51,6 @@ public class LadderGameController implements LadderGameObserver {
     exitGame.setOnAction(e -> exitGame());
 
     HashSet<Player> players = PlayerReader.getPlayers();
-    HashSet<Board> boards = BoardReader.getLadderBoards();
-    Board board = boards.iterator().next();
     game = new LadderGame(players, board, this);
     game.init();
     drawCanvas();
