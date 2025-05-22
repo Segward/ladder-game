@@ -1,7 +1,6 @@
 package edu.ntnu.idat2003.controller;
 
 import edu.ntnu.idat2003.io.PlayerReader;
-import edu.ntnu.idat2003.model.Dice;
 import edu.ntnu.idat2003.model.Player;
 import edu.ntnu.idat2003.model.TicTacToe;
 import edu.ntnu.idat2003.model.Vector2;
@@ -86,10 +85,16 @@ public class TicTacToeController implements TicTacToeObserver {
     for (Player player : hashSetPlayer) {
       players.add(player);
     }
+  }
 
-    this.game = new TicTacToe(players, new Dice(1));
-
-    gameStartSetup();
+  /**
+   * Getter for the game. Retreves the TicTacToe object representing the game data, and holds all of
+   * the game data.
+   *
+   * @return TicTacToe object representing the game
+   */
+  public TicTacToe getGame() {
+    return game;
   }
 
   /**
@@ -132,7 +137,7 @@ public class TicTacToeController implements TicTacToeObserver {
 
     Timeline timeline = new Timeline();
     KeyFrame keyFrame =
-        new KeyFrame(Duration.millis(10), e -> diceImage((int) (Math.random() * 6) + 1));
+        new KeyFrame(Duration.millis(10), e -> ((int) (Math.random() * 6) + 1));
     timeline.getKeyFrames().add(keyFrame);
     timeline.setCycleCount(50);
     timeline.play();
@@ -162,24 +167,6 @@ public class TicTacToeController implements TicTacToeObserver {
   }
 
   /**
-   * Mehtod that creates die image. Clears the game board GridPane and creates both an new ImageView
-   * and Image representing the die. Uses the int parameter to choose which die image to set.
-   *
-   * @param diceSide int representing the die side
-   */
-  public void diceImage(int diceSide) {
-    playingBoard.getChildren().clear();
-    ImageView diceView = new ImageView();
-    diceView.setFitHeight(200);
-    diceView.setPreserveRatio(true);
-
-    Image diceImage =
-        new Image(getClass().getResource("/dice/" + diceSide + "face.png").toExternalForm());
-    diceView.setImage(diceImage);
-    playingBoard.getChildren().add(diceView);
-  }
-
-  /**
    * Method for creating the game board. Clears the gameBord GridPane then using a two nested for
    * loops creates each game tile in the from of a button. States the button action, and adds the
    * new button to the playingBoard GridPane.
@@ -193,10 +180,10 @@ public class TicTacToeController implements TicTacToeObserver {
         tile.setPrefSize(100, 100);
         tile.setOnAction(e -> onClick(tile));
         tile.setDisable(false);
+        tile.setUserData("");
         playingBoard.add(tile, i, j);
       }
     }
-    setPlayersScore();
   }
 
   /**
@@ -293,7 +280,7 @@ public class TicTacToeController implements TicTacToeObserver {
   }
 
   /**
-   * Method for retreveing the tile buttons form the board. Utilizes a for loop to circle through
+   * Method for retreveing used tile buttons form the board. Utilizes a for loop to circle through
    * each node registed in the board GridPane. If the node is a button, the button is added to the
    * resultHash HashMap with a Vector2 object representing the tile board location as the key set.
    */
@@ -313,6 +300,16 @@ public class TicTacToeController implements TicTacToeObserver {
         }
       }
     }
+  }
+
+  /**
+   * Getter for resultHash. Retreves the HashMap containing all of the tiles/buttons on the
+   * board/GridPane.
+   *
+   * @return HashMap<Vector2, Button> all tiles/buttons
+   */
+  public HashMap<Vector2, Button> getResultHash() {
+    return resultHash;
   }
 
   /**

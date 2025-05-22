@@ -45,7 +45,23 @@
             <version>21.0.1</version>
             <classifier>win</classifier>
         </dependency>
-    </dependencies>
+
+        <!-- TestFX Core -->
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-core</artifactId>
+            <version>4.0.16-alpha</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- TestFX JUnit5 Integration -->
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-junit5</artifactId>
+            <version>4.0.16-alpha</version>
+            <scope>test</scope>
+        </dependency>
+        </dependencies>
 
     <build>
         <plugins>
