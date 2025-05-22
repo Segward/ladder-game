@@ -264,7 +264,7 @@
           "type": "QuestionAction",
           "data": {
             "question": "What animal says meow",
-            "answer": "cat",
+            "answer": "Cat",
             "start": {
               "x": 0,
               "y": 8

@@ -60,7 +60,7 @@ public class QuizGame {
     currentPlayer.setPosition(nextPosition);
     tile = board.getTile(nextPosition);
 
-    if (tile.getNextPosition() == null) {
+    if (tile.getText().equals("90")) {
       gameOver = true;
     }
 

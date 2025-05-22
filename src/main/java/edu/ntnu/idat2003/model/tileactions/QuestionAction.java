@@ -32,7 +32,7 @@ public class QuestionAction extends TileAction {
 
   @Override
   public void execute(Player player) {
-    if (given != null && given.equals(answer)) {
+    if (given != null && given.equalsIgnoreCase(answer)) {
       player.setExtraDice(true);
     } else {
       player.setExtraDice(false);

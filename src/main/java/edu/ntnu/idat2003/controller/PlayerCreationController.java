@@ -1,6 +1,7 @@
 package edu.ntnu.idat2003.controller;
 
 import edu.ntnu.idat2003.io.FigureReader;
+import edu.ntnu.idat2003.io.PlayerReader;
 import edu.ntnu.idat2003.io.PlayerWriter;
 import edu.ntnu.idat2003.model.Figure;
 import edu.ntnu.idat2003.model.Player;
@@ -93,6 +94,14 @@ public class PlayerCreationController {
     if (name.isEmpty()) {
       alert("Please enter a name for the player.");
       return;
+    }
+
+    HashSet<Player> players = PlayerReader.getPlayers();
+    for (Player player : players) {
+      if (player.getName().equals(name)) {
+        alert("Player name already exists. Please choose a different name.");
+        return;
+      }
     }
 
     Player player = new Player(name, figure);
