@@ -8,8 +8,21 @@ import edu.ntnu.idat2003.model.tileactions.LadderAction;
 import java.util.Collections;
 import java.util.HashSet;
 
+/**
+ *  Class representing a factory where bords are made.
+ *  Inclued methods for creating both ladder game and quiz game boards.
+ */
 public class BoardFactory {
 
+  /**
+   *  Method for creating a 10x9 tile game board used in ladder game.
+   *  Take a String as parameter.
+   *  Creates a new board with parameter string as name.
+   *  Then using two nested foor loop creates each tile with a Vector2 object as position.
+   * 
+   *  @param name String representing Board name
+   *  @return Board Object representing game board.
+   */
   private static Board makeBoard(String name) {
     Board board = new Board(name);
     Tile previous = null;
@@ -29,7 +42,14 @@ public class BoardFactory {
     }
     return board;
   }
-
+  
+  /**
+   *  Method for changing "normal" tile into action tiles.
+   *  Deffines two new Board object with names, Default Board and Difficult board,
+   *  before hard coding both new ladder and extraDice action.
+   * Then adds new actions to boards.
+   * 
+   */
   public static void makeLadderBoards() {
     Board board1 = makeBoard("Default Board");
 
@@ -169,6 +189,13 @@ public class BoardFactory {
     BoardWriter.saveLadderBoards(boards);
   }
 
+  /**
+   *  Method that creates quiz game board.
+   *  
+   * 
+   *  @param name String representing Board name
+   *  @return Board Object representing game board.
+   */
   private static Board makePartyBoard(String name) {
     int rows = 9;
     int cols = 10;
@@ -217,7 +244,12 @@ public class BoardFactory {
     }
     return board;
 }
-
+  /**
+   *  Method for creating quiz board object.
+   *  Creates new Board object and adds it to an HashSet,
+   *  before converting it to json though the savePartyBoards() method from BoradWriter.
+   * 
+   */
   public static void makePartyBoards() {
     Board board = makePartyBoard("Default Party Board");
     HashSet<Board> boards = new HashSet<>();

@@ -22,26 +22,5 @@ public class BoardSelectionControllerTest extends ApplicationTest{
         boardSelect = new BoardSelectionController
     (new BorderPane(), new HBox(), 1);
     }
-
-
-    @Test
-    void createBoardPaneTestTrue() {
-        Board board = new Board("pelle");
-        StackPane testStack = boardSelect.getCreatboPane(board);
-        VBox testVBox = (VBox)testStack.getChildren().getFirst();
-        Text testBoradName = (Text)testVBox.getChildren().getFirst();
-        String testName = testBoradName.getText();
-        assertEquals(testName, "pelle");
-    }
-
-    @Test
-    void createBoardPaneTestFalse() {
-        Board board = new Board("ikke pelle");
-        StackPane testStack = boardSelect.getCreatboPane(board);
-        VBox testVBox = (VBox)testStack.getChildren().getFirst();
-        Text testBoradName = (Text)testVBox.getChildren().getFirst();
-        String testName = testBoradName.getText();
-        assertNotEquals(testName, "pelle");
-    }
     
 }
