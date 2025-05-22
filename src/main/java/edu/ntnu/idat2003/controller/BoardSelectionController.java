@@ -14,28 +14,58 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
+/**
+ * This class represents the logic that happends in the board selection screen.
+ * 
+ */
 public class BoardSelectionController {
 
   private final BorderPane root;
   private final HBox hBox;
   private final int gameType;
 
+  /**
+   *  Constructor for the BOrderSelectionController class.
+   *  Takes an BoarderPane, HBox and int as parameters.
+   * 
+   *  @param root BorderPane Main Canvas 
+   *  @param hBox HBox selaction screen
+   *  @param gameType int representing game type
+   */
   public BoardSelectionController(BorderPane root, HBox hBox, int gameType) {
     this.root = root;
     this.hBox = hBox;
     this.gameType = gameType;
   }
 
+  /**
+   *  Initialises the screen data and defines the
+   *  funconality of the return button.
+   * 
+   *  @param returnButton Button representing return function
+   */
   public void init(Button returnButton) {
     returnButton.setOnAction(e -> onReturn());
     updateBoards();
   }
 
+  /**
+   *  Method for returning to the main screen.
+   *  Initialises the mainframes init() method.
+   */
   public void onReturn() {
     MainFrame mainFrame = new MainFrame(root);
     mainFrame.init();
   }
 
+  /**
+   *  Creates a StackPane for a singel board selection.
+   *  Creates a stackpane that holds a VBox that
+   *  holdes the Text board name and a button for selection.
+   * 
+   *  @param board Board object to be placed in pane
+   *  @return StackPane that holds board infromation
+   */
   private StackPane createBoardPane(Board board) {
     StackPane boardPane = new StackPane();
     boardPane.setAlignment(Pos.CENTER);
@@ -57,6 +87,13 @@ public class BoardSelectionController {
     return boardPane;
   }
 
+  /**
+   *  Method for initialising the different board selections.
+   *  Checks if the gametype is laddergame or partyGame and collectes
+   *  given boards. Then utilizes a for loop to goes through each
+   *  board and creates a visual StackPane.
+   * 
+  */
   private void updateBoards() {
     try {
       HashSet<Board> boardSet = new HashSet<>();
@@ -75,6 +112,13 @@ public class BoardSelectionController {
     }
   }
 
+  /**
+   *  Method for checking type of board choosen.
+   *  Checks if the gameType is ladder og party game,
+   *  and creates a new Game object according to result.
+   * 
+   * @param board Board object to be Initialised
+  */
   private void onSelectClick(Board board) {
     if (gameType == 1) {
       LadderGame ladderGame = new LadderGame(root, board);
