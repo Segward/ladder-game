@@ -9,13 +9,13 @@ import java.util.HashSet;
 
 public class BoardReader {
 
-  private static final String partyBoardPath = "data/partyboard.json";
+  private static final String quizBoardPath = "data/quizboard.json";
   private static final String ladderBoardPath = "data/ladderboard.json";
 
-  public static HashSet<Board> getPartyBoards() {
+  public static HashSet<Board> getQuizBoards() {
     Type boardSetType = new TypeToken<HashSet<Board>>() {}.getType();
     try {
-      return GsonUtil.readFile(partyBoardPath, boardSetType);
+      return GsonUtil.readFile(quizBoardPath, boardSetType);
 
     } catch (DataReadException e) {
       e.printStackTrace();

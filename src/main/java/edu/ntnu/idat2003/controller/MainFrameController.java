@@ -16,12 +16,12 @@ public class MainFrameController {
 
   public void init(
       Button startLadderGame,
-      Button startPartyGame,
+      Button startQuizGame,
       Button startTicTacToe,
       Button configureGame,
       Button exitGame) {
     startLadderGame.setOnAction(e -> startLadderGame());
-    startPartyGame.setOnAction(e -> startPartyGame());
+    startQuizGame.setOnAction(e -> startQuizGame());
     startTicTacToe.setOnAction(e -> startTicTacToeGame());
     configureGame.setOnAction(e -> configureGame());
     exitGame.setOnAction(e -> exitGame());
@@ -32,7 +32,7 @@ public class MainFrameController {
     boardSelection.init();
   }
 
-  private void startPartyGame() {
+  private void startQuizGame() {
     BoardSelection boardSelection = new BoardSelection(root, 2);
     boardSelection.init();
   }

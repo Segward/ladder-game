@@ -2,35 +2,48 @@ package edu.ntnu.idat2003.controller;
 
 import edu.ntnu.idat2003.io.PlayerReader;
 import edu.ntnu.idat2003.model.Board;
-import edu.ntnu.idat2003.model.PartyGame;
 import edu.ntnu.idat2003.model.Player;
+import edu.ntnu.idat2003.model.QuizGame;
 import edu.ntnu.idat2003.model.Tile;
 import edu.ntnu.idat2003.model.Vector2;
-import edu.ntnu.idat2003.model.tileactions.LadderAction;
+import edu.ntnu.idat2003.model.tileactions.QuestionAction;
 import edu.ntnu.idat2003.model.tileactions.TileAction;
-import edu.ntnu.idat2003.observer.PartyGameObserver;
+import edu.ntnu.idat2003.observer.QuizGameObserver;
 import edu.ntnu.idat2003.view.MainFrame;
 import java.util.HashMap;
 import java.util.HashSet;
+import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
 import javafx.animation.ScaleTransition;
+import javafx.animation.Timeline;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 
-public class PartyGameController implements PartyGameObserver {
+public class QuizGameController implements QuizGameObserver {
 
   private final BorderPane root;
   private final Canvas canvas;
   private final Board board;
+  private final StackPane overlayPane;
+  private final Text questionText;
+  private final TextField answerField;
+  private final Button rollDice;
+  private final Button submitAnswer;
+  private final ImageView dice1;
+  private final ImageView dice2;
 
   private final int columns = 10;
   private final int rows = 9;
@@ -39,20 +52,39 @@ public class PartyGameController implements PartyGameObserver {
   private final int cellHeight = 60;
   private final int cellPadding = 5;
 
-  private PartyGame game;
+  private QuizGame game;
+  private boolean isQuestionAction = false;
 
-  public PartyGameController(BorderPane borderPane, Canvas canvas, Board board) {
+  public QuizGameController(
+      BorderPane borderPane,
+      Canvas canvas,
+      Board board,
+      StackPane overlayPane,
+      Text questionText,
+      TextField answerField,
+      Button rollDice,
+      Button submitAnswer,
+      ImageView dice1,
+      ImageView dice2) {
     this.root = borderPane;
     this.canvas = canvas;
     this.board = board;
+    this.overlayPane = overlayPane;
+    this.questionText = questionText;
+    this.answerField = answerField;
+    this.rollDice = rollDice;
+    this.submitAnswer = submitAnswer;
+    this.dice1 = dice1;
+    this.dice2 = dice2;
   }
 
-  public void init(Button rollDice, Button exitGame) {
+  public void init(Button exitGame) {
     rollDice.setOnAction(e -> game.rollDice());
     exitGame.setOnAction(e -> exitGame());
+    overlayPane.setVisible(false);
 
     HashSet<Player> players = PlayerReader.getPlayers();
-    game = new PartyGame(players, board, this);
+    game = new QuizGame(players, board, this);
     game.init();
     drawCanvas();
   }
@@ -87,7 +119,7 @@ public class PartyGameController implements PartyGameObserver {
       double px = offsetX + drawCol * cellWidth + innerPadding;
       double py = offsetY + drawRow * cellHeight + innerPadding;
 
-      gc.setFill(Color.LIGHTGREEN);
+      gc.setFill(Color.BURLYWOOD);
       gc.fillRoundRect(
           px, py, cellWidth - 2 * innerPadding, cellHeight - 2 * innerPadding, arc, arc);
 
@@ -96,6 +128,19 @@ public class PartyGameController implements PartyGameObserver {
       gc.setTextAlign(TextAlignment.CENTER);
       gc.setTextBaseline(VPos.CENTER);
       gc.fillText(String.valueOf(tile.getText()), px + 12, py + 12);
+    }
+
+    for (QuestionAction action : game.getBoard().getQuestions()) {
+      Vector2 pos = action.getStart();
+
+      int drawRow = rows - 1 - pos.getY();
+      int drawCol = pos.getX();
+
+      double px = offsetX + drawCol * cellWidth + innerPadding;
+      double py = offsetY + drawRow * cellHeight + innerPadding;
+
+      Image playerImage = new Image("/icons/question.png");
+      gc.drawImage(playerImage, px + 10, py + 10, cellWidth - 20, cellHeight - 20);
     }
 
     for (Player player : game.getPlayers()) {
@@ -118,7 +163,9 @@ public class PartyGameController implements PartyGameObserver {
     drawCanvas();
     if (remainder == 0) {
       game.executeTileAction();
-      game.nextPlayer();
+      if (!isQuestionAction) {
+        game.nextPlayer();
+      }
       return;
     }
 
@@ -129,11 +176,8 @@ public class PartyGameController implements PartyGameObserver {
 
   @Override
   public void onTileActionExecuted(Player player, TileAction action) {
-    if (action instanceof LadderAction) {
-      PauseTransition pause = new PauseTransition(Duration.seconds(0.05));
-      pause.setOnFinished(e -> drawCanvas());
-      pause.play();
-    }
+    isQuestionAction = false;
+    game.nextPlayer();
   }
 
   @Override
@@ -179,29 +223,48 @@ public class PartyGameController implements PartyGameObserver {
   }
 
   @Override
-  public void onDiceRolled(int diceValue) {}
+  public void onDiceRolled(int diceValue) {
+    int animationFrames = 10;
+    Timeline timeline = new Timeline();
+    for (int i = 0; i < animationFrames; i++) {
+      timeline
+          .getKeyFrames()
+          .add(
+              new KeyFrame(
+                  Duration.seconds(i * 0.05), e -> setDiceImage((int) (Math.random() * 11) + 2)));
+    }
+    timeline
+        .getKeyFrames()
+        .add(new KeyFrame(Duration.seconds(animationFrames * 0.05), e -> setDiceImage(diceValue)));
+    timeline.play();
+  }
 
-  @Override
-  public void onQuizGameStarted(Player player) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'onQuizGameStarted'");
+  private void setDiceImage(int diceValue) {
+    int minFirst = Math.max(1, diceValue - 6);
+    int maxFirst = Math.min(6, diceValue - 1);
+    int dice1Value = minFirst + (int) (Math.random() * (maxFirst - minFirst + 1));
+    int dice2Value = diceValue - dice1Value;
+    Image image1 = new Image("/dice/" + dice1Value + "face.png");
+    Image image2 = new Image("/dice/" + dice2Value + "face.png");
+    dice1.setImage(image1);
+    dice2.setImage(image2);
   }
 
   @Override
-  public void onQuizGameFinished(Player player, int score) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'onQuizGameFinished'");
+  public void onQuestion(Player player, QuestionAction action) {
+    isQuestionAction = true;
+    rollDice.setDisable(true);
+    overlayPane.setVisible(true);
+    questionText.setText(action.getQuestion());
+    answerField.setText("");
+    submitAnswer.setOnAction(e -> onAnswer(player, action));
   }
 
-  @Override
-  public void onDiceWallGameStarted(Player player) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'onDiceWallGameStarted'");
-  }
-
-  @Override
-  public void onDiceWallGameFinished(Player player, int score) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'onDiceWallGameFinished'");
+  private void onAnswer(Player player, QuestionAction action) {
+    action.setGiven(answerField.getText());
+    action.execute(player);
+    onTileActionExecuted(player, action);
+    rollDice.setDisable(false);
+    overlayPane.setVisible(false);
   }
 }

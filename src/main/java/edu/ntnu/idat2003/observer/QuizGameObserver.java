@@ -1,9 +1,10 @@
 package edu.ntnu.idat2003.observer;
 
 import edu.ntnu.idat2003.model.Player;
+import edu.ntnu.idat2003.model.tileactions.QuestionAction;
 import edu.ntnu.idat2003.model.tileactions.TileAction;
 
-public interface PartyGameObserver {
+public interface QuizGameObserver {
   void onPlayerMoved(Player player, int remainder);
 
   void onTileActionExecuted(Player player, TileAction action);
@@ -12,11 +13,5 @@ public interface PartyGameObserver {
 
   void onDiceRolled(int diceValue);
 
-  void onQuizGameStarted(Player player);
-
-  void onQuizGameFinished(Player player, int score);
-
-  void onDiceWallGameStarted(Player player);
-
-  void onDiceWallGameFinished(Player player, int score);
+  void onQuestion(Player player, QuestionAction action);
 }

@@ -1,11 +1,11 @@
 package edu.ntnu.idat2003.model;
 
-import java.util.HashMap;
-import java.util.HashSet;
-
 import edu.ntnu.idat2003.model.tileactions.ExtraDiceAction;
 import edu.ntnu.idat2003.model.tileactions.LadderAction;
+import edu.ntnu.idat2003.model.tileactions.QuestionAction;
 import edu.ntnu.idat2003.model.tileactions.TileAction;
+import java.util.HashMap;
+import java.util.HashSet;
 
 public class Board {
   private String name;
@@ -93,6 +93,21 @@ public class Board {
       }
     }
     return extraDice;
+  }
+
+  /**
+   * Getter for all questions in bord hashmap.
+   *
+   * @return HashSet with all questions
+   */
+  public HashSet<QuestionAction> getQuestions() {
+    HashSet<QuestionAction> questions = new HashSet<>();
+    for (Tile tile : tiles.values()) {
+      if (tile.getAction() instanceof QuestionAction) {
+        questions.add((QuestionAction) tile.getAction());
+      }
+    }
+    return questions;
   }
 
   /**

@@ -1,6 +1,6 @@
 [
   {
-    "name": "Default Party Board",
+    "name": "Default Quiz Board",
     "tiles": {
       "0": {
         "position": {
@@ -44,6 +44,17 @@
           "x": 4,
           "y": 0
         },
+        "action": {
+          "type": "QuestionAction",
+          "data": {
+            "question": "What are the korean folklore goblins called?",
+            "answer": "Dokkaebi",
+            "start": {
+              "x": 3,
+              "y": 0
+            }
+          }
+        },
         "text": "4"
       },
       "4": {
@@ -54,6 +65,17 @@
         "nextPosition": {
           "x": 5,
           "y": 0
+        },
+        "action": {
+          "type": "QuestionAction",
+          "data": {
+            "question": "5 + 5",
+            "answer": "10",
+            "start": {
+              "x": 4,
+              "y": 0
+            }
+          }
         },
         "text": "5"
       },
@@ -194,6 +216,17 @@
           "x": 7,
           "y": 5
         },
+        "action": {
+          "type": "QuestionAction",
+          "data": {
+            "question": "5+4",
+            "answer": "9",
+            "start": {
+              "x": 7,
+              "y": 4
+            }
+          }
+        },
         "text": "68"
       },
       "408": {
@@ -227,6 +260,17 @@
           "x": 0,
           "y": 7
         },
+        "action": {
+          "type": "QuestionAction",
+          "data": {
+            "question": "What animal says meow",
+            "answer": "cat",
+            "start": {
+              "x": 0,
+              "y": 8
+            }
+          }
+        },
         "text": "27"
       },
       "801": {
@@ -259,6 +303,17 @@
         "nextPosition": {
           "x": 2,
           "y": 8
+        },
+        "action": {
+          "type": "QuestionAction",
+          "data": {
+            "question": "What is the capital of Sweden?",
+            "answer": "Stockholm",
+            "start": {
+              "x": 3,
+              "y": 8
+            }
+          }
         },
         "text": "24"
       },
@@ -315,6 +370,17 @@
           "x": 7,
           "y": 8
         },
+        "action": {
+          "type": "QuestionAction",
+          "data": {
+            "question": "What is the capital of Japan?",
+            "answer": "Tokyo",
+            "start": {
+              "x": 8,
+              "y": 8
+            }
+          }
+        },
         "text": "19"
       },
       "809": {
@@ -347,6 +413,17 @@
         "nextPosition": {
           "x": 1,
           "y": 2
+        },
+        "action": {
+          "type": "QuestionAction",
+          "data": {
+            "question": "What is the capital of Finland?",
+            "answer": "Helsinki",
+            "start": {
+              "x": 1,
+              "y": 3
+            }
+          }
         },
         "text": "59"
       },
@@ -435,6 +512,17 @@
         "nextPosition": {
           "x": 9,
           "y": 4
+        },
+        "action": {
+          "type": "QuestionAction",
+          "data": {
+            "question": "2 * 9",
+            "answer": "18",
+            "start": {
+              "x": 9,
+              "y": 3
+            }
+          }
         },
         "text": "13"
       },
@@ -645,6 +733,17 @@
           "x": 8,
           "y": 3
         },
+        "action": {
+          "type": "QuestionAction",
+          "data": {
+            "question": "What is the capital of Iceland?",
+            "answer": "Reykjavik",
+            "start": {
+              "x": 8,
+              "y": 2
+            }
+          }
+        },
         "text": "43"
       },
       "209": {
@@ -688,6 +787,17 @@
         "nextPosition": {
           "x": 2,
           "y": 5
+        },
+        "action": {
+          "type": "QuestionAction",
+          "data": {
+            "question": "39 + 2",
+            "answer": "31",
+            "start": {
+              "x": 2,
+              "y": 6
+            }
+          }
         },
         "text": "75"
       },
@@ -799,6 +909,17 @@
           "x": 3,
           "y": 1
         },
+        "action": {
+          "type": "QuestionAction",
+          "data": {
+            "question": "319 - 9",
+            "answer": "310",
+            "start": {
+              "x": 2,
+              "y": 1
+            }
+          }
+        },
         "text": "36"
       },
       "103": {
@@ -865,6 +986,17 @@
           "x": 8,
           "y": 2
         },
+        "action": {
+          "type": "QuestionAction",
+          "data": {
+            "question": "What is our planet called",
+            "answer": "Earth",
+            "start": {
+              "x": 8,
+              "y": 1
+            }
+          }
+        },
         "text": "42"
       },
       "109": {
@@ -897,6 +1029,17 @@
         "nextPosition": {
           "x": 1,
           "y": 4
+        },
+        "action": {
+          "type": "QuestionAction",
+          "data": {
+            "question": "What is the capital of Norway?",
+            "answer": "Oslo",
+            "start": {
+              "x": 1,
+              "y": 5
+            }
+          }
         },
         "text": "57"
       },
@@ -931,6 +1074,17 @@
           "x": 3,
           "y": 5
         },
+        "action": {
+          "type": "QuestionAction",
+          "data": {
+            "question": "Who is the greek god of wine and ecstasy",
+            "answer": "Dionysus",
+            "start": {
+              "x": 4,
+              "y": 5
+            }
+          }
+        },
         "text": "86"
       },
       "505": {
@@ -952,6 +1106,17 @@
         "nextPosition": {
           "x": 5,
           "y": 5
+        },
+        "action": {
+          "type": "QuestionAction",
+          "data": {
+            "question": "What is the capital of Denmark?",
+            "answer": "Copenhagen",
+            "start": {
+              "x": 6,
+              "y": 5
+            }
+          }
         },
         "text": "84"
       },

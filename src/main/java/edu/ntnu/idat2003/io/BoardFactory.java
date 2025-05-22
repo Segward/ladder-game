@@ -5,6 +5,8 @@ import edu.ntnu.idat2003.model.Tile;
 import edu.ntnu.idat2003.model.Vector2;
 import edu.ntnu.idat2003.model.tileactions.ExtraDiceAction;
 import edu.ntnu.idat2003.model.tileactions.LadderAction;
+import edu.ntnu.idat2003.model.tileactions.QuestionAction;
+
 import java.util.Collections;
 import java.util.HashSet;
 
@@ -218,10 +220,76 @@ public class BoardFactory {
     return board;
 }
 
-  public static void makePartyBoards() {
-    Board board = makePartyBoard("Default Party Board");
+  public static void makeQuizBoard() {
+    Board board = makePartyBoard("Default Quiz Board");
+
+    Vector2 start1 = new Vector2(4, 0);
+    QuestionAction question1 = new QuestionAction(start1, "5 + 5", "10");
+    board.addAction(start1, question1);
+
+    Vector2 start2 = new Vector2(2, 1);
+    QuestionAction question2 = new QuestionAction(start2, "319 - 9", "310");
+    board.addAction(start2, question2);
+
+    Vector2 start3 = new Vector2(7, 4);
+    QuestionAction question3 = new QuestionAction(start3, "5+4", "9");
+    board.addAction(start3, question3);
+
+    Vector2 start4 = new Vector2(2, 6);
+    QuestionAction question4 = new QuestionAction(start4, "39 + 2", "31");
+    board.addAction(start4, question4);
+
+    Vector2 start5 = new Vector2(9, 3);
+    QuestionAction question5 = new QuestionAction(start5, "2 * 9", "18");
+    board.addAction(start5, question5);
+
+    Vector2 start6 = new Vector2(0, 8);
+    QuestionAction question6 = new QuestionAction(start6, "What animal says meow", "cat");
+    board.addAction(start6, question6);
+
+    Vector2 start7 = new Vector2(1, 5);
+    QuestionAction question7 = new QuestionAction(start7, "What is the capital of Norway?", "Oslo");
+    board.addAction(start7, question7);
+
+    Vector2 start8 = new Vector2(3, 8);
+    QuestionAction question8 = new QuestionAction(start8, "What is the capital of Sweden?", "Stockholm");
+    board.addAction(start8, question8);
+
+    Vector2 start9 = new Vector2(6, 5);
+    QuestionAction question9 = new QuestionAction(start9, "What is the capital of Denmark?", "Copenhagen");
+    board.addAction(start9, question9);
+
+    Vector2 start10 = new Vector2(8, 1);
+    QuestionAction question10 = new QuestionAction(start10, "What is our planet called", "Earth");
+    board.addAction(start10, question10);
+
+    Vector2 start11 = new Vector2(1, 3);
+    QuestionAction question11 = new QuestionAction(start11, "What is the capital of Finland?", "Helsinki");
+    board.addAction(start11, question11);
+
+    Vector2 start12 = new Vector2(4, 5);
+    QuestionAction question12 = new QuestionAction(start12, "Who is the greek god of wine and ecstasy", "Dionysus");
+    board.addAction(start12, question12);
+
+
+    Vector2 start13 = new Vector2(8, 8);
+    QuestionAction question13 = new QuestionAction(start13, "Who was apollons lover who turned into a flower?", "Hyacinthus");
+    board.addAction(start13, question13);
+
+    Vector2 start14 = new Vector2(8, 2);
+    QuestionAction question14 = new QuestionAction(start14, "What is the capital of Iceland?", "Reykjavik");
+    board.addAction(start14, question14);
+
+    Vector2 start15 = new Vector2(3, 0);
+    QuestionAction question15 = new QuestionAction(start15, "What are the korean folklore goblins called?", "Dokkaebi");
+    board.addAction(start15, question15);
+
+    Vector2 start16 = new Vector2(8, 8);
+    QuestionAction question16 = new QuestionAction(start16, "What is the capital of Japan?", "Tokyo");
+    board.addAction(start16, question16);
+
     HashSet<Board> boards = new HashSet<>();
     boards.add(board);
-    BoardWriter.savePartyBoards(boards);
+    BoardWriter.saveQuizBoards(boards);
   }
 }

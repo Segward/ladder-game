@@ -1,26 +1,27 @@
 package edu.ntnu.idat2003.model;
 
+import edu.ntnu.idat2003.model.tileactions.QuestionAction;
 import edu.ntnu.idat2003.model.tileactions.TileAction;
-import edu.ntnu.idat2003.observer.PartyGameObserver;
+import edu.ntnu.idat2003.observer.QuizGameObserver;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class PartyGame {
+public class QuizGame {
 
   private HashSet<Player> players;
   private Board board;
   private Player currentPlayer;
-  private PartyGameObserver observer;
+  private QuizGameObserver observer;
   private Dice dice;
   private boolean gameOver;
   private boolean isPlayerMoving;
 
-  public PartyGame(HashSet<Player> players, Board board, PartyGameObserver observer) {
+  public QuizGame(HashSet<Player> players, Board board, QuizGameObserver observer) {
     this.players = players;
     this.board = board;
     this.currentPlayer = players.iterator().next();
     this.observer = observer;
-    this.dice = new Dice(1);
+    this.dice = new Dice(2);
     this.gameOver = false;
     this.isPlayerMoving = false;
   }
@@ -71,7 +72,8 @@ public class PartyGame {
     TileAction action = board.getAction(position);
 
     if (action != null) {
-      action.execute(currentPlayer);
+      QuestionAction questionAction = (QuestionAction) action;
+      observer.onQuestion(currentPlayer, questionAction);
       observer.onTileActionExecuted(currentPlayer, action);
     }
   }

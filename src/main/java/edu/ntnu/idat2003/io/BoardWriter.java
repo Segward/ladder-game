@@ -8,7 +8,7 @@ import java.util.HashSet;
 public class BoardWriter {
 
   private static final String ladderBoardPath = "data/ladderboard.json";
-  private static final String partyBoardPath = "data/partyboard.json";
+  private static final String quizBoardPath = "data/quizboard.json";
 
   public static void saveLadderBoards(HashSet<Board> boards) {
     try {
@@ -18,9 +18,9 @@ public class BoardWriter {
     }
   }
 
-  public static void savePartyBoards(HashSet<Board> boards) {
+  public static void saveQuizBoards(HashSet<Board> boards) {
     try {
-      GsonUtil.writeFile(partyBoardPath, boards);
+      GsonUtil.writeFile(quizBoardPath, boards);
     } catch (DataWriteException e) {
       e.printStackTrace();
     }

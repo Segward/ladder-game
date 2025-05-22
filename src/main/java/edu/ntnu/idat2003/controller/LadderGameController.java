@@ -188,7 +188,7 @@ public class LadderGameController implements LadderGameObserver {
       Vector2 pos = action.getStart();
 
       int drawRow = rows - 1 - pos.getY();
-      int drawCol = (drawRow % 2 == 0) ? pos.getX() : (columns - 1 - pos.getX());
+      int drawCol = pos.getX();
 
       double px = offsetX + drawCol * cellWidth + innerPadding;
       double py = offsetY + drawRow * cellHeight + innerPadding;
