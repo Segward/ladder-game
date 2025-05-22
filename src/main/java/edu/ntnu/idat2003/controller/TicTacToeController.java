@@ -93,21 +93,11 @@ public class TicTacToeController implements TicTacToeObserver {
   }
 
   /**
-   * Getter for the game. Retreves the TicTacToe object representing the game data, and holds all of
-   * the game data.
-   *
-   * @return TicTacToe object representing the game
-   */
-  public TicTacToe getGame() {
-    return game;
-  }
-
-  /**
    * Method for initilizing the start visuals. Retreves the player visuals and customizes player
    * panes. States the exit buttons functionality, chooses which player to start and runs the die
    * animation.
    */
-  public void gameStartSetup() {
+  private void gameStartSetup() {
     setPlayersScore();
     String playerOneImage =
         getClass()
@@ -162,7 +152,7 @@ public class TicTacToeController implements TicTacToeObserver {
    * Method for changing the visual score representation of both player one and two. Changes
    * playerOne and Two Text objects to score data from the game Object.
    */
-  public void setPlayersScore() {
+  private void setPlayersScore() {
     playerOneScoreText.setText(
         game.getPlayers().stream().findFirst().get().getName()
             + " Score: "
@@ -179,7 +169,7 @@ public class TicTacToeController implements TicTacToeObserver {
    *
    * @param diceSide int representing the die side
    */
-  public void diceImage(int diceSide) {
+  private void diceImage(int diceSide) {
     playingBoard.getChildren().clear();
     ImageView diceView = new ImageView();
     diceView.setFitHeight(400);
@@ -196,7 +186,7 @@ public class TicTacToeController implements TicTacToeObserver {
    * loops creates each game tile in the from of a button. States the button action, and adds the
    * new button to the playingBoard GridPane.
    */
-  public void createBoard() {
+  private void createBoard() {
     playingBoard.getChildren().clear();
     roundNumber = 0;
     for (int i = 0; i < 3; i++) {
@@ -276,7 +266,7 @@ public class TicTacToeController implements TicTacToeObserver {
    * Method for disableing all of the tile buttons. Utilizes a for loop to circle through each node
    * registed in the board GridPane. If the node is a button, the button is set to disable.
    */
-  public void disableAll() {
+  private void disableAll() {
     for (Node node : playingBoard.getChildren()) {
       if (node instanceof Button) {
         node.setDisable(true);
@@ -290,7 +280,7 @@ public class TicTacToeController implements TicTacToeObserver {
    * player from the players array. Else change current player is changed to first player from the
    * players array.
    */
-  public void setNextPlayer() {
+  private void setNextPlayer() {
     Player currentPlayer = game.getCurrentPlayer();
     if (currentPlayer.getName().equals(game.getPlayers().stream().findFirst().get().getName())) {
       game.setCurrentPlayer(game.getPlayers().get(game.getPlayers().size() - 1));
@@ -323,16 +313,6 @@ public class TicTacToeController implements TicTacToeObserver {
   }
 
   /**
-   * Getter for resultHash. Retreves the HashMap containing all of the tiles/buttons on the
-   * board/GridPane.
-   *
-   * @return HashMap<Vector2, Button> all tiles/buttons
-   */
-  public HashMap<Vector2, Button> getResultHash() {
-    return resultHash;
-  }
-
-  /**
    * Method for checking if one of the players have won. Creates 8 different Strings representing
    * each different win condition in tictactoe. Utilizes a foor loop on the resultHash HashMap to
    * cycle through the tile Buttons. Utilizes a switch on each tile Vector2 x cordinate, then checks
@@ -343,7 +323,7 @@ public class TicTacToeController implements TicTacToeObserver {
    *
    * @return Player object that has won, null if there is no winner.
    */
-  public Player win() {
+  private Player win() {
     String row1 = "";
     String row2 = "";
     String row3 = "";
