@@ -22,7 +22,7 @@ public class FigureReader {
      *  then reads a spesific csv file and stores data to a StringBuilder.
      *  Then using a for loop cycles through the data and creates a new
      *  Figure object based on retreved data.
-     *  Finlally adding the new Figure objectives to the new HashSet.
+     *  Finlally adding the new Figure object to the new HashSet.
      * 
      *  @return HasSet<Figure> all Figure objects retreved from csv
      */
