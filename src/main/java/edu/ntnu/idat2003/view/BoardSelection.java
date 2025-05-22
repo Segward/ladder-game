@@ -8,6 +8,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
+/**
+ *  Class creating Board selection visuals.
+ *  Incluedes the initilase mehtod.
+ */
 public class BoardSelection {
 
   private final int gameType;
@@ -17,11 +21,23 @@ public class BoardSelection {
   private final int HEIGHT = 800;
   private final double HEIGHT_RATIO = 0.5;
 
+  /**
+   *  Constuctor for the BoardSelection class.
+   *  Takes an BoarderPane and int as paramenter.
+   * 
+   *  @param root BorderPane representing main canvas
+   *  @param gameType int representing game type
+   */
   public BoardSelection(BorderPane root, int gameType) {
     this.root = root;
     this.gameType = gameType;
   }
 
+  /**
+   *  Method initilasing all of the visual panes.
+   *  Creates all 
+   * 
+   */
   public void init() {
     root.setCenter(null);
 
