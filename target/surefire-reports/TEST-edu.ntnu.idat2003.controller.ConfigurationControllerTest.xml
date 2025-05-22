@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="edu.ntnu.idat2003.exception.DataWriteExceptionTest" time="0.001" tests="2" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="edu.ntnu.idat2003.controller.ConfigurationControllerTest" time="0.461" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="javafx.runtime.version" value="23.0.1+4"/>
@@ -61,6 +61,9 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testMessageAndCauseConstructor" classname="edu.ntnu.idat2003.exception.DataWriteExceptionTest" time="0.0"/>
-  <testcase name="testMessageConstructor" classname="edu.ntnu.idat2003.exception.DataWriteExceptionTest" time="0.001"/>
+  <testcase name="testRemovePlayer" classname="edu.ntnu.idat2003.controller.ConfigurationControllerTest" time="0.451">
+    <system-err><![CDATA[mai 22, 2025 6:32:00 P.M. com.sun.javafx.application.PlatformImpl startup
+WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @57c758ac'
+]]></system-err>
+  </testcase>
 </testsuite>
