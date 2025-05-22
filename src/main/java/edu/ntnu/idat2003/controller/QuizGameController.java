@@ -121,9 +121,8 @@ public class QuizGameController implements QuizGameObserver {
 
   /**
    * Draws the game board on the canvas. It clears the canvas, sets the background, and draws the
-   * tiles, players, and questions. Previously used a gridpane, but now uses a canvas for better
-   * performance. It draws the board first, overlays the actions, and then draws the players on top.
-   * The canvas is cleared before each draw to avoid flickering.
+   * tiles, players, and questions. It draws the board first, overlays the actions, and then draws
+   * the players on top. The canvas is cleared before each draw to avoid flickering.
    */
   private void drawCanvas() {
     GraphicsContext gc = canvas.getGraphicsContext2D();
@@ -192,7 +191,8 @@ public class QuizGameController implements QuizGameObserver {
   /**
    * Handles the player movement. It draws the canvas and checks if the player has moved to a new
    * tile. If the player has finished moving, it executes the tile action. This method also has a
-   * timer of 50 milliseconds so that it looks animated.
+   * timer of 50 milliseconds so that it looks animated. If the player is still being questioned it
+   * doesnt move on to the next player.
    *
    * @param player The player who moved.
    * @param remainder The number of moves remaining.
@@ -274,7 +274,11 @@ public class QuizGameController implements QuizGameObserver {
   }
 
   /**
-   * 
+   * Method for animating dice image. Take int as parameter. Utilizes a foor loop that initializes
+   * Timeline to change to random dice image with setDiceImage() method. When loop is finished
+   * changes dice image to int parameter.
+   *
+   * @param diceValue Int representing die side
    */
   @Override
   public void onDiceRolled(int diceValue) {
@@ -293,6 +297,12 @@ public class QuizGameController implements QuizGameObserver {
     timeline.play();
   }
 
+  /**
+   * Method for setting dice image. Take int as parameter. Utilizes Math max and min to generate two
+   * die values equal to diceValue. Then give each dice a new image that qeual to diceValue.
+   *
+   * @param diceValue Int representing dice side amount
+   */
   private void setDiceImage(int diceValue) {
     int minFirst = Math.max(1, diceValue - 6);
     int maxFirst = Math.min(6, diceValue - 1);
@@ -304,6 +314,13 @@ public class QuizGameController implements QuizGameObserver {
     dice2.setImage(image2);
   }
 
+  /**
+   * This method is called when a question is asked. It sets the overlay pane to visible, disables
+   * the roll dice button, and sets the question text and answer field.
+   *
+   * @param player The player who answered the question.
+   * @param action The question action.
+   */
   @Override
   public void onQuestion(Player player, QuestionAction action) {
     isQuestionAction = true;
@@ -314,6 +331,13 @@ public class QuizGameController implements QuizGameObserver {
     submitAnswer.setOnAction(e -> onAnswer(player, action));
   }
 
+  /**
+   * This method is called when the player submits an answer. It sets the given answer in the
+   * action, executes the action, and updates the game state.
+   *
+   * @param player The player who answered the question.
+   * @param action The question action.
+   */
   private void onAnswer(Player player, QuestionAction action) {
     action.setGiven(answerField.getText());
     action.execute(player);
