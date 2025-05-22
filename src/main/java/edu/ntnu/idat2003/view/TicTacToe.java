@@ -11,7 +11,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 
 /**
  * Class representing the visal panes used in the TicTacToe game. The class constructes the
