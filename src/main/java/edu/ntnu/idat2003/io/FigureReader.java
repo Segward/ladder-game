@@ -1,32 +1,25 @@
 package edu.ntnu.idat2003.io;
 
-import java.util.HashSet;
-
 import edu.ntnu.idat2003.exception.DataReadException;
 import edu.ntnu.idat2003.model.Figure;
 import edu.ntnu.idat2003.model.Player;
 import edu.ntnu.idat2003.util.CsvUtil;
+import java.util.HashSet;
 
-/**
- *  Class for reading Figure csv files.
- *  Inclueds methods for getting Figure objects from csv.
- * 
- */
+/** Class for reading Figure csv files. Inclueds methods for getting Figure objects from csv. */
 public class FigureReader {
 
-    private static final String path = "data/figure.csv";
+  private static final String path = "data/figure.csv";
 
-    /**
-     *  Method for retreving all figures from a csv file.
-     *  Creates a HashSet for storing found Figure objects,
-     *  then reads a spesific csv file and stores data to a StringBuilder.
-     *  Then using a for loop cycles through the data and creates a new
-     *  Figure object based on retreved data.
-     *  Finlally adding the new Figure object to the new HashSet.
-     * 
-     *  @return HasSet<Figure> all Figure objects retreved from csv
-     */
-    public static HashSet<Figure> getFigures() {
+  /**
+   * Method for retreving all figures from a csv file. Creates a HashSet for storing found Figure
+   * objects, then reads a spesific csv file and stores data to a StringBuilder. Then using a for
+   * loop cycles through the data and creates a new Figure object based on retreved data. Finlally
+   * adding the new Figure object to the new HashSet.
+   *
+   * @return HasSet<Figure> all Figure objects retreved from csv
+   */
+  public static HashSet<Figure> getFigures() {
     HashSet<Figure> figures = new HashSet<>();
     StringBuilder data = new StringBuilder();
     try {
@@ -57,13 +50,11 @@ public class FigureReader {
   }
 
   /**
-   *  Method for checking if a figure is available.
-   *  Retreves all registed  Players and figures,
-   *  then adds all registerd figures to a new HasSet representing
-   *  available figures. Using a for loop cycles through all players
-   *  and removes used figures from the available figures HasSet.
-   * 
-   *  @return HashSet<Figure> all available Figure Objects
+   * Method for checking if a figure is available. Retreves all registed Players and figures, then
+   * adds all registerd figures to a new HasSet representing available figures. Using a for loop
+   * cycles through all players and removes used figures from the available figures HasSet.
+   *
+   * @return HashSet<Figure> all available Figure Objects
    */
   public static HashSet<Figure> getAvailableFigures() {
     HashSet<Player> players = PlayerReader.getPlayers();

@@ -1,11 +1,4 @@
-<<<<<<< HEAD
 -------------------------------------------------------------------------------
 Test set: edu.ntnu.idat2003.model.FigureTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.029 s -- in edu.ntnu.idat2003.model.FigureTest
-=======
--------------------------------------------------------------------------------
-Test set: edu.ntnu.idat2003.model.FigureTest
--------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in edu.ntnu.idat2003.model.FigureTest
->>>>>>> secondary
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in edu.ntnu.idat2003.model.FigureTest

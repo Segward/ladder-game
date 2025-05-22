@@ -1,6 +1,7 @@
 package edu.ntnu.idat2003.controller;
 
 import edu.ntnu.idat2003.io.FigureReader;
+import edu.ntnu.idat2003.io.PlayerReader;
 import edu.ntnu.idat2003.io.PlayerWriter;
 import edu.ntnu.idat2003.model.Figure;
 import edu.ntnu.idat2003.model.Player;
@@ -8,6 +9,8 @@ import edu.ntnu.idat2003.model.Vector2;
 import edu.ntnu.idat2003.view.Configuration;
 import java.util.HashSet;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -62,14 +65,26 @@ public class PlayerCreationController {
     configuration.init();
   }
 
-   /**
-   *  Creates a StackPane for a singel figure display.
-   *  Creates a stackpane that holds a VBox that
-   *  holdes the Text player name and a button for selection,
-   *  and a image of the figure.
+  /**
+   *  Method for alerting user.
+   *  Takes String as parameter and creates an alert with the message.
    * 
-   *  @param figure figure object to be displayed
-   *  @return StackPane that inclued fiure data
+   *  @param message Message to be displayed
+   */
+  private void alert(String message) {
+    Alert alert = new Alert(AlertType.INFORMATION);
+    alert.setTitle("Notice");
+    alert.setHeaderText(null);
+    alert.setContentText(message);
+    alert.showAndWait();
+  }
+
+  /**
+   *  Method for creating figure pane.
+   *  Takes Figure as parameter and creates a StackPane with the figure name, image and select button.
+   * 
+   *  @param figure
+   *  @return StackPane
    */
   private StackPane createFigurePane(Figure figure) {
     StackPane figurePane = new StackPane();
@@ -128,8 +143,16 @@ public class PlayerCreationController {
   public void addPlayer(Figure figure) {
     String name = playerName.getText();
     if (name.isEmpty()) {
-      System.out.println("Please enter a name.");
+      alert("Please enter a name for the player.");
       return;
+    }
+
+    HashSet<Player> players = PlayerReader.getPlayers();
+    for (Player player : players) {
+      if (player.getName().equals(name)) {
+        alert("Player name already exists. Please choose a different name.");
+        return;
+      }
     }
 
     Player player = new Player(name, figure);

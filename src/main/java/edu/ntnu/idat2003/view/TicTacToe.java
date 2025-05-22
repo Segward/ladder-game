@@ -2,13 +2,14 @@ package edu.ntnu.idat2003.view;
 
 import edu.ntnu.idat2003.controller.TicTacToeController;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 /**
@@ -39,41 +40,47 @@ public class TicTacToe {
     StackPane playerOnePanal = new StackPane();
     playerOnePanal.prefWidthProperty().bind(root.widthProperty().multiply(0.2));
     playerOnePanal.prefHeightProperty().bind(root.heightProperty());
-    playerOnePanal.setId("playerOnePanal");
+    playerOnePanal.setId("playerPane");
 
     StackPane playerTwoPanal = new StackPane();
     playerTwoPanal.prefWidthProperty().bind(root.widthProperty().multiply(0.2));
     playerTwoPanal.prefHeightProperty().bind(root.heightProperty());
-    playerTwoPanal.setId("playerTwoPanal");
+    playerTwoPanal.setId("playerPane");
 
-    VBox playingPane = new VBox();
-    playingPane.prefWidthProperty().bind(root.widthProperty().multiply(0.6));
-    playingPane.prefHeightProperty().bind(root.heightProperty());
-    playingPane.setStyle("-fx-background-color: gray;");
-    playingPane.setAlignment(Pos.CENTER);
+    FlowPane buttonPane = new FlowPane();
+    buttonPane.prefWidthProperty().bind(root.widthProperty().multiply(0.6));
+    buttonPane.prefHeightProperty().bind(root.heightProperty());
+    buttonPane.setOrientation(Orientation.VERTICAL);
+    buttonPane.setAlignment(Pos.CENTER);
+    buttonPane.setVgap(20);
 
     GridPane playingBoard = new GridPane();
     playingBoard.setPadding(new Insets(5, 5, 5, 5));
     playingBoard.setVgap(5);
     playingBoard.setHgap(5);
     playingBoard.setAlignment(Pos.CENTER);
-    playingPane.setId("ticTacToeBoard");
+    buttonPane.setId("ticTacToeBoard");
 
     Text gameText = new Text("TicTackToe");
+    gameText.setStyle("-fx-font-size: 30px; -fx-fill: WHITE; ");
     gameText.setId("ticTacToeGameText");
 
     Text playerOneScore = new Text();
-    playerOneScore.setId("ticTacToeGameText");
+    playerOneScore.setStyle("-fx-font-size: 30px; -fx-fill: WHITE; -fx-font-weight: bold; ");
 
     Text playerTwoScore = new Text();
-    playerTwoScore.setId("ticTacToeGameText");
+    playerTwoScore.setStyle("-fx-font-size: 30px;  -fx-fill: WHITE; -fx-font-weight: bold; ");
 
     Button exitButton = new Button("Exit the game");
+    exitButton.setPrefSize(400, 50);
+
+    Button playAgainButton = new Button("Play again");
+    playAgainButton.setPrefSize(400, 50);
 
     playerOnePanal.getChildren().add(playerOneScore);
     playerTwoPanal.getChildren().add(playerTwoScore);
-    playingPane.getChildren().addAll(gameText, playingBoard, exitButton);
-    menuPane.getChildren().addAll(playerOnePanal, playingPane, playerTwoPanal);
+    buttonPane.getChildren().addAll(gameText, playingBoard, exitButton, playAgainButton);
+    menuPane.getChildren().addAll(playerOnePanal, buttonPane, playerTwoPanal);
     root.setCenter(menuPane);
 
     TicTacToeController controller =
@@ -86,7 +93,7 @@ public class TicTacToe {
             playerOnePanal,
             playerTwoPanal,
             playingBoard,
-            playingPane);
+            playAgainButton);
     controller.init();
   }
 }

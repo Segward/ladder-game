@@ -5,7 +5,7 @@ import edu.ntnu.idat2003.io.BoardReader;
 import edu.ntnu.idat2003.model.Board;
 import edu.ntnu.idat2003.view.LadderGame;
 import edu.ntnu.idat2003.view.MainFrame;
-import edu.ntnu.idat2003.view.PartyGame;
+import edu.ntnu.idat2003.view.QuizGame;
 import java.util.HashSet;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -105,10 +105,10 @@ public class BoardSelectionController {
           boardSet = BoardReader.getLadderBoards();
         }
       } else if (gameType == 2) {
-        boardSet = BoardReader.getPartyBoards();
+        boardSet = BoardReader.getQuizBoards();
         if (boardSet.isEmpty()) {
-          BoardFactory.makePartyBoards();
-          boardSet = BoardReader.getPartyBoards();
+          BoardFactory.makeQuizBoard();
+          boardSet = BoardReader.getQuizBoards();
         }
       }
 
@@ -133,7 +133,7 @@ public class BoardSelectionController {
       LadderGame ladderGame = new LadderGame(root, board);
       ladderGame.init();
     } else if (gameType == 2) {
-      PartyGame partyGame = new PartyGame(root, board);
+      QuizGame partyGame = new QuizGame(root, board);
       partyGame.init();
     }
   }

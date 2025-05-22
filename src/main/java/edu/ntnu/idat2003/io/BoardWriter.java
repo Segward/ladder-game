@@ -12,7 +12,7 @@ import java.util.HashSet;
 public class BoardWriter {
 
   private static final String ladderBoardPath = "data/ladderboard.json";
-  private static final String partyBoardPath = "data/partyboard.json";
+  private static final String quizBoardPath = "data/quizboard.json";
 
   /**
    *  Method for converting LadderGames boards in to json.
@@ -39,9 +39,9 @@ public class BoardWriter {
    * 
    *  @param boards HasSet<Board> set with quiz boards
    */
-  public static void savePartyBoards(HashSet<Board> boards) {
+  public static void saveQuizBoards(HashSet<Board> boards) {
     try {
-      GsonUtil.writeFile(partyBoardPath, boards);
+      GsonUtil.writeFile(quizBoardPath, boards);
     } catch (DataWriteException e) {
       e.printStackTrace();
     }

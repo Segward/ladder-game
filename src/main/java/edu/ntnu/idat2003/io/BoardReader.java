@@ -7,24 +7,22 @@ import edu.ntnu.idat2003.util.GsonUtil;
 import java.lang.reflect.Type;
 import java.util.HashSet;
 
-/**
- *  Class for reading board json files, and converting data to a hashset with board objects.
- */
+/** Class for reading board json files, and converting data to a hashset with board objects. */
 public class BoardReader {
 
-  private static final String partyBoardPath = "data/partyboard.json";
+  private static final String quizBoardPath = "data/quizboard.json";
   private static final String ladderBoardPath = "data/ladderboard.json";
 
   /**
-   *  Utilazes GsonUtil method to read quizboards board json data,
-   *  and convert them into an hashset with board objects.
-   * 
-   *  @return HashSet<Board> all saved quiz boards.
+   * Utilazes GsonUtil method to read quizboards board json data, and convert them into an hashset
+   * with board objects.
+   *
+   * @return HashSet<Board> all saved quiz boards.
    */
-  public static HashSet<Board> getPartyBoards() {
+  public static HashSet<Board> getQuizBoards() {
     Type boardSetType = new TypeToken<HashSet<Board>>() {}.getType();
     try {
-      return GsonUtil.readFile(partyBoardPath, boardSetType);
+      return GsonUtil.readFile(quizBoardPath, boardSetType);
 
     } catch (DataReadException e) {
       e.printStackTrace();
@@ -32,11 +30,11 @@ public class BoardReader {
     }
   }
 
-   /**
-   *  Utilazes GsonUtil method to read laddergame board json data,
-   *  and convert them into an hashset with board objects.
-   * 
-   *  @return HashSet<Board> all saved laddergame boards.
+  /**
+   * Utilazes GsonUtil method to read laddergame board json data, and convert them into an hashset
+   * with board objects.
+   *
+   * @return HashSet<Board> all saved laddergame boards.
    */
   public static HashSet<Board> getLadderBoards() {
     Type boardSetType = new TypeToken<HashSet<Board>>() {}.getType();
