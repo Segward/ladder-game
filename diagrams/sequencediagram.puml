@@ -1,0 +1,41 @@
+@startuml
+skinparam linetype ortho
+
+actor User
+
+participant "LadderGameView" as LadderGameView
+participant "LadderGameViewController" as LadderGameViewController
+participant "LadderGame" as LadderGame
+participant "Dice" as Dice
+participant "TileAction" as TileAction
+participant "Player" as Player
+
+User -> LadderGameView : Start Ladder Game
+LadderGameView -> LadderGameViewController : initialize
+LadderGameViewController -> LadderGame : create LadderGame model
+
+alt game started
+    User -> LadderGameView : Roll Dice
+    LadderGameView -> LadderGameViewController : rollDice
+    LadderGameViewController -> LadderGame : rollDice
+    LadderGame -> Dice : roll
+    return int
+
+    LadderGame -> LadderGameViewController : animate dice image
+
+    loop until no dice remainder
+        LadderGame -> LadderGameViewController : update player position
+        LadderGameViewController -> LadderGame : move player rest of remainder
+    end
+
+    LadderGameViewController -> LadderGame : check if tile is tileaction
+
+    alt has tileaction
+        LadderGame -> TileAction : execute
+        TileAction -> Player : update
+        LadderGame -> LadderGameViewController : update player position
+    end
+
+    LadderGameViewController -> LadderGame : next player
+end
+@enduml

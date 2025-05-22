@@ -1,11 +1,11 @@
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/App.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/controller/BoardSelectionController.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/controller/ConfigurationController.java
-/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/controller/LadderGameController.java
+/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/controller/LadderGameViewController.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/controller/MainFrameController.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/controller/PlayerCreationController.java
-/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/controller/QuizGameController.java
-/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/controller/TicTacToeController.java
+/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/controller/QuizGameViewController.java
+/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/controller/TicTacToeViewController.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/exception/DataCreateException.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/exception/DataReadException.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/exception/DataWriteException.java
@@ -40,9 +40,9 @@
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/util/GsonUtil.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/BoardSelection.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/Configuration.java
-/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/LadderGame.java
+/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/LadderGameView.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/MainFrame.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/PlayerCreation.java
-/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/QuizGame.java
-/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/TicTacToe.java
+/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/QuizGameView.java
+/Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/TicTacToeView.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/main/java/edu/ntnu/idat2003/view/UserInterface.java

@@ -26,7 +26,7 @@ import javafx.util.Duration;
  * This class represents the logic that happends in the TicTacToe game. Utilizes methods to change
  * the state of the game and visuals.
  */
-public class TicTacToeController implements TicTacToeObserver {
+public class TicTacToeViewController implements TicTacToeObserver {
   private final BorderPane root;
   private StackPane playerOnePanal;
   private StackPane playerTwoPanal;
@@ -54,7 +54,7 @@ public class TicTacToeController implements TicTacToeObserver {
    * @param playingBoard GridPane Representing the game board
    * @param playingPane Main Pain for game
    */
-  public TicTacToeController(
+  public TicTacToeViewController(
       BorderPane root,
       Text gameText,
       Text playerOneScoreText,

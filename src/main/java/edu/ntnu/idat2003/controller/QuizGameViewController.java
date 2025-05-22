@@ -36,7 +36,7 @@ import javafx.util.Duration;
  * The QuizGameController class is responsible for managing the user interface and interactions of
  * the quiz game. It handles player movements, tile actions, and game events.
  */
-public class QuizGameController implements QuizGameObserver {
+public class QuizGameViewController implements QuizGameObserver {
 
   private final BorderPane root;
   private final Canvas canvas;
@@ -73,7 +73,7 @@ public class QuizGameController implements QuizGameObserver {
    * @param dice1 The first dice image view.
    * @param dice2 The second dice image view.
    */
-  public QuizGameController(
+  public QuizGameViewController(
       BorderPane borderPane,
       Canvas canvas,
       Board board,

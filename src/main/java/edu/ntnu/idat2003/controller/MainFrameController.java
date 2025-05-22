@@ -4,7 +4,7 @@ import edu.ntnu.idat2003.io.PlayerReader;
 import edu.ntnu.idat2003.model.Player;
 import edu.ntnu.idat2003.view.BoardSelection;
 import edu.ntnu.idat2003.view.Configuration;
-import edu.ntnu.idat2003.view.TicTacToe;
+import edu.ntnu.idat2003.view.TicTacToeView;
 import java.util.HashSet;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -120,7 +120,7 @@ public class MainFrameController {
       return;
     }
 
-    TicTacToe ticTacToe = new TicTacToe(root);
+    TicTacToeView ticTacToe = new TicTacToeView(root);
     ticTacToe.init();
   }
 

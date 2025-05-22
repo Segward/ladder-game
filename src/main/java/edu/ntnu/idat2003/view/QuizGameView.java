@@ -1,6 +1,6 @@
 package edu.ntnu.idat2003.view;
 
-import edu.ntnu.idat2003.controller.QuizGameController;
+import edu.ntnu.idat2003.controller.QuizGameViewController;
 import edu.ntnu.idat2003.model.Board;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -20,7 +20,7 @@ import javafx.scene.text.TextAlignment;
  * panes, text and buttons which will be displayed during the Quiz game. This class is similar to
  * ladder game, as it is based on it.
  */
-public class QuizGame {
+public class QuizGameView {
 
   private final BorderPane root;
   private final Board board;
@@ -35,7 +35,7 @@ public class QuizGame {
    * @param borderPane The main layout of the application.
    * @param board The game board.
    */
-  public QuizGame(BorderPane borderPane, Board board) {
+  public QuizGameView(BorderPane borderPane, Board board) {
     this.root = borderPane;
     this.board = board;
   }
@@ -113,8 +113,8 @@ public class QuizGame {
 
     buttonPane.setStyle("-fx-background-color:rgb(174, 109, 109);");
 
-    QuizGameController partyGameController =
-        new QuizGameController(
+    QuizGameViewController partyGameController =
+        new QuizGameViewController(
             root,
             canvas,
             board,

@@ -1,6 +1,6 @@
 package edu.ntnu.idat2003.view;
 
-import edu.ntnu.idat2003.controller.LadderGameController;
+import edu.ntnu.idat2003.controller.LadderGameViewController;
 import edu.ntnu.idat2003.model.Board;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -17,7 +17,7 @@ import javafx.scene.layout.StackPane;
  * a controller. It is a game so it includes all the game logic and visual representation. It has
  * two main components: the canvas for game rendering, and the buttons on the right.
  */
-public class LadderGame {
+public class LadderGameView {
 
   private final BorderPane root;
   private final Board board;
@@ -32,7 +32,7 @@ public class LadderGame {
    * @param borderPane The root pane of the application.
    * @param board The board object representing the game board.
    */
-  public LadderGame(BorderPane borderPane, Board board) {
+  public LadderGameView(BorderPane borderPane, Board board) {
     this.root = borderPane;
     this.board = board;
   }
@@ -83,8 +83,8 @@ public class LadderGame {
 
     buttonPane.setStyle("-fx-background-color:rgb(174, 109, 109);");
 
-    LadderGameController ladderGameController =
-        new LadderGameController(root, canvas, board, diceImage1, diceImage2);
+    LadderGameViewController ladderGameController =
+        new LadderGameViewController(root, canvas, board, diceImage1, diceImage2);
     ladderGameController.init(rollDice, exitGame);
   }
 }

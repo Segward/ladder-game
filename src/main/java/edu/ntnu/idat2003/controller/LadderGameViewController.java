@@ -33,7 +33,7 @@ import javafx.util.Duration;
 /**
  * Class representing the ladder game visual logic. Incluedes methods that draws the visual data.
  */
-public class LadderGameController implements LadderGameObserver {
+public class LadderGameViewController implements LadderGameObserver {
 
   private final BorderPane root;
   private final Canvas canvas;
@@ -58,7 +58,7 @@ public class LadderGameController implements LadderGameObserver {
    * @param canvas Canvas representing the game visuales
    * @param board Board object representing the game board
    */
-  public LadderGameController(
+  public LadderGameViewController(
       BorderPane borderPane, Canvas canvas, Board board, ImageView dice1, ImageView dice2) {
     this.root = borderPane;
     this.canvas = canvas;

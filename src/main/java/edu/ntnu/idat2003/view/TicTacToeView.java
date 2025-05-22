@@ -1,6 +1,6 @@
 package edu.ntnu.idat2003.view;
 
-import edu.ntnu.idat2003.controller.TicTacToeController;
+import edu.ntnu.idat2003.controller.TicTacToeViewController;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -16,11 +16,11 @@ import javafx.scene.text.Text;
  * Class representing the visal panes used in the TicTacToe game. The class constructes the
  * different panes, text and buttons which will be displayed during the TicTacToe.
  */
-public class TicTacToe {
+public class TicTacToeView {
 
   private final BorderPane root;
 
-  public TicTacToe(BorderPane borderPane) {
+  public TicTacToeView(BorderPane borderPane) {
     this.root = borderPane;
   }
 
@@ -82,8 +82,8 @@ public class TicTacToe {
     menuPane.getChildren().addAll(playerOnePanal, buttonPane, playerTwoPanal);
     root.setCenter(menuPane);
 
-    TicTacToeController controller =
-        new TicTacToeController(
+    TicTacToeViewController controller =
+        new TicTacToeViewController(
             root,
             gameText,
             playerOneScore,

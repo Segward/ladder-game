@@ -3,9 +3,9 @@ package edu.ntnu.idat2003.controller;
 import edu.ntnu.idat2003.io.BoardFactory;
 import edu.ntnu.idat2003.io.BoardReader;
 import edu.ntnu.idat2003.model.Board;
-import edu.ntnu.idat2003.view.LadderGame;
+import edu.ntnu.idat2003.view.LadderGameView;
 import edu.ntnu.idat2003.view.MainFrame;
-import edu.ntnu.idat2003.view.QuizGame;
+import edu.ntnu.idat2003.view.QuizGameView;
 import java.util.HashSet;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -130,10 +130,10 @@ public class BoardSelectionController {
   */
   private void onSelectClick(Board board) {
     if (gameType == 1) {
-      LadderGame ladderGame = new LadderGame(root, board);
+      LadderGameView ladderGame = new LadderGameView(root, board);
       ladderGame.init();
     } else if (gameType == 2) {
-      QuizGame partyGame = new QuizGame(root, board);
+      QuizGameView partyGame = new QuizGameView(root, board);
       partyGame.init();
     }
   }

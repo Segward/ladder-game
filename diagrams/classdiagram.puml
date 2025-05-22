@@ -1,94 +1,187 @@
 @startuml
+skinparam linetype ortho
 
-class Game {
-    -players: ArrayList<Player>
-    -board: Board
-    -dice: Dice
-    -currentPlayer: Player
-    -currentPlayerIndex: int
-    +createBoard()
-    +createDice()
-    +addPlayer(Player player)
-    +startGame()
-    +nextTurn()
-    +getBoard(): Board
-    +getDice(): Dice
-    +getCurrentPlayer(): Player
-    +getCurrentPlayerIndex(): int
-    +getPlayers(): ArrayList<Player>
+class App {
+    +void start(Stage primaryStage)
+    +main(String[] args)
 }
 
-class Player {
-    -name: String
-    -figure: Figure
-    -position: int
-    +Player(String name, Figure figure)
-    +move(int steps)
-    +setPosition(int position)
-    +getName(): String
-    +getFigure(): Figure
-    +getPosition(): int
+package view {
+
 }
 
-class Figure {
-    -color: String
-    +Figure(String color)
-    +getColor(): String
+package controller {
+
 }
 
-class Board {
-    -tiles: HashMap<Integer, Tile>
-    +Board()
-    +addTile(int number, Tile tile)
-    +setTileAction(int number, TileAction action)
-    +getTile(int number): Tile
-    +getTileCount(): int
+package model {
+
 }
 
-class Dice {
-    -die: int
-    +Dice(int die)
-    +roll(): int
-    +getDie(): int
+package observer {
+    
 }
 
-class Die {
-    -sides: int
-    +Die(int sides)
-    +roll(): int
-    +getSides(): int
+class BoardFactory {
+    -{static} Board makeBoard(String name)
+    +{static} void makeLadderBoards()
+    -{static} Board makeQuizBoard(String name)
+    +{static} void makeQuizBoard()
 }
 
-class Tile {
-    -action: TileAction
-    -position: int
-    +Tile(int position, TileAction action)
-    +Tile(int position)
-    +hasAction(): boolean
-    +getAction(): TileAction
-    +getPosition(): int
+class BoardReader {
+    -{static} final String quizBoardPath
+    -{static} final String ladderBoardPath
+    +{static} HashSet<Board> getQuizBoards()
+    +{static} HashSet<Board> getLadderBoards()
 }
 
-class TileAction {
-    -action: String
-    +TileAction(String action)
-    +getAction(): String
-    +execute(Player player)
+class BoardWriter {
+    -{static} final String ladderBoardPath
+    -{static} final String quizBoardPath
+    +{static} void saveLadderBoards(HashSet<Board> boards)
+    +{static} void saveQuizBoards(HashSet<Board> boards)
 }
 
-class LadderAction {
-    -destination: int
-    +LadderAction(String action, int destination)
-    +execute(Player player)
+class FigureFactory {
+    +{static} void makeFigures()
 }
 
-Game *-left- Player
-Game *-down- Board
-Game *-right- Dice
-Dice *-right-> Die
-Player *-- Figure
-Board *-right- Tile
-Tile *-- TileAction
-TileAction --|> LadderAction: extends
+class FigureReader {
+    -{static} final String path
+    +{static} HashSet<Figure> getFigures()
+    +{static} HashSet<Figure> getAvailableFigures()
+}
+
+class FigureWriter {
+    -{static} final String path
+    +{static} void saveFigures(HashSet<Figure> figures)
+}
+
+class PlayerReader {
+    -{static} final String playerPath
+    -{static} final String figureResourcePath
+    +{static} HashSet<Player> getPlayers()
+}
+
+class PlayerWriter {
+    -{static} final String path;
+    -{static} final String figures;
+    +{static} void savePlayers(HashSet<Player> players)
+    +{static} void addPlayer(Player player)
+    -{static} void wipePlayerFile()
+    +{static} void removePlayer(Player player)
+    +{static} void loadPlayersFromFile(String filePath)
+    +{static} void savePlayersToFile(String filePath)
+}
+
+class CsvUtil {
+    +{static} void writeFile(String filePath, String data)
+    +{static} String readFile(String filePath)
+}
+
+class FileUtil {
+    +{static} boolean fileExists(String filePath)
+    +{static} void createFile(String filePath)
+}
+
+class GsonUtil {
+    -{static} final Gson gson
+    +{static} <T> void writeFile(String filePath, HashSet<T> objects)
+    +{static} <T> HashSet<T> readFile(String filePath, Type type)
+}
+
+class DataCreateException {
+    +DataCreateException(String message)
+    +DataCreateException(String message, Throwable cause)
+}
+
+class DataReadException {
+    +DataReadException(String message)
+    +DataReadException(String message, Throwable cause)
+}
+
+class DataWriteException {
+    +DataWriteException(String message)
+    +DataWriteException(String message, Throwable cause)
+}
+
+App -right-> view 
+view -right-> controller
+controller --> model
+controller ..|> observer
+model --> observer
+
+controller --> BoardFactory
+controller --> FigureFactory
+controller --> BoardReader
+controller --> FigureReader
+controller --> PlayerReader
+controller --> PlayerWriter
+BoardFactory --> BoardWriter
+FigureFactory --> FigureWriter
+
+BoardReader --> GsonUtil
+BoardWriter --> GsonUtil
+FigureReader --> CsvUtil
+FigureWriter --> CsvUtil
+PlayerReader --> CsvUtil
+PlayerWriter --> CsvUtil
+
+GsonUtil --> DataReadException
+GsonUtil --> DataWriteException
+CsvUtil --> DataReadException
+CsvUtil --> DataWriteException
+
+CsvUtil --> FileUtil
+GsonUtil --> FileUtil
+PlayerWriter --> FileUtil
+FileUtil --> DataCreateException
+
+note top of view
+    BoardSelection
+    Configuration
+    LadderGame
+    MainFrame
+    PlayerCreation
+    QuizGame
+    TicTacToe
+    UserInterface
+end note
+
+note right of controller
+    BoardController
+    BoardSelectionController
+    ConfigurationController
+    GameController
+    LadderGameController
+    PlayerCreationController
+    QuizGameController
+    TicTacToeController
+end note
+
+note left of model
+    ExtraDiceAction
+    LadderAction
+    QuestionAction
+    TileAction
+    Board
+    Dice
+    Die
+    Figure
+    LadderGame
+    Player
+    QuizGame
+    TicTacToe
+    Tile
+    TileActionAdapter
+    Vector2
+end note
+
+note left of observer
+    LadderGameObserver
+    QuizGameObserver
+    TicTacToeObserver
+end note
 
 @enduml
