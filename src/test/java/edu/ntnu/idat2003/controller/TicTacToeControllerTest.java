@@ -9,8 +9,8 @@ import edu.ntnu.idat2003.model.Vector2;
 import java.util.HashMap;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -23,7 +23,7 @@ public class TicTacToeControllerTest extends ApplicationTest {
 
   @Override
   public void start(Stage stage) {
-    Pane testPane = new Pane();
+    BorderPane basePane = new BorderPane();
     Text testText = new Text();
     Button testButton = new Button();
     StackPane testStackPane = new StackPane();
@@ -32,7 +32,7 @@ public class TicTacToeControllerTest extends ApplicationTest {
 
     testGame =
         new TicTacToeController(
-            testPane,
+            basePane,
             testText,
             testText,
             testText,

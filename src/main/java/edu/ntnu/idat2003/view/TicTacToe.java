@@ -74,7 +74,7 @@ public class TicTacToe {
     playerTwoPanal.getChildren().add(playerTwoScore);
     playingPane.getChildren().addAll(gameText, playingBoard, exitButton);
     menuPane.getChildren().addAll(playerOnePanal, playingPane, playerTwoPanal);
-    root.getChildren().addAll(menuPane);
+    root.setCenter(menuPane);
 
     TicTacToeController controller =
         new TicTacToeController(

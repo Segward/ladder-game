@@ -1,6 +1,7 @@
 package edu.ntnu.idat2003.controller;
 
 import edu.ntnu.idat2003.io.PlayerReader;
+import edu.ntnu.idat2003.model.Dice;
 import edu.ntnu.idat2003.model.Player;
 import edu.ntnu.idat2003.model.TicTacToe;
 import edu.ntnu.idat2003.model.Vector2;
@@ -85,6 +86,10 @@ public class TicTacToeController implements TicTacToeObserver {
     for (Player player : hashSetPlayer) {
       players.add(player);
     }
+
+    this.game = new TicTacToe(players, new Dice(1));
+
+    gameStartSetup();
   }
 
   /**
@@ -103,6 +108,7 @@ public class TicTacToeController implements TicTacToeObserver {
    * animation.
    */
   public void gameStartSetup() {
+    setPlayersScore();
     String playerOneImage =
         getClass()
             .getResource(
@@ -137,7 +143,7 @@ public class TicTacToeController implements TicTacToeObserver {
 
     Timeline timeline = new Timeline();
     KeyFrame keyFrame =
-        new KeyFrame(Duration.millis(10), e -> ((int) (Math.random() * 6) + 1));
+        new KeyFrame(Duration.millis(10), e -> diceImage((int) (Math.random() * 6) + 1));
     timeline.getKeyFrames().add(keyFrame);
     timeline.setCycleCount(50);
     timeline.play();
@@ -164,6 +170,24 @@ public class TicTacToeController implements TicTacToeObserver {
         game.getPlayers().get(game.getPlayers().size() - 1).getName()
             + " Score: "
             + game.getPlayerTwoScore());
+  }
+
+  /**
+   * Mehtod that creates die image. Clears the game board GridPane and creates both an new ImageView
+   * and Image representing the die. Uses the int parameter to choose which die image to set.
+   *
+   * @param diceSide int representing the die side
+   */
+  public void diceImage(int diceSide) {
+    playingBoard.getChildren().clear();
+    ImageView diceView = new ImageView();
+    diceView.setFitHeight(200);
+    diceView.setPreserveRatio(true);
+
+    Image diceImage =
+        new Image(getClass().getResource("/dice/" + diceSide + "face.png").toExternalForm());
+    diceView.setImage(diceImage);
+    playingBoard.getChildren().add(diceView);
   }
 
   /**
