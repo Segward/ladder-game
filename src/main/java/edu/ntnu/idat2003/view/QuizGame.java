@@ -15,6 +15,11 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
+/**
+ * Class representing the visual panes used in the Quiz game. The class constructs the different
+ * panes, text and buttons which will be displayed during the Quiz game. This class is similar to
+ * ladder game, as it is based on it.
+ */
 public class QuizGame {
 
   private final BorderPane root;
@@ -24,11 +29,22 @@ public class QuizGame {
   private final int HEIGHT = 800;
   private final double WIDTH_RATIO = 0.8;
 
+  /**
+   * Constructor for the QuizGame class.
+   *
+   * @param borderPane The main layout of the application.
+   * @param board The game board.
+   */
   public QuizGame(BorderPane borderPane, Board board) {
     this.root = borderPane;
     this.board = board;
   }
 
+  /**
+   * Initializes the visual components of the Quiz game. It sets up the layout and adds the
+   * necessary components, including a roll dice button, exit game button, and a canvas for
+   * rendering the game.
+   */
   public void init() {
     root.setCenter(null);
 
@@ -97,7 +113,18 @@ public class QuizGame {
 
     buttonPane.setStyle("-fx-background-color:rgb(174, 109, 109);");
 
-    QuizGameController partyGameController = new QuizGameController(root, canvas, board, overlayPane, questionText, answerField, rollDice, submitAnswer, diceImage1, diceImage2);
+    QuizGameController partyGameController =
+        new QuizGameController(
+            root,
+            canvas,
+            board,
+            overlayPane,
+            questionText,
+            answerField,
+            rollDice,
+            submitAnswer,
+            diceImage1,
+            diceImage2);
     partyGameController.init(exitGame);
   }
 }

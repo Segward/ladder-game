@@ -12,6 +12,11 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 
+/**
+ * Class which builds the scene for the ladder game. It doesn't include any logic but connects with
+ * a controller. It is a game so it includes all the game logic and visual representation. It has
+ * two main components: the canvas for game rendering, and the buttons on the right.
+ */
 public class LadderGame {
 
   private final BorderPane root;
@@ -21,11 +26,21 @@ public class LadderGame {
   private final int HEIGHT = 800;
   private final double WIDTH_RATIO = 0.8;
 
+  /**
+   * Constructor for the LadderGame class.
+   *
+   * @param borderPane The root pane of the application.
+   * @param board The board object representing the game board.
+   */
   public LadderGame(BorderPane borderPane, Board board) {
     this.root = borderPane;
     this.board = board;
   }
 
+  /**
+   * Initializes the ladder game screen. It sets up the layout and adds the necessary components,
+   * including a roll dice button, exit game button, and a canvas for rendering the game.
+   */
   public void init() {
     root.setCenter(null);
 

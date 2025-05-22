@@ -9,14 +9,30 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+/**
+ * Class which builds the scene for the main menu. It doesn't include any logic but connects with a
+ * controller. It is the main menu so it displays all game options to the user. It is also the first
+ * scene the player views when opening the application.
+ */
 public class MainFrame {
 
   private final BorderPane root;
 
+  /**
+   * Constructor for the MainFrame class.
+   *
+   * @param borderPane The root pane of the application.
+   */
   public MainFrame(BorderPane borderPane) {
     this.root = borderPane;
   }
 
+  /**
+   * Initializes the main menu screen. It sets up the layout and adds the necessary components,
+   * including buttons for starting different games and a controller for handling game selection.
+   * The different options presented to the user is starting the ladder game, quiz game, tic tac toe
+   * game, configuring the game and exiting the game.
+   */
   public void init() {
     root.setCenter(null);
 

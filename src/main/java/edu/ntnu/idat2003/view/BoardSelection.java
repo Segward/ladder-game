@@ -8,6 +8,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
+/**
+ * Class which builds the scene for the board selection screen. It doesn't include any logic but
+ * connects with a controller. It is a selection so it only displays board options to the user.
+ */
 public class BoardSelection {
 
   private final int gameType;
@@ -17,11 +21,21 @@ public class BoardSelection {
   private final int HEIGHT = 800;
   private final double HEIGHT_RATIO = 0.5;
 
+  /**
+   * Constructor for the BoardSelection class.
+   *
+   * @param root The root pane of the application.
+   * @param gameType The type of game (1 for ladder game, 2 for quiz game).
+   */
   public BoardSelection(BorderPane root, int gameType) {
     this.root = root;
     this.gameType = gameType;
   }
 
+  /**
+   * Intializes the board selection screen. It sets up the layout and adds the necessary components,
+   * including a return button and a controller for handling board selection.
+   */
   public void init() {
     root.setCenter(null);
 

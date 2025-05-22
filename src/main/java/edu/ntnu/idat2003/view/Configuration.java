@@ -9,6 +9,10 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+/**
+ * Class representing the configuration screen of the game. This class is responsible for
+ * initializing the configuration screen and setting up the buttons and their actions.
+ */
 public class Configuration {
 
   private final BorderPane root;
@@ -16,10 +20,20 @@ public class Configuration {
   private final int HEIGHT = 800;
   private final double HEIGHT_RATIO = 0.4;
 
+  /**
+   * Constructor for the Configuration class.
+   *
+   * @param borderPane The main layout of the application.
+   */
   public Configuration(BorderPane borderPane) {
     this.root = borderPane;
   }
 
+  /**
+   * Initializes the configuration screen. It sets up the layout and adds the necessary components,
+   * including buttons for loading players, saving players, adding players, and returning to the
+   * previous screen.
+   */
   public void init() {
     root.setCenter(null);
 

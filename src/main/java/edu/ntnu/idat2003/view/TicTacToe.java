@@ -25,9 +25,8 @@ public class TicTacToe {
   }
 
   /**
-   * Intizilases the panes and adds them to the root scene.
-   *
-   * @param root Main scene
+   * Intizilases the panes and adds them to the root scene. It sets up the different panes for each
+   * player, a pane for the buttons and a gridpane for tictactoe.
    */
   public void init() {
     root.getChildren().clear();
