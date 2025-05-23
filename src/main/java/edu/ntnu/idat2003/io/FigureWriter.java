@@ -17,8 +17,14 @@ public class FigureWriter {
    * file.
    *
    * @param figures
+   * @throws DataWriteException if there is an error writing the file
+   * @throws IllegalArgumentException if the figures set is null or empty
    */
-  public static void saveFigures(HashSet<Figure> figures) {
+  public static void saveFigures(HashSet<Figure> figures) throws DataWriteException {
+    if (figures == null || figures.isEmpty()) {
+      throw new IllegalArgumentException("Figure set cannot be null or empty");
+    }
+
     StringBuilder data = new StringBuilder();
     for (Figure figure : figures) {
       data.append(figure.toString()).append("\n");
@@ -32,7 +38,7 @@ public class FigureWriter {
     try {
       CsvUtil.writeFile(path, data.toString());
     } catch (DataWriteException e) {
-      e.printStackTrace();
+      throw new DataWriteException("Error writing figure data to file", e);
     }
   }
 }

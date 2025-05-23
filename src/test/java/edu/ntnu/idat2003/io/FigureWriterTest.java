@@ -25,6 +25,7 @@ public class FigureWriterTest {
 
     try (MockedStatic<CsvUtil> csvUtilMock = mockStatic(CsvUtil.class)) {
       FigureWriter.saveFigures(figures);
+      
       csvUtilMock.verify(
           () ->
               CsvUtil.writeFile(

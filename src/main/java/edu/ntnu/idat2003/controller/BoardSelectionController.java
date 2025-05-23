@@ -117,7 +117,8 @@ public class BoardSelectionController {
         hBox.getChildren().add(boardPane);
       }
     } catch (Exception e) {
-      System.out.println("Error loading boards: 2");
+      System.out.println("Error loading boards: " + e.getMessage());
+      e.printStackTrace();
     }
   }
 

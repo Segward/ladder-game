@@ -1,5 +1,6 @@
 package edu.ntnu.idat2003.io;
 
+import edu.ntnu.idat2003.exception.DataWriteException;
 import edu.ntnu.idat2003.model.Board;
 import edu.ntnu.idat2003.model.Tile;
 import edu.ntnu.idat2003.model.Vector2;
@@ -183,7 +184,13 @@ public class BoardFactory {
 
     HashSet<Board> boards = new HashSet<>();
     Collections.addAll(boards, board1, board2);
-    BoardWriter.saveLadderBoards(boards);
+
+    try {
+      BoardWriter.saveLadderBoards(boards);
+    } catch (DataWriteException e) {
+      System.out.println("Error writing ladder boards: " + e.getMessage());
+      e.printStackTrace();
+    }
   }
 
   /**
@@ -320,6 +327,12 @@ public class BoardFactory {
 
     HashSet<Board> boards = new HashSet<>();
     boards.add(board);
-    BoardWriter.saveQuizBoards(boards);
+
+    try {
+      BoardWriter.saveQuizBoards(boards);
+    } catch (DataWriteException e) {
+      System.out.println("Error writing quiz boards: " + e.getMessage());
+      e.printStackTrace();
+    }
   }
 }

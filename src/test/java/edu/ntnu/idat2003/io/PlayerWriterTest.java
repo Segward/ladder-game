@@ -6,6 +6,7 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.times;
 
+import edu.ntnu.idat2003.exception.DataReadException;
 import edu.ntnu.idat2003.exception.DataWriteException;
 import edu.ntnu.idat2003.model.Figure;
 import edu.ntnu.idat2003.model.Player;
@@ -31,7 +32,9 @@ public class PlayerWriterTest {
 
     try (MockedStatic<CsvUtil> csvUtilMock = mockStatic(CsvUtil.class)) {
       ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
+
       PlayerWriter.savePlayers(players);
+
       csvUtilMock.verify(() -> CsvUtil.writeFile(eq("data/player.csv"), captor.capture()));
       String writtenData = captor.getValue();
       assertTrue(writtenData.contains("Kim Dokja,reader"));
@@ -41,14 +44,16 @@ public class PlayerWriterTest {
 
   @Test
   @DisplayName("Test savePlayers")
-  void testAddPlayer() throws DataWriteException {
+  void testAddPlayer() throws DataWriteException, DataReadException {
     Player player = new Player("Kim Dokja", new Figure("reader", "/path/reader.png"));
     HashSet<Player> players = new HashSet<>();
     players.add(player);
 
     try (MockedStatic<CsvUtil> csvUtilMock = mockStatic(CsvUtil.class)) {
       ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
+
       PlayerWriter.addPlayer(player);
+
       csvUtilMock.verify(() -> CsvUtil.writeFile(eq("data/player.csv"), captor.capture()));
       String writtenData = captor.getValue();
       assertTrue(writtenData.contains("Kim Dokja,reader"));
@@ -57,7 +62,7 @@ public class PlayerWriterTest {
 
   @Test
   @DisplayName("Test removePlayer")
-  void testRemovePlayer() throws Exception {
+  void testRemovePlayer() throws DataReadException, DataWriteException {
     Player player1 = new Player("Kim Dokja", new Figure("reader", "/path/reader.png"));
     Player player2 =
         new Player("Yoo Joonghyuk", new Figure("protagonist", "/path/protagonist.png"));
@@ -69,7 +74,9 @@ public class PlayerWriterTest {
         MockedStatic<FileUtil> fileUtilMock = mockStatic(FileUtil.class);
         MockedStatic<PlayerReader> playerReaderMock = mockStatic(PlayerReader.class)) {
       playerReaderMock.when(PlayerReader::getPlayers).thenReturn(players);
+
       PlayerWriter.removePlayer(player1);
+
       csvUtilMock.verify(
           () ->
               CsvUtil.writeFile(

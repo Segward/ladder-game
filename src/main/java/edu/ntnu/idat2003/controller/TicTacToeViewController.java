@@ -80,9 +80,16 @@ public class TicTacToeViewController implements TicTacToeObserver {
    * data is stored. Then initializes the gameStartUp() method.
    */
   public void init() {
-    HashSet<Player> hashSetPlayer = PlayerReader.getPlayers();
+    HashSet<Player> playerSet = new HashSet<>();
+
+    try {
+      playerSet = PlayerReader.getPlayers();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+
     ArrayList<Player> players = new ArrayList<>();
-    for (Player player : hashSetPlayer) {
+    for (Player player : playerSet) {
       players.add(player);
     }
 

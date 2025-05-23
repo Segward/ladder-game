@@ -21,6 +21,7 @@ class BoardWriterTest {
 
     try (MockedStatic<GsonUtil> mockedGsonUtil = mockStatic(GsonUtil.class)) {
       BoardWriter.saveLadderBoards(boards);
+
       mockedGsonUtil.verify(() -> GsonUtil.writeFile("data/ladderboard.json", boards), times(1));
     }
   }
@@ -34,6 +35,7 @@ class BoardWriterTest {
 
     try (MockedStatic<GsonUtil> mockedGsonUtil = mockStatic(GsonUtil.class)) {
       BoardWriter.saveQuizBoards(boards);
+
       mockedGsonUtil.verify(() -> GsonUtil.writeFile("data/quizboard.json", boards), times(1));
     }
   }

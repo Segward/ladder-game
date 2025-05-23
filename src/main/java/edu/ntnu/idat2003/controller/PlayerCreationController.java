@@ -21,8 +21,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 /**
- *  Class representing the playerCreation screen.
- *  Incueds medthod for interaction with visual logic.
+ * Class representing the playerCreation screen. Incueds medthod for interaction with visual logic.
  */
 public class PlayerCreationController {
 
@@ -31,12 +30,12 @@ public class PlayerCreationController {
   private final TextField playerName;
 
   /**
-   *  Constructor for the PlayerCreationController.
-   *  Takes an BorderPane, HBox and TextFieald as Parameters.
-   * 
-   *  @param root BorderPane representing Main canvas
-   *  @param hBox HBox representing the player creator screen
-   *  @param playerName TextField where user creates player name
+   * Constructor for the PlayerCreationController. Takes an BorderPane, HBox and TextFieald as
+   * Parameters.
+   *
+   * @param root BorderPane representing Main canvas
+   * @param hBox HBox representing the player creator screen
+   * @param playerName TextField where user creates player name
    */
   public PlayerCreationController(BorderPane root, HBox hBox, TextField playerName) {
     this.root = root;
@@ -45,11 +44,10 @@ public class PlayerCreationController {
   }
 
   /**
-   *  Initilases screen visauls and deffines return button functionality.
-   *  Takes Button as parameter, and deffinese onReturn() method as functionality,
-   *  before displaying available figures.
-   * 
-   *  @param returnButton Button to return to config screen
+   * Initilases screen visauls and deffines return button functionality. Takes Button as parameter,
+   * and deffinese onReturn() method as functionality, before displaying available figures.
+   *
+   * @param returnButton Button to return to config screen
    */
   public void init(Button returnButton) {
     returnButton.setOnAction(e -> onReturn());
@@ -57,8 +55,8 @@ public class PlayerCreationController {
   }
 
   /**
-   *  Method for returning user to config screen.
-   *  Creates new Configuration object and initilases objects init() method.
+   * Method for returning user to config screen. Creates new Configuration object and initilases
+   * objects init() method.
    */
   public void onReturn() {
     Configuration configuration = new Configuration(root);
@@ -66,10 +64,9 @@ public class PlayerCreationController {
   }
 
   /**
-   *  Method for alerting user.
-   *  Takes String as parameter and creates an alert with the message.
-   * 
-   *  @param message Message to be displayed
+   * Method for alerting user. Takes String as parameter and creates an alert with the message.
+   *
+   * @param message Message to be displayed
    */
   private void alert(String message) {
     Alert alert = new Alert(AlertType.INFORMATION);
@@ -80,11 +77,11 @@ public class PlayerCreationController {
   }
 
   /**
-   *  Method for creating figure pane.
-   *  Takes Figure as parameter and creates a StackPane with the figure name, image and select button.
-   * 
-   *  @param figure
-   *  @return StackPane
+   * Method for creating figure pane. Takes Figure as parameter and creates a StackPane with the
+   * figure name, image and select button.
+   *
+   * @param figure
+   * @return StackPane
    */
   private StackPane createFigurePane(Figure figure) {
     StackPane figurePane = new StackPane();
@@ -113,14 +110,20 @@ public class PlayerCreationController {
     return figurePane;
   }
 
-    /**
-   *  Method for updating displayed figures.
-   *  Utilazes a for loop to go through each remaining figure
-   *  and creates a display pane for them. 
+  /**
+   * Method for updating displayed figures. Utilazes a for loop to go through each remaining figure
+   * and creates a display pane for them.
    */
   private void updateFigures() {
     hBox.getChildren().clear();
-    HashSet<Figure> figureSet = FigureReader.getAvailableFigures();
+    HashSet<Figure> figureSet = new HashSet<>();
+
+    try {
+      figureSet = FigureReader.getAvailableFigures();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+
     int size = figureSet.size();
     for (Figure figure : figureSet) {
       StackPane figurePane = createFigurePane(figure);
@@ -131,14 +134,12 @@ public class PlayerCreationController {
   }
 
   /**
-   *  Method for adding player to game.
-   *  Takes Figure as a parameter.
-   *  Checks if TextField is empty, if it is informes the player that is can not.
-   *  If not creates a new player with a vector2 object as position,
-   *  then adds new player to save player file.
-   *  Then creates new Configuration object and initilases objects init() method.
-   * 
-   *  @param figure
+   * Method for adding player to game. Takes Figure as a parameter. Checks if TextField is empty, if
+   * it is informes the player that is can not. If not creates a new player with a vector2 object as
+   * position, then adds new player to save player file. Then creates new Configuration object and
+   * initilases objects init() method.
+   *
+   * @param figure
    */
   public void addPlayer(Figure figure) {
     String name = playerName.getText();
@@ -152,7 +153,14 @@ public class PlayerCreationController {
       return;
     }
 
-    HashSet<Player> players = PlayerReader.getPlayers();
+    HashSet<Player> players = new HashSet<>();
+
+    try {
+      players = PlayerReader.getPlayers();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+
     for (Player player : players) {
       if (player.getName().equals(name)) {
         alert("Player name already exists. Please choose a different name.");
@@ -163,7 +171,12 @@ public class PlayerCreationController {
     Player player = new Player(name, figure);
     Vector2 position = new Vector2(0, 0);
     player.setPosition(position);
-    PlayerWriter.addPlayer(player);
+
+    try {
+      PlayerWriter.addPlayer(player);
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
 
     Configuration configuration = new Configuration(root);
     configuration.init();

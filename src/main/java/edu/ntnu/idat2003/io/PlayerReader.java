@@ -22,18 +22,19 @@ public class PlayerReader {
    * adding the new Player object to the new HashSet.
    *
    * @return HasSet<Player> all Player objects retreved from csv
+   * @throws DataReadException if there is an error reading the file
    */
-  public static HashSet<Player> getPlayers() {
+  public static HashSet<Player> getPlayers() throws DataReadException {
     HashSet<Player> players = new HashSet<>();
     StringBuilder data = new StringBuilder();
+    
     try {
       data.append(CsvUtil.readFile(playerPath));
     } catch (DataReadException e) {
-      e.printStackTrace();
-      return players;
+      throw new DataReadException("Error reading player data", e);
     }
 
-    if (data.length() == 0) {
+    if (data.toString().isEmpty()) {
       return players;
     }
 

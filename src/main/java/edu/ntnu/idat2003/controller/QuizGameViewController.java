@@ -106,8 +106,14 @@ public class QuizGameViewController implements QuizGameObserver {
     rollDice.setOnAction(e -> game.rollDice());
     exitGame.setOnAction(e -> exitGame());
     overlayPane.setVisible(false);
+    HashSet<Player> players = new HashSet<>();
 
-    HashSet<Player> players = PlayerReader.getPlayers();
+    try {
+      players = PlayerReader.getPlayers();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+
     game = new QuizGame(players, board, this);
     game.init();
     drawCanvas();
@@ -149,15 +155,29 @@ public class QuizGameViewController implements QuizGameObserver {
       double px = offsetX + drawCol * cellWidth + innerPadding;
       double py = offsetY + drawRow * cellHeight + innerPadding;
 
-      gc.setFill(Color.BURLYWOOD);
+      if (tile.getAction() != null && tile.getAction() instanceof QuestionAction) {
+        gc.setFill(Color.PURPLE);
+      } else {
+        gc.setFill(Color.BURLYWOOD);
+      }
+
       gc.fillRoundRect(
           px, py, cellWidth - 2 * innerPadding, cellHeight - 2 * innerPadding, arc, arc);
 
-      gc.setFill(Color.BLACK);
       gc.setFont(new Font("Arial Black", 12));
       gc.setTextAlign(TextAlignment.CENTER);
       gc.setTextBaseline(VPos.CENTER);
-      gc.fillText(String.valueOf(tile.getText()), px + 12, py + 12);
+
+      String text = String.valueOf(tile.getText());
+      double x = px + 12;
+      double y = py + 12;
+
+      gc.setStroke(Color.BLACK);
+      gc.setLineWidth(2);
+      gc.strokeText(text, x, y);
+
+      gc.setFill(Color.WHITE);
+      gc.fillText(text, x, y);
     }
 
     for (QuestionAction action : game.getBoard().getQuestions()) {
@@ -169,8 +189,8 @@ public class QuizGameViewController implements QuizGameObserver {
       double px = offsetX + drawCol * cellWidth + innerPadding;
       double py = offsetY + drawRow * cellHeight + innerPadding;
 
-      Image playerImage = new Image("/icons/question.png");
-      gc.drawImage(playerImage, px + 10, py + 10, cellWidth - 20, cellHeight - 20);
+      Image questionImage = new Image("/icons/question.png");
+      gc.drawImage(questionImage, px + 16, py + 16, cellWidth - 30, cellHeight - 30);
     }
 
     for (Player player : game.getPlayers()) {
@@ -184,7 +204,7 @@ public class QuizGameViewController implements QuizGameObserver {
 
       Image playerImage = new Image(player.getFigure().getPath());
       double size = cellWidth - 2 * innerPadding;
-      gc.drawImage(playerImage, px + 10, py + 10, size - 20, size - 20);
+      gc.drawImage(playerImage, px + 12, py + 10, size - 25, size - 20);
     }
   }
 

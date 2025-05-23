@@ -18,3 +18,5 @@
 /Users/gustavskyberg/Home/Programming/ladder-game/src/test/java/edu/ntnu/idat2003/model/tileactions/ExtraDiceActionTest.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/test/java/edu/ntnu/idat2003/model/tileactions/LadderActionTest.java
 /Users/gustavskyberg/Home/Programming/ladder-game/src/test/java/edu/ntnu/idat2003/model/tileactions/QuestionActionTest.java
+/Users/gustavskyberg/Home/Programming/ladder-game/src/test/java/edu/ntnu/idat2003/util/CsvUtilTest.java
+/Users/gustavskyberg/Home/Programming/ladder-game/src/test/java/edu/ntnu/idat2003/util/GsonUtilTest.java

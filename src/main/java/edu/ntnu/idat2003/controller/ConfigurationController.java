@@ -1,5 +1,6 @@
 package edu.ntnu.idat2003.controller;
 
+import edu.ntnu.idat2003.exception.DataReadException;
 import edu.ntnu.idat2003.io.PlayerReader;
 import edu.ntnu.idat2003.io.PlayerWriter;
 import edu.ntnu.idat2003.model.Player;
@@ -75,7 +76,11 @@ public class ConfigurationController {
     File file = fileChooser.showSaveDialog(root.getScene().getWindow());
     if (file != null) {
       String path = file.getAbsolutePath();
-      PlayerWriter.savePlayersToFile(path);
+      try {
+        PlayerWriter.savePlayersToFile(path);
+      } catch (Exception e) {
+        System.out.println(e.getMessage());
+      }
     }
   }
 
@@ -89,7 +94,11 @@ public class ConfigurationController {
     File file = fileChooser.showOpenDialog(root.getScene().getWindow());
     if (file != null) {
       String path = file.getAbsolutePath();
-      PlayerWriter.loadPlayersFromFile(path);
+      try {
+        PlayerWriter.loadPlayersFromFile(path);
+      } catch (Exception e) {
+        System.out.println(e.getMessage());
+      }
       updatePlayers();
     }
   }
@@ -140,7 +149,12 @@ public class ConfigurationController {
    */
   private void updatePlayers() {
     hBox.getChildren().clear();
-    HashSet<Player> playerSet = PlayerReader.getPlayers();
+    HashSet<Player> playerSet = new HashSet<>();
+    try {
+      playerSet = PlayerReader.getPlayers();
+    } catch (IllegalArgumentException | DataReadException e) {
+      System.out.println(e.getMessage());
+    }
     int size = playerSet.size();
     for (Player player : playerSet) {
       StackPane playerPane = createPlayerPane(player);
@@ -157,9 +171,12 @@ public class ConfigurationController {
    * @param player Player object to be removed
    */
   public void removePlayer(Player player) {
-    HashSet<Player> players = PlayerReader.getPlayers();
-    players.remove(player);
-    PlayerWriter.removePlayer(player);
+    try {
+      PlayerWriter.removePlayer(player);
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+
     hBox.getChildren().clear();
     updatePlayers();
   }

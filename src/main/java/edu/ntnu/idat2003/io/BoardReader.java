@@ -18,16 +18,11 @@ public class BoardReader {
    * with board objects.
    *
    * @return HashSet<Board> all saved quiz boards.
+   * @throws DataReadException if there is an error reading the file
    */
-  public static HashSet<Board> getQuizBoards() {
+  public static HashSet<Board> getQuizBoards() throws DataReadException {
     Type boardSetType = new TypeToken<HashSet<Board>>() {}.getType();
-    try {
-      return GsonUtil.readFile(quizBoardPath, boardSetType);
-
-    } catch (DataReadException e) {
-      e.printStackTrace();
-      return new HashSet<>();
-    }
+    return GsonUtil.readFile(quizBoardPath, boardSetType);
   }
 
   /**
@@ -35,15 +30,10 @@ public class BoardReader {
    * with board objects.
    *
    * @return HashSet<Board> all saved laddergame boards.
+   * @throws DataReadException if there is an error reading the file
    */
-  public static HashSet<Board> getLadderBoards() {
+  public static HashSet<Board> getLadderBoards() throws DataReadException {
     Type boardSetType = new TypeToken<HashSet<Board>>() {}.getType();
-    try {
-      return GsonUtil.readFile(ladderBoardPath, boardSetType);
-
-    } catch (DataReadException e) {
-      e.printStackTrace();
-      return new HashSet<>();
-    }
+    return GsonUtil.readFile(ladderBoardPath, boardSetType);
   }
 }

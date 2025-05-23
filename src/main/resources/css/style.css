@@ -42,3 +42,12 @@
   -fx-border-radius: 10px;
   -fx-background-radius: 10px;
 }
+
+#sidePane {
+  -fx-background-image: url("../background/leather.jpg");
+  -fx-background-size: cover;
+  -fx-background-position: center;
+  -fx-background-repeat: no-repeat;
+  -fx-orientation: vertical;
+  -fx-alignment: center;
+}

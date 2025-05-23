@@ -101,6 +101,7 @@ public class QuizGameView {
     exitGame.setPrefSize(150, 50);
 
     FlowPane buttonPane = new FlowPane();
+    buttonPane.setId("sidePane");
     buttonPane.setPrefSize(WIDTH * (1 - WIDTH_RATIO), HEIGHT);
     buttonPane.setOrientation(Orientation.VERTICAL);
     buttonPane.setAlignment(Pos.CENTER);

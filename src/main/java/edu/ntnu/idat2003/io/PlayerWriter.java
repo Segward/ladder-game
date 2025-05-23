@@ -21,8 +21,13 @@ public class PlayerWriter {
    * file.
    *
    * @param players
+   * @throws DataWriteException if there is an error writing the file
    */
-  public static void savePlayers(HashSet<Player> players) {
+  public static void savePlayers(HashSet<Player> players) throws DataWriteException {
+    if (players == null || players.isEmpty()) {
+      throw new IllegalArgumentException("Player set cannot be null or empty");
+    }
+
     StringBuilder data = new StringBuilder();
     for (Player player : players) {
       data.append(player.toString()).append("\n");
@@ -36,7 +41,7 @@ public class PlayerWriter {
     try {
       CsvUtil.writeFile(path, data.toString());
     } catch (DataWriteException e) {
-      e.printStackTrace();
+      throw new DataWriteException("Error writing player data to file", e);
     }
   }
 
@@ -46,19 +51,41 @@ public class PlayerWriter {
    * before using savePlayers method with the new HashSet as a parameter.
    *
    * @param player Player object to saved
+   * @throws DataWriteException if there is an error writing the file
+   * @throws IllegalArgumentException if the player is null
+   * @throws DataReadException if there is an error reading the file
    */
-  public static void addPlayer(Player player) {
-    HashSet<Player> players = PlayerReader.getPlayers();
+  public static void addPlayer(Player player) throws DataWriteException, DataReadException {
+    if (player == null) {
+      throw new IllegalArgumentException("Player cannot be null");
+    }
+
+    HashSet<Player> players = new HashSet<>();
+    try {
+      players = PlayerReader.getPlayers();
+    } catch (DataReadException e) {
+      throw new DataReadException("Error reading player data", e);
+    }
+
     players.add(player);
-    savePlayers(players);
+
+    try {
+      savePlayers(players);
+    } catch (DataWriteException e) {
+      throw new DataWriteException("Error adding new player data", e);
+    }
   }
 
-  /** Method for wiping player file. It doesn't delete the file, but empties it. */
-  public static void wipePlayerFile() {
+  /**
+   * Method for wiping player file. It doesn't delete the file, but empties it.
+   *
+   * @throws DataWriteException if there is an error writing the file
+   */
+  public static void wipePlayerFile() throws DataWriteException {
     try {
       CsvUtil.writeFile(path, "");
     } catch (DataWriteException e) {
-      e.printStackTrace();
+      throw new DataWriteException("Error wiping player file", e);
     }
   }
 
@@ -69,16 +96,36 @@ public class PlayerWriter {
    * method with the new HashSet as a parameter.
    *
    * @param player Player object to be removed
+   * @throws DataWriteException if there is an error writing the file
+   * @throws DataReadException if there is an error reading the file
+   * @throws IllegalArgumentException if player is null
    */
-  public static void removePlayer(Player player) {
-    HashSet<Player> players = PlayerReader.getPlayers();
-    players.remove(player);
-    if (players.isEmpty()) {
-      wipePlayerFile();
-      return;
+  public static void removePlayer(Player player) throws DataWriteException, DataReadException {
+    if (player == null) {
+      throw new IllegalArgumentException("Player cannot be null");
     }
 
-    savePlayers(players);
+    HashSet<Player> players = new HashSet<>();
+    try {
+      players = PlayerReader.getPlayers();
+    } catch (DataReadException e) {
+      throw new DataReadException("Error reading player data", e);
+    }
+
+    players.remove(player);
+    if (players.isEmpty() || players.size() == 0) {
+      try {
+        wipePlayerFile();
+      } catch (DataWriteException e) {
+        throw new DataWriteException("Error wiping player file", e);
+      }
+    } else {
+      try {
+        savePlayers(players);
+      } catch (DataWriteException e) {
+        throw new DataWriteException("Error removing player data", e);
+      }
+    }
   }
 
   /**
@@ -90,10 +137,14 @@ public class PlayerWriter {
    * utilizing the savePlayer() method with the new HashSet as parameter.
    *
    * @param filePath String representing filePath
+   * @throws DataReadException if there is an error reading the file
+   * @throws DataWriteException if there is an error writing the file
+   * @throws IllegalArgumentException if the file does not exist
    */
-  public static void loadPlayersFromFile(String filePath) {
+  public static void loadPlayersFromFile(String filePath)
+      throws DataReadException, DataWriteException {
     if (!FileUtil.fileExists(filePath)) {
-      return;
+      throw new IllegalArgumentException("File does not exist");
     }
 
     HashSet<Player> players = new HashSet<>();
@@ -101,11 +152,10 @@ public class PlayerWriter {
     try {
       data.append(CsvUtil.readFile(filePath));
     } catch (DataReadException e) {
-      e.printStackTrace();
-      return;
+      throw new DataReadException("Error reading file", e);
     }
 
-    if (data.length() == 0) {
+    if (data.toString().isEmpty()) {
       return;
     }
 
@@ -130,7 +180,11 @@ public class PlayerWriter {
       }
     }
 
-    savePlayers(players);
+    try {
+      savePlayers(players);
+    } catch (DataWriteException e) {
+      throw new DataWriteException("Error saving loaded players", e);
+    }
   }
 
   /**
@@ -141,8 +195,24 @@ public class PlayerWriter {
    *
    * @param filePath
    */
-  public static void savePlayersToFile(String filePath) {
-    HashSet<Player> players = PlayerReader.getPlayers();
+  public static void savePlayersToFile(String filePath)
+      throws DataWriteException, DataReadException {
+    if (filePath == null || filePath.isEmpty()) {
+      throw new IllegalArgumentException("File path cannot be null or empty");
+    }
+
+    HashSet<Player> players = new HashSet<>();
+
+    try {
+      players = PlayerReader.getPlayers();
+    } catch (DataReadException e) {
+      throw new DataReadException("Error reading player data for saving players to file", e);
+    }
+
+    if (players == null || players.isEmpty()) {
+      throw new IllegalArgumentException("Player set cannot be null or empty");
+    }
+
     StringBuilder data = new StringBuilder();
     for (Player player : players) {
       data.append(player.toString()).append("\n");
@@ -156,7 +226,7 @@ public class PlayerWriter {
     try {
       CsvUtil.writeFile(filePath, data.toString());
     } catch (DataWriteException e) {
-      e.printStackTrace();
+      throw new DataWriteException("Error writing player data to file", e);
     }
   }
 }
