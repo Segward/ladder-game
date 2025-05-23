@@ -68,7 +68,7 @@ public class FigureReader {
     }
 
     if (figures == null || figures.isEmpty()) {
-      return null;
+      return figures;
     }
 
     HashSet<Player> players = new HashSet<>();

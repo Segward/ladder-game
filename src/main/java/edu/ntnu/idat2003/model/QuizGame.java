@@ -113,7 +113,6 @@ public class QuizGame {
     if (action != null) {
       QuestionAction questionAction = (QuestionAction) action;
       observer.onQuestion(currentPlayer, questionAction);
-      observer.onTileActionExecuted(currentPlayer, action);
     }
   }
 

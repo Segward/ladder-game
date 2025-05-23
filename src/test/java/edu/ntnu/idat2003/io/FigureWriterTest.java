@@ -1,5 +1,6 @@
 package edu.ntnu.idat2003.io;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mockStatic;
@@ -25,7 +26,7 @@ public class FigureWriterTest {
 
     try (MockedStatic<CsvUtil> csvUtilMock = mockStatic(CsvUtil.class)) {
       FigureWriter.saveFigures(figures);
-      
+
       csvUtilMock.verify(
           () ->
               CsvUtil.writeFile(
@@ -34,6 +35,30 @@ public class FigureWriterTest {
                       data ->
                           data.contains("Kim Dokja,/path/reader.png")
                               && data.contains("Yoo Joonghyuk,/path/protagonist.png"))));
+    }
+  }
+
+  @Test
+  @DisplayName("Test saveFigures with empty set")
+  void testSaveFiguresWithEmptySet() throws DataWriteException {
+    HashSet<Figure> figures = new HashSet<>();
+
+    try (MockedStatic<CsvUtil> csvUtilMock = mockStatic(CsvUtil.class)) {
+      FigureWriter.saveFigures(figures);
+    } catch (IllegalArgumentException e) {
+      assertEquals("Figure set cannot be null or empty", e.getMessage());
+    }
+  }
+
+  @Test
+  @DisplayName("Test saveFigures with null set")
+  void testSaveFiguresWithNullSet() throws DataWriteException {
+    HashSet<Figure> figures = null;
+
+    try (MockedStatic<CsvUtil> csvUtilMock = mockStatic(CsvUtil.class)) {
+      FigureWriter.saveFigures(figures);
+    } catch (IllegalArgumentException e) {
+      assertEquals("Figure set cannot be null or empty", e.getMessage());
     }
   }
 }

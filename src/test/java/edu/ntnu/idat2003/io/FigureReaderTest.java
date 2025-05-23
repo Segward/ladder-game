@@ -62,4 +62,44 @@ public class FigureReaderTest {
                           && f.getPath().equals("/path/protagonist.png")));
     }
   }
+
+  @Test
+  @DisplayName("Test getFigures with empty file")
+  void testGetFiguresWithEmptyFile() throws DataReadException {
+    String mockCsv = "";
+
+    try (MockedStatic<CsvUtil> csvUtilMock = mockStatic(CsvUtil.class)) {
+      csvUtilMock.when(() -> CsvUtil.readFile("data/figure.csv")).thenReturn(mockCsv);
+
+      HashSet<Figure> figures = new HashSet<>();
+
+      try {
+        figures = FigureReader.getFigures();
+      } catch (DataReadException e) {
+        assertEquals("File not found", e.getMessage());
+      }
+
+      assertEquals(true, figures.isEmpty());
+    }
+  }
+
+  @Test
+  @DisplayName("Test getAvailableFigures with empty file")
+  void testGetAvailableFiguresWithEmptyFile() throws DataReadException {
+    String mockCsv = "";
+
+    try (MockedStatic<CsvUtil> csvUtilMock = mockStatic(CsvUtil.class)) {
+      csvUtilMock.when(() -> CsvUtil.readFile("data/figure.csv")).thenReturn(mockCsv);
+
+      HashSet<Figure> figures = new HashSet<>();
+      
+      try {
+        figures = FigureReader.getAvailableFigures();
+      } catch (DataReadException e) {
+        assertEquals("File not found", e.getMessage());
+      }
+
+      assertEquals(true, figures.isEmpty());
+    }
+  }
 }

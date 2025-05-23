@@ -52,4 +52,52 @@ public class BoardReaderTest {
       assertTrue(result.contains(board1));
     }
   }
+
+  @Test
+  @DisplayName("Test getLadderBoards with empty file")
+  void testGetLadderBoardsWithEmptyFile() throws DataReadException {
+    try (MockedStatic<GsonUtil> mockedGsonUtil = mockStatic(GsonUtil.class)) {
+      mockedGsonUtil
+          .when(() -> GsonUtil.readFile(eq("data/ladderboard.json"), any(Type.class)))
+          .thenReturn(new HashSet<>());
+      HashSet<Board> result = BoardReader.getLadderBoards();
+
+      assertTrue(result.isEmpty());
+    }
+  }
+
+  @Test
+  @DisplayName("Test getQuizBoards with empty file")
+  void testGetQuizBoardsWithEmptyFile() throws DataReadException {
+    try (MockedStatic<GsonUtil> mockedGsonUtil = mockStatic(GsonUtil.class)) {
+      mockedGsonUtil
+          .when(() -> GsonUtil.readFile(eq("data/quizboard.json"), any(Type.class)))
+          .thenReturn(new HashSet<>());
+      HashSet<Board> result = BoardReader.getQuizBoards();
+
+      assertTrue(result.isEmpty());
+    }
+  }
+
+  @Test
+  @DisplayName("Test getLadderBoards with null file")
+  void testGetLadderBoardsWithNullFile() {
+    try (MockedStatic<GsonUtil> mockedGsonUtil = mockStatic(GsonUtil.class)) {
+      mockedGsonUtil
+          .when(() -> GsonUtil.readFile(eq("data/ladderboard.json"), any(Type.class)))
+          .thenThrow(new DataReadException("File not found"));
+      assertThrows(DataReadException.class, () -> BoardReader.getLadderBoards());
+    }
+  }
+
+  @Test
+  @DisplayName("Test getQuizBoards with null file")
+  void testGetQuizBoardsWithNullFile() {
+    try (MockedStatic<GsonUtil> mockedGsonUtil = mockStatic(GsonUtil.class)) {
+      mockedGsonUtil
+          .when(() -> GsonUtil.readFile(eq("data/quizboard.json"), any(Type.class)))
+          .thenThrow(new DataReadException("File not found"));
+      assertThrows(DataReadException.class, () -> BoardReader.getQuizBoards());
+    }
+  }
 }

@@ -86,4 +86,48 @@ public class PlayerWriterTest {
       fileUtilMock.verifyNoInteractions();
     }
   }
+
+  @Test
+  @DisplayName("Test removePlayer with no player")
+  void testRemovePlayerWithNoPlayer() throws DataReadException, DataWriteException {
+    try (MockedStatic<CsvUtil> csvUtilMock = mockStatic(CsvUtil.class)) {
+      PlayerWriter.removePlayer(null);
+    } catch (IllegalArgumentException e) {
+      assertTrue(e.getMessage().contains("Player cannot be null"));
+    }
+  }
+
+  @Test
+  @DisplayName("Test savePlayers with empty set")
+  void testSavePlayersWithEmptySet() throws DataWriteException {
+    HashSet<Player> players = new HashSet<>();
+
+    try (MockedStatic<CsvUtil> csvUtilMock = mockStatic(CsvUtil.class)) {
+      PlayerWriter.savePlayers(players);
+    } catch (IllegalArgumentException e) {
+      assertTrue(e.getMessage().contains("Player set cannot be null or empty"));
+    }
+  }
+
+  @Test
+  @DisplayName("Test savePlayers with null set")
+  void testSavePlayersWithNullSet() throws DataWriteException {
+    HashSet<Player> players = null;
+
+    try (MockedStatic<CsvUtil> csvUtilMock = mockStatic(CsvUtil.class)) {
+      PlayerWriter.savePlayers(players);
+    } catch (IllegalArgumentException e) {
+      assertTrue(e.getMessage().contains("Player set cannot be null or empty"));
+    }
+  }
+
+  @Test
+  @DisplayName("Test addPlayer with null player")
+  void testAddPlayerWithNullPlayer() throws DataWriteException, DataReadException {
+    try (MockedStatic<CsvUtil> csvUtilMock = mockStatic(CsvUtil.class)) {
+      PlayerWriter.addPlayer(null);
+    } catch (IllegalArgumentException e) {
+      assertTrue(e.getMessage().contains("Player cannot be null"));
+    }
+  }
 }

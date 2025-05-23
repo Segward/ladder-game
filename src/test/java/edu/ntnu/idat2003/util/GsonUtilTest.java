@@ -1,28 +1,30 @@
 package edu.ntnu.idat2003.util;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.*;
 
 import com.google.gson.reflect.TypeToken;
+import edu.ntnu.idat2003.exception.DataReadException;
 import edu.ntnu.idat2003.exception.DataWriteException;
 import edu.ntnu.idat2003.model.Board;
 import edu.ntnu.idat2003.model.Tile;
 import edu.ntnu.idat2003.model.Vector2;
 import edu.ntnu.idat2003.model.tileactions.LadderAction;
+import java.io.IOException;
 import java.lang.reflect.Type;
+import java.nio.file.*;
 import java.util.HashSet;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.mockito.MockedStatic;
-import org.mockito.Mockito;
 
 public class GsonUtilTest {
 
   private HashSet<Board> boards;
+  private Path tempFile;
 
   @BeforeEach
-  void setup() {
+  @DisplayName("Setup test data")
+  void setup() throws IOException {
     Tile tile1 = new Tile(new Vector2(0, 0), "1");
     Tile tile2 = new Tile(new Vector2(1, 1), "2");
     Tile tile3 = new Tile(new Vector2(2, 2), "3");
@@ -37,30 +39,55 @@ public class GsonUtilTest {
 
     boards = new HashSet<>();
     boards.add(board);
+
+    tempFile = Files.createTempFile("test-board", ".json");
+  }
+
+  @AfterEach
+  @DisplayName("Cleanup test data")
+  void tearDown() throws IOException {
+    Files.deleteIfExists(tempFile);
   }
 
   @Test
   @DisplayName("Test readFile and writeFile")
-  void testWriteFileAndReadFile() throws Exception {
-    String fakeFilePath = "/fake/path/board.json";
-    Type boardSetType = new TypeToken<HashSet<Board>>() {}.getType();
+  void testWriteAndRead() throws Exception {
+    GsonUtil.writeFile(tempFile.toString(), boards);
 
-    try (MockedStatic<GsonUtil> mockedGsonUtil = Mockito.mockStatic(GsonUtil.class)) {
-      mockedGsonUtil
-          .when(() -> GsonUtil.writeFile(eq(fakeFilePath), eq(boards)))
-          .thenThrow(new DataWriteException("Failed to write file"));
+    Type type = new TypeToken<HashSet<Board>>() {}.getType();
+    HashSet<Board> readBoards = GsonUtil.readFile(tempFile.toString(), type);
 
-      mockedGsonUtil
-          .when(() -> GsonUtil.readFile(eq(fakeFilePath), eq(boardSetType)))
-          .thenReturn(boards);
+    assertNotNull(readBoards);
+    assertEquals(1, readBoards.size());
 
-      assertThrows(DataWriteException.class, () -> GsonUtil.writeFile(fakeFilePath, boards));
+    Board readBoard = readBoards.iterator().next();
+    assertEquals("Test Board", readBoard.getName());
+    assertEquals(3, readBoard.getTiles().size());
+  }
 
-      HashSet<Board> result = GsonUtil.readFile(fakeFilePath, boardSetType);
-      Board board = result.iterator().next();
+  @Test
+  @DisplayName("Test writeFile throws exception")
+  void testWriteFileThrows() {
+    try (MockedStatic<GsonUtil> mocked = mockStatic(GsonUtil.class)) {
+      mocked
+          .when(() -> GsonUtil.writeFile("invalid/path.json", boards))
+          .thenThrow(new DataWriteException("Failed"));
 
-      assertEquals("Test Board", board.getName());
-      assertEquals(3, board.getTiles().size());
+      assertThrows(DataWriteException.class, () -> GsonUtil.writeFile("invalid/path.json", boards));
+    }
+  }
+
+  @Test
+  @DisplayName("Test readFile throws exception")
+  void testReadFileThrows() {
+    Type type = new TypeToken<HashSet<Board>>() {}.getType();
+
+    try (MockedStatic<GsonUtil> mocked = mockStatic(GsonUtil.class)) {
+      mocked
+          .when(() -> GsonUtil.readFile("invalid.json", type))
+          .thenThrow(new DataReadException("Read failed"));
+
+      assertThrows(DataReadException.class, () -> GsonUtil.readFile("invalid.json", type));
     }
   }
 }

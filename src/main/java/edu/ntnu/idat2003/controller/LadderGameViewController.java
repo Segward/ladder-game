@@ -141,21 +141,6 @@ public class LadderGameViewController implements LadderGameObserver {
 
       gc.fillRoundRect(
           px, py, cellWidth - 2 * innerPadding, cellHeight - 2 * innerPadding, arc, arc);
-
-      gc.setFont(new Font("Arial Black", 12));
-      gc.setTextAlign(TextAlignment.CENTER);
-      gc.setTextBaseline(VPos.CENTER);
-
-      String text = String.valueOf(tile.getText());
-      double x = px + 12;
-      double y = py + 12;
-
-      gc.setStroke(Color.BLACK);
-      gc.setLineWidth(2);
-      gc.strokeText(text, x, y);
-
-      gc.setFill(Color.WHITE);
-      gc.fillText(text, x, y);
     }
 
     for (LadderAction action : game.getBoard().getLadders()) {
@@ -226,6 +211,29 @@ public class LadderGameViewController implements LadderGameObserver {
 
       Image diceImage = new Image("/dice/default.png");
       gc.drawImage(diceImage, px + 16, py + 16, cellWidth - 30, cellHeight - 30);
+    }
+
+    for (Tile tile : tiles.values()) {
+      int drawRow = rows - 1 - tile.getPosition().getY();
+      int drawCol = tile.getPosition().getX();
+
+      double px = offsetX + drawCol * cellWidth + innerPadding;
+      double py = offsetY + drawRow * cellHeight + innerPadding;
+
+      gc.setFont(new Font("Arial Black", 12));
+      gc.setTextAlign(TextAlignment.CENTER);
+      gc.setTextBaseline(VPos.CENTER);
+
+      String text = String.valueOf(tile.getText());
+      double x = px + 12;
+      double y = py + 12;
+
+      gc.setStroke(Color.BLACK);
+      gc.setLineWidth(2);
+      gc.strokeText(text, x, y);
+
+      gc.setFill(Color.WHITE);
+      gc.fillText(text, x, y);
     }
 
     for (Player player : game.getPlayers()) {

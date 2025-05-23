@@ -70,8 +70,6 @@ public class QuestionAction extends TileAction {
   public void execute(Player player) {
     if (given != null && given.equalsIgnoreCase(answer)) {
       player.setExtraDice(true);
-    } else {
-      player.setExtraDice(false);
     }
   }
 }

@@ -163,6 +163,27 @@ public class QuizGameViewController implements QuizGameObserver {
 
       gc.fillRoundRect(
           px, py, cellWidth - 2 * innerPadding, cellHeight - 2 * innerPadding, arc, arc);
+    }
+
+    for (QuestionAction action : game.getBoard().getQuestions()) {
+      Vector2 pos = action.getStart();
+
+      int drawRow = rows - 1 - pos.getY();
+      int drawCol = pos.getX();
+
+      double px = offsetX + drawCol * cellWidth + innerPadding;
+      double py = offsetY + drawRow * cellHeight + innerPadding;
+
+      Image questionImage = new Image("/icons/question.png");
+      gc.drawImage(questionImage, px + 16, py + 16, cellWidth - 30, cellHeight - 30);
+    }
+
+    for (Tile tile : tiles.values()) {
+      int drawRow = rows - 1 - tile.getPosition().getY();
+      int drawCol = tile.getPosition().getX();
+
+      double px = offsetX + drawCol * cellWidth + innerPadding;
+      double py = offsetY + drawRow * cellHeight + innerPadding;
 
       gc.setFont(new Font("Arial Black", 12));
       gc.setTextAlign(TextAlignment.CENTER);
@@ -178,19 +199,6 @@ public class QuizGameViewController implements QuizGameObserver {
 
       gc.setFill(Color.WHITE);
       gc.fillText(text, x, y);
-    }
-
-    for (QuestionAction action : game.getBoard().getQuestions()) {
-      Vector2 pos = action.getStart();
-
-      int drawRow = rows - 1 - pos.getY();
-      int drawCol = pos.getX();
-
-      double px = offsetX + drawCol * cellWidth + innerPadding;
-      double py = offsetY + drawRow * cellHeight + innerPadding;
-
-      Image questionImage = new Image("/icons/question.png");
-      gc.drawImage(questionImage, px + 16, py + 16, cellWidth - 30, cellHeight - 30);
     }
 
     for (Player player : game.getPlayers()) {

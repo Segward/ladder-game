@@ -1,41 +1,64 @@
 package edu.ntnu.idat2003.util;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mockStatic;
-import static org.mockito.Mockito.times;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.isNull;
+import static org.mockito.Mockito.*;
 
 import edu.ntnu.idat2003.exception.DataReadException;
 import edu.ntnu.idat2003.exception.DataWriteException;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import org.junit.jupiter.api.*;
 import org.mockito.MockedStatic;
 
 public class CsvUtilTest {
 
+  private static final String path = "test-data/player.csv";
+
+  @BeforeEach
+  void setup() throws IOException {
+    Files.createDirectories(Path.of("test-data"));
+  }
+
+  @AfterEach
+  void cleanup() throws IOException {
+    Files.deleteIfExists(Path.of(path));
+  }
+
   @Test
-  @DisplayName("Test readFile")
-  void testReadFile() throws DataReadException {
-    String mockData = "Name,Path\nKim Dokja,/reader.png";
+  @DisplayName("Test readFile and writeFile")
+  void testWriteThenReadFile() throws Exception {
+    String data = "Name,Path\nKim Dokja,/reader.png";
 
-    try (MockedStatic<CsvUtil> mockedStatic = mockStatic(CsvUtil.class)) {
-      mockedStatic.when(() -> CsvUtil.readFile("data/player.csv")).thenReturn(mockData);
+    CsvUtil.writeFile(path, data);
+    String result = CsvUtil.readFile(path);
 
-      String result = CsvUtil.readFile("data/player.csv");
+    assertEquals(data, result);
+  }
 
-      assertEquals(mockData, result);
-      mockedStatic.verify(() -> CsvUtil.readFile("data/player.csv"), times(1));
+  @Test
+  @DisplayName("Test readFile throws exception")
+  void testReadFileThrowsException() {
+    try (MockedStatic<CsvUtil> mocked = mockStatic(CsvUtil.class)) {
+      mocked
+          .when(() -> CsvUtil.readFile("test-data/nothing.csv"))
+          .thenThrow(new DataReadException("File not found"));
+
+      assertThrows(DataReadException.class, () -> CsvUtil.readFile("test-data/nothing.csv"));
     }
   }
 
   @Test
-  @DisplayName("Test writeFile")
-  void testWriteFile() throws DataWriteException {
-    String data = "Name,Path\nKim Dokja,/reader.png";
+  @DisplayName("Test writeFile throws on null path")
+  void testWriteFileThrowsOnNull() {
+    try (MockedStatic<CsvUtil> mocked = mockStatic(CsvUtil.class)) {
+      mocked
+          .when(() -> CsvUtil.writeFile(anyString(), isNull()))
+          .thenThrow(new DataWriteException("Null data"));
 
-    try (MockedStatic<CsvUtil> mockedStatic = mockStatic(CsvUtil.class)) {
-      CsvUtil.writeFile("data/player.csv", data);
-
-      mockedStatic.verify(() -> CsvUtil.writeFile("data/player.csv", data), times(1));
+      assertThrows(DataWriteException.class, () -> CsvUtil.writeFile(path, null));
     }
   }
 }

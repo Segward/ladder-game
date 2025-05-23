@@ -38,4 +38,23 @@ public class PlayerReaderTest {
                           && p.getFigure().getName().equals("protagonist")));
     }
   }
+
+  @Test
+  @DisplayName("Test getPlayers with empty file")
+  void testGetPlayersWithEmptyFile() throws DataReadException {
+    String mockCsv = "";
+    try (MockedStatic<CsvUtil> csvUtilMock = mockStatic(CsvUtil.class)) {
+      csvUtilMock.when(() -> CsvUtil.readFile("data/player.csv")).thenReturn(mockCsv);
+
+      HashSet<Player> players = new HashSet<>();
+
+      try {
+        players = PlayerReader.getPlayers();
+      } catch (DataReadException e) {
+        assertEquals("File not found", e.getMessage());
+      }
+
+      assertEquals(true, players.isEmpty());
+    }
+  }
 }
